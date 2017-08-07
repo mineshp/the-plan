@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Checkbox } from 'semantic-ui-react';
+import { Checkbox, List } from 'semantic-ui-react';
 
 const Todo = ({ onClick, completed, text }) => (
-  <li>
+  <List.Item>
     <Checkbox onClick={onClick} checked={completed} label={(
       <label style={{textDecoration: completed ? 'line-through' : 'none'}}>
         {text}
       </label>
     )}/>
-  </li>
+  </List.Item>
 )
 
 Todo.propTypes = {
