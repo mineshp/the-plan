@@ -38,6 +38,14 @@ export default class MenuNav extends Component {
                 </Menu.Item>
 
                 <Menu.Item
+                    name='manage projects'
+                    active={activeItem === 'manage-projects'}
+                    onClick={this.handleItemClick}
+                    href='/project/all'
+                    >Manage Projects
+                </Menu.Item>
+
+                <Menu.Item
                     position='right'
                     name='sign-in'
                     active={activeItem === 'sign-in'}
