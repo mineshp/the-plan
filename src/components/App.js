@@ -1,7 +1,7 @@
 import React from 'react'
 import Footer from './Footer'
-import AddTodo from '../containers/AddTodo'
-import VisibleTodoList from '../containers/VisibleTodoList'
+import AddTodo from '../HOC/AddTodo'
+import VisibleTodoList from '../HOC/VisibleTodoList'
 import { Container } from 'semantic-ui-react';
 
 const App = () => (

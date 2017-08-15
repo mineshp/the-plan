@@ -22,6 +22,14 @@ export default class MenuNav extends Component {
                 </Menu.Item>
 
                 <Menu.Item
+                    name='manage lists'
+                    active={activeItem === 'manage-lists'}
+                    onClick={this.handleItemClick}
+                    href='/list/all'
+                    >Manage Lists
+                </Menu.Item>
+
+                <Menu.Item
                     name='list'
                     active={activeItem === 'list'}
                     onClick={this.handleItemClick}
