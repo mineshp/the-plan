@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom'
 import List from './App.js';
 import ManageLists from './List/Manage.js';
 import ManageProjects from './Project/Manage.js';
+import CreateProject from '../HOC/Project/Create.js';
+
 import ViewList from './List/View.js';
 import Home from './Home'
 // import Roster from './Roster'
@@ -31,6 +33,7 @@ const Main = () => (
       <Route path='/list/:id/view' component={ViewList} />
       <Route path='/list' component={List} />
       <Route path='/project/all' component={ManageProjects} />
+      <Route path='/project/create' component={CreateProject} />
       <Route component={NoMatch}/>
     </Switch>
   </main>
