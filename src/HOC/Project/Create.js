@@ -1,38 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { create } from '../../actions/project.js';
+import { create, createdProject, errorCreatingProject } from '../../actions/project.js';
 import { Button, Container, Form, Input } from 'semantic-ui-react';
 import ColourDropDown from '../../components/Shared/ColourDropDown.js';
+import DisplayMessage from '../../components/Shared/DisplayMessage.js';
+
 import './Project.css';
 
+import { bindActionCreators } from 'redux';
 
 class CreateProject extends Component {
   constructor(props, context) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.createProject = this.createProject.bind(this);
     this.handleDropDownSelection = this.handleDropDownSelection.bind(this);
 
-    this.state = {
-        projectName: '',
-        colour: ''
-    };
+    this.state = { projects: null };
   }
 
-  createProject() {
-      console.log("CreateProject called")
-  }
-
-  componentDidMount() {
-    // Subscribe to changes
-    //DataSource.addChangeListener(this.handleChange);
-  }
-
-  componentWillUnmount() {
-    // Clean up listener
-    //DataSource.removeChangeListener(this.handleChange);
-  }
 
   handleChange(event) {
     this.setState({projectName: event.target.value});
@@ -40,10 +26,7 @@ class CreateProject extends Component {
 
   handleSubmit(event) {
       event.preventDefault();
-      this.props.dispatch(create(this.state));
-      console.log(this.state);
-
-      // CREATE
+      this.props.actions.create(this.state);
       return;
   }
 
@@ -55,12 +38,16 @@ class CreateProject extends Component {
   render() {
       return (
           <Container>
+              {
+                  (this.props.result.error || this.props.result.success) &&
+                  <DisplayMessage status={this.props.result} />
+              }
               <Form onSubmit={this.handleSubmit}>
                   <Form.Field>
                       <Input
                           placeholder='Project Name...'
                           className='text-box-custom'
-                          defaultValue={this.state.projectName}
+                          defaultValue={this.props.projectName}
                           onChange={this.handleChange}
                           />
                   </Form.Field>
@@ -74,6 +61,23 @@ class CreateProject extends Component {
   }
 }
 
-CreateProject = connect()(CreateProject)
+function mapStateToProps(state) {
+  return {
+    result: state.projects
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({
+      createdProject, errorCreatingProject, create
+    }, dispatch)
+  };
+}
+
+CreateProject = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CreateProject)
 
 export default CreateProject;

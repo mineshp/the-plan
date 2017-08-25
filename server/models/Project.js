@@ -7,6 +7,7 @@ let ProjectSchema = mongoose.Schema({
 });
 
 const Project = mongoose.model('Project', ProjectSchema);
+module.exports = Project;
 
 function createDefaultProjects() {
 	Project.find({}, function (err, collection) {
@@ -20,4 +21,4 @@ function createDefaultProjects() {
 	});
 };
 
-exports.createDefaultProjects = createDefaultProjects;
+module.exports.createDefaultProjects = createDefaultProjects;

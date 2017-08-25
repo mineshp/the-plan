@@ -1,3 +1,5 @@
+//import { push } from 'react-router-redux';
+
 export const createProject = (projectName, colour) => ({
     type: 'CREATE_PROJECT',
     projectName,
@@ -6,14 +8,16 @@ export const createProject = (projectName, colour) => ({
 
 export const createdProject = (data) => ({
   type: 'PROJECT_CREATION_SUCCESS',
+  data
 });
 
 export const errorCreatingProject = (error) => ({
   type: 'PROJECT_CREATION_ERROR',
-  error: error
+  error
 });
 
 export function create(newProject) {
+  let resStatus;
   return dispatch =>
     fetch('/project/create', {
       method: 'post',
@@ -26,17 +30,19 @@ export function create(newProject) {
         colour: newProject.colour.toLowerCase()
       }),
     })
-    .then(response => {
-      if (response.status >= 200 && response.status < 300) {
-        dispatch(createdProject(response));
-      } else {
-        const error = new Error(`
-          Error creating project ${newProject.projectName} with colour ${newProject.colour}, Error: ${response.statusText}`
-        );
-        error.response = response;
-        dispatch(errorCreatingProject(error));
-        throw error;
-      }
-    })
-    .catch(error => { console.log('request failed', error); });
+      .then((response) => {
+        resStatus = response.ok;
+        return response.json();
+      })
+      .then((data) => {
+        if (resStatus) {
+          return dispatch(createdProject(data));
+        }
+        else {
+          return dispatch(errorCreatingProject(data.message));
+        }
+      })
+    .catch((error) => {
+        dispatch(errorCreatingProject(error.message));
+    });
 }

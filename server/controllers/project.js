@@ -1,7 +1,7 @@
 const Project = require('mongoose').model('Project');
 
 exports.getAllProjects = function(req,res) {
-    Project.find({}, function (err, collection) {
+	Project.find({}, function (err, collection) {
 		res.send(collection);
 	});
 };
@@ -19,18 +19,21 @@ exports.createNewProject = function (req, res) {
 
 			newProject.save((err, result) => {
 				if (err) {
-					console.log(err);
 					return res.send(`Error saving new project, ${err}`);
 				}
 				else {
-					res.send('Successfully saved new record');
+					res.status(201);
+					res.send(result);
 				}
 			});
 		}
 		else {
-			res.send(new Error(
-				'Project with the same name already exists, please choose another name.'
-			));
+			res.status(400);
+			res.json(
+				{
+					message: 'Error: Project with the same name already exists, please choose another name.'
+				}
+			);
 		}
 	});
 };
