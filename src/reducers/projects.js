@@ -1,9 +1,10 @@
-const projects = (state = [], action) => {
+const projects = (state = {}, action) => {
   switch (action.type) {
     case 'CREATE_PROJECT':
       return {
         projectName: action.projectName,
-        colour: action.colour
+        colour: action.colour,
+        shouldRedirect: false
       };
 
       case 'PROJECT_CREATION_SUCCESS':
@@ -11,7 +12,8 @@ const projects = (state = [], action) => {
           success: {
             data: action.data,
             message: 'Successfully created project'
-          }
+          },
+          shouldRedirect: true
         };
 
       case 'PROJECT_CREATION_ERROR':
@@ -19,7 +21,8 @@ const projects = (state = [], action) => {
           error: {
             message: action.error,
             isError: true
-          }
+          },
+          shouldRedirect: false
         };
 
       default:

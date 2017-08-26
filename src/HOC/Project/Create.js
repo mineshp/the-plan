@@ -16,9 +16,20 @@ class CreateProject extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDropDownSelection = this.handleDropDownSelection.bind(this);
 
-    this.state = { projects: null };
+    this.state = { projects: null, shouldRedirect: false };
   }
 
+//   componentWillUpdate () {
+//     const { router } = this.context
+//     const { projects } = this.props
+    // console.log("PROJ", this.props);
+    // if (projects.shouldRedirect) {
+    //     setTimeout(() => {
+    //         console.log("REDIRECT")
+    //         // router.transition(...)
+    //     }, 3000);
+    // }
+//   }
 
   handleChange(event) {
     this.setState({projectName: event.target.value});
@@ -63,7 +74,8 @@ class CreateProject extends Component {
 
 function mapStateToProps(state) {
   return {
-    result: state.projects
+      result: state.projects,
+      shouldRedirect: state.projects.shouldRedirect
   };
 }
 

@@ -16,7 +16,6 @@ exports.createNewProject = function (req, res) {
 	Project.find({ projectName: req.body.projectName }, function (err, collection) {
 		if (collection.length === 0) {
 			const newProject = new Project(req.body);
-
 			newProject.save((err, result) => {
 				if (err) {
 					return res.send(`Error saving new project, ${err}`);

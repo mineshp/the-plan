@@ -4,14 +4,20 @@ const chai = require('chai');
 const assert = chai.assert;
 
 let findCallback;
+let saveCallback;
+
 const ProjectModel = {
     find: ((options, callback) => {
         findCallback = callback;
     }),
-    new: () => {}
+    save: ((callback) => {
+        saveCallback = callback;
+    })
 };
 
 let sendResponseStub = sinon.stub();
+let sendStatusStub = sinon.stub();
+let sendJsonStub = sinon.stub();
 
 const ProjectController = proxyquire('../../controllers/project.js', {
     'mongoose': {
@@ -19,7 +25,11 @@ const ProjectController = proxyquire('../../controllers/project.js', {
     }
 });
 
-const testRes = { send: sendResponseStub };
+const testRes = {
+    send: sendResponseStub,
+    status: sendStatusStub,
+    json: sendJsonStub
+};
 const testReq = {
     body: {
         projectName: 'aTest Project',
@@ -41,9 +51,18 @@ describe('getAllProjects', () => {
     });
 });
 
-describe.only('createNewProject', () => {
+describe('createNewProject', () => {
+    const testReqSuccess = {
+        body: {
+            projectName: 'bTest Project',
+            colour: 'Yellow'
+        }
+    };
+
     afterEach(() => {
         sendResponseStub.reset();
+        sendStatusStub.reset();
+        sendJsonStub.reset();
     });
 
     it('should error if project with same name already exists', async () => {
@@ -57,14 +76,34 @@ describe.only('createNewProject', () => {
         // findCallback(error, collection)
         findCallback(null, projectAlreadyExistsCollection);
         const nameExistsError =
-            'Project with the same name already exists, please choose another name.';
-        assert.equal(testRes.send.lastCall.args[0].message, nameExistsError);
-        // Test error message with Error library§
+            'Error: Project with the same name already exists, please choose another name.';
+        assert.equal(testRes.status.lastCall.args[0], 400);
+        assert(!testRes.send.called); // Test res.send is not called.
+        assert.equal(testRes.json.lastCall.args[0].message, nameExistsError);
     });
 
-    it('should successfully post a new project', async () => {
-        ProjectController.createNewProject(testReq, testRes);
+    xit('should successfully post a new project', async () => {
+        ProjectController.createNewProject(testReqSuccess, testRes);
         // Need to mock/stub new Project, line 22 in projects controller
+        const newProjectSaveStub = sinon.stub(newProjectInstanceStub, 'save')
         findCallback(null, []);
+
+        saveCallback(null, {
+            projectName: 'test',
+            colour: 'redish'
+        });
+        //assert.equal(testRes.send.called);
+        //lastCall.args[0], 201);
+    });
+
+    xit('should error when posting a new project returns an error', async () => {
+        ProjectController.createNewProject(testReqSuccess, testRes);
+        // Need to mock/stub new Project, line 22 in projects controller
+        const newProjectSaveStub = sinon.stub(newProjectInstanceStub, 'save')
+        findCallback(null, []);
+
+        saveCallback(err);
+        //assert.equal(testRes.send.called);
+        //lastCall.args[0], 201);
     });
 });
