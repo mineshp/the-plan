@@ -24,13 +24,15 @@ const DisplayMessage = (props) => {
     );
 };
 
+// Take one object with a messageType field ['success', 'error']
 DisplayMessage.propTypes = {
     status: PropTypes.shape({
-        exists: PropTypes.boolean,
-        message: PropTypes.string,
-        data: PropTypes.shape({
-            projectName: PropTypes.string,
-            colour: PropTypes.string
+        success: PropTypes.shape({
+            message: PropTypes.string
+        }),
+        error: PropTypes.shape({
+            message: PropTypes.string,
+            isError: PropTypes.bool
         })
     })
 }

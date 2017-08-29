@@ -1,0 +1,334 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  aria-busy={undefined}
+  aria-disabled={undefined}
+  aria-expanded={false}
+  aria-multiselectable={undefined}
+  className="ui selection dropdown"
+  onBlur={[Function]}
+  onChange={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseDown={[Function]}
+  role="listbox"
+  tabIndex={0}
+>
+  <div
+    aria-live="polite"
+    className="default text"
+    role="alert"
+  >
+    Choose Colour
+  </div>
+  <i
+    aria-hidden="true"
+    className="dropdown icon"
+    onClick={[Function]}
+  />
+  <div
+    className="menu transition"
+  >
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={true}
+      className="selected item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui red circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        RED
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui blue circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        BLUE
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui orange circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        ORANGE
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui yellow circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        YELLOW
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui olive circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        OLIVE
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui green circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        GREEN
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui teal circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        TEAL
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui violet circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        VIOLET
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui purple circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        PURPLE
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui pink circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        PINK
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui brown circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        BROWN
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui grey circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        GREY
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-disabled={undefined}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        Object {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <div
+        className="ui black circular empty label"
+        onClick={[Function]}
+      />
+      <span
+        className="text"
+      >
+        BLACK
+      </span>
+    </div>
+  </div>
+</div>
+`;

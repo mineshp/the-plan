@@ -1,5 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+// import { Router } from 'react-router'
 import List from './App.js';
 import ManageLists from './List/Manage.js';
 import ManageProjects from './Project/Manage.js';
@@ -35,7 +36,7 @@ const Main = () => (
       <Route path='/project/all' component={ManageProjects} />
       <Route path='/project/create' component={CreateProject} />
       <Route component={NoMatch}/>
-    </Switch>
+      </Switch>
   </main>
 )
 
