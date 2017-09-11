@@ -31,6 +31,7 @@ export function create(newProject) {
       }),
     })
       .then((response) => {
+        console.log('resp', response);
         resStatus = response.ok;
         return response.json();
       })

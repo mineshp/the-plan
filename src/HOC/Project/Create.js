@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { create, createdProject, errorCreatingProject } from '../../actions/project.js';
-import { Button, Container, Form, Input } from 'semantic-ui-react';
-import ColourDropDown from '../../components/Shared/ColourDropDown.js';
-import DisplayMessage from '../../components/Shared/DisplayMessage.js';
+// import { Button, Container, Form, Input } from 'semantic-ui-react';
+import CreateProjectComponent from '../../components/Project/CreateProject';
 
 import './Project.css';
 
@@ -18,18 +17,6 @@ class CreateProject extends Component {
 
     this.state = { projects: null, shouldRedirect: false };
   }
-
-//   componentWillUpdate () {
-//     const { router } = this.context
-//     const { projects } = this.props
-    // console.log("PROJ", this.props);
-    // if (projects.shouldRedirect) {
-    //     setTimeout(() => {
-    //         console.log("REDIRECT")
-    //         // router.transition(...)
-    //     }, 3000);
-    // }
-//   }
 
   handleChange(event) {
     this.setState({projectName: event.target.value});
@@ -47,35 +34,23 @@ class CreateProject extends Component {
   }
 
   render() {
+      // console.log('RES is ', this.props.result)
       return (
-          <Container>
-              {
-                  (this.props.result.error || this.props.result.success) &&
-                  <DisplayMessage status={this.props.result} />
-              }
-              <Form onSubmit={this.handleSubmit}>
-                  <Form.Field>
-                      <Input
-                          placeholder='Project Name...'
-                          className='text-box-custom'
-                          defaultValue={this.props.projectName}
-                          onChange={this.handleChange}
-                          />
-                  </Form.Field>
-                  <Form.Field>
-                      <ColourDropDown handleChange={this.handleDropDownSelection}/>
-                  </Form.Field>
-                  <Button color='teal' type='submit'>Create</Button>
-              </Form>
-          </Container>
+          <CreateProjectComponent
+              result={this.props.result}
+              handleChange={this.handleChange}
+              handleDropDownSelection={this.handleDropDownSelection}
+              handleSubmit={this.handleSubmit}
+              projectName={this.props.projectName}>
+          </CreateProjectComponent>
       );
   }
 }
 
 function mapStateToProps(state) {
   return {
-      result: state.projects,
-      shouldRedirect: state.projects.shouldRedirect
+      result: state.projects
+    //   shouldRedirect: state.projects.shouldRedirect
   };
 }
 
@@ -87,9 +62,12 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-CreateProject = connect(
+const CreateProjectConnectedComponent = connect(
     mapStateToProps,
     mapDispatchToProps
 )(CreateProject)
 
-export default CreateProject;
+export {
+    CreateProject,
+    CreateProjectConnectedComponent
+};

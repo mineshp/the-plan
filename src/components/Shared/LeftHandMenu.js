@@ -4,7 +4,6 @@ import { Icon, Menu } from 'semantic-ui-react'
 export default class LeftHandMenu extends Component {
   state = { activeItem: 'view' }
 
-
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {

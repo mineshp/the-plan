@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainNav Component renders correctly 1`] = `
+<div
+  className="ui stackable menu"
+>
+  <a
+    className="item"
+    href="/"
+    onClick={[Function]}
+  >
+    <img
+      alt="logo"
+      src="logo.svg"
+    />
+  </a>
+  <a
+    className="item"
+    href="/list/all"
+    onClick={[Function]}
+  >
+    Manage Lists
+  </a>
+  <a
+    className="item"
+    href="/list"
+    onClick={[Function]}
+  >
+    List
+  </a>
+  <a
+    className="item"
+    href="/project/all"
+    onClick={[Function]}
+  >
+    Manage Projects
+  </a>
+  <a
+    className="right item"
+    onClick={[Function]}
+  >
+    Sign-in
+  </a>
+</div>
+`;

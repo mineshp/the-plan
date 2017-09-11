@@ -11,13 +11,11 @@ class ManageList extends Component {
         fetch('/list/all')
             .then(res => res.json())
             .then((lists) => {
-                console.log("lists ", lists);
                 this.setState({ lists })
             })
-            .catch(function(err) {
+            .catch(function (err) {
                 console.log("ERR", err)
-            })
-            //.then(lists => this.setState({ lists }));
+            });
     }
 
     render() {

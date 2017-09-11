@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListRow renders correctly 1`] = `
+<tr
+  className=""
+>
+  <td
+    className=""
+  >
+    My Awesome List
+  </td>
+  <td
+    className=""
+  />
+  <td
+    className=""
+  />
+  <td
+    className=""
+  >
+    <a
+      className="ui red label"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="empty star icon"
+      />
+      ABC
+    </a>
+    <a
+      className="ui red label"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="empty star icon"
+      />
+      XYZ
+    </a>
+  </td>
+  <td
+    className=""
+  >
+    <a
+      className="ui button"
+      disabled={undefined}
+      href="/list/1234456/view"
+      onClick={[Function]}
+      role="button"
+      tabIndex={undefined}
+    >
+      View
+    </a>
+  </td>
+</tr>
+`;

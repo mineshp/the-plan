@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Manage Project renders correctly 1`] = `
+<div
+  className="ui container"
+>
+  <div
+    className="ui grid"
+  >
+    <div
+      className="four wide column"
+    >
+      <div
+        className="ui vertical labeled icon menu"
+      >
+        <a
+          className="active item"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="list layout icon"
+          />
+          View
+        </a>
+        <a
+          className="item"
+          href="/project/create"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="add circle icon"
+          />
+          Create
+        </a>
+        <a
+          className="item"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="search icon"
+          />
+          Search
+        </a>
+      </div>
+    </div>
+    <div
+      className="twelve wide column"
+    >
+      <div
+        className="List main"
+      >
+        <div
+          className="ui three cards"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

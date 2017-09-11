@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const DisplayMessage = (props) => {
     let isError = false;
+
     if (props.status.error) {
         isError = props.status.error.isError;
     }

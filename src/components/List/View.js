@@ -6,7 +6,6 @@ const View = (props) => (
   <Container>
     <ViewList listID={props.match.params.id} />
   </Container>
-
-)
+);
 
 export default View;
