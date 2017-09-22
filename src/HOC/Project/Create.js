@@ -34,7 +34,6 @@ class CreateProject extends Component {
   }
 
   render() {
-      // console.log('RES is ', this.props.result)
       return (
           <CreateProjectComponent
               result={this.props.result}
@@ -69,5 +68,6 @@ const CreateProjectConnectedComponent = connect(
 
 export {
     CreateProject,
-    CreateProjectConnectedComponent
+    CreateProjectConnectedComponent,
+    mapStateToProps
 };

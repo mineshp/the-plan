@@ -24,7 +24,7 @@ const mockHandleSubmit = jest.fn();
 const mockHandleChange = jest.fn();
 const mockHandleDropDownSelection = jest.fn();
 
-describe.only('Create New Project', () => {
+describe('Create New Project', () => {
     it('renders create new project form correctly', () => {
         const tree = renderer.create(
             <CreateProject

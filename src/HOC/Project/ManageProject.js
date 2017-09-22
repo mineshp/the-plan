@@ -3,15 +3,39 @@ import React, { Component } from 'react'
 //import { addTodo } from '../actions'
 import { Card } from 'semantic-ui-react';
 import ProjectCard from '../../components/Project/ProjectCard';
+import DisplayMessage from '../../components/Shared/DisplayMessage';
 
-class ManageList extends Component {
-    state = { projects: [] }
+class ManageProject extends Component {
+    state = {
+        projects: [],
+        notification: null
+    }
 
     componentDidMount() {
-        fetch('/project/all')
-            .then(res => res.json())
-            .then(projects => this.setState({ projects }))
-    };
+        return fetch('/project/all')
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+                return Promise.reject(
+                    new Error('Unable to retrieve projects, please try again later.'));
+            })
+            .then((projects) => {
+                this.setState({ projects })
+            })
+            .catch(err => {
+                // console.error(err);
+                const displayError = {
+                    error: {
+                        message: err.message,
+                        isError: true
+                    }
+                };
+                this.setState({
+                    notification: displayError
+                });
+            });
+    }
 
     render() {
         let Cards = [];
@@ -20,6 +44,10 @@ class ManageList extends Component {
         });
         return (
             <div className="List main">
+                {
+                    this.state.notification &&
+                        <DisplayMessage status={this.state.notification} />
+                }
                 <Card.Group itemsPerRow={3}>
                     { Cards }
                 </Card.Group>
@@ -29,4 +57,4 @@ class ManageList extends Component {
 };
 //ManageList = connect()(ManageList)
 
-export default ManageList
+export default ManageProject

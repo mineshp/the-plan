@@ -1,5 +1,10 @@
 import * as actions from '../project';
-import { create } from '../project';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+// import { create } from '../project';
+
+const middlewares = [thunk]
+const mockStore = configureMockStore(middlewares)
 
 const mockResponse = (status, statusText, response) => {
   return new window.Response(response, {
@@ -41,7 +46,7 @@ describe('Project actions', () => {
       ).toEqual(expectedAction);
   });
 
-  it('should return a successful response when create project called', async () => {
+  it('should dispatch to successfully created project action', async () => {
       const mockNewProjectCreationSuccessAPIResponse = {
           _id: "1234",
           projectName: "TEST PROJECT",
@@ -53,20 +58,53 @@ describe('Project actions', () => {
             Promise.resolve(mockResponse(
                 200, null, JSON.stringify(mockNewProjectCreationSuccessAPIResponse) )));
 
-      // test method create(newProject)
 
-      // console.log('ss', create({
-      //     projectName: 'TEST PROJECT',
-      //     colour: 'green'
-      // }).resolves);
+      const store = mockStore({ project: {} })
+      const newProjectData = {
+        projectName: 'test',
+        colour: 'bluey'
+      };
 
-      // console.log(create({a: 'bb'}).then());
+      const expectedActions = [
+        {
+          type: 'PROJECT_CREATION_SUCCESS',
+          data: mockNewProjectCreationSuccessAPIResponse
+        }
+      ];
 
-      // await expect(
-      //   create({
-      //     projectName: 'TEST PROJECT',
-      //     colour: 'green'
-      // })).resolves.toEqual('blah');
+      return store.dispatch(actions.create(newProjectData)).then(() => {
+        // return of async actions
+        expect(store.getActions()).toEqual(expectedActions)
+      });
+  });
+
+  it('should dispatch to error creating project action', async () => {
+      const mockNewProjectCreationFailureAPIResponse = {
+          message: 'Unable to create new project, please try again later.'
+      };
+
+      window.fetch = jest.fn().mockImplementation(() =>
+            Promise.resolve(mockResponse(
+                403, null, JSON.stringify(mockNewProjectCreationFailureAPIResponse) )));
+
+
+      const store = mockStore({ project: {} })
+      const newProjectData = {
+        projectName: 'test',
+        colour: 'bluey'
+      };
+
+      const expectedAction = [
+        {
+          type: 'PROJECT_CREATION_ERROR',
+          error: mockNewProjectCreationFailureAPIResponse.message
+        }
+      ];
+
+      return store.dispatch(actions.create(newProjectData)).then(() => {
+        // return of async actions
+        expect(store.getActions()).toEqual(expectedAction)
+      });
   });
 
   it('should dispatch an action to notify the user a project has failed to created', () => {

@@ -17,7 +17,7 @@ export const errorCreatingProject = (error) => ({
 });
 
 export function create(newProject) {
-  let resStatus;
+  let responseStatus;
   return dispatch =>
     fetch('/project/create', {
       method: 'post',
@@ -30,20 +30,19 @@ export function create(newProject) {
         colour: newProject.colour.toLowerCase()
       }),
     })
-      .then((response) => {
-        console.log('resp', response);
-        resStatus = response.ok;
-        return response.json();
+      .then((res) => {
+        responseStatus = res.ok;
+        return res.json();
       })
       .then((data) => {
-        if (resStatus) {
+        if (responseStatus) {
           return dispatch(createdProject(data));
         }
         else {
-          return dispatch(errorCreatingProject(data.message));
+          return Promise.reject(new Error(data.message));
         }
       })
-    .catch((error) => {
+      .catch((error) => {
         dispatch(errorCreatingProject(error.message));
     });
 }
