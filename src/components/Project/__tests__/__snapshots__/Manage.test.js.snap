@@ -5,46 +5,11 @@ exports[`Manage Project renders correctly 1`] = `
   className="ui container"
 >
   <div
-    className="ui grid"
+    className="List main"
   >
     <div
-      className="four wide column"
-    >
-      <div
-        className="ui fluid vertical tabular menu"
-      >
-        <a
-          className="active item"
-          onClick={[Function]}
-        >
-          View
-        </a>
-        <a
-          className="item"
-          href="/project/create"
-          onClick={[Function]}
-        >
-          Create
-        </a>
-        <a
-          className="item"
-          onClick={[Function]}
-        >
-          Search
-        </a>
-      </div>
-    </div>
-    <div
-      className="twelve wide column"
-    >
-      <div
-        className="List main"
-      >
-        <div
-          className="ui three cards"
-        />
-      </div>
-    </div>
+      className="ui three cards"
+    />
   </div>
 </div>
 `;

@@ -27,7 +27,6 @@ exports[`MainNav Component renders correctly 1`] = `
     aria-expanded={false}
     aria-multiselectable={undefined}
     className="ui item dropdown"
-    dropdown={true}
     onBlur={[Function]}
     onChange={[Function]}
     onClick={[Function]}

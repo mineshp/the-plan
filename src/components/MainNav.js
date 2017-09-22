@@ -29,7 +29,7 @@ export default class MenuNav extends Component {
                     >List
                 </Menu.Item>
 
-                <Dropdown item dropdown text='Projects'>
+                <Dropdown item text='Projects'>
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={this.handleItemClick} href='/project/all'>List</Dropdown.Item>
                         <Dropdown.Item onClick={this.handleItemClick} href='/project/create'>Create</Dropdown.Item>
