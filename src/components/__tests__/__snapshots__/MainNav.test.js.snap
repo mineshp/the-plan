@@ -2,7 +2,7 @@
 
 exports[`MainNav Component renders correctly 1`] = `
 <div
-  className="ui stackable menu"
+  className="ui menu"
 >
   <a
     className="item"
@@ -16,25 +16,137 @@ exports[`MainNav Component renders correctly 1`] = `
   </a>
   <a
     className="item"
-    href="/list/all"
-    onClick={[Function]}
-  >
-    Manage Lists
-  </a>
-  <a
-    className="item"
     href="/list"
     onClick={[Function]}
   >
     List
   </a>
-  <a
-    className="item"
-    href="/project/all"
+  <div
+    aria-busy={undefined}
+    aria-disabled={undefined}
+    aria-expanded={false}
+    aria-multiselectable={undefined}
+    className="ui item dropdown"
+    dropdown={true}
+    onBlur={[Function]}
+    onChange={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    role="listbox"
+    tabIndex={0}
   >
-    Manage Projects
-  </a>
+    <div
+      aria-live="polite"
+      className="text"
+      role="alert"
+    >
+      Projects
+    </div>
+    <i
+      aria-hidden="true"
+      className="dropdown icon"
+      onClick={[Function]}
+    />
+    <div
+      className="menu transition"
+    >
+      <a
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        href="/project/all"
+        onClick={[Function]}
+        role="option"
+      >
+        List
+      </a>
+      <a
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        href="/project/create"
+        onClick={[Function]}
+        role="option"
+      >
+        Create
+      </a>
+      <div
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        onClick={[Function]}
+        role="option"
+      >
+        Search
+      </div>
+    </div>
+  </div>
+  <div
+    aria-busy={undefined}
+    aria-disabled={undefined}
+    aria-expanded={false}
+    aria-multiselectable={undefined}
+    className="ui item dropdown"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    role="listbox"
+    tabIndex={0}
+  >
+    <div
+      aria-live="polite"
+      className="text"
+      role="alert"
+    >
+      Lists
+    </div>
+    <i
+      aria-hidden="true"
+      className="dropdown icon"
+      onClick={[Function]}
+    />
+    <div
+      className="menu transition"
+    >
+      <a
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        href="/list/all"
+        onClick={[Function]}
+        role="option"
+      >
+        List
+      </a>
+      <div
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        onClick={[Function]}
+        role="option"
+      >
+        Create
+      </div>
+      <div
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        onClick={[Function]}
+        role="option"
+      >
+        Search
+      </div>
+    </div>
+  </div>
   <a
     className="right item"
     onClick={[Function]}

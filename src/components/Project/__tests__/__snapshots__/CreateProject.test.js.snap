@@ -33,7 +33,7 @@ exports[`Create New Project renders create new project form correctly 1`] = `
         aria-disabled={undefined}
         aria-expanded={false}
         aria-multiselectable={undefined}
-        className="ui selection dropdown"
+        className="ui selection dropdown form-dropdown"
         onBlur={[Function]}
         onChange={[Function]}
         onClick={[Function]}
@@ -413,7 +413,7 @@ exports[`Create New Project renders successfully after error creating new projec
         aria-disabled={undefined}
         aria-expanded={false}
         aria-multiselectable={undefined}
-        className="ui selection dropdown"
+        className="ui selection dropdown form-dropdown"
         onBlur={[Function]}
         onChange={[Function]}
         onClick={[Function]}
@@ -793,7 +793,7 @@ exports[`Create New Project renders successfully after successful creation of pr
         aria-disabled={undefined}
         aria-expanded={false}
         aria-multiselectable={undefined}
-        className="ui selection dropdown"
+        className="ui selection dropdown form-dropdown"
         onBlur={[Function]}
         onChange={[Function]}
         onClick={[Function]}

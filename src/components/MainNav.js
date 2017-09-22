@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
-import { Menu } from 'semantic-ui-react'
+import { Dropdown, Menu } from 'semantic-ui-react'
 
 export default class MenuNav extends Component {
     state = {}
@@ -11,7 +11,7 @@ export default class MenuNav extends Component {
         const { activeItem } = this.state
 
         return (
-            <Menu stackable>
+            <Menu>
                 <Menu.Item
                     href='/'
                     name='home'
@@ -22,14 +22,6 @@ export default class MenuNav extends Component {
                 </Menu.Item>
 
                 <Menu.Item
-                    name='manage lists'
-                    active={activeItem === 'manage-lists'}
-                    onClick={this.handleItemClick}
-                    href='/list/all'
-                    >Manage Lists
-                </Menu.Item>
-
-                <Menu.Item
                     name='list'
                     active={activeItem === 'list'}
                     onClick={this.handleItemClick}
@@ -37,13 +29,21 @@ export default class MenuNav extends Component {
                     >List
                 </Menu.Item>
 
-                <Menu.Item
-                    name='manage projects'
-                    active={activeItem === 'manage-projects'}
-                    onClick={this.handleItemClick}
-                    href='/project/all'
-                    >Manage Projects
-                </Menu.Item>
+                <Dropdown item dropdown text='Projects'>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={this.handleItemClick} href='/project/all'>List</Dropdown.Item>
+                        <Dropdown.Item onClick={this.handleItemClick} href='/project/create'>Create</Dropdown.Item>
+                        <Dropdown.Item>Search</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+
+                <Dropdown item text='Lists'>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={this.handleItemClick} href='/list/all'>List</Dropdown.Item>
+                        <Dropdown.Item>Create</Dropdown.Item>
+                        <Dropdown.Item>Search</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
 
                 <Menu.Item
                     position='right'

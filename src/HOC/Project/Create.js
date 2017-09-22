@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { create, createdProject, errorCreatingProject } from '../../actions/project.js';
-// import { Button, Container, Form, Input } from 'semantic-ui-react';
 import CreateProjectComponent from '../../components/Project/CreateProject';
 
 import './Project.css';

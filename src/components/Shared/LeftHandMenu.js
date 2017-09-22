@@ -7,29 +7,13 @@ export default class LeftHandMenu extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state
+    const { activeItem } = this.state;
 
     return (
-      <Menu icon='labeled' vertical>
-        <Menu.Item name='view' active={activeItem === 'view'} onClick={this.handleItemClick}>
-          <Icon name='list layout' />
-          View
-        </Menu.Item>
-
-        <Menu.Item
-            name='create'
-            active={activeItem === 'create'}
-            onClick={this.handleItemClick}
-            href='/project/create'
-        >
-          <Icon name='add circle' />
-          Create
-        </Menu.Item>
-
-        <Menu.Item name='search' active={activeItem === 'search'} onClick={this.handleItemClick}>
-          <Icon name='search' />
-          Search
-        </Menu.Item>
+      <Menu fluid vertical tabular>
+        <Menu.Item name='view' active={activeItem === 'view'} onClick={this.handleItemClick} />
+        <Menu.Item name='create' active={activeItem === 'create'} onClick={this.handleItemClick} href='/project/create' />
+        <Menu.Item name='search' active={activeItem === 'search'} onClick={this.handleItemClick} />
       </Menu>
     )
   }

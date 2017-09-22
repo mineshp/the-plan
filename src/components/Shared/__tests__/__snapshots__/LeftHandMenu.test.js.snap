@@ -2,16 +2,12 @@
 
 exports[`LeftHandMenu Component renders correctly 1`] = `
 <div
-  className="ui vertical labeled icon menu"
+  className="ui fluid vertical tabular menu"
 >
   <a
     className="active item"
     onClick={[Function]}
   >
-    <i
-      aria-hidden="true"
-      className="list layout icon"
-    />
     View
   </a>
   <a
@@ -19,20 +15,12 @@ exports[`LeftHandMenu Component renders correctly 1`] = `
     href="/project/create"
     onClick={[Function]}
   >
-    <i
-      aria-hidden="true"
-      className="add circle icon"
-    />
     Create
   </a>
   <a
     className="item"
     onClick={[Function]}
   >
-    <i
-      aria-hidden="true"
-      className="search icon"
-    />
     Search
   </a>
 </div>

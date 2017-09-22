@@ -25,7 +25,7 @@ colours.map((colour) => {
 
 const ColourDropDown = (props) => {
     return (
-        <Select placeholder='Choose Colour' options={DropDownItems} onChange={props.handleChange} />
+        <Select placeholder='Choose Colour' className='form-dropdown' options={DropDownItems} onChange={props.handleChange} />
     );
 };
 

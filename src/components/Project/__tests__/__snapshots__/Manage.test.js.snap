@@ -11,16 +11,12 @@ exports[`Manage Project renders correctly 1`] = `
       className="four wide column"
     >
       <div
-        className="ui vertical labeled icon menu"
+        className="ui fluid vertical tabular menu"
       >
         <a
           className="active item"
           onClick={[Function]}
         >
-          <i
-            aria-hidden="true"
-            className="list layout icon"
-          />
           View
         </a>
         <a
@@ -28,20 +24,12 @@ exports[`Manage Project renders correctly 1`] = `
           href="/project/create"
           onClick={[Function]}
         >
-          <i
-            aria-hidden="true"
-            className="add circle icon"
-          />
           Create
         </a>
         <a
           className="item"
           onClick={[Function]}
         >
-          <i
-            aria-hidden="true"
-            className="search icon"
-          />
           Search
         </a>
       </div>
