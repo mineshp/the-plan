@@ -12,7 +12,7 @@ module.exports = function (app) {
 
     app.get('/project/all', project.getAllProjects);
 	app.post('/project/create', project.createNewProject);
-
+	app.delete('/project/delete/:id', project.delete);
 	// app.all('/api/*', function(req,res) {
 	// 	res.send(404);
 	// });

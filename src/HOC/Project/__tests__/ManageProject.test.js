@@ -1,8 +1,11 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import ManageProject from '../ManageProject';
+import { ManageProject } from '../ManageProject';
 import ProjectCard from '../../../components/Project/ProjectCard';
 import DisplayMessage from '../../../components/Shared/DisplayMessage';
+import ListProjectsComponent from '../../../components/Project/ListProjects';
+
+const props = { actions: { deleteProject: jest.fn() } };
 
 const mockListAllProjects = [
     {
@@ -38,62 +41,67 @@ const mockResponse = (status, statusText, response) => {
 };
 
 describe('Manage Projects', () => {
-    beforeEach(() => {
-        window.fetch = jest.fn().mockImplementation(() =>
-            Promise.resolve(mockResponse(
-                200, null, JSON.stringify(mockListAllProjects) )));
-    });
+    describe('Get all projects success', () => {
+        beforeEach(() => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(
+                    200, null, JSON.stringify(mockListAllProjects) )));
+        });
 
-    it('calls componentDidMount', () => {
-        const componentDidMountSpy = jest.spyOn(ManageProject.prototype, 'componentDidMount');
-        const wrapper = mount(<ManageProject />);
-        wrapper.instance().componentDidMount();
-        expect(componentDidMountSpy).toHaveBeenCalled();
-    });
+        it('calls componentDidMount', () => {
+            const componentDidMountSpy = jest.spyOn(ManageProject.prototype, 'componentDidMount');
+            const wrapper = shallow(<ManageProject />);
+            wrapper.instance().componentDidMount();
+            expect(componentDidMountSpy).toHaveBeenCalled();
+        });
 
-    it('fetch all projects', async () => {
-        const wrapper = mount(<ManageProject />);
-        expect(wrapper.state().projects).toEqual([]);
-        await fetch('/foo/bar')
-            .then(res => res.json())
-            .then(projects => expect(projects).toEqual(mockListAllProjects));
-    });
+        it('fetch all projects', async () => {
+            const wrapper = shallow(<ManageProject />);
+            expect(wrapper.state().projects).toEqual([]);
+            expect(wrapper.state().apiError).toBe(null);
+            await fetch('/foo/bar')
+                .then(res => res.json())
+                .then(projects => expect(projects).toEqual(mockListAllProjects));
+        });
 
-    it('renders Cards correctly for projects', async () => {
-        const ManageProjectComponent = shallow(<ManageProject />);
-        ManageProjectComponent.setState({ projects: mockListAllProjects });
-        expect(ManageProjectComponent.find(ProjectCard).length).toEqual(3);
-    });
-
-    it('does not render a Display Message when fetching projects is successful', async () => {
-        const ManageProjectComponent = shallow(<ManageProject />);
-        await ManageProjectComponent.instance().componentDidMount();
-
-        expect(ManageProjectComponent.find(DisplayMessage).length).toEqual(0);
-    });
-});
-
-describe('Get all projects fails', () => {
-    beforeEach(() => {
-        window.fetch = jest.fn().mockReturnValue(Promise.resolve({}));
-    });
-
-    it('sets a notification when the client is unable to connect to the api', async () => {
-        const wrapper = mount(<ManageProject />);
-        await wrapper.instance().componentDidMount();
-
-        expect(wrapper.state().notification).toEqual({
-            error: {
-                message: 'Unable to retrieve projects, please try again later.',
-                isError: true
-            }
+        it('renders a ListProjects component', async () => {
+            const ManageProjectComponent = shallow(<ManageProject />);
+            ManageProjectComponent.setState({ projects: mockListAllProjects });
+            expect(ManageProjectComponent.find(ListProjectsComponent).length).toEqual(1);
         });
     });
 
-    it('renders a Display Message when fetching projects fails', async () => {
-        const ManageProjectComponent = shallow(<ManageProject />);
-        await ManageProjectComponent.instance().componentDidMount();
+    describe('Get all projects fails', () => {
+        beforeEach(() => {
+            window.fetch = jest.fn().mockReturnValue(Promise.resolve({}));
+        });
 
-        expect(ManageProjectComponent.find(DisplayMessage).length).toEqual(1);
+        it('sets an api error when the client is unable to connect to the api', async () => {
+            const wrapper = shallow(<ManageProject />);
+            await wrapper.instance().componentDidMount();
+
+            expect(wrapper.state().apiError).toEqual({
+                error: {
+                    message: 'Unable to retrieve projects, please try again later.',
+                    isError: true
+                }
+            });
+        });
+    });
+
+    describe('handleDelete', () => {
+        const mockEvent = {
+            preventDefault: jest.fn(),
+            target: {
+                value: '123'
+            }
+        };
+
+        it('calls the deleteProject action when the handleDelete event is invoked', async () => {
+            const wrapper = shallow(<ManageProject {...props} />);
+
+            await wrapper.instance().handleDelete(mockEvent);
+            expect(props.actions.deleteProject).toHaveBeenCalledWith('123');
+        });
     });
 });

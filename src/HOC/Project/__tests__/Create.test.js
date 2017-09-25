@@ -44,11 +44,11 @@ describe('Create Project Component', () => {
   });
 
   it('calls the create action when the handleSubmit event is invoked', () => {
-    const event = {
+    const mockEvent = {
       preventDefault: jest.fn()
     };
 
-    wrapper.instance().handleSubmit(event);
+    wrapper.instance().handleSubmit(mockEvent);
     expect(props.actions.create).toHaveBeenCalledWith(wrapper.state());
   });
 });

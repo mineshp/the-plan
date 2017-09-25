@@ -36,3 +36,25 @@ exports.createNewProject = function (req, res) {
 		}
 	});
 };
+
+exports.delete = function (req, res) {
+	const id = req.params.id;
+	Project.findOne({ _id: id }, function (err, collection) {
+		if (err) {
+			res.status(400);
+			res.json(
+				{
+					message: `Error: Unable to delete project with id ${id} not found with error ${err}.`
+				}
+			);
+		}
+		else {
+			Project.remove({ '_id': id }, function (err, result) {
+				const data = Object.assign({}, result, {
+					projectName: collection.projectName
+				});
+				return res.send(data);
+			});
+		}
+	});
+};

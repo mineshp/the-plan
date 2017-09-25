@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List Projects renders projects correctly 1`] = `
+<div
+  className="ui container"
+>
+  <div
+    className="List main"
+  >
+    <div
+      className="ui three cards"
+    >
+      <div
+        className="ui card"
+        href={undefined}
+        onClick={[Function]}
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="header"
+          >
+            test
+          </div>
+        </div>
+        <div
+          className="content"
+        >
+          <div
+            className="meta"
+          />
+          <div
+            className="description"
+          >
+            Add a description here
+          </div>
+        </div>
+        <div
+          className="extra content"
+        >
+          <div
+            className="buttons"
+          >
+            <button
+              className="ui olive icon left labeled button"
+              disabled={undefined}
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="edit icon"
+              />
+              Update
+            </button>
+            <button
+              className="ui red icon left labeled button"
+              disabled={undefined}
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+              value="1"
+            >
+              <i
+                aria-hidden="true"
+                className="trash icon"
+              />
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List Projects renders successfully after error creating new project 1`] = `
+<div
+  className="ui container"
+>
+  <div
+    className="ui red message"
+  >
+    <p>
+      oh no something bad happened
+    </p>
+  </div>
+  <div
+    className="List main"
+  >
+    <div
+      className="ui three cards"
+    >
+      <div
+        className="ui card"
+        href={undefined}
+        onClick={[Function]}
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="header"
+          >
+            test
+          </div>
+        </div>
+        <div
+          className="content"
+        >
+          <div
+            className="meta"
+          />
+          <div
+            className="description"
+          >
+            Add a description here
+          </div>
+        </div>
+        <div
+          className="extra content"
+        >
+          <div
+            className="buttons"
+          >
+            <button
+              className="ui olive icon left labeled button"
+              disabled={undefined}
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="edit icon"
+              />
+              Update
+            </button>
+            <button
+              className="ui red icon left labeled button"
+              disabled={undefined}
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+              value="1"
+            >
+              <i
+                aria-hidden="true"
+                className="trash icon"
+              />
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`List Projects renders successfully after successful creation of project 1`] = `
+<div
+  className="ui container"
+>
+  <div
+    className="ui olive message"
+  >
+    <p>
+      successfully created new project, woohoo
+    </p>
+  </div>
+  <div
+    className="List main"
+  >
+    <div
+      className="ui three cards"
+    >
+      <div
+        className="ui card"
+        href={undefined}
+        onClick={[Function]}
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="header"
+          >
+            test
+          </div>
+        </div>
+        <div
+          className="content"
+        >
+          <div
+            className="meta"
+          />
+          <div
+            className="description"
+          >
+            Add a description here
+          </div>
+        </div>
+        <div
+          className="extra content"
+        >
+          <div
+            className="buttons"
+          >
+            <button
+              className="ui olive icon left labeled button"
+              disabled={undefined}
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="edit icon"
+              />
+              Update
+            </button>
+            <button
+              className="ui red icon left labeled button"
+              disabled={undefined}
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+              value="1"
+            >
+              <i
+                aria-hidden="true"
+                className="trash icon"
+              />
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

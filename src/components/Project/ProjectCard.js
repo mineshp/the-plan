@@ -1,24 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'semantic-ui-react';
+import { Button, Card } from 'semantic-ui-react';
 
-
-const ProjectCard = ({ data }) => (
-    <Card
-        raised
-        color={data.colour}
-        href={`#project/${data._id}/view`}
-        header={data.projectName}
-        meta={data.createdDate}
-    />
+const ProjectCard = ({ data, onDeleteHandler }) => (
+    <Card color={data.colour}>
+        <Card.Content>
+            <Card.Header>
+            {data.projectName}
+            </Card.Header>
+        </Card.Content>
+        <Card.Content>
+            <Card.Meta>
+            {data.createdDate}
+            </Card.Meta>
+            <Card.Description>
+            Add a description here
+            </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+            <div className='buttons'>
+                <Button
+                    content='Update'
+                    icon='edit'
+                    labelPosition='left'
+                    color='olive'
+                />
+                <Button
+                    content='Delete'
+                    icon='trash'
+                    labelPosition='left'
+                    color='red'
+                    value={data._id}
+                    onClick={onDeleteHandler}
+                />
+            </div>
+        </Card.Content>
+    </Card>
 );
 
 ProjectCard.propTypes = {
-  data: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    projectName: PropTypes.string.isRequired,
-    colour: PropTypes.string
-    }).isRequired
+    data: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        projectName: PropTypes.string.isRequired,
+        colour: PropTypes.string
+    }).isRequired,
+    onDeleteHandler: PropTypes.func.isRequired
+
 }
 
 export default ProjectCard;

@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 
 import Home from '../Home';
 import ManageLists from '../List/Manage';
-import ManageProjects from '../Project/Manage';
-import { CreateProject, CreateProjectConnectedComponent } from '../../HOC/Project/Create';
+import { CreateProjectConnectedComponent } from '../../HOC/Project/Create';
+import { ManageProjectConnectedComponent } from '../../HOC/Project/ManageProject';
 import ViewList from '../List/View';
 import List from '../App';
 import MainContainerRoutes from '../MainContainer';
@@ -48,7 +48,7 @@ describe("MainContainer Routes", () => {
         const attachedComponent =
             tree.findWhere(n => n.prop('path') === '/project/all').props().component;
 
-        expect(attachedComponent).toBe(ManageProjects);
+        expect(attachedComponent).toBe(ManageProjectConnectedComponent);
     });
 
     it('validates path /project/create renders CreateProjectConnectedComponent component', () => {

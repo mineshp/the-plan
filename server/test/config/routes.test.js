@@ -4,6 +4,12 @@ const app = require('../../app');
 const config = require('../../config/config')[process.env.NODE_ENV];
 const chai = require('chai');
 const expect = chai.expect;
+const Project = require('mongoose').model('Project');
+
+// For tests if we use the db, use a test db
+// const removeAll = async () => {
+//     await Project.remove({});
+// };
 
 describe('Test the root path /', () => {
     it('should return a 200 success status', () => {
@@ -48,3 +54,16 @@ describe('Test the path /project/create', () => {
             });
     });
 });
+
+describe('Test the path /project/delete/:id', () => {
+    afterEach(() => {
+		// removeAll();
+    });
+
+    xit('should return a 200 success status', () => {
+        return request(app).del("/project/delete/:id").then(response => {
+            expect(response.statusCode).to.equal(200);
+        })
+    });
+});
+

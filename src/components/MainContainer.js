@@ -2,9 +2,10 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 // import { Router } from 'react-router'
 import List from './App.js';
-import ManageLists from './List/Manage.js';
-import ManageProjects from './Project/Manage.js';
-import { CreateProjectConnectedComponent } from '../HOC/Project/Create.js';
+import ManageLists from './List/Manage';
+// import ManageProjects from './Project/Manage';
+import { ManageProjectConnectedComponent } from '../HOC/Project/ManageProject';
+import { CreateProjectConnectedComponent } from '../HOC/Project/Create';
 
 import ViewList from './List/View.js';
 import Home from './Home'
@@ -32,7 +33,7 @@ const Main = (props, context) => (
       <Route path='/list/all' component={ManageLists} />
       <Route path='/list/:id/view' component={ViewList} />
       <Route path='/list' component={List} />
-      <Route path='/project/all' component={ManageProjects} />
+      <Route path='/project/all' component={ManageProjectConnectedComponent} />
       <Route path='/project/create' component={CreateProjectConnectedComponent} />
       <Route component={NoMatch}/>
     </Switch>
