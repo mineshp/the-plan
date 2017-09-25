@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
-<a
-  className="ui raised card"
-  href="#project/12345/view"
+exports[`ProjectCard renders correctly 1`] = `
+<div
+  className="ui card"
+  href={undefined}
   onClick={[Function]}
 >
   <div
@@ -15,5 +15,52 @@ exports[`renders correctly 1`] = `
       test-project
     </div>
   </div>
-</a>
+  <div
+    className="content"
+  >
+    <div
+      className="meta"
+    />
+    <div
+      className="description"
+    >
+      Add a description here
+    </div>
+  </div>
+  <div
+    className="extra content"
+  >
+    <div
+      className="buttons"
+    >
+      <button
+        className="ui olive icon left labeled button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="edit icon"
+        />
+        Update
+      </button>
+      <button
+        className="ui red icon left labeled button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+        value="12345"
+      >
+        <i
+          aria-hidden="true"
+          className="trash icon"
+        />
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
 `;

@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-//import { connect } from 'react-redux'
-//import { addTodo } from '../actions'
-import { Card } from 'semantic-ui-react';
+import { connect } from 'react-redux'
+import { deleteProject, deletedProject, errorDeletingProject } from '../../actions/project';
 import ProjectCard from '../../components/Project/ProjectCard';
-import DisplayMessage from '../../components/Shared/DisplayMessage';
+import ListProjectsComponent from '../../components/Project/ListProjects';
+
+import { bindActionCreators } from 'redux';
 
 class ManageProject extends Component {
-    state = {
-        projects: [],
-        notification: null
+    constructor(props, context) {
+        super(props);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.state = { projects: [], apiError: null };
     }
 
     componentDidMount() {
@@ -31,30 +33,61 @@ class ManageProject extends Component {
                         isError: true
                     }
                 };
+
                 this.setState({
-                    notification: displayError
+                    apiError: displayError
                 });
             });
+    }
+
+    handleDelete(event) {
+        event.preventDefault();
+        const projectIdToDelete = event.target.value;
+        this.props.actions.deleteProject(projectIdToDelete);
+        return;
     }
 
     render() {
         let Cards = [];
         this.state.projects.map((project) => {
-            return Cards.push(<ProjectCard data={project} key={project._id} />);
+            return Cards.push(<ProjectCard data={project} key={project._id} onDeleteHandler={this.handleDelete} />);
         });
+
+        const result = this.state.apiError ? this.state.apiError : this.props.result;
+
         return (
-            <div className="List main">
-                {
-                    this.state.notification &&
-                        <DisplayMessage status={this.state.notification} />
-                }
-                <Card.Group itemsPerRow={3}>
-                    { Cards }
-                </Card.Group>
-            </div>
+            <ListProjectsComponent
+                result={result}
+                cards={Cards}
+                onDeleteHandler={this.handleDelete}>
+            </ListProjectsComponent>
+
         )
     }
-};
-//ManageList = connect()(ManageList)
+}
 
-export default ManageProject
+// TODO: Change to use es6 function
+function mapStateToProps(state) {
+    return {
+        result: state.projects
+    };
+}
+
+// TODO: Change to use es6 function
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({
+      deletedProject, errorDeletingProject, deleteProject
+    }, dispatch)
+  };
+}
+
+const ManageProjectConnectedComponent = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ManageProject)
+
+export {
+    ManageProject,
+    ManageProjectConnectedComponent
+};

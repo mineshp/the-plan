@@ -1,4 +1,3 @@
-//import { push } from 'react-router-redux';
 
 export const createProject = (projectName, colour) => ({
     type: 'CREATE_PROJECT',
@@ -44,5 +43,42 @@ export function create(newProject) {
       })
       .catch((error) => {
         dispatch(errorCreatingProject(error.message));
+    });
+}
+
+export const deletedProject = (data) => ({
+  type: 'PROJECT_DELETION_SUCCESS',
+  data
+});
+
+export const errorDeletingProject = (error) => ({
+  type: 'PROJECT_DELETION_ERROR',
+  error
+});
+
+export function deleteProject(id) {
+  let responseStatus;
+  return dispatch =>
+    fetch(`/project/delete/${id}`, {
+      method: 'delete',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+      .then((res) => {
+        responseStatus = res.ok;
+        return res.json();
+      })
+      .then((data) => {
+        if (responseStatus) {
+          return dispatch(deletedProject(data));
+        }
+        else {
+          return Promise.reject(new Error(data.message));
+        }
+      })
+      .catch((error) => {
+        dispatch(errorDeletingProject(error.message));
     });
 }

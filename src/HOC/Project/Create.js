@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { create, createdProject, errorCreatingProject } from '../../actions/project.js';
+import { create, createdProject, errorCreatingProject } from '../../actions/project';
 import CreateProjectComponent from '../../components/Project/CreateProject';
 
 import './Project.css';
@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 class CreateProject extends Component {
   constructor(props, context) {
     super(props);
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDropDownSelection = this.handleDropDownSelection.bind(this);
@@ -67,6 +68,5 @@ const CreateProjectConnectedComponent = connect(
 
 export {
     CreateProject,
-    CreateProjectConnectedComponent,
-    mapStateToProps
+    CreateProjectConnectedComponent
 };
