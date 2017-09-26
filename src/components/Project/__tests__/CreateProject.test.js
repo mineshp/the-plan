@@ -1,8 +1,6 @@
 import React from 'react';
-import CreateProject from '../CreateProject';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
-import { Form } from 'semantic-ui-react';
+import CreateProject from '../CreateProject';
 
 const mockResult = {};
 const mockSuccessResult = {
@@ -18,49 +16,39 @@ const mockErrorResult = {
     }
 };
 
-const mockProjectName = 'Test Project'
-
 const mockHandleSubmit = jest.fn();
 const mockHandleChange = jest.fn();
 const mockHandleDropDownSelection = jest.fn();
 
 describe('Create New Project', () => {
     it('renders create new project form correctly', () => {
-        const tree = renderer.create(
-            <CreateProject
-                result={mockResult}
-                handleSubmit={mockHandleSubmit}
-                handleChange={mockHandleChange}
-                handleDropDownSelection={mockHandleDropDownSelection}
-            ></CreateProject>
-        ).toJSON();
+        const tree = renderer.create(<CreateProject
+            result={mockResult}
+            handleSubmit={mockHandleSubmit}
+            handleChange={mockHandleChange}
+            handleDropDownSelection={mockHandleDropDownSelection}
+        />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('renders successfully after successful creation of project', () => {
-        const tree = renderer.create(
-            <CreateProject
-                result={mockSuccessResult}
-                handleSubmit={mockHandleSubmit}
-                handleChange={mockHandleChange}
-                handleDropDownSelection={mockHandleDropDownSelection}
-            ></CreateProject>
-        ).toJSON();
+        const tree = renderer.create(<CreateProject
+            result={mockSuccessResult}
+            handleSubmit={mockHandleSubmit}
+            handleChange={mockHandleChange}
+            handleDropDownSelection={mockHandleDropDownSelection}
+        />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('renders successfully after error creating new project', () => {
-        const tree = renderer.create(
-            <CreateProject
-                result={mockErrorResult}
-                handleSubmit={mockHandleSubmit}
-                handleChange={mockHandleChange}
-                handleDropDownSelection={mockHandleDropDownSelection}
-            ></CreateProject>
-        ).toJSON();
+        const tree = renderer.create(<CreateProject
+            result={mockErrorResult}
+            handleSubmit={mockHandleSubmit}
+            handleChange={mockHandleChange}
+            handleDropDownSelection={mockHandleDropDownSelection}
+        />).toJSON();
         expect(tree).toMatchSnapshot();
     });
-
 });
-
 

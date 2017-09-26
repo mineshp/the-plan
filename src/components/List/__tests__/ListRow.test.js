@@ -1,8 +1,8 @@
 import React from 'react';
-import ListRow from '../ListRow';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 import { Label } from 'semantic-ui-react';
+import ListRow from '../ListRow';
 
 const mockListRow = {
     _id: '1234456',
@@ -18,15 +18,14 @@ const mockListRow = {
 };
 
 describe('ListRow', () => {
+    const mockListRowID = mockListRow._id; // eslint-disable-line no-underscore-dangle
     it('renders correctly', () => {
-        const tree = renderer.create(
-            <ListRow key={mockListRow._id} data={mockListRow} />
-        ).toJSON();
+        const tree = renderer.create(<ListRow key={mockListRowID} data={mockListRow} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('renders the correct number of project labels', () => {
-        const wrapper = shallow(<ListRow key={mockListRow._id} data={mockListRow} />);
+        const wrapper = shallow(<ListRow key={mockListRowID} data={mockListRow} />);
         const ProjectLabels = wrapper.find(Label);
 
         expect(ProjectLabels.length).toBe(2);

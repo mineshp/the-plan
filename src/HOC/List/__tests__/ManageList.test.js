@@ -4,73 +4,65 @@ import ManageList from '../ManageList';
 import ListRow from '../../../components/List/ListRow';
 import DisplayMessage from '../../../components/Shared/DisplayMessage';
 
-
 const mockListAll = [
     {
-        _id: "5992092f66a7043f2598c88e",
+        _id: '5992092f66a7043f2598c88e',
         projects: [
             {
-                id: "abc123",
-                name: "biology"
+                id: 'abc123',
+                name: 'biology'
             },
             {
-                id: "xyz123",
-                name: "chemistry"
+                id: 'xyz123',
+                name: 'chemistry'
             }
         ],
-        listName: "HumanBody",
-        createdDate: "2016-05-18T16:00:00Z",
-        updatedDate: "2016-05-18T16:00:00Z",
+        listName: 'HumanBody',
+        createdDate: '2016-05-18T16:00:00Z',
+        updatedDate: '2016-05-18T16:00:00Z',
         headings: [
             {
                 position: 1,
-                id: "1",
-                name: "Name"
+                id: '1',
+                name: 'Name'
             },
             {
                 position: 2,
-                id: "2",
-                name: "Created"
+                id: '2',
+                name: 'Created'
             }
         ],
         items: [
             {
-                updatedDate: "2016-05-18T16:00:00Z",
-                createdDate: "2016-05-18T16:00:00Z",
+                updatedDate: '2016-05-18T16:00:00Z',
+                createdDate: '2016-05-18T16:00:00Z',
                 position: 1,
-                id: "1",
-                name: "Head"
+                id: '1',
+                name: 'Head'
             },
             {
-                updatedDate: "2016-05-18T16:00:00Z",
-                createdDate: "2016-05-18T16:00:00Z",
+                updatedDate: '2016-05-18T16:00:00Z',
+                createdDate: '2016-05-18T16:00:00Z',
                 position: 2,
-                id: "2",
-                name: "Shoulder"
+                id: '2',
+                name: 'Shoulder'
             }
         ]
     }
 ];
 
-const mockResponse = (status, statusText, response) => {
-  return new window.Response(response, {
-    status: status,
-    statusText: statusText,
+const mockResponse = (status, statusText, response) => new window.Response(response, {
+    status,
+    statusText,
     headers: {
-      'Content-type': 'application/json'
+        'Content-type': 'application/json'
     }
-  });
-};
-
-const mockError = (error) => {
-    return new Error(error);
-};
+});
 
 describe('Manage Lists', () => {
     beforeEach(() => {
         window.fetch = jest.fn().mockImplementation(() =>
-            Promise.resolve(mockResponse(
-                200, null, JSON.stringify(mockListAll) )));
+            Promise.resolve(mockResponse(200, null, JSON.stringify(mockListAll))));
     });
 
     it('calls componentDidMount', async () => {
@@ -84,8 +76,8 @@ describe('Manage Lists', () => {
         const wrapper = mount(<ManageList />);
         expect(wrapper.state().lists).toEqual([]);
         await fetch('/foo/bar')
-            .then(res => res.json())
-            .then(lists => expect(lists).toEqual(mockListAll));
+            .then((res) => res.json())
+            .then((lists) => expect(lists).toEqual(mockListAll));
     });
 
     it('renders ListRows correctly for projects', async () => {

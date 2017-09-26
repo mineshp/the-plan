@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { deleteProject, deletedProject, errorDeletingProject } from '../../actions/project';
 import ProjectCard from '../../components/Project/ProjectCard';
 import ListProjectsComponent from '../../components/Project/ListProjects';
 
-import { bindActionCreators } from 'redux';
-
 class ManageProject extends Component {
-    constructor(props, context) {
+    constructor(props) {
         super(props);
         this.handleDelete = this.handleDelete.bind(this);
         this.state = { projects: [], apiError: null };
@@ -15,17 +15,16 @@ class ManageProject extends Component {
 
     componentDidMount() {
         return fetch('/project/all')
-            .then(res => {
+            .then((res) => {
                 if (res.ok) {
-                    return res.json()
+                    return res.json();
                 }
-                return Promise.reject(
-                    new Error('Unable to retrieve projects, please try again later.'));
+                return Promise.reject(new Error('Unable to retrieve projects, please try again later.'));
             })
             .then((projects) => {
-                this.setState({ projects })
+                this.setState({ projects });
             })
-            .catch(err => {
+            .catch((err) => {
                 // console.error(err);
                 const displayError = {
                     error: {
@@ -44,14 +43,13 @@ class ManageProject extends Component {
         event.preventDefault();
         const projectIdToDelete = event.target.value;
         this.props.actions.deleteProject(projectIdToDelete);
-        return;
     }
 
     render() {
-        let Cards = [];
-        this.state.projects.map((project) => {
-            return Cards.push(<ProjectCard data={project} key={project._id} onDeleteHandler={this.handleDelete} />);
-        });
+        const Cards = [];
+        this.state.projects.map((project) =>
+            // eslint-disable-next-line no-underscore-dangle
+            Cards.push(<ProjectCard data={project} key={project._id} onDeleteHandler={this.handleDelete} />));
 
         const result = this.state.apiError ? this.state.apiError : this.props.result;
 
@@ -59,33 +57,41 @@ class ManageProject extends Component {
             <ListProjectsComponent
                 result={result}
                 cards={Cards}
-                onDeleteHandler={this.handleDelete}>
-            </ListProjectsComponent>
+                onDeleteHandler={this.handleDelete}
+            />
 
-        )
+        );
     }
 }
 
-// TODO: Change to use es6 function
-function mapStateToProps(state) {
-    return {
-        result: state.projects
-    };
-}
+ManageProject.propTypes = {
+    actions: PropTypes.shape({
+        deleteProject: PropTypes.func
+    }),
+    result: PropTypes.shape({})
+};
 
-// TODO: Change to use es6 function
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({
-      deletedProject, errorDeletingProject, deleteProject
-    }, dispatch)
-  };
-}
+ManageProject.defaultProps = {
+    actions: null,
+    result: null
+};
+
+const mapStateToProps = (state) => (
+    { result: state.projects }
+);
+
+const mapDispatchToProps = (dispatch) => (
+    {
+        actions: bindActionCreators({
+            deletedProject, errorDeletingProject, deleteProject
+        }, dispatch)
+    }
+);
 
 const ManageProjectConnectedComponent = connect(
     mapStateToProps,
     mapDispatchToProps
-)(ManageProject)
+)(ManageProject);
 
 export {
     ManageProject,

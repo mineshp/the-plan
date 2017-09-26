@@ -1,49 +1,49 @@
 const projects = (state = {}, action) => {
-  switch (action.type) {
+    switch (action.type) {
     case 'CREATE_PROJECT':
-      return {
-        projectName: action.projectName,
-        colour: action.colour,
-        shouldRedirect: false
-      };
+        return {
+            projectName: action.projectName,
+            colour: action.colour,
+            shouldRedirect: false
+        };
 
     case 'PROJECT_CREATION_SUCCESS':
-      return {
-        success: {
-          data: action.data,
-          message: 'Successfully created project'
-        },
-        shouldRedirect: true
-      };
+        return {
+            success: {
+                data: action.data,
+                message: 'Successfully created project'
+            },
+            shouldRedirect: true
+        };
 
     case 'PROJECT_CREATION_ERROR':
-      return {
-        error: {
-          message: action.error,
-          isError: true
-        },
-        shouldRedirect: false
-      };
+        return {
+            error: {
+                message: action.error,
+                isError: true
+            },
+            shouldRedirect: false
+        };
 
     case 'PROJECT_DELETION_SUCCESS':
-      return {
-        success: {
-          data: action.data,
-          message: `Successfully deleted project ${action.data.projectName}`
-        }
-      };
+        return {
+            success: {
+                data: action.data,
+                message: `Successfully deleted project ${action.data.projectName}`
+            }
+        };
 
     case 'PROJECT_DELETION_ERROR':
-      return {
-        error: {
-          message: action.error,
-          isError: true
-        }
-    };
+        return {
+            error: {
+                message: action.error,
+                isError: true
+            }
+        };
 
     default:
-        return state
-  }
-}
+        return state;
+    }
+};
 
 export default projects;

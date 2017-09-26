@@ -1,8 +1,8 @@
 import React from 'react';
-import MainNav from '../MainNav';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { Menu } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react';
+import MainNav from '../MainNav';
 
 describe('MainNav Component', () => {
     it('renders correctly', () => {
@@ -11,8 +11,6 @@ describe('MainNav Component', () => {
     });
 
     it('ensure handleclick fires', () => {
-        const mockHandleClick = jest.fn();
-
         const wrapper = shallow(<MainNav />);
         const firstMenuItem = wrapper.find(Menu.Item).first();
         firstMenuItem.props().onClick(null, { name: 'home' });

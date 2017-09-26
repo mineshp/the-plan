@@ -1,30 +1,31 @@
-import React, { Component } from 'react'
-//import { connect } from 'react-redux'
-//import { addTodo } from '../actions'
+import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 import Row from '../../components/List/ListRow';
 import DisplayMessage from '../../components/Shared/DisplayMessage';
 
 
 class ManageList extends Component {
-    state = {
-        lists: [],
-        notification: null
+    constructor() {
+        super();
+        this.state = {
+            lists: [],
+            notification: null
+        };
     }
 
     componentDidMount() {
         return fetch('/list/all')
-            .then(res => {
+            .then((res) => {
                 if (res.ok) {
-                    return res.json()
+                    return res.json();
                 }
                 return Promise.reject(
                     new Error('Unable to retrieve lists, please try again later.'));
             })
             .then((lists) => {
-                this.setState({ lists })
+                this.setState({ lists });
             })
-            .catch(err => {
+            .catch((err) => {
                 // console.error(err);
                 const displayError = {
                     error: {
@@ -39,10 +40,9 @@ class ManageList extends Component {
     }
 
     render() {
-        let ListRow = [];
-        this.state.lists.map((list) => {
-            return ListRow.push(<Row data={list} key={list._id} />);
-        });
+        const ListRow = [];
+        // eslint-disable-next-line no-underscore-dangle
+        this.state.lists.map((list) => ListRow.push(<Row data={list} key={list._id} />));
 
         return (
             <div className="List main">
@@ -66,9 +66,8 @@ class ManageList extends Component {
                     </Table.Body>
                 </Table>
             </div>
-        )
+        );
     }
-};
-//ManageList = connect()(ManageList)
+}
 
-export default ManageList
+export default ManageList;

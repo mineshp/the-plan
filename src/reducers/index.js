@@ -1,12 +1,8 @@
-import { combineReducers } from 'redux'
-import todos from './todos'
-import projects from './projects'
-import visibilityFilter from './visibilityFilter'
+import { combineReducers } from 'redux';
+import projects from './projects';
 
-const todoApp = combineReducers({
-  todos,
-  projects,
-  visibilityFilter
-})
+const thePlanApp = combineReducers({
+    projects
+});
 
-export default todoApp
+export default thePlanApp;

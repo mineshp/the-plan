@@ -1,11 +1,11 @@
-import React from 'react'
-import ManageList from '../../HOC/List/ManageList.js'
+import React from 'react';
 import { Container } from 'semantic-ui-react';
+import ManageList from '../../HOC/List/ManageList';
 
 const Manage = () => (
-  <Container>
-    <ManageList />
-  </Container>
-)
+    <Container>
+        <ManageList />
+    </Container>
+);
 
 export default Manage;

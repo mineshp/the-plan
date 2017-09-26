@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message } from 'semantic-ui-react'
+import { Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const DisplayMessage = (props) => {
@@ -9,13 +9,13 @@ const DisplayMessage = (props) => {
         isError = props.status.error.isError;
     }
 
-    let color = isError
+    const color = isError
         ? 'red'
         : 'olive';
 
-    let message = isError
+    const message = isError
         ? props.status.error.message
-        : props.status.success.message
+        : props.status.success.message;
 
     return (
         <Message color={color}>
@@ -35,7 +35,7 @@ DisplayMessage.propTypes = {
             message: PropTypes.string,
             isError: PropTypes.bool
         })
-    })
-}
+    }).isRequired
+};
 
 export default DisplayMessage;

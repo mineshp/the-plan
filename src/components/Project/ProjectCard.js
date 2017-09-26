@@ -6,31 +6,31 @@ const ProjectCard = ({ data, onDeleteHandler }) => (
     <Card color={data.colour}>
         <Card.Content>
             <Card.Header>
-            {data.projectName}
+                {data.projectName}
             </Card.Header>
         </Card.Content>
         <Card.Content>
             <Card.Meta>
-            {data.createdDate}
+                {data.createdDate}
             </Card.Meta>
             <Card.Description>
             Add a description here
             </Card.Description>
         </Card.Content>
         <Card.Content extra>
-            <div className='buttons'>
+            <div className="buttons">
                 <Button
-                    content='Update'
-                    icon='edit'
-                    labelPosition='left'
-                    color='olive'
+                    content="Update"
+                    icon="edit"
+                    labelPosition="left"
+                    color="olive"
                 />
                 <Button
-                    content='Delete'
-                    icon='trash'
-                    labelPosition='left'
-                    color='red'
-                    value={data._id}
+                    content="Delete"
+                    icon="trash"
+                    labelPosition="left"
+                    color="red"
+                    value={data._id} // eslint-disable-line no-underscore-dangle
                     onClick={onDeleteHandler}
                 />
             </div>
@@ -46,6 +46,6 @@ ProjectCard.propTypes = {
     }).isRequired,
     onDeleteHandler: PropTypes.func.isRequired
 
-}
+};
 
 export default ProjectCard;

@@ -1,50 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-//import { connect } from 'react-redux'
-//import { addTodo } from '../actions'
 import { Header, Table } from 'semantic-ui-react';
 import Row from '../../components/List/ItemRow';
 
 class View extends Component {
     constructor(props) {
         super(props);
-        //this.handleChange = this.handleChange.bind(this);
         this.state = {
             listID: props.listID,
             list: {
                 items: [],
                 headings: []
             }
-            //list: DataSource.getBlogPost(props.id)
         };
     }
 
     componentDidMount() {
         fetch(`/list/${this.state.listID}/view`)
-            .then(res => res.json())
-            .then(list => this.setState({ list }));
+            .then((res) => res.json())
+            .then((list) => this.setState({ list }));
     }
 
     render() {
-        let ItemRow = [];
+        const ItemRow = [];
         const headings = this.state.list.headings;
         const items = this.state.list.items;
-        items.map((item) => {
-            return ItemRow.push(<Row data={item} key={item.id} listID={this.state.list._id} />);
-        });
+        // eslint-disable-next-line no-underscore-dangle
+        const listID = parseInt(this.state.list._id, 10);
+        items.map((item) => ItemRow.push(<Row data={item} key={item.id} listID={listID} />));
 
-        let ItemHeadings = [];
-        headings.map((heading) => {
-            return ItemHeadings.push(
-                <Table.HeaderCell key={heading.id}>
-                    {heading.name}
-                </Table.HeaderCell>
-            );
-        });
+        const ItemHeadings = [];
+        headings.map((heading) => ItemHeadings.push(<Table.HeaderCell key={heading.id}>
+            {heading.name}
+        </Table.HeaderCell>));
 
         return (
             <div className="List main">
-                <Header as='h3' floated='left' dividing>
+                <Header as="h3" floated="left" dividing>
                     {this.state.list.listName}
                 </Header>
                 <Table celled striped>
@@ -60,18 +52,16 @@ class View extends Component {
                     </Table.Body>
                 </Table>
             </div>
-        )
+        );
     }
-};
+}
 
 View.propTypes = {
-  id: PropTypes.string
+    listID: PropTypes.number.isRequired
 };
 
 View.defaultProps = {
-  id: '1'
+    listID: 1
 };
 
-// //ManageList = connect()(ManageList)
-
-export default View
+export default View;

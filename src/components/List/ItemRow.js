@@ -10,17 +10,29 @@ const ItemRow = ({ data, listID }) => (
         <Table.Cell>{data.updatedDate}</Table.Cell>
         <Table.Cell>{data.notes}</Table.Cell>
         <Table.Cell>{data.owner}</Table.Cell>
-        <Table.Cell><Button as='a' color='teal' href={`/list/${listID}/item/${data.id}/delete`}>Delete</Button></Table.Cell>
+        <Table.Cell>
+            <Button
+                as="a"
+                color="teal"
+                href={`/list/${listID}/item/${data.id}/delete`}
+            >Delete
+            </Button>
+        </Table.Cell>
     </Table.Row>
 );
 
 ItemRow.propTypes = {
-  data: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    createdDate: PropTypes.string.isRequired,
-    updatedDate: PropTypes.string.isRequired
-    }).isRequired
-}
+    data: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        createdDate: PropTypes.string.isRequired,
+        updatedDate: PropTypes.string.isRequired
+    }).isRequired,
+    listID: PropTypes.number
+};
+
+ItemRow.defaultProps = {
+    listID: null
+};
 
 export default ItemRow;

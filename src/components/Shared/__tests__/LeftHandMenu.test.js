@@ -1,8 +1,8 @@
 import React from 'react';
-import LeftHandMenu from '../LeftHandMenu';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { Menu } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react';
+import LeftHandMenu from '../LeftHandMenu';
 
 describe('LeftHandMenu Component', () => {
     it('renders correctly', () => {
@@ -17,8 +17,6 @@ describe('LeftHandMenu Component', () => {
     });
 
     it('ensure activeItem is set when a menu item is selected', () => {
-        const mockHandleClick = jest.fn();
-
         const wrapper = shallow(<LeftHandMenu />);
         const firstMenuItem = wrapper.find(Menu.Item).first();
         firstMenuItem.props().onClick(null, { name: 'testabc' });

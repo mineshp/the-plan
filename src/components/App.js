@@ -1,15 +1,11 @@
-import React from 'react'
-import Footer from './Footer'
-import AddTodo from '../HOC/AddTodo'
-import VisibleTodoList from '../HOC/VisibleTodoList'
+import React from 'react';
 import { Container } from 'semantic-ui-react';
+import Footer from './Footer';
 
 const App = () => (
-  <Container>
-    <AddTodo />
-    <VisibleTodoList />
-    <Footer />
-  </Container>
-)
+    <Container>
+        <Footer />
+    </Container>
+);
 
-export default App
+export default App;

@@ -1,7 +1,6 @@
 import React from 'react';
-import DisplayMessage from '../DisplayMessage';
 import renderer from 'react-test-renderer';
-const { shallow } = require('enzyme');
+import DisplayMessage from '../DisplayMessage';
 
 it('renders a success message', () => {
     const successfulResult = {
@@ -10,9 +9,7 @@ it('renders a success message', () => {
         }
     };
 
-    const tree = renderer.create(
-        <DisplayMessage status={successfulResult}></DisplayMessage>
-    ).toJSON();
+    const tree = renderer.create(<DisplayMessage status={successfulResult} />).toJSON();
     expect(tree).toMatchSnapshot();
     expect(tree.props.className).toContain('olive');
 });
@@ -25,9 +22,7 @@ it('renders an error message', () => {
         }
     };
 
-    const tree = renderer.create(
-        <DisplayMessage status={errorResult}></DisplayMessage>
-    ).toJSON();
+    const tree = renderer.create(<DisplayMessage status={errorResult} />).toJSON();
 
     expect(tree).toMatchSnapshot();
     expect(tree.props.className).toContain('red');
