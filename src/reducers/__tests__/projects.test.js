@@ -13,8 +13,7 @@ describe('projects reducer', () => {
                 colour: 'red'
             })).toEqual({
                 projectName: 'Test Project',
-                colour: 'red',
-                shouldRedirect: false
+                colour: 'red'
             });
         });
 
@@ -35,9 +34,8 @@ describe('projects reducer', () => {
                         colour: 'green',
                         createdDate: '2017-08-15T12:02:00.000Z'
                     },
-                    message: 'Successfully created project'
-                },
-                shouldRedirect: true
+                    message: 'Successfully created project TEST PROJECT.'
+                }
             });
         });
 
@@ -49,8 +47,7 @@ describe('projects reducer', () => {
                 error: {
                     message: 'Error creating project',
                     isError: true
-                },
-                shouldRedirect: false
+                }
             });
         });
     });
@@ -79,6 +76,61 @@ describe('projects reducer', () => {
             })).toEqual({
                 error: {
                     message: 'Error deleting project',
+                    isError: true
+                }
+            });
+        });
+    });
+
+    describe('LIST ACTIONS', () => {
+        const allProjects = [
+            {
+                _id: '1234',
+                projectName: 'Tea',
+                colour: 'brown',
+                createdDate: '2017-09-22T21:33:42.096Z'
+            },
+            {
+                _id: '1256',
+                projectName: 'Coffee',
+                colour: 'cream',
+                createdDate: '2017-09-282T08:12:42.096Z'
+            }
+        ];
+
+        it('should handle LIST_PROJECTS', () => {
+            expect(projects({}, {
+                type: 'LIST_PROJECTS',
+                data: {
+                    allProjects
+                }
+            })).toEqual({
+                data: {
+                    allProjects
+                }
+            });
+        });
+
+        it('should handle PROJECT_LIST_RETRIEVED', () => {
+            expect(projects({}, {
+                type: 'PROJECT_LIST_RETRIEVED',
+                data: {
+                    allProjects
+                }
+            })).toEqual({
+                data: {
+                    allProjects
+                }
+            });
+        });
+
+        it('should handle PROJECT_LIST_ERROR', () => {
+            expect(projects({}, {
+                type: 'PROJECT_LIST_ERROR',
+                error: 'Unable to retrieve projects, please try again later.'
+            })).toEqual({
+                error: {
+                    message: 'Unable to retrieve projects, please try again later.',
                     isError: true
                 }
             });

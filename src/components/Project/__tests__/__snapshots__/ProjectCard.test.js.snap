@@ -34,7 +34,7 @@ exports[`ProjectCard renders correctly 1`] = `
       className="buttons"
     >
       <button
-        className="ui olive icon left labeled button"
+        className="ui teal icon left labeled button"
         disabled={undefined}
         onClick={[Function]}
         role="button"
@@ -47,7 +47,7 @@ exports[`ProjectCard renders correctly 1`] = `
         Update
       </button>
       <button
-        className="ui red icon left labeled button"
+        className="ui blue icon left labeled button"
         disabled={undefined}
         onClick={[Function]}
         role="button"

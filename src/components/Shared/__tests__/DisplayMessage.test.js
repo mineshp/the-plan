@@ -16,10 +16,8 @@ it('renders a success message', () => {
 
 it('renders an error message', () => {
     const errorResult = {
-        error: {
-            message: 'Error request',
-            isError: true
-        }
+        message: 'Error request',
+        isError: true
     };
 
     const tree = renderer.create(<DisplayMessage status={errorResult} />).toJSON();

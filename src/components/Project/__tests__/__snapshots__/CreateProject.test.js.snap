@@ -378,11 +378,9 @@ exports[`Create New Project renders successfully after error creating new projec
   className="ui container"
 >
   <div
-    className="ui red message"
+    className="ui olive message"
   >
-    <p>
-      oh no something bad happened
-    </p>
+    <p />
   </div>
   <form
     action={undefined}
@@ -760,9 +758,7 @@ exports[`Create New Project renders successfully after successful creation of pr
   <div
     className="ui olive message"
   >
-    <p>
-      successfully created new project, woohoo
-    </p>
+    <p />
   </div>
   <form
     action={undefined}

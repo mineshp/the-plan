@@ -3,8 +3,6 @@ import { shallow } from 'enzyme';
 import { ManageProject } from '../ManageProject';
 import ListProjectsComponent from '../../../components/Project/ListProjects';
 
-const props = { actions: { deleteProject: jest.fn() } };
-
 const mockListAllProjects = [
     {
         _id: '5992d50066a7043f2598e12d',
@@ -28,54 +26,61 @@ const mockListAllProjects = [
     }
 ];
 
-const mockResponse = (status, statusText, response) => new window.Response(response, {
-    status,
-    statusText,
-    headers: {
-        'Content-type': 'application/json'
-    }
-});
+const props = {
+    actions: {
+        deleteProject: jest.fn(() => (
+            Promise.resolve()
+        )),
+        listProjects: jest.fn(() => (
+            Promise.resolve(mockListAllProjects)
+        ))
+    },
+    projects: {} // TODO: Turn to ARRAY
+};
 
 describe('Manage Projects', () => {
     describe('Get all projects success', () => {
+        let wrapper;
         beforeEach(() => {
-            window.fetch = jest.fn().mockImplementation(() =>
-                Promise.resolve(mockResponse(200, null, JSON.stringify(mockListAllProjects))));
+            wrapper = shallow(<ManageProject {...props} />);
         });
 
         it('calls componentDidMount', () => {
             const componentDidMountSpy = jest.spyOn(ManageProject.prototype, 'componentDidMount');
-            const wrapper = shallow(<ManageProject />);
             wrapper.instance().componentDidMount();
             expect(componentDidMountSpy).toHaveBeenCalled();
+            expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
         });
 
-        it('fetch all projects', async () => {
-            const wrapper = shallow(<ManageProject />);
-            expect(wrapper.state().projects).toEqual([]);
-            expect(wrapper.state().apiError).toBe(null);
-            await fetch('/foo/bar')
-                .then((res) => res.json())
-                .then((projects) => expect(projects).toEqual(mockListAllProjects));
+        it('calls the listProjects action when the fetchProjectsList function is invoked', async () => {
+            wrapper.instance().fetchProjectsList();
+            await expect(props.actions.listProjects).toHaveBeenCalledWith();
         });
 
         it('renders a ListProjects component', async () => {
             const ManageProjectComponent = shallow(<ManageProject />);
-            ManageProjectComponent.setState({ projects: mockListAllProjects });
             expect(ManageProjectComponent.find(ListProjectsComponent).length).toEqual(1);
+        });
+
+        it('builds an array of ProjectCards', async () => {
+            const propsAfterFetchAllLists = Object.assign({}, props, { projects: { data: mockListAllProjects } });
+            const ManageProjectComponent = shallow(<ManageProject {...propsAfterFetchAllLists} />);
+            await expect(ManageProjectComponent.props().cards.length).toEqual(3);
         });
     });
 
     describe('Get all projects fails', () => {
-        beforeEach(() => {
-            window.fetch = jest.fn().mockReturnValue(Promise.resolve({}));
-        });
-
         it('sets an api error when the client is unable to connect to the api', async () => {
-            const wrapper = shallow(<ManageProject />);
-            await wrapper.instance().componentDidMount();
+            const apiError = {
+                error: {
+                    isError: true,
+                    message: 'Unable to retrieve projects, please try again later.'
+                }
+            };
+            const propsAfterFetchListsError = Object.assign({}, props, { projects: { error: apiError } });
+            const ManageProjectComponent = shallow(<ManageProject {...propsAfterFetchListsError} />);
 
-            expect(wrapper.state().apiError).toEqual({
+            expect(ManageProjectComponent.props().errors).toEqual({
                 error: {
                     message: 'Unable to retrieve projects, please try again later.',
                     isError: true
@@ -92,11 +97,41 @@ describe('Manage Projects', () => {
             }
         };
 
-        it('calls the deleteProject action when the handleDelete event is invoked', async () => {
-            const wrapper = shallow(<ManageProject {...props} />);
+        const propsAfterSuccessfulDelete = Object.assign(
+            {}, props, {
+                actions: {
+                    deleteProject: jest.fn(() => (
+                        Promise.resolve({
+                            type: 'PROJECT_DELETION_SUCCESS'
+                        })
+                    )),
+                    listProjects: jest.fn(() => (
+                        Promise.resolve(mockListAllProjects)
+                    ))
+                }
+            },
+        );
 
-            await wrapper.instance().handleDelete(mockEvent);
-            expect(props.actions.deleteProject).toHaveBeenCalledWith('123');
+
+        let wrapper;
+
+        beforeEach(() => {
+            wrapper = shallow(<ManageProject {...propsAfterSuccessfulDelete} />);
+        });
+
+        it('calls the deleteProject action when the handleDelete event is invoked', async () => {
+            wrapper.instance().handleDelete(mockEvent);
+
+            await expect(propsAfterSuccessfulDelete.actions.deleteProject).toHaveBeenCalledWith('123');
+            await expect(propsAfterSuccessfulDelete.actions.deleteProject()).resolves.toEqual({ type: 'PROJECT_DELETION_SUCCESS' });
+        });
+
+        it('calls the fetchProjectList when a project was deleted successfully', async () => {
+            wrapper.instance().fetchProjectsList();
+
+            await expect(propsAfterSuccessfulDelete.actions.listProjects).toHaveBeenCalled();
+            await expect(propsAfterSuccessfulDelete.actions.listProjects).toHaveBeenCalledTimes(2);
+            await expect(propsAfterSuccessfulDelete.actions.listProjects()).resolves.toEqual(mockListAllProjects);
         });
     });
 });

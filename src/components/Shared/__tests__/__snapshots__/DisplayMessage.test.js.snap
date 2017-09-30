@@ -4,9 +4,7 @@ exports[`renders a success message 1`] = `
 <div
   className="ui olive message"
 >
-  <p>
-    Successful request
-  </p>
+  <p />
 </div>
 `;
 

@@ -8,14 +8,13 @@ import CreateProjectComponent from '../../components/Project/CreateProject';
 import './Project.css';
 
 class CreateProject extends Component {
-    constructor(props) {
-        super(props);
-
+    constructor(props, context) {
+        super(props, context);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDropDownSelection = this.handleDropDownSelection.bind(this);
 
-        this.state = { projects: null, shouldRedirect: false };
+        this.state = { projects: null };
     }
 
     handleChange(event) {
@@ -24,7 +23,12 @@ class CreateProject extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.actions.create(this.state);
+        this.props.actions.create(this.state)
+            .then((projectCreated) => {
+                if (projectCreated && projectCreated.type === 'PROJECT_CREATION_SUCCESS') {
+                    this.redirect();
+                }
+            });
     }
 
     handleDropDownSelection(event, data) {
@@ -32,13 +36,17 @@ class CreateProject extends Component {
         this.setState({ colour: data.value });
     }
 
+    redirect() {
+        this.context.router.history.push('/project/all');
+    }
+
     render() {
         return (
             <CreateProjectComponent
                 result={this.props.result}
                 handleChange={this.handleChange}
-                handleDropDownSelection={this.handleDropDownSelection}
                 handleSubmit={this.handleSubmit}
+                handleDropDownSelection={this.handleDropDownSelection}
                 projectName={this.props.projectName}
             />
         );
@@ -49,7 +57,9 @@ CreateProject.propTypes = {
     actions: PropTypes.shape({
         create: PropTypes.func.isRequired
     }).isRequired,
-    result: PropTypes.shape({}).isRequired,
+    result: PropTypes.shape({
+        success: PropTypes.shape({})
+    }).isRequired,
     projectName: PropTypes.string
 };
 
@@ -57,20 +67,22 @@ CreateProject.defaultProps = {
     projectName: null
 };
 
-function mapStateToProps(state) {
-    return {
-        result: state.projects
-    //   shouldRedirect: state.projects.shouldRedirect
-    };
-}
+// Pull in the React Router context so router is available on this.context.router
+CreateProject.contextTypes = {
+    router: PropTypes.object
+};
 
-function mapDispatchToProps(dispatch) {
-    return {
+const mapStateToProps = (state) => (
+    { result: state.projects }
+);
+
+const mapDispatchToProps = (dispatch) => (
+    {
         actions: bindActionCreators({
             createdProject, errorCreatingProject, create
         }, dispatch)
-    };
-}
+    }
+);
 
 const CreateProjectConnectedComponent = connect(
     mapStateToProps,

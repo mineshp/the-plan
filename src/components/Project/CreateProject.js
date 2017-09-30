@@ -30,7 +30,8 @@ const CreateProject = ({
             </Form.Field>
             <Button color="teal" type="submit">Create</Button>
         </Form>
-    </Container>);
+    </Container>
+);
 
 CreateProject.propTypes = {
     result: PropTypes.shape({}).isRequired,

@@ -5,6 +5,11 @@ exports[`List Projects renders projects correctly 1`] = `
   className="ui container"
 >
   <div
+    className="ui olive message"
+  >
+    <p />
+  </div>
+  <div
     className="List main"
   >
     <div
@@ -43,7 +48,7 @@ exports[`List Projects renders projects correctly 1`] = `
             className="buttons"
           >
             <button
-              className="ui olive icon left labeled button"
+              className="ui teal icon left labeled button"
               disabled={undefined}
               onClick={[Function]}
               role="button"
@@ -56,7 +61,7 @@ exports[`List Projects renders projects correctly 1`] = `
               Update
             </button>
             <button
-              className="ui red icon left labeled button"
+              className="ui blue icon left labeled button"
               disabled={undefined}
               onClick={[Function]}
               role="button"
@@ -82,11 +87,9 @@ exports[`List Projects renders successfully after error creating new project 1`]
   className="ui container"
 >
   <div
-    className="ui red message"
+    className="ui olive message"
   >
-    <p>
-      oh no something bad happened
-    </p>
+    <p />
   </div>
   <div
     className="List main"
@@ -127,7 +130,7 @@ exports[`List Projects renders successfully after error creating new project 1`]
             className="buttons"
           >
             <button
-              className="ui olive icon left labeled button"
+              className="ui teal icon left labeled button"
               disabled={undefined}
               onClick={[Function]}
               role="button"
@@ -140,7 +143,7 @@ exports[`List Projects renders successfully after error creating new project 1`]
               Update
             </button>
             <button
-              className="ui red icon left labeled button"
+              className="ui blue icon left labeled button"
               disabled={undefined}
               onClick={[Function]}
               role="button"
@@ -168,9 +171,7 @@ exports[`List Projects renders successfully after successful creation of project
   <div
     className="ui olive message"
   >
-    <p>
-      successfully created new project, woohoo
-    </p>
+    <p />
   </div>
   <div
     className="List main"
@@ -211,7 +212,7 @@ exports[`List Projects renders successfully after successful creation of project
             className="buttons"
           >
             <button
-              className="ui olive icon left labeled button"
+              className="ui teal icon left labeled button"
               disabled={undefined}
               onClick={[Function]}
               role="button"
@@ -224,7 +225,7 @@ exports[`List Projects renders successfully after successful creation of project
               Update
             </button>
             <button
-              className="ui red icon left labeled button"
+              className="ui blue icon left labeled button"
               disabled={undefined}
               onClick={[Function]}
               role="button"

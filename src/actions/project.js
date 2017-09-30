@@ -15,8 +15,30 @@ export const errorCreatingProject = (error) => ({
     error
 });
 
+export const successListingProjects = (data) => ({
+    type: 'PROJECT_LIST_RETRIEVED',
+    data
+});
+
+export const errorListingProjects = (error) => ({
+    type: 'PROJECT_LIST_ERROR',
+    error
+});
+
+export function listProjects() {
+    return (dispatch) =>
+        fetch('/project/all')
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(new Error('Unable to retrieve projects, please try again later.'));
+            })
+            .then((data) => dispatch(successListingProjects(data)))
+            .catch((error) => dispatch(errorListingProjects(error.message)));
+}
+
 export function create(newProject) {
-    let responseStatus;
     return (dispatch) =>
         fetch('/project/create', {
             method: 'post',
@@ -30,19 +52,14 @@ export function create(newProject) {
             }),
         })
             .then((res) => {
-                responseStatus = res.ok;
-                return res.json();
-            })
-            .then((data) => {
-                if (responseStatus) {
-                    return dispatch(createdProject(data));
+                if (res.ok) {
+                    return res.json();
                 }
-
-                return Promise.reject(new Error(data.message));
+                return Promise.reject(
+                    new Error(`Error creating project ${newProject.projectName}, project already exists.`));
             })
-            .catch((error) => {
-                dispatch(errorCreatingProject(error.message));
-            });
+            .then((data) => dispatch(createdProject(data)))
+            .catch((error) => dispatch(errorCreatingProject(error.message)));
 }
 
 export const deletedProject = (data) => ({
@@ -56,7 +73,6 @@ export const errorDeletingProject = (error) => ({
 });
 
 export function deleteProject(id) {
-    let responseStatus;
     return (dispatch) =>
         fetch(`/project/delete/${id}`, {
             method: 'delete',
@@ -66,17 +82,12 @@ export function deleteProject(id) {
             }
         })
             .then((res) => {
-                responseStatus = res.ok;
-                return res.json();
-            })
-            .then((data) => {
-                if (responseStatus) {
-                    return dispatch(deletedProject(data));
+                if (res.ok) {
+                    return res.json();
                 }
-
-                return Promise.reject(new Error(data.message));
+                return Promise.reject(
+                    new Error('Error deleting project, please try again later.'));
             })
-            .catch((error) => {
-                dispatch(errorDeletingProject(error.message));
-            });
+            .then((data) => dispatch(deletedProject(data)))
+            .catch((error) => dispatch(errorDeletingProject(error.message)));
 }

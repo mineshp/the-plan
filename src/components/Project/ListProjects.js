@@ -4,13 +4,13 @@ import { Card, Container } from 'semantic-ui-react';
 import DisplayMessage from '../Shared/DisplayMessage';
 
 const ListProjects = ({
-    result,
+    errors,
     cards
 }) => (
     <Container>
         {
-            (result.error || result.success) &&
-            <DisplayMessage status={result} />
+            (errors) &&
+                <DisplayMessage status={errors} />
         }
         <div className="List main">
             <Card.Group itemsPerRow={3}>
@@ -21,14 +21,14 @@ const ListProjects = ({
 );
 
 ListProjects.propTypes = {
-    result: PropTypes.shape({}),
+    errors: PropTypes.shape({}),
     cards: PropTypes.arrayOf(
         PropTypes.shape({})
     )
 };
 
 ListProjects.defaultProps = {
-    result: null,
+    errors: null,
     cards: []
 };
 

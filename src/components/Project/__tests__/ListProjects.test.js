@@ -4,19 +4,12 @@ import ProjectCard from '../ProjectCard';
 import ListProjects from '../ListProjects';
 
 const mockResult = {};
-const mockSuccessResult = {
-    success: {
-        message: 'successfully created new project, woohoo'
-    }
-};
-
 const mockErrorResult = {
     error: {
         message: 'oh no something bad happened',
         isError: true
     }
 };
-
 const mockProject = {
     _id: '1',
     projectName: 'test'
@@ -31,7 +24,7 @@ const mockCards = [
 describe('List Projects', () => {
     it('renders projects correctly', () => {
         const tree = renderer.create(<ListProjects
-            result={mockResult}
+            errors={mockResult}
             cards={mockCards}
             onDeleteHandler={mockHandleDelete}
         />).toJSON();
@@ -40,7 +33,7 @@ describe('List Projects', () => {
 
     it('renders successfully after successful creation of project', () => {
         const tree = renderer.create(<ListProjects
-            result={mockSuccessResult}
+            errors={mockResult}
             cards={mockCards}
             onDeleteHandler={mockHandleDelete}
         />).toJSON();
@@ -49,7 +42,7 @@ describe('List Projects', () => {
 
     it('renders successfully after error creating new project', () => {
         const tree = renderer.create(<ListProjects
-            result={mockErrorResult}
+            errors={mockErrorResult}
             cards={mockCards}
             onDeleteHandler={mockHandleDelete}
         />).toJSON();
