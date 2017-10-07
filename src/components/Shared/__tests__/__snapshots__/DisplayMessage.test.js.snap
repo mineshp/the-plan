@@ -1,14 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a success message 1`] = `
+exports[`DisplayMessage renders a success message 1`] = `
 <div
   className="ui olive message"
 >
-  <p />
+  <p>
+    Successful request
+  </p>
 </div>
 `;
 
-exports[`renders an error message 1`] = `
+exports[`DisplayMessage renders an error message 1`] = `
 <div
   className="ui red message"
 >

@@ -17,7 +17,8 @@
     "semantic-ui-react": "^0.71.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:client": "react-scripts start",
+    "start:server": "node server/server.js",
     "build": "react-scripts build",
     "lint": "eslint --config .eslintrc.js src",
     "lint:fix": "npm run lint -- --fix",

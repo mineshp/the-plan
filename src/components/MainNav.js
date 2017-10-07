@@ -38,7 +38,7 @@ export default class MainNav extends Component {
                 <Dropdown item text="Projects">
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={this.handleItemClick} href="/project/all">List</Dropdown.Item>
-                        <Dropdown.Item onClick={this.handleItemClick} href="/project/create">Create</Dropdown.Item>
+                        <Dropdown.Item onClick={this.handleItemClick} href="/project/update">Create</Dropdown.Item>
                         <Dropdown.Item>Search</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>

@@ -22,6 +22,7 @@ class ManageProject extends Component {
         const projectIdToDelete = event.target.value;
         this.props.actions.deleteProject(projectIdToDelete)
             .then((deleteStatus) => {
+                /* istanbul ignore else */
                 if (deleteStatus && deleteStatus.type === 'PROJECT_DELETION_SUCCESS') {
                     this.fetchProjectsList();
                 }
@@ -70,10 +71,12 @@ ManageProject.defaultProps = {
     projects: null // TODO: Change to ARRAY
 };
 
+/* istanbul ignore next: not testing mapStateToProps */
 const mapStateToProps = (state) => (
     { projects: state.projects }
 );
 
+/* istanbul ignore next: not testing mapDispatchToProps */
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({

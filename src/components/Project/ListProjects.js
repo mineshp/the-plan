@@ -9,7 +9,7 @@ const ListProjects = ({
 }) => (
     <Container>
         {
-            (errors) &&
+            (errors && errors.status) &&
                 <DisplayMessage status={errors} />
         }
         <div className="List main">

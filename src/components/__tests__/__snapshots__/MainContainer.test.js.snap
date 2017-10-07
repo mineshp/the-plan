@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainContainer Routes Validate routes 1`] = `
+exports[`MainContainer Routes Validates all routes 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
     "buildPredicate": [Function],
@@ -32,7 +32,11 @@ ShallowWrapper {
     />
     <Route
         component={[Function]}
-        path="/project/create"
+        path="/project/update/:id"
+    />
+    <Route
+        component={[Function]}
+        path="/project/update"
     />
 </Switch>,
   "nodes": Array [
@@ -60,7 +64,11 @@ ShallowWrapper {
       />
       <Route
             component={[Function]}
-            path="/project/create"
+            path="/project/update/:id"
+      />
+      <Route
+            component={[Function]}
+            path="/project/update"
       />
 </Switch>,
   ],
@@ -71,7 +79,7 @@ ShallowWrapper {
       "_compositeType": 2,
       "_context": Object {},
       "_currentElement": <Main />,
-      "_debugID": 13,
+      "_debugID": 15,
       "_hostContainerInfo": null,
       "_hostParent": null,
       "_instance": StatelessComponent {
@@ -91,7 +99,7 @@ ShallowWrapper {
           "validateCallback": [Function],
         },
       },
-      "_mountOrder": 7,
+      "_mountOrder": 8,
       "_pendingCallbacks": null,
       "_pendingElement": null,
       "_pendingForceUpdate": false,
@@ -122,10 +130,14 @@ ShallowWrapper {
           />
           <Route
                     component={[Function]}
-                    path="/project/create"
+                    path="/project/update/:id"
+          />
+          <Route
+                    component={[Function]}
+                    path="/project/update"
           />
 </Switch>,
-        "_debugID": 14,
+        "_debugID": 16,
         "_renderedOutput": <Switch>
           <Route
                     component={[Function]}
@@ -150,7 +162,11 @@ ShallowWrapper {
           />
           <Route
                     component={[Function]}
-                    path="/project/create"
+                    path="/project/update/:id"
+          />
+          <Route
+                    component={[Function]}
+                    path="/project/update"
           />
 </Switch>,
       },

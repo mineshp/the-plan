@@ -15,6 +15,16 @@ export const errorCreatingProject = (error) => ({
     error
 });
 
+export const updatedProject = (data) => ({
+    type: 'PROJECT_UPDATE_SUCCESS',
+    data
+});
+
+export const errorUpdatingProject = (error) => ({
+    type: 'PROJECT_UPDATE_ERROR',
+    error
+});
+
 export const successListingProjects = (data) => ({
     type: 'PROJECT_LIST_RETRIEVED',
     data
@@ -22,6 +32,16 @@ export const successListingProjects = (data) => ({
 
 export const errorListingProjects = (error) => ({
     type: 'PROJECT_LIST_ERROR',
+    error
+});
+
+export const successFetchingProject = (data) => ({
+    type: 'SINGLE_PROJECT_RETRIEVED',
+    data
+});
+
+export const errorFetchingProject = (error) => ({
+    type: 'SINGLE_PROJECT_ERROR',
     error
 });
 
@@ -40,7 +60,7 @@ export function listProjects() {
 
 export function create(newProject) {
     return (dispatch) =>
-        fetch('/project/create', {
+        fetch('/project/update', {
             method: 'post',
             headers: {
                 Accept: 'application/json',
@@ -49,7 +69,7 @@ export function create(newProject) {
             body: JSON.stringify({
                 projectName: newProject.projectName,
                 colour: newProject.colour.toLowerCase()
-            }),
+            })
         })
             .then((res) => {
                 if (res.ok) {
@@ -60,6 +80,41 @@ export function create(newProject) {
             })
             .then((data) => dispatch(createdProject(data)))
             .catch((error) => dispatch(errorCreatingProject(error.message)));
+}
+
+export function update(existingProject) {
+    return (dispatch) =>
+        fetch(`/project/update/${existingProject._id}`, { // eslint-disable-line no-underscore-dangle
+            method: 'post',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(existingProject)
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(
+                    new Error(`Error updating project ${existingProject.projectName}, please try again later.`));
+            })
+            .then((data) => dispatch(updatedProject(data)))
+            .catch((error) => dispatch(errorUpdatingProject(error.message)));
+}
+
+export function fetchSingleProject(projectId) {
+    return (dispatch) =>
+        fetch(`/project/${projectId}`)
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(
+                    new Error(`Unable to retrieve project with id ${projectId}, please try again later.`));
+            })
+            .then((data) => dispatch(successFetchingProject(data)))
+            .catch((error) => dispatch(errorFetchingProject(error.message)));
 }
 
 export const deletedProject = (data) => ({

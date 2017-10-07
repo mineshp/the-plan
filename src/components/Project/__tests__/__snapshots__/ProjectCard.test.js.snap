@@ -33,9 +33,10 @@ exports[`ProjectCard renders correctly 1`] = `
     <div
       className="buttons"
     >
-      <button
+      <a
         className="ui teal icon left labeled button"
         disabled={undefined}
+        href="/project/update/12345"
         onClick={[Function]}
         role="button"
         tabIndex={undefined}
@@ -45,7 +46,7 @@ exports[`ProjectCard renders correctly 1`] = `
           className="edit icon"
         />
         Update
-      </button>
+      </a>
       <button
         className="ui blue icon left labeled button"
         disabled={undefined}

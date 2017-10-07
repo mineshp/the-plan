@@ -37,6 +37,24 @@ exports.createNewProject = function (req, res) {
 	});
 };
 
+exports.updateProject = function (req, res) {
+	const data = req.body;
+	Project.update({ _id: req.params.id }, data, function (err, result) {
+		if (err) {
+			res.status(400);
+			res.json(
+				{
+					message: `Error: Project update failed for id ${req.params.id}.`
+				}
+			);
+		}
+		else {
+			res.status(200);
+			res.send(data);
+		}
+	});
+};
+
 exports.delete = function (req, res) {
 	const id = req.params.id;
 	Project.findOne({ _id: id }, function (err, collection) {

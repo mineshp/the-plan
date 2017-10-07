@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Route } from 'react-router-dom';
 import Home from '../Home';
 import ManageLists from '../List/Manage';
-import { CreateProjectConnectedComponent } from '../../HOC/Project/Create';
+import { UpdateProjectConnectedComponent } from '../../HOC/Project/Update';
 import { ManageProjectConnectedComponent } from '../../HOC/Project/ManageProject';
 import ViewList from '../List/View';
 import List from '../App';
@@ -51,15 +51,23 @@ describe('MainContainer Routes', () => {
         expect(attachedComponent).toBe(ManageProjectConnectedComponent);
     });
 
-    it('validates path /project/create renders CreateProjectConnectedComponent component', () => {
+    it('validates path /project/update renders UpdateProjectConnectedComponent component for create', () => {
         const tree = shallow(<MainContainerRoutes />);
         const attachedComponent =
-            tree.findWhere((n) => n.prop('path') === '/project/create').props().component;
+            tree.findWhere((n) => n.prop('path') === '/project/update').props().component;
 
-        expect(attachedComponent).toBe(CreateProjectConnectedComponent);
+        expect(attachedComponent).toBe(UpdateProjectConnectedComponent);
     });
 
-    it('Validate routes', () => {
+    it('validates path /project/update/:id renders UpdateProjectConnectedComponent component for update', () => {
+        const tree = shallow(<MainContainerRoutes />);
+        const attachedComponent =
+            tree.findWhere((n) => n.prop('path') === '/project/update/:id').props().component;
+
+        expect(attachedComponent).toBe(UpdateProjectConnectedComponent);
+    });
+
+    it('Validates all routes', () => {
         const component = shallow(<MainContainerRoutes />);
 
         expect(component).toMatchSnapshot();

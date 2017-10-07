@@ -82,6 +82,39 @@ describe('projects reducer', () => {
         });
     });
 
+    describe('UPDATE ACTIONS', () => {
+        const aProject = {
+            _id: '1234',
+            projectName: 'Senorita',
+            colour: 'gold',
+            createdDate: '2017-09-22T21:33:42.096Z'
+        };
+
+        it('should handle PROJECT_UPDATE_SUCCESS', () => {
+            expect(projects({}, {
+                type: 'PROJECT_UPDATE_SUCCESS',
+                data: aProject
+            })).toEqual({
+                success: {
+                    data: aProject,
+                    message: 'Successfully updated project Senorita.'
+                }
+            });
+        });
+
+        it('should handle PROJECT_UPDATE_ERROR', () => {
+            expect(projects({}, {
+                type: 'PROJECT_UPDATE_ERROR',
+                error: 'Unable to update project, please try again later.'
+            })).toEqual({
+                error: {
+                    message: 'Unable to update project, please try again later.',
+                    isError: true
+                }
+            });
+        });
+    });
+
     describe('LIST ACTIONS', () => {
         const allProjects = [
             {
@@ -131,6 +164,40 @@ describe('projects reducer', () => {
             })).toEqual({
                 error: {
                     message: 'Unable to retrieve projects, please try again later.',
+                    isError: true
+                }
+            });
+        });
+    });
+
+    describe('FETCH SINGLE PROJECT ACTIONS', () => {
+        const aProject = {
+            _id: '1234',
+            projectName: 'Tea',
+            colour: 'brown',
+            createdDate: '2017-09-22T21:33:42.096Z'
+        };
+
+        it('should handle SINGLE_PROJECT_RETRIEVED', () => {
+            expect(projects({}, {
+                type: 'SINGLE_PROJECT_RETRIEVED',
+                data: {
+                    aProject
+                }
+            })).toEqual({
+                data: {
+                    aProject
+                }
+            });
+        });
+
+        it('should handle SINGLE_PROJECT_ERROR', () => {
+            expect(projects({}, {
+                type: 'SINGLE_PROJECT_ERROR',
+                error: 'Unable to retrieve project with id 999, please try again later.'
+            })).toEqual({
+                error: {
+                    message: 'Unable to retrieve project with id 999, please try again later.',
                     isError: true
                 }
             });

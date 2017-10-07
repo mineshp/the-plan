@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const list = require('../controllers/list');
 const project = require('../controllers/project');
 
@@ -10,9 +9,12 @@ module.exports = function (app) {
     app.get('/list/all', list.getAllLists);
     app.get('/list/:id/view', list.getListById);
 
-    app.get('/project/all', project.getAllProjects);
-	app.post('/project/create', project.createNewProject);
+	app.get('/project/all', project.getAllProjects);
+	app.post('/project/update/:id', project.updateProject);
+	app.post('/project/update', project.createNewProject);
 	app.delete('/project/delete/:id', project.delete);
+	app.get('/project/:id', project.getProjectById);
+
 	// app.all('/api/*', function(req,res) {
 	// 	res.send(404);
 	// });

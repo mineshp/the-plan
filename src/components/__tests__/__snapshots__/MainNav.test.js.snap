@@ -66,7 +66,7 @@ exports[`MainNav Component renders correctly 1`] = `
         aria-disabled={undefined}
         aria-selected={undefined}
         className="item"
-        href="/project/create"
+        href="/project/update"
         onClick={[Function]}
         role="option"
       >

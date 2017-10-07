@@ -20,10 +20,12 @@ const ProjectCard = ({ data, onDeleteHandler }) => (
         <Card.Content extra>
             <div className="buttons">
                 <Button
+                    as="a"
                     content="Update"
                     icon="edit"
                     labelPosition="left"
                     color="teal"
+                    href={`/project/update/${data._id}`} // eslint-disable-line no-underscore-dangle
                 />
                 <Button
                     content="Delete"

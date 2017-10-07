@@ -24,12 +24,41 @@ const projects = (state = {}, action) => {
             }
         };
 
+    case 'PROJECT_UPDATE_SUCCESS':
+        return {
+            success: {
+                data: action.data,
+                message: `Successfully updated project ${action.data.projectName}.`
+            }
+        };
+
+    case 'PROJECT_UPDATE_ERROR':
+        return {
+            error: {
+                message: action.error,
+                isError: true
+            }
+        };
+
     case 'PROJECT_LIST_RETRIEVED':
         return {
             data: action.data
         };
 
     case 'PROJECT_LIST_ERROR':
+        return {
+            error: {
+                message: action.error,
+                isError: true
+            }
+        };
+
+    case 'SINGLE_PROJECT_RETRIEVED':
+        return {
+            data: action.data
+        };
+
+    case 'SINGLE_PROJECT_ERROR':
         return {
             error: {
                 message: action.error,
