@@ -1,12 +1,11 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import ManageList from '../ManageList';
-import ListRow from '../../../components/List/ListRow';
-import DisplayMessage from '../../../components/Shared/DisplayMessage';
+import { shallow } from 'enzyme';
+import { ManageList } from '../ManageList';
+import ListsComponent from '../../../components/List/List';
 
 const mockListAll = [
     {
-        _id: '5992092f66a7043f2598c88e',
+        _id: '001',
         projects: [
             {
                 id: 'abc123',
@@ -19,102 +18,79 @@ const mockListAll = [
         ],
         listName: 'HumanBody',
         createdDate: '2016-05-18T16:00:00Z',
-        updatedDate: '2016-05-18T16:00:00Z',
-        headings: [
+        updatedDate: '2016-05-18T16:00:00Z'
+    },
+    {
+        _id: '002',
+        projects: [
             {
-                position: 1,
-                id: '1',
-                name: 'Name'
-            },
-            {
-                position: 2,
-                id: '2',
-                name: 'Created'
+                id: '0011',
+                name: 'history'
             }
         ],
-        items: [
-            {
-                updatedDate: '2016-05-18T16:00:00Z',
-                createdDate: '2016-05-18T16:00:00Z',
-                position: 1,
-                id: '1',
-                name: 'Head'
-            },
-            {
-                updatedDate: '2016-05-18T16:00:00Z',
-                createdDate: '2016-05-18T16:00:00Z',
-                position: 2,
-                id: '2',
-                name: 'Shoulder'
-            }
-        ]
+        listName: 'Explorers',
+        createdDate: '2016-10-8T13:16:00Z',
+        updatedDate: '2016-10-8T16:00:00Z',
     }
 ];
 
-const mockResponse = (status, statusText, response) => new window.Response(response, {
-    status,
-    statusText,
-    headers: {
-        'Content-type': 'application/json'
-    }
-});
+const props = {
+    actions: {
+        retrieveLists: jest.fn(() => (
+            Promise.resolve(mockListAll)
+        ))
+    },
+    lists: {} // TODO: Turn to ARRAY
+};
 
 describe('Manage Lists', () => {
-    beforeEach(() => {
-        window.fetch = jest.fn().mockImplementation(() =>
-            Promise.resolve(mockResponse(200, null, JSON.stringify(mockListAll))));
-    });
+    describe('Get all lists success', () => {
+        let wrapper;
+        beforeEach(() => {
+            wrapper = shallow(<ManageList {...props} />);
+        });
 
-    it('calls componentDidMount', async () => {
-        const componentDidMountSpy = jest.spyOn(ManageList.prototype, 'componentDidMount');
-        const wrapper = mount(<ManageList />);
-        await wrapper.instance().componentDidMount();
-        expect(componentDidMountSpy).toHaveBeenCalled();
-    });
+        it('calls componentDidMount', async () => {
+            const componentDidMountSpy = jest.spyOn(ManageList.prototype, 'componentDidMount');
+            await wrapper.instance().componentDidMount();
+            expect(componentDidMountSpy).toHaveBeenCalled();
+        });
 
-    it('fetch all lists', async () => {
-        const wrapper = mount(<ManageList />);
-        expect(wrapper.state().lists).toEqual([]);
-        await fetch('/foo/bar')
-            .then((res) => res.json())
-            .then((lists) => expect(lists).toEqual(mockListAll));
-    });
+        it('calls the retrieveLists action when the fetchLists function is invoked', async () => {
+            wrapper.instance().fetchLists();
+            await expect(props.actions.retrieveLists).toHaveBeenCalledWith();
+        });
 
-    it('renders ListRows correctly for projects', async () => {
-        const ManageListComponent = shallow(<ManageList />);
-        ManageListComponent.setState({ lists: mockListAll });
-        expect(ManageListComponent.find(ListRow).length).toEqual(1);
-    });
+        it('renders a Lists component', async () => {
+            const ManageListComponent = shallow(<ManageList />);
+            expect(ManageListComponent.find(ListsComponent).length).toEqual(1);
+        });
 
-    it('does not render a Display Message when fetching lists is successful', async () => {
-        const ManageListComponent = shallow(<ManageList />);
-        await ManageListComponent.instance().componentDidMount();
-
-        expect(ManageListComponent.find(DisplayMessage).length).toEqual(0);
-    });
-});
-
-describe('Get all lists fails', () => {
-    beforeEach(() => {
-        window.fetch = jest.fn().mockReturnValue(Promise.resolve({}));
-    });
-
-    it('sets a notification when the client is unable to connect to the api', async () => {
-        const wrapper = mount(<ManageList />);
-        await wrapper.instance().componentDidMount();
-
-        expect(wrapper.state().notification).toEqual({
-            error: {
-                message: 'Unable to retrieve lists, please try again later.',
-                isError: true
-            }
+        it('builds an array of ProjectCards', async () => {
+            const propsAfterFetchAllLists = Object.assign({}, props, { lists: { data: mockListAll } });
+            const ManageListComponent = shallow(<ManageList {...propsAfterFetchAllLists} />);
+            await expect(ManageListComponent.props().rows.length).toEqual(2);
         });
     });
 
-    it('renders a Display Message when fetching lists fails', async () => {
-        const ManageListComponent = shallow(<ManageList />);
-        await ManageListComponent.instance().componentDidMount();
+    describe('Get all lists fails', () => {
+        it('sets an api error when the client is unable to connect to the api', async () => {
+            const apiError = {
+                error: {
+                    isError: true,
+                    message: 'Unable to retrieve lists, please try again later.'
+                }
+            };
+            const propsAfterFetchListsError = Object.assign({}, props, { lists: { error: apiError } });
+            const ManageListComponent = shallow(<ManageList {...propsAfterFetchListsError} />);
 
-        expect(ManageListComponent.find(DisplayMessage).length).toEqual(1);
+            expect(ManageListComponent.props().errors).toEqual({
+                error: {
+                    message: 'Unable to retrieve lists, please try again later.',
+                    isError: true
+                }
+            });
+        });
     });
 });
+

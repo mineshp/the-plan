@@ -45,9 +45,9 @@ describe('Manage Projects', () => {
             wrapper = shallow(<ManageProject {...props} />);
         });
 
-        it('calls componentDidMount', () => {
+        it('calls componentDidMount', async () => {
             const componentDidMountSpy = jest.spyOn(ManageProject.prototype, 'componentDidMount');
-            wrapper.instance().componentDidMount();
+            await wrapper.instance().componentDidMount();
             expect(componentDidMountSpy).toHaveBeenCalled();
             expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
         });

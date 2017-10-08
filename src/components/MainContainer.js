@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import List from './App';
-import ManageLists from './List/Manage';
+// import ManageLists from './List/Manage';
+import { ManageListConnectedComponent } from '../HOC/List/ManageList';
 import { ManageProjectConnectedComponent } from '../HOC/Project/ManageProject';
 import { UpdateProjectConnectedComponent } from '../HOC/Project/Update';
 
@@ -14,7 +15,7 @@ import Home from './Home';
 const Main = () => (
     <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/list/all" component={ManageLists} />
+        <Route path="/list/all" component={ManageListConnectedComponent} />
         <Route path="/list/:id/view" component={ViewList} />
         <Route path="/list" component={List} />
         <Route path="/project/all" component={ManageProjectConnectedComponent} />

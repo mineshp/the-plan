@@ -1,73 +1,81 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { retrieveLists } from '../../actions/list';
 import Row from '../../components/List/ListRow';
-import DisplayMessage from '../../components/Shared/DisplayMessage';
-
+import ListsComponent from '../../components/List/List';
 
 class ManageList extends Component {
-    constructor() {
-        super();
-        this.state = {
-            lists: [],
-            notification: null
-        };
+    constructor(props) {
+        super(props);
+        this.fetchLists = this.fetchLists.bind(this);
     }
 
     componentDidMount() {
-        return fetch('/list/all')
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(
-                    new Error('Unable to retrieve lists, please try again later.'));
-            })
-            .then((lists) => {
-                this.setState({ lists });
-            })
-            .catch((err) => {
-                // console.error(err);
-                const displayError = {
-                    error: {
-                        message: err.message,
-                        isError: true
-                    }
-                };
-                this.setState({
-                    notification: displayError
-                });
-            });
+        this.fetchLists();
+    }
+
+    fetchLists() {
+        this.props.actions.retrieveLists();
     }
 
     render() {
         const ListRow = [];
-        // eslint-disable-next-line no-underscore-dangle
-        this.state.lists.map((list) => ListRow.push(<Row data={list} key={list._id} />));
+        const { lists } = this.props;
+        if (lists && lists.data) {
+            lists.data.map((list) =>
+                // eslint-disable-next-line no-underscore-dangle
+                ListRow.push(<Row data={list} key={list._id} />));
+        }
+
+        let listErrors;
+        if (lists && lists.error) {
+            listErrors = lists.error;
+        }
 
         return (
-            <div className="List main">
-                {
-                    this.state.notification &&
-                        <DisplayMessage status={this.state.notification} />
-                }
-                <Table celled striped>
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell>Name</Table.HeaderCell>
-                            <Table.HeaderCell>Created</Table.HeaderCell>
-                            <Table.HeaderCell>Last Updated</Table.HeaderCell>
-                            <Table.HeaderCell>Projects</Table.HeaderCell>
-                            <Table.HeaderCell>Actions</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-
-                    <Table.Body>
-                        {ListRow}
-                    </Table.Body>
-                </Table>
-            </div>
+            <ListsComponent
+                errors={listErrors}
+                rows={ListRow}
+            />
         );
     }
 }
 
-export default ManageList;
+ManageList.propTypes = {
+    actions: PropTypes.shape({
+        retrieveLists: PropTypes.func
+    }),
+    lists: PropTypes.shape([])
+};
+
+ManageList.defaultProps = {
+    actions: null,
+    lists: null
+};
+
+/* istanbul ignore next: not testing mapStateToProps */
+const mapStateToProps = (state) => (
+    { lists: state.lists }
+);
+
+/* istanbul ignore next: not testing mapDispatchToProps */
+const mapDispatchToProps = (dispatch) => (
+    {
+        actions: bindActionCreators({
+            retrieveLists
+        }, dispatch)
+    }
+);
+
+const ManageListConnectedComponent = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ManageList);
+
+export {
+    ManageList,
+    ManageListConnectedComponent
+};
+
