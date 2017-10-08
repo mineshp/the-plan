@@ -203,7 +203,6 @@ describe('Project actions', () => {
         };
 
         it('should dispatch an action for PROJECT_UPDATE_SUCCESS when calling updatedProject to confirm a project has been updated', () => {
-
             const expectedAction = {
                 type: 'PROJECT_UPDATE_SUCCESS',
                 data: projectToUodate
