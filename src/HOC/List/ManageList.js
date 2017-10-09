@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { retrieveLists } from '../../actions/list';
+import { retrieveSummaryLists } from '../../actions/list';
 import Row from '../../components/List/ListRow';
 import ListsComponent from '../../components/List/List';
 
@@ -17,7 +17,7 @@ class ManageList extends Component {
     }
 
     fetchLists() {
-        this.props.actions.retrieveLists();
+        this.props.actions.retrieveSummaryLists();
     }
 
     render() {
@@ -45,7 +45,7 @@ class ManageList extends Component {
 
 ManageList.propTypes = {
     actions: PropTypes.shape({
-        retrieveLists: PropTypes.func
+        retrieveSummaryLists: PropTypes.func
     }),
     lists: PropTypes.shape([])
 };
@@ -64,7 +64,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({
-            retrieveLists
+            retrieveSummaryLists
         }, dispatch)
     }
 );

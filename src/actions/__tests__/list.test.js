@@ -55,7 +55,7 @@ describe('List actions', () => {
                 .toEqual(expectedAction);
         });
 
-        it('a successful retrieveLists call via the store, dispatches the LISTS_RETRIEVED action', async () => {
+        it('a successful retrieveSummaryLists call via the store, dispatches the LISTS_RETRIEVED action', async () => {
             window.fetch = jest.fn().mockImplementation(() =>
                 Promise.resolve(mockResponse(200, null, JSON.stringify(mockListSuccessAPIResponse))));
 
@@ -68,7 +68,7 @@ describe('List actions', () => {
                 }
             ];
 
-            return store.dispatch(actions.retrieveLists()).then(() => {
+            return store.dispatch(actions.retrieveSummaryLists()).then(() => {
                 // return of async actions
                 expect(store.getActions()).toEqual(expectedActions);
             });
@@ -87,7 +87,7 @@ describe('List actions', () => {
                 }
             ];
 
-            return store.dispatch(actions.retrieveLists()).then(() => {
+            return store.dispatch(actions.retrieveSummaryLists()).then(() => {
                 // return of async actions
                 expect(store.getActions()).toEqual(expectedAction);
             });

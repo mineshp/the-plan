@@ -8,7 +8,7 @@ export const errorListingLists = (error) => ({
     error
 });
 
-export function retrieveLists() {
+export function retrieveSummaryLists() {
     return (dispatch) =>
         fetch('/list/all')
             .then((res) => {

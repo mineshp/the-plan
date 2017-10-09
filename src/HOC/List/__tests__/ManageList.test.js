@@ -36,7 +36,7 @@ const mockListAll = [
 
 const props = {
     actions: {
-        retrieveLists: jest.fn(() => (
+        retrieveSummaryLists: jest.fn(() => (
             Promise.resolve(mockListAll)
         ))
     },
@@ -58,7 +58,7 @@ describe('Manage Lists', () => {
 
         it('calls the retrieveLists action when the fetchLists function is invoked', async () => {
             wrapper.instance().fetchLists();
-            await expect(props.actions.retrieveLists).toHaveBeenCalledWith();
+            await expect(props.actions.retrieveSummaryLists).toHaveBeenCalledWith();
         });
 
         it('renders a Lists component', async () => {
