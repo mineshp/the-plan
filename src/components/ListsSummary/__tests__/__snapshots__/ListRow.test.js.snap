@@ -45,7 +45,7 @@ exports[`ListRow renders correctly 1`] = `
     <a
       className="ui button"
       disabled={undefined}
-      href="/list/1234456/view"
+      href="/list/view/1234456"
       onClick={[Function]}
       role="button"
       tabIndex={undefined}

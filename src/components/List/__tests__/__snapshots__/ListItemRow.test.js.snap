@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItems renders list items correctly 1`] = `
+<tbody
+  className=""
+>
+  <tr
+    className=""
+  >
+    <td
+      className=""
+    >
+      Bread
+    </td>
+    <td
+      className=""
+    >
+      Loaf of granary bread
+    </td>
+  </tr>
+  <tr
+    className=""
+  >
+    <td
+      className=""
+    >
+      Milk
+    </td>
+    <td
+      className=""
+    >
+      1 Pint of Milk
+    </td>
+  </tr>
+</tbody>
+`;

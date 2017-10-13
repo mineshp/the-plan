@@ -6,8 +6,10 @@ exports.getAllLists = function(req,res) {
 	});
 };
 
-exports.getListById = function(req,res) {
+exports.getListById = function (req, res) {
+	console.log("ID IS ", req.params.id);
     List.findOne({ _id: req.params.id }, function (err, collection) {
-		res.send(collection);
+			console.log("COLL FOR getListById", collection);
+			res.send(collection);
 	});
 };

@@ -20,7 +20,7 @@ ShallowWrapper {
     />
     <Route
         component={[Function]}
-        path="/list/:id/view"
+        path="/list/view/:id"
     />
     <Route
         component={[Function]}
@@ -52,7 +52,7 @@ ShallowWrapper {
       />
       <Route
             component={[Function]}
-            path="/list/:id/view"
+            path="/list/view/:id"
       />
       <Route
             component={[Function]}
@@ -118,7 +118,7 @@ ShallowWrapper {
           />
           <Route
                     component={[Function]}
-                    path="/list/:id/view"
+                    path="/list/view/:id"
           />
           <Route
                     component={[Function]}
@@ -150,7 +150,7 @@ ShallowWrapper {
           />
           <Route
                     component={[Function]}
-                    path="/list/:id/view"
+                    path="/list/view/:id"
           />
           <Route
                     component={[Function]}

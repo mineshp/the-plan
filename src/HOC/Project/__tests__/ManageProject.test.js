@@ -54,7 +54,7 @@ describe('Manage Projects', () => {
 
         it('calls the listProjects action when the fetchProjectsList function is invoked', async () => {
             wrapper.instance().fetchProjectsList();
-            await expect(props.actions.listProjects).toHaveBeenCalledWith();
+            await expect(props.actions.listProjects).toHaveBeenCalled();
         });
 
         it('renders a ListProjects component', async () => {

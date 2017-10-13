@@ -2,56 +2,60 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { retrieveSummaryLists } from '../../actions/list';
-import Row from '../../components/List/ListRow';
-import ListsComponent from '../../components/List/List';
+import { retrieveListById } from '../../actions/list';
+import List from '../../components/List/List';
+
 
 class ManageList extends Component {
     constructor(props) {
         super(props);
-        this.fetchLists = this.fetchLists.bind(this);
+        this.fetchListById = this.fetchListById.bind(this);
     }
 
     componentDidMount() {
-        this.fetchLists();
+        if (this.props.match.params && this.props.match.params.id) {
+            this.fetchListById(this.props.match.params.id);
+        }
     }
 
-    fetchLists() {
-        this.props.actions.retrieveSummaryLists();
+    fetchListById(listId) {
+        this.props.actions.retrieveListById(listId);
     }
 
     render() {
-        const ListRow = [];
         const { lists } = this.props;
-        if (lists && lists.data) {
-            lists.data.map((list) =>
-                // eslint-disable-next-line no-underscore-dangle
-                ListRow.push(<Row data={list} key={list._id} />));
-        }
 
-        let listErrors;
+        let singleListErrors;
         if (lists && lists.error) {
-            listErrors = lists.error;
+            singleListErrors = lists;
         }
 
         return (
-            <ListsComponent
-                errors={listErrors}
-                rows={ListRow}
-            />
+            !this.props.lists
+                ? <p>Loading Data...</p>
+                : <List
+                    errors={singleListErrors}
+                    list={this.props.lists.data}
+                />
         );
     }
 }
 
 ManageList.propTypes = {
     actions: PropTypes.shape({
-        retrieveSummaryLists: PropTypes.func
+        retrieveListById: PropTypes.func
     }),
-    lists: PropTypes.shape([])
+    lists: PropTypes.shape([]),
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            id: PropTypes.string
+        })
+    })
 };
 
 ManageList.defaultProps = {
     actions: null,
+    match: null,
     lists: null
 };
 
@@ -64,7 +68,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({
-            retrieveSummaryLists
+            retrieveListById
         }, dispatch)
     }
 );

@@ -14,7 +14,7 @@ const mockResponse = (status, statusText, response) => new window.Response(respo
 });
 
 describe('List actions', () => {
-    describe('List Project Actions', () => {
+    describe('Get all list actions', () => {
         const mockListSuccessAPIResponse = [
             {
                 _id: '1234',
@@ -88,6 +88,79 @@ describe('List actions', () => {
             ];
 
             return store.dispatch(actions.retrieveSummaryLists()).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedAction);
+            });
+        });
+    });
+
+    describe('Get a single list actions', () => {
+        const mockListSuccessAPIResponse = [
+            {
+                _id: '1234',
+                project: ['a', 'b'],
+                listName: 'Shopping List',
+                createdDate: '2016-05-18T16:00:00Z',
+                updatedDate: '2016-05-18T16:00:00Z'
+            }
+        ];
+
+        const mockSingleListRetrievalFailureAPIResponse = {
+            message: 'Unable to retrieve list with id 1234, please try again later.'
+        };
+
+        it('should dispatch an action for LIST_RETRIEVED when calling successRetrievingList to confirm a list was retrieved', () => {
+            const expectedAction = {
+                type: 'LIST_RETRIEVED',
+                data: mockListSuccessAPIResponse
+            };
+
+            expect(actions.successRetrievingList(mockListSuccessAPIResponse)).toEqual(expectedAction);
+        });
+
+        it('should dispatch an action for LIST_RETRIEVED_ERROR when calling errorRetrievingList to notify the user we were unable to retrieve a list', () => {
+            const expectedAction = {
+                type: 'LIST_RETRIEVED_ERROR',
+                error: mockSingleListRetrievalFailureAPIResponse.message
+            };
+
+            expect(actions.errorRetrievingList(mockSingleListRetrievalFailureAPIResponse.message))
+                .toEqual(expectedAction);
+        });
+
+        it('a successful retrieveListById call via the store, dispatches the LIST_RETRIEVED action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(200, null, JSON.stringify(mockListSuccessAPIResponse))));
+
+            const store = mockStore({ lists: [] });
+
+            const expectedActions = [
+                {
+                    type: 'LIST_RETRIEVED',
+                    data: mockListSuccessAPIResponse
+                }
+            ];
+
+            return store.dispatch(actions.retrieveListById(1234)).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+
+        it('an unsuccessful retrieveListById call via the store, dispatches the LIST_RETRIEVED_ERROR action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(500, null, JSON.stringify(mockSingleListRetrievalFailureAPIResponse))));
+
+            const store = mockStore({ lists: [] });
+
+            const expectedAction = [
+                {
+                    type: 'LIST_RETRIEVED_ERROR',
+                    error: mockSingleListRetrievalFailureAPIResponse.message
+                }
+            ];
+
+            return store.dispatch(actions.retrieveListById(1234)).then(() => {
                 // return of async actions
                 expect(store.getActions()).toEqual(expectedAction);
             });

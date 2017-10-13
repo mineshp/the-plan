@@ -1,0 +1,476 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List renders lists correctly 1`] = `
+<div
+  className="List main"
+>
+  <div
+    className="ui container"
+  >
+    <table
+      className="ui celled striped table"
+    >
+      <thead
+        className=""
+      >
+        <tr
+          className=""
+        >
+          <th
+            className=""
+          >
+            Name
+          </th>
+          <th
+            className=""
+          >
+            Created
+          </th>
+          <th
+            className=""
+          >
+            Last Updated
+          </th>
+          <th
+            className=""
+          >
+            Projects
+          </th>
+          <th
+            className=""
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        className=""
+      >
+        <tr
+          className=""
+        >
+          <td
+            className=""
+          >
+            HumanBody
+          </td>
+          <td
+            className=""
+          >
+            2016-05-18T16:00:00Z
+          </td>
+          <td
+            className=""
+          >
+            2016-05-18T16:00:00Z
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui red label"
+              onClick={[Function]}
+            >
+              <i
+                aria-hidden="true"
+                className="empty star icon"
+              />
+              biology
+            </a>
+            <a
+              className="ui red label"
+              onClick={[Function]}
+            >
+              <i
+                aria-hidden="true"
+                className="empty star icon"
+              />
+              chemistry
+            </a>
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui button"
+              disabled={undefined}
+              href="/list/view/001"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              View
+            </a>
+          </td>
+        </tr>
+        <tr
+          className=""
+        >
+          <td
+            className=""
+          >
+            Explorers
+          </td>
+          <td
+            className=""
+          >
+            2016-10-8T13:16:00Z
+          </td>
+          <td
+            className=""
+          >
+            2016-10-8T16:00:00Z
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui red label"
+              onClick={[Function]}
+            >
+              <i
+                aria-hidden="true"
+                className="empty star icon"
+              />
+              history
+            </a>
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui button"
+              disabled={undefined}
+              href="/list/view/002"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              View
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`List renders successfully after error creating new project 1`] = `
+<div
+  className="List main"
+>
+  <div
+    className="ui red message"
+  >
+    <p>
+      oh no something bad happened
+    </p>
+  </div>
+  <div
+    className="ui container"
+  >
+    <table
+      className="ui celled striped table"
+    >
+      <thead
+        className=""
+      >
+        <tr
+          className=""
+        >
+          <th
+            className=""
+          >
+            Name
+          </th>
+          <th
+            className=""
+          >
+            Created
+          </th>
+          <th
+            className=""
+          >
+            Last Updated
+          </th>
+          <th
+            className=""
+          >
+            Projects
+          </th>
+          <th
+            className=""
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        className=""
+      >
+        <tr
+          className=""
+        >
+          <td
+            className=""
+          >
+            HumanBody
+          </td>
+          <td
+            className=""
+          >
+            2016-05-18T16:00:00Z
+          </td>
+          <td
+            className=""
+          >
+            2016-05-18T16:00:00Z
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui red label"
+              onClick={[Function]}
+            >
+              <i
+                aria-hidden="true"
+                className="empty star icon"
+              />
+              biology
+            </a>
+            <a
+              className="ui red label"
+              onClick={[Function]}
+            >
+              <i
+                aria-hidden="true"
+                className="empty star icon"
+              />
+              chemistry
+            </a>
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui button"
+              disabled={undefined}
+              href="/list/view/001"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              View
+            </a>
+          </td>
+        </tr>
+        <tr
+          className=""
+        >
+          <td
+            className=""
+          >
+            Explorers
+          </td>
+          <td
+            className=""
+          >
+            2016-10-8T13:16:00Z
+          </td>
+          <td
+            className=""
+          >
+            2016-10-8T16:00:00Z
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui red label"
+              onClick={[Function]}
+            >
+              <i
+                aria-hidden="true"
+                className="empty star icon"
+              />
+              history
+            </a>
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui button"
+              disabled={undefined}
+              href="/list/view/002"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              View
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`List renders successfully after successful creation of project 1`] = `
+<div
+  className="List main"
+>
+  <div
+    className="ui container"
+  >
+    <table
+      className="ui celled striped table"
+    >
+      <thead
+        className=""
+      >
+        <tr
+          className=""
+        >
+          <th
+            className=""
+          >
+            Name
+          </th>
+          <th
+            className=""
+          >
+            Created
+          </th>
+          <th
+            className=""
+          >
+            Last Updated
+          </th>
+          <th
+            className=""
+          >
+            Projects
+          </th>
+          <th
+            className=""
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        className=""
+      >
+        <tr
+          className=""
+        >
+          <td
+            className=""
+          >
+            HumanBody
+          </td>
+          <td
+            className=""
+          >
+            2016-05-18T16:00:00Z
+          </td>
+          <td
+            className=""
+          >
+            2016-05-18T16:00:00Z
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui red label"
+              onClick={[Function]}
+            >
+              <i
+                aria-hidden="true"
+                className="empty star icon"
+              />
+              biology
+            </a>
+            <a
+              className="ui red label"
+              onClick={[Function]}
+            >
+              <i
+                aria-hidden="true"
+                className="empty star icon"
+              />
+              chemistry
+            </a>
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui button"
+              disabled={undefined}
+              href="/list/view/001"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              View
+            </a>
+          </td>
+        </tr>
+        <tr
+          className=""
+        >
+          <td
+            className=""
+          >
+            Explorers
+          </td>
+          <td
+            className=""
+          >
+            2016-10-8T13:16:00Z
+          </td>
+          <td
+            className=""
+          >
+            2016-10-8T16:00:00Z
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui red label"
+              onClick={[Function]}
+            >
+              <i
+                aria-hidden="true"
+                className="empty star icon"
+              />
+              history
+            </a>
+          </td>
+          <td
+            className=""
+          >
+            <a
+              className="ui button"
+              disabled={undefined}
+              href="/list/view/002"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              View
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

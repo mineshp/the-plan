@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListHeadings renders headings correctly 1`] = `
+<thead
+  className=""
+>
+  <tr
+    className=""
+  >
+    <th
+      className=""
+    >
+      A
+    </th>
+    <th
+      className=""
+    >
+      B
+    </th>
+  </tr>
+</thead>
+`;

@@ -13,7 +13,7 @@ const projectLabels = (projects) => projects.map((project) => (
     </Label>
 ));
 
-const ListRow = ({ data }) => {
+const List = ({ data }) => {
     const listID = data._id; // eslint-disable-line no-underscore-dangle
     return (
         <Table.Row>
@@ -21,16 +21,16 @@ const ListRow = ({ data }) => {
             <Table.Cell>{data.createdDate}</Table.Cell>
             <Table.Cell>{data.updatedDate}</Table.Cell>
             <Table.Cell>{projectLabels(data.projects)}</Table.Cell>
-            <Table.Cell><Button as="a" href={`/list/${listID}/view`}>View</Button></Table.Cell>
+            <Table.Cell><Button as="a" href={`/list/view/${listID}`}>View</Button></Table.Cell>
         </Table.Row>
     );
 };
 
-ListRow.propTypes = {
+List.propTypes = {
     data: PropTypes.shape({
         _id: PropTypes.string.isRequired,
         listName: PropTypes.string.isRequired
     }).isRequired
 };
 
-export default ListRow;
+export default List;

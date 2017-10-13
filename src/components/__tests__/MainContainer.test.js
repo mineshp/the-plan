@@ -3,9 +3,9 @@ import { shallow } from 'enzyme';
 import { Route } from 'react-router-dom';
 import Home from '../Home';
 import { ManageListConnectedComponent } from '../../HOC/List/ManageList';
+import { ManageListSummaryConnectedComponent } from '../../HOC/ListsSummary/ManageListSummary';
 import { UpdateProjectConnectedComponent } from '../../HOC/Project/Update';
 import { ManageProjectConnectedComponent } from '../../HOC/Project/ManageProject';
-import ViewList from '../List/View';
 import List from '../App';
 import MainContainerRoutes from '../MainContainer';
 
@@ -22,20 +22,20 @@ describe('MainContainer Routes', () => {
     });
 
     describe('List Routes', () => {
-        it('validates path /list/all renders ManageLists component', () => {
+        it('validates path /list/all renders ManageListSummary component', () => {
             const tree = shallow(<MainContainerRoutes />);
             const attachedComponent =
                 tree.findWhere((n) => n.prop('path') === '/list/all').props().component;
 
-            expect(attachedComponent).toBe(ManageListConnectedComponent);
+            expect(attachedComponent).toBe(ManageListSummaryConnectedComponent);
         });
 
         it('validates path /list/1/view renders ViewList component', () => {
             const tree = shallow(<MainContainerRoutes />);
             const attachedComponent =
-                tree.findWhere((n) => n.prop('path') === '/list/:id/view').props().component;
+                tree.findWhere((n) => n.prop('path') === '/list/view/:id').props().component;
 
-            expect(attachedComponent).toBe(ViewList);
+            expect(attachedComponent).toBe(ManageListConnectedComponent);
         });
 
         it('validates path /list renders List component', () => {
