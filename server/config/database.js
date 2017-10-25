@@ -14,7 +14,7 @@ module.exports.connect = function(config) {
         console.log(`Database connection establshed for ${config.db}`);
     });
 
-    listModel.createDefaultLists();
+    // listModel.createDefaultLists();
     projectModel.createDefaultProjects();
 };
 

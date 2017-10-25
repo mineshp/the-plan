@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ListHeadings from '../ListHeadings';
+import ListItems from '../ListHeadings';
 
 const mockHeadings = [
     {
@@ -17,7 +17,7 @@ const mockHeadings = [
 
 describe('ListHeadings', () => {
     it('renders headings correctly', () => {
-        const tree = renderer.create(<ListHeadings headings={mockHeadings} />).toJSON();
+        const tree = renderer.create(<ListItems headings={mockHeadings} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

@@ -1,9 +1,45 @@
 import lists from '../lists';
 
 describe('lists reducer', () => {
-    describe('Default', () => {
+    describe('CREATE ACTIONS', () => {
         it('should handle initial state', () => {
             expect(lists(undefined, {})).toEqual({});
+        });
+
+        it('should handle LIST_CREATION_SUCCESS', () => {
+            expect(lists({}, {
+                type: 'LIST_CREATION_SUCCESS',
+                data: {
+                    _id: '1234',
+                    project: ['a', 'b'],
+                    listName: 'Shopping List',
+                    createdDate: '2016-05-18T16:00:00Z',
+                    updatedDate: '2016-05-18T16:00:00Z'
+                }
+            })).toEqual({
+                success: {
+                    data: {
+                        _id: '1234',
+                        project: ['a', 'b'],
+                        listName: 'Shopping List',
+                        createdDate: '2016-05-18T16:00:00Z',
+                        updatedDate: '2016-05-18T16:00:00Z'
+                    },
+                    message: 'Successfully created list Shopping List.'
+                }
+            });
+        });
+
+        it('should handle LIST_CREATION_ERROR', () => {
+            expect(lists({}, {
+                type: 'LIST_CREATION_ERROR',
+                error: 'Error creating list'
+            })).toEqual({
+                error: {
+                    message: 'Error creating list',
+                    isError: true
+                }
+            });
         });
     });
     describe('Get all list actions', () => {

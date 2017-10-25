@@ -20,7 +20,7 @@ const UpdateProject = ({
                 <Form.Field>
                     <Input
                         placeholder="Project Name..."
-                        className="text-box-custom"
+                        className="text-box-single-col-min"
                         defaultValue={result.projectName}
                         onChange={handleChange}
                     />

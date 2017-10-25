@@ -13,7 +13,7 @@ exports[`Create New Project renders create new project form correctly 1`] = `
       className="field"
     >
       <div
-        className="ui input text-box-custom"
+        className="ui input text-box-single-col-min"
       >
         <input
           defaultValue=""
@@ -393,7 +393,7 @@ exports[`Create New Project renders successfully after error creating new projec
       className="field"
     >
       <div
-        className="ui input text-box-custom"
+        className="ui input text-box-single-col-min"
       >
         <input
           defaultValue={undefined}
@@ -773,7 +773,7 @@ exports[`Create New Project renders successfully after successful creation of pr
       className="field"
     >
       <div
-        className="ui input text-box-custom"
+        className="ui input text-box-single-col-min"
       >
         <input
           defaultValue={undefined}
@@ -1153,7 +1153,7 @@ exports[`Update Existing Project renders successfully after error creating new p
       className="field"
     >
       <div
-        className="ui input text-box-custom"
+        className="ui input text-box-single-col-min"
       >
         <input
           defaultValue={undefined}
@@ -1533,7 +1533,7 @@ exports[`Update Existing Project renders successfully after successful creation 
       className="field"
     >
       <div
-        className="ui input text-box-custom"
+        className="ui input text-box-single-col-min"
       >
         <input
           defaultValue={undefined}
@@ -1906,7 +1906,7 @@ exports[`Update Existing Project renders update existing project form correctly 
       className="field"
     >
       <div
-        className="ui input text-box-custom"
+        className="ui input text-box-single-col-min"
       >
         <input
           defaultValue="Senorita"

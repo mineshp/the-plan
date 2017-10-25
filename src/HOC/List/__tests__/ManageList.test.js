@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ManageList } from '../ManageList';
-import List from '../../../components/List/List';
 
 const mockSingleList = {
     _id: '001',
@@ -66,13 +65,6 @@ describe('Manage Single List', () => {
             const ManageListComponent = shallow(<ManageList {...propsAfterFetchSingleListError} />);
 
             expect(ManageListComponent.props().result).toBe(undefined);
-
-            // expect(ManageListComponent.props().errors).toEqual({
-            //     error: {
-            //         message: 'Unable to retrieve a single list, please try again later.',
-            //         isError: true
-            //     }
-            // });
         });
     });
 

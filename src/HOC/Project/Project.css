@@ -1,4 +1,8 @@
-.ui.input {
+.ui.input.text-box-single-col-max {
+    width: 100% !important;
+}
+
+.ui.input.text-box-single-col-min {
     width: 25% !important;
 }
 

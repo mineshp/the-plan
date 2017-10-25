@@ -1,7 +1,5 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
-import { Table } from 'semantic-ui-react';
 import ListItems from '../ListItems';
 
 const mockItems = [

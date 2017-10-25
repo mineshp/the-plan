@@ -4,6 +4,7 @@ import List from './App';
 // import ManageLists from './List/Manage';
 import { ManageListSummaryConnectedComponent } from '../HOC/ListsSummary/ManageListSummary';
 import { ManageListConnectedComponent } from '../HOC/List/ManageList';
+import { UpdateListConnectedComponent } from '../HOC/List/Update';
 import { ManageProjectConnectedComponent } from '../HOC/Project/ManageProject';
 import { UpdateProjectConnectedComponent } from '../HOC/Project/Update';
 import Home from './Home';
@@ -16,6 +17,8 @@ const Main = () => (
         <Route exact path="/" component={Home} />
         <Route path="/list/all" component={ManageListSummaryConnectedComponent} />
         <Route path="/list/view/:id" component={ManageListConnectedComponent} />
+        <Route path="/list/update2" component={UpdateListConnectedComponent} />
+        <Route path="/list/update" component={UpdateListConnectedComponent} />
         <Route path="/list" component={List} />
         <Route path="/project/all" component={ManageProjectConnectedComponent} />
         <Route path="/project/update/:id" component={UpdateProjectConnectedComponent} />

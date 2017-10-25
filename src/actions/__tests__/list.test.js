@@ -166,4 +166,118 @@ describe('List actions', () => {
             });
         });
     });
+
+    describe('Create List Actions', () => {
+        const mockNewListCreationSuccessAPIResponse = {
+            _id: '1234TESTABC',
+            projects: [{ name: 'Alpha', id: '00123' }, { name: 'Beta', id: '00124' }],
+            listName: 'Explorers',
+            createdDate: '2017-10-15T09:02:00.000Z',
+            updatedDate: '2017-10-15T09:30:00.000Z',
+            headings: [{ name: 'A', id: '000001' }, { name: 'B', id: '000002' }],
+            items: [{
+                id: 'aax',
+                columns: [
+                    {
+                        columnName: 'Name',
+                        columnValue: 'Mario',
+                        columnId: '001mk'
+                    },
+                    {
+                        columnName: 'OutfitColour',
+                        columnValue: 'Red',
+                        columnId: '002mk'
+                    }
+                ]
+            },
+            {
+                id: 'aay',
+                columns: [
+                    {
+                        columnName: 'Name',
+                        columnValue: 'Luigi',
+                        columnId: '003mk'
+                    },
+                    {
+                        columnName: 'OutfitColour',
+                        columnValue: 'Green',
+                        columnId: '004mk'
+                    }
+                ]
+            }]
+        };
+
+        it('should dispatch an action for LIST_CREATION_SUCCESS when calling createdList to notify the user a list has been created', () => {
+            const expectedAction = {
+                type: 'LIST_CREATION_SUCCESS',
+                data: mockNewListCreationSuccessAPIResponse
+            };
+
+            expect(actions.createdList(mockNewListCreationSuccessAPIResponse)).toEqual(expectedAction);
+        });
+
+        it('should dispatch an action for LIST_CREATION_ERROR when calling create to notify the user there was an error creating the list', () => {
+            const mockNewListCreationFailureAPIResponse = {
+                message: 'Error creating list'
+            };
+
+            const expectedAction = {
+                type: 'LIST_CREATION_ERROR',
+                error: mockNewListCreationFailureAPIResponse.message
+            };
+
+            expect(actions.errorCreatingList(mockNewListCreationFailureAPIResponse.message))
+                .toEqual(expectedAction);
+        });
+
+        it('a successful create list call via the store, dispatches the LIST_CREATION_SUCCESS action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(200, null, JSON.stringify(mockNewListCreationSuccessAPIResponse))));
+
+
+            const store = mockStore({ list: {} });
+            const newListData = {
+                listName: 'test'
+            };
+
+            const expectedActions = [
+                {
+                    type: 'LIST_CREATION_SUCCESS',
+                    data: mockNewListCreationSuccessAPIResponse
+                }
+            ];
+
+            return store.dispatch(actions.create(newListData)).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+
+        it('an unsuccessful create list call via the store, dispatches the LIST_CREATION_ERROR action', async () => {
+            const mockNewListCreationFailureAPIResponse = {
+                message: 'Error creating list test, list already exists.'
+            };
+
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(403, null, JSON.stringify(mockNewListCreationFailureAPIResponse))));
+
+
+            const store = mockStore({ list: {} });
+            const newListData = {
+                listName: 'test'
+            };
+
+            const expectedAction = [
+                {
+                    type: 'LIST_CREATION_ERROR',
+                    error: mockNewListCreationFailureAPIResponse.message
+                }
+            ];
+
+            return store.dispatch(actions.create(newListData)).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedAction);
+            });
+        });
+    });
 });

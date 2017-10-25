@@ -1,0 +1,664 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create New List renders create new list form correctly 1`] = `
+<div
+  className="ui container"
+>
+  <h2
+    className="ui header"
+  >
+    Setup List
+  </h2>
+  <form
+    action={undefined}
+    className="ui form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ui one column grid"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="column"
+        >
+          <div
+            className="field"
+          >
+            <div
+              className="ui input text-box-single-col-max"
+            >
+              <input
+                defaultValue="New List"
+                disabled={undefined}
+                onChange={[Function]}
+                placeholder="List Name..."
+                tabIndex={undefined}
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="field"
+          >
+            <div
+              aria-busy={undefined}
+              aria-disabled={undefined}
+              aria-expanded={false}
+              className="ui fluid multiple search selection dropdown"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseDown={[Function]}
+              role="combobox"
+              tabIndex={undefined}
+            >
+              <input
+                aria-autocomplete="list"
+                autoComplete="off"
+                className="search"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+                tabIndex={0}
+                type="text"
+                value=""
+              />
+              <span
+                className="sizer"
+              />
+              <div
+                aria-live="polite"
+                className="default text"
+                role="alert"
+              >
+                Projects
+              </div>
+              <i
+                aria-hidden="true"
+                className="dropdown icon"
+                onClick={[Function]}
+              />
+              <div
+                aria-multiselectable={true}
+                className="menu transition"
+                role="listbox"
+              >
+                <div
+                  aria-checked={false}
+                  aria-disabled={undefined}
+                  aria-selected={true}
+                  className="selected item"
+                  onClick={[Function]}
+                  role="option"
+                  style={
+                    Object {
+                      "pointerEvents": "all",
+                    }
+                  }
+                >
+                  <span
+                    className="text"
+                  >
+                    proj1
+                  </span>
+                </div>
+                <div
+                  aria-checked={false}
+                  aria-disabled={undefined}
+                  aria-selected={false}
+                  className="item"
+                  onClick={[Function]}
+                  role="option"
+                  style={
+                    Object {
+                      "pointerEvents": "all",
+                    }
+                  }
+                >
+                  <span
+                    className="text"
+                  >
+                    proj2
+                  </span>
+                </div>
+                <div
+                  aria-checked={false}
+                  aria-disabled={undefined}
+                  aria-selected={false}
+                  className="item"
+                  onClick={[Function]}
+                  role="option"
+                  style={
+                    Object {
+                      "pointerEvents": "all",
+                    }
+                  }
+                >
+                  <span
+                    className="text"
+                  >
+                    proj3
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        className="ui divided three column grid"
+      >
+        <div
+          className="ui horizontal divider"
+        >
+          COLUMNS
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="column"
+          >
+            <div
+              className="field"
+            >
+              <div
+                className="ui input"
+              >
+                <input
+                  disabled={undefined}
+                  id="1"
+                  name="Spanish"
+                  onChange={[Function]}
+                  placeholder="Header Name..."
+                  tabIndex={undefined}
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="column"
+          >
+            <div
+              className="field"
+            >
+              <div
+                className="ui input"
+              >
+                <input
+                  disabled={undefined}
+                  id="1"
+                  name={1}
+                  onChange={[Function]}
+                  placeholder="Position..."
+                  tabIndex={undefined}
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="column"
+          >
+            <button
+              className="ui pink icon left labeled button"
+              disabled={undefined}
+              id="1"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+              type="submit"
+            >
+              <i
+                aria-hidden="true"
+                className="trash icon"
+              />
+              Remove
+            </button>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="column"
+          >
+            <div
+              className="field"
+            >
+              <div
+                className="ui input"
+              >
+                <input
+                  disabled={undefined}
+                  id="2"
+                  name="English"
+                  onChange={[Function]}
+                  placeholder="Header Name..."
+                  tabIndex={undefined}
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="column"
+          >
+            <div
+              className="field"
+            >
+              <div
+                className="ui input"
+              >
+                <input
+                  disabled={undefined}
+                  id="2"
+                  name={2}
+                  onChange={[Function]}
+                  placeholder="Position..."
+                  tabIndex={undefined}
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="column"
+          >
+            <button
+              className="ui pink icon left labeled button"
+              disabled={undefined}
+              id="2"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+              type="submit"
+            >
+              <i
+                aria-hidden="true"
+                className="trash icon"
+              />
+              Remove
+            </button>
+          </div>
+        </div>
+        <div
+          className="ui divider"
+        />
+        <button
+          className="ui fluid button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+          type="submit"
+        >
+          Add Column
+        </button>
+      </div>
+    </div>
+    <div
+      className="ui one column grid"
+    >
+      <div
+        className="row"
+      >
+        <button
+          className="ui teal fluid button formSpacing"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+          type="submit"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`Create New List renders successfully after error creating new project 1`] = `
+<div
+  className="ui container"
+>
+  <div
+    className="ui red message"
+  >
+    <p>
+      uh-oh
+    </p>
+  </div>
+  <h2
+    className="ui header"
+  >
+    Setup List
+  </h2>
+  <form
+    action={undefined}
+    className="ui form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ui one column grid"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="column"
+        >
+          <div
+            className="field"
+          >
+            <div
+              className="ui input text-box-single-col-max"
+            >
+              <input
+                defaultValue={undefined}
+                disabled={undefined}
+                onChange={[Function]}
+                placeholder="List Name..."
+                tabIndex={undefined}
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="field"
+          >
+            <div
+              aria-busy={undefined}
+              aria-disabled={undefined}
+              aria-expanded={false}
+              className="ui fluid multiple search selection dropdown"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseDown={[Function]}
+              role="combobox"
+              tabIndex={undefined}
+            >
+              <input
+                aria-autocomplete="list"
+                autoComplete="off"
+                className="search"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+                tabIndex={0}
+                type="text"
+                value=""
+              />
+              <span
+                className="sizer"
+              />
+              <div
+                aria-live="polite"
+                className="default text"
+                role="alert"
+              >
+                Projects
+              </div>
+              <i
+                aria-hidden="true"
+                className="dropdown icon"
+                onClick={[Function]}
+              />
+              <div
+                aria-multiselectable={true}
+                className="menu transition"
+                role="listbox"
+              >
+                <div
+                  aria-checked={false}
+                  aria-disabled={undefined}
+                  aria-selected={true}
+                  className="selected item"
+                  onClick={[Function]}
+                  role="option"
+                  style={
+                    Object {
+                      "pointerEvents": "all",
+                    }
+                  }
+                >
+                  <span
+                    className="text"
+                  >
+                    proj1
+                  </span>
+                </div>
+                <div
+                  aria-checked={false}
+                  aria-disabled={undefined}
+                  aria-selected={false}
+                  className="item"
+                  onClick={[Function]}
+                  role="option"
+                  style={
+                    Object {
+                      "pointerEvents": "all",
+                    }
+                  }
+                >
+                  <span
+                    className="text"
+                  >
+                    proj2
+                  </span>
+                </div>
+                <div
+                  aria-checked={false}
+                  aria-disabled={undefined}
+                  aria-selected={false}
+                  className="item"
+                  onClick={[Function]}
+                  role="option"
+                  style={
+                    Object {
+                      "pointerEvents": "all",
+                    }
+                  }
+                >
+                  <span
+                    className="text"
+                  >
+                    proj3
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        className="ui divided three column grid"
+      >
+        <div
+          className="ui horizontal divider"
+        >
+          COLUMNS
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="column"
+          >
+            <div
+              className="field"
+            >
+              <div
+                className="ui input"
+              >
+                <input
+                  disabled={undefined}
+                  id="1"
+                  name="Spanish"
+                  onChange={[Function]}
+                  placeholder="Header Name..."
+                  tabIndex={undefined}
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="column"
+          >
+            <div
+              className="field"
+            >
+              <div
+                className="ui input"
+              >
+                <input
+                  disabled={undefined}
+                  id="1"
+                  name={1}
+                  onChange={[Function]}
+                  placeholder="Position..."
+                  tabIndex={undefined}
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="column"
+          >
+            <button
+              className="ui pink icon left labeled button"
+              disabled={undefined}
+              id="1"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+              type="submit"
+            >
+              <i
+                aria-hidden="true"
+                className="trash icon"
+              />
+              Remove
+            </button>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="column"
+          >
+            <div
+              className="field"
+            >
+              <div
+                className="ui input"
+              >
+                <input
+                  disabled={undefined}
+                  id="2"
+                  name="English"
+                  onChange={[Function]}
+                  placeholder="Header Name..."
+                  tabIndex={undefined}
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="column"
+          >
+            <div
+              className="field"
+            >
+              <div
+                className="ui input"
+              >
+                <input
+                  disabled={undefined}
+                  id="2"
+                  name={2}
+                  onChange={[Function]}
+                  placeholder="Position..."
+                  tabIndex={undefined}
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="column"
+          >
+            <button
+              className="ui pink icon left labeled button"
+              disabled={undefined}
+              id="2"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+              type="submit"
+            >
+              <i
+                aria-hidden="true"
+                className="trash icon"
+              />
+              Remove
+            </button>
+          </div>
+        </div>
+        <div
+          className="ui divider"
+        />
+        <button
+          className="ui fluid button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+          type="submit"
+        >
+          Add Column
+        </button>
+      </div>
+    </div>
+    <div
+      className="ui one column grid"
+    >
+      <div
+        className="row"
+      >
+        <button
+          className="ui teal fluid button formSpacing"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+          type="submit"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+`;

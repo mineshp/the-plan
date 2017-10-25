@@ -24,6 +24,14 @@ ShallowWrapper {
     />
     <Route
         component={[Function]}
+        path="/list/update2"
+    />
+    <Route
+        component={[Function]}
+        path="/list/update"
+    />
+    <Route
+        component={[Function]}
         path="/list"
     />
     <Route
@@ -53,6 +61,14 @@ ShallowWrapper {
       <Route
             component={[Function]}
             path="/list/view/:id"
+      />
+      <Route
+            component={[Function]}
+            path="/list/update2"
+      />
+      <Route
+            component={[Function]}
+            path="/list/update"
       />
       <Route
             component={[Function]}
@@ -122,6 +138,14 @@ ShallowWrapper {
           />
           <Route
                     component={[Function]}
+                    path="/list/update2"
+          />
+          <Route
+                    component={[Function]}
+                    path="/list/update"
+          />
+          <Route
+                    component={[Function]}
                     path="/list"
           />
           <Route
@@ -151,6 +175,14 @@ ShallowWrapper {
           <Route
                     component={[Function]}
                     path="/list/view/:id"
+          />
+          <Route
+                    component={[Function]}
+                    path="/list/update2"
+          />
+          <Route
+                    component={[Function]}
+                    path="/list/update"
           />
           <Route
                     component={[Function]}

@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeadingInput renders column headings in a grid correctly 1`] = `
+<div>
+  <div
+    className="ui divided three column grid"
+  >
+    <div
+      className="ui horizontal divider"
+    >
+      COLUMNS
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="column"
+      >
+        <div
+          className="field"
+        >
+          <div
+            className="ui input"
+          >
+            <input
+              disabled={undefined}
+              id="000001"
+              name="A"
+              onChange={[Function]}
+              placeholder="Header Name..."
+              tabIndex={undefined}
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="column"
+      >
+        <div
+          className="field"
+        >
+          <div
+            className="ui input"
+          >
+            <input
+              disabled={undefined}
+              id="000001"
+              name={undefined}
+              onChange={[Function]}
+              placeholder="Position..."
+              tabIndex={undefined}
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="column"
+      >
+        <button
+          className="ui pink icon left labeled button"
+          disabled={undefined}
+          id="000001"
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+          type="submit"
+        >
+          <i
+            aria-hidden="true"
+            className="trash icon"
+          />
+          Remove
+        </button>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="column"
+      >
+        <div
+          className="field"
+        >
+          <div
+            className="ui input"
+          >
+            <input
+              disabled={undefined}
+              id="000002"
+              name="B"
+              onChange={[Function]}
+              placeholder="Header Name..."
+              tabIndex={undefined}
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="column"
+      >
+        <div
+          className="field"
+        >
+          <div
+            className="ui input"
+          >
+            <input
+              disabled={undefined}
+              id="000002"
+              name={undefined}
+              onChange={[Function]}
+              placeholder="Position..."
+              tabIndex={undefined}
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="column"
+      >
+        <button
+          className="ui pink icon left labeled button"
+          disabled={undefined}
+          id="000002"
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+          type="submit"
+        >
+          <i
+            aria-hidden="true"
+            className="trash icon"
+          />
+          Remove
+        </button>
+      </div>
+    </div>
+    <div
+      className="ui divider"
+    />
+    <button
+      className="ui fluid button"
+      disabled={undefined}
+      onClick={[Function]}
+      role="button"
+      tabIndex={undefined}
+      type="submit"
+    >
+      Add Column
+    </button>
+  </div>
+</div>
+`;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 
-const ListHeadings = ({ headings }) => {
+const ListItems = ({ headings }) => {
     const columnHeadings = [];
     headings.map((heading) => (
         columnHeadings.push(<Table.HeaderCell key={heading.id}>{heading.name}</Table.HeaderCell>)
@@ -17,7 +17,7 @@ const ListHeadings = ({ headings }) => {
     );
 };
 
-ListHeadings.propTypes = {
+ListItems.propTypes = {
     headings: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -27,8 +27,8 @@ ListHeadings.propTypes = {
     ).isRequired
 };
 
-ListHeadings.defaultProps = {
+ListItems.defaultProps = {
     headings: []
 };
 
-export default ListHeadings;
+export default ListItems;
