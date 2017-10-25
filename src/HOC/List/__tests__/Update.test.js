@@ -64,7 +64,22 @@ describe('Create new list', () => {
         componentWillMountSpy.mockRestore();
     });
 
-    it('calls the createOrUpdateList action when handleSubmit is called', async () => {
+    it('calls the createOrUpdateList action when handleSubmit is called and form setup is complete', async () => {
+        wrapper.setState({
+            listName: 'testList',
+            headings: [
+                {
+                    id: '123',
+                    name: 'name'
+                }
+            ],
+            projects: [
+                {
+                    id: '001',
+                    name: 'proj1'
+                }
+            ]
+        });
         wrapper.instance().handleSubmit(mockEvent);
         expect(wrapper.instance().props.match.params).toEqual({});
         await expect(props.actions.create).toHaveBeenCalled();
@@ -190,6 +205,7 @@ describe('Create new list', () => {
                 }
             ]
         );
+        expect(props.actions.create).not.toHaveBeenCalled();
     });
 
     it('removes a heading object from headings when removeHeading is invoked', () => {
@@ -204,6 +220,7 @@ describe('Create new list', () => {
 
         expect(wrapper.state().headings).toHaveLength(0);
         expect(wrapper.state().headings).toEqual([]);
+        expect(props.actions.create).not.toHaveBeenCalled();
     });
 
     it('does not remove a heading object if the heading id is not found in headings when removeHeading is invoked', () => {

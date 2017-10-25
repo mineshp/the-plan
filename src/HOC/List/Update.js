@@ -18,6 +18,7 @@ class UpdateList extends Component {
         this.handleHeaderInputChange = this.handleHeaderInputChange.bind(this);
         this.addHeading = this.addHeading.bind(this);
         this.removeHeading = this.removeHeading.bind(this);
+        this.listSetupIsComplete = this.listSetupIsComplete.bind(this);
 
         this.state = {
             headings: [
@@ -93,9 +94,22 @@ class UpdateList extends Component {
         this.setState({ projects: projectsData });
     }
 
+    listSetupIsComplete() {
+        if (
+            this.state.listName !== '' &&
+            this.state.headings[0].name !== '' &&
+            (this.state.projects && this.state.projects.length > 0)
+        ) {
+            return true;
+        }
+        return false;
+    }
+
     handleSubmit(event) {
         event.preventDefault();
-        this.createOrUpdateList();
+        if (this.listSetupIsComplete()) {
+            this.createOrUpdateList();
+        }
     }
 
     redirect() {

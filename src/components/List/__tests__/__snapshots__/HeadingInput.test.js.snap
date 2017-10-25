@@ -65,7 +65,7 @@ exports[`HeadingInput renders column headings in a grid correctly 1`] = `
           onClick={[Function]}
           role="button"
           tabIndex={undefined}
-          type="submit"
+          type="button"
         >
           <i
             aria-hidden="true"
@@ -130,7 +130,7 @@ exports[`HeadingInput renders column headings in a grid correctly 1`] = `
           onClick={[Function]}
           role="button"
           tabIndex={undefined}
-          type="submit"
+          type="button"
         >
           <i
             aria-hidden="true"
@@ -149,7 +149,7 @@ exports[`HeadingInput renders column headings in a grid correctly 1`] = `
       onClick={[Function]}
       role="button"
       tabIndex={undefined}
-      type="submit"
+      type="button"
     >
       Add Column
     </button>

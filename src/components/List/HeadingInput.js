@@ -35,7 +35,7 @@ const HeadingInput = ({ headings, handleAddColumn, handleRemoveColumn, handleHea
                         labelPosition="left"
                         id={heading.id}
                         color="pink"
-                        type="submit"
+                        type="button"
                         onClick={handleRemoveColumn}
                     />
                 </Grid.Column>
@@ -49,7 +49,7 @@ const HeadingInput = ({ headings, handleAddColumn, handleRemoveColumn, handleHea
                 <Divider horizontal>COLUMNS</Divider>
                 {headerRows}
                 <Divider />
-                <Button fluid type="submit" onClick={handleAddColumn}>Add Column</Button>
+                <Button fluid type="button" onClick={handleAddColumn}>Add Column</Button>
             </Grid>
 
         </div>
