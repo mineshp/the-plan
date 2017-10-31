@@ -1,3 +1,4 @@
+/* istanbul ignore next not testing file */
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -10,10 +11,10 @@ import './index.css';
 import App from './App';
 import reducer from './reducers';
 
-
+/* istanbul ignore next not testing redux-store-boiler-plate */
 // eslint-disable-next-line no-underscore-dangle, no-undef
 const envHasReduxDevToolsExtension = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__);
-
+/* istanbul ignore next not testing redux-store-boiler-plate */
 function resolveComposerFunction() {
     return (envHasReduxDevToolsExtension) ?
         // eslint-disable-next-line no-underscore-dangle, no-undef
@@ -21,8 +22,10 @@ function resolveComposerFunction() {
         compose;
 }
 
+/* istanbul ignore next not testing redux-store-boiler-plate */
 const composeEnhancers = resolveComposerFunction();
 
+/* istanbul ignore next not testing redux-store-boiler-plate */
 function configureStore(preloadedState) {
     const middlewares = [thunk];
     const middlewareEnhancer = applyMiddleware(...middlewares);
@@ -39,8 +42,9 @@ function configureStore(preloadedState) {
 
     return store;
 }
-
+/* istanbul ignore next not testing redux-store-boiler-plate */
 const store = configureStore({});
+/* istanbul ignore next not testing redux-store-boiler-plate */
 render(
     <Provider store={store}>
         <BrowserRouter>
@@ -49,6 +53,6 @@ render(
     </Provider>,
     document.getElementById('root')
 );
-
+/* istanbul ignore next not testing redux-store-boiler-plate */
 registerServiceWorker();
 

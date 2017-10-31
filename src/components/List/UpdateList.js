@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Container, Dropdown, Form, Grid, Header, Input } from 'semantic-ui-react';
-import DisplayMessage from '../Shared/DisplayMessage';
 import HeadingInput from './HeadingInput';
 import './List.css';
 
@@ -17,10 +16,6 @@ const UpdateList = ({
     headings
 }) => (
     <Container>
-        {
-            (result && (result.error || result.success)) &&
-            <DisplayMessage status={result} />
-        }
         <Header as="h2">Setup List</Header>
         <Form onSubmit={handleSubmit}>
             <Grid columns={1}>

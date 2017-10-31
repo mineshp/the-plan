@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Container, Form, Input } from 'semantic-ui-react';
-import DisplayMessage from '../Shared/DisplayMessage';
 import ColourDropDown from '../../components/Shared/ColourDropDown';
 
 const UpdateProject = ({
@@ -12,10 +11,6 @@ const UpdateProject = ({
 }) =>
     (
         <Container>
-            {
-                (result && (result.error || result.success)) &&
-                <DisplayMessage status={result} />
-            }
             <Form onSubmit={handleSubmit}>
                 <Form.Field>
                     <Input

@@ -33,9 +33,13 @@ const props = {
         )),
         listProjects: jest.fn(() => (
             Promise.resolve(mockListAllProjects)
+        )),
+        addNotification: jest.fn(() => (
+            Promise.resolve()
         ))
     },
-    projects: {} // TODO: Turn to ARRAY
+    projects: {},
+    notification: null
 };
 
 describe('Manage Projects', () => {
@@ -55,6 +59,7 @@ describe('Manage Projects', () => {
         it('calls the listProjects action when the fetchProjectsList function is invoked', async () => {
             wrapper.instance().fetchProjectsList();
             await expect(props.actions.listProjects).toHaveBeenCalled();
+            await expect(props.actions.addNotification).toHaveBeenCalled();
         });
 
         it('renders a ListProjects component', async () => {
@@ -66,26 +71,6 @@ describe('Manage Projects', () => {
             const propsAfterFetchAllLists = Object.assign({}, props, { projects: { data: mockListAllProjects } });
             const ManageProjectComponent = shallow(<ManageProject {...propsAfterFetchAllLists} />);
             await expect(ManageProjectComponent.props().cards.length).toEqual(3);
-        });
-    });
-
-    describe('Get all projects fails', () => {
-        it('sets an api error when the client is unable to connect to the api', async () => {
-            const apiError = {
-                error: {
-                    isError: true,
-                    message: 'Unable to retrieve projects, please try again later.'
-                }
-            };
-            const propsAfterFetchListsError = Object.assign({}, props, { projects: { error: apiError } });
-            const ManageProjectComponent = shallow(<ManageProject {...propsAfterFetchListsError} />);
-
-            expect(ManageProjectComponent.props().errors).toEqual({
-                error: {
-                    message: 'Unable to retrieve projects, please try again later.',
-                    isError: true
-                }
-            });
         });
     });
 
@@ -107,6 +92,9 @@ describe('Manage Projects', () => {
                     )),
                     listProjects: jest.fn(() => (
                         Promise.resolve(mockListAllProjects)
+                    )),
+                    addNotification: jest.fn(() => (
+                        Promise.resolve()
                     ))
                 }
             },
@@ -124,6 +112,7 @@ describe('Manage Projects', () => {
 
             await expect(propsAfterSuccessfulDelete.actions.deleteProject).toHaveBeenCalledWith('123');
             await expect(propsAfterSuccessfulDelete.actions.deleteProject()).resolves.toEqual({ type: 'PROJECT_DELETION_SUCCESS' });
+            await expect(propsAfterSuccessfulDelete.actions.addNotification).toHaveBeenCalled;
         });
 
         it('calls the fetchProjectList when a project was deleted successfully', async () => {
@@ -132,6 +121,7 @@ describe('Manage Projects', () => {
             await expect(propsAfterSuccessfulDelete.actions.listProjects).toHaveBeenCalled();
             await expect(propsAfterSuccessfulDelete.actions.listProjects).toHaveBeenCalledTimes(2);
             await expect(propsAfterSuccessfulDelete.actions.listProjects()).resolves.toEqual(mockListAllProjects);
+            await expect(propsAfterSuccessfulDelete.actions.addNotification).toHaveBeenCalled;
         });
     });
 });

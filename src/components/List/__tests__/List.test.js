@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import List from '../List';
 import ListHeadingComponent from '../ListHeadings';
 import ListItemsComponent from '../ListItems';
-import DisplayMessage from '../../Shared/DisplayMessage';
 
 const mockListData = {
     headings: [
@@ -46,16 +45,5 @@ describe('List', () => {
     it('renders ListItemsComponent component', () => {
         const wrapper = shallow(<List list={mockListData} />);
         expect(wrapper.find(ListItemsComponent)).toHaveLength(1);
-    });
-
-    it('does not render the display message if there is no error', () => {
-        const wrapper = shallow(<List list={mockListData} />);
-        expect(wrapper.find(DisplayMessage)).toHaveLength(0);
-    });
-
-    it('renders the display message if there is an error', () => {
-        const mockError = { error: { isError: true, message: 'oh-no' } };
-        const wrapper = shallow(<List errors={mockError} />);
-        expect(wrapper.find(DisplayMessage)).toHaveLength(1);
     });
 });

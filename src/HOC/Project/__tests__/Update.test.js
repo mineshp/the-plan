@@ -20,6 +20,9 @@ const props = {
         fetchSingleProject: jest.fn(() => (
             Promise.resolve({})
         )),
+        addNotification: jest.fn(() => (
+            Promise.resolve()
+        ))
     },
     match: { params: { } }
 };
@@ -84,12 +87,12 @@ describe('Create new project', () => {
         wrapper.instance().handleSubmit(mockEvent);
         expect(wrapper.instance().props.match.params).toEqual({});
         await expect(props.actions.create).toHaveBeenCalled();
+        await expect(props.actions.addNotification).toHaveBeenCalled();
         await expect(props.actions.update).not.toHaveBeenCalled();
     });
 
     it('calls the redirect method when the createOrUpdateProject actions returns successfully', async () => {
         wrapper.instance().handleSubmit(mockEvent);
-
         await expect(context.router.history.push).toHaveBeenCalledWith('/project/all');
     });
 });
@@ -141,6 +144,7 @@ describe('Update existing project', () => {
             colour: 'red',
             createdDate: expect.anything()
         });
+        await expect(props.actions.addNotification).toHaveBeenCalled();
     });
 
     it('calls createOrUpdateProject action with correct data when handleSubmit is called and projectName has been updated', async () => {
@@ -155,6 +159,7 @@ describe('Update existing project', () => {
             colour: 'red',
             createdDate: expect.anything()
         });
+        await expect(props.actions.addNotification).toHaveBeenCalled();
     });
 
     it('calls createOrUpdateProject action with correct data when handleSubmit is called and the colour has been updated', async () => {
@@ -167,6 +172,7 @@ describe('Update existing project', () => {
             colour: 'blue',
             createdDate: expect.anything()
         });
+        await expect(props.actions.addNotification).toHaveBeenCalled();
     });
 
     it('calls the redirect method when the createOrUpdateProject actions returns successfully', async () => {

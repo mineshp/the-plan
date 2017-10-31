@@ -27,14 +27,18 @@ describe('projects reducer', () => {
                     createdDate: '2017-08-15T12:02:00.000Z'
                 }
             })).toEqual({
+                notification: {
+                    message: 'Successfully created project TEST PROJECT.',
+                    level: 'success',
+                    title: 'Success'
+                },
                 success: {
                     data: {
                         _id: '1234',
                         projectName: 'TEST PROJECT',
                         colour: 'green',
                         createdDate: '2017-08-15T12:02:00.000Z'
-                    },
-                    message: 'Successfully created project TEST PROJECT.'
+                    }
                 }
             });
         });
@@ -44,8 +48,12 @@ describe('projects reducer', () => {
                 type: 'PROJECT_CREATION_ERROR',
                 error: 'Error creating project'
             })).toEqual({
-                error: {
+                notification: {
                     message: 'Error creating project',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
                     isError: true
                 }
             });
@@ -60,11 +68,15 @@ describe('projects reducer', () => {
                     projectName: 'TEST PROJECT',
                 }
             })).toEqual({
+                notification: {
+                    message: 'Successfully deleted project TEST PROJECT.',
+                    level: 'success',
+                    title: 'Success'
+                },
                 success: {
                     data: {
                         projectName: 'TEST PROJECT'
-                    },
-                    message: 'Successfully deleted project TEST PROJECT'
+                    }
                 }
             });
         });
@@ -74,8 +86,12 @@ describe('projects reducer', () => {
                 type: 'PROJECT_DELETION_ERROR',
                 error: 'Error deleting project'
             })).toEqual({
-                error: {
+                notification: {
                     message: 'Error deleting project',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
                     isError: true
                 }
             });
@@ -95,9 +111,13 @@ describe('projects reducer', () => {
                 type: 'PROJECT_UPDATE_SUCCESS',
                 data: aProject
             })).toEqual({
+                notification: {
+                    message: 'Successfully updated project Senorita.',
+                    level: 'success',
+                    title: 'Success'
+                },
                 success: {
-                    data: aProject,
-                    message: 'Successfully updated project Senorita.'
+                    data: aProject
                 }
             });
         });
@@ -107,8 +127,12 @@ describe('projects reducer', () => {
                 type: 'PROJECT_UPDATE_ERROR',
                 error: 'Unable to update project, please try again later.'
             })).toEqual({
-                error: {
+                notification: {
                     message: 'Unable to update project, please try again later.',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
                     isError: true
                 }
             });
@@ -134,9 +158,7 @@ describe('projects reducer', () => {
         it('should handle LIST_PROJECTS', () => {
             expect(projects({}, {
                 type: 'LIST_PROJECTS',
-                data: {
-                    allProjects
-                }
+                data: { allProjects }
             })).toEqual({
                 data: {
                     allProjects
@@ -147,13 +169,14 @@ describe('projects reducer', () => {
         it('should handle PROJECT_LIST_RETRIEVED', () => {
             expect(projects({}, {
                 type: 'PROJECT_LIST_RETRIEVED',
-                data: {
-                    allProjects
-                }
+                data: { allProjects }
             })).toEqual({
-                data: {
-                    allProjects
-                }
+                notification: {
+                    message: 'Projects have been retrieved.',
+                    level: 'success',
+                    title: 'Success'
+                },
+                data: { allProjects }
             });
         });
 
@@ -162,8 +185,12 @@ describe('projects reducer', () => {
                 type: 'PROJECT_LIST_ERROR',
                 error: 'Unable to retrieve projects, please try again later.'
             })).toEqual({
-                error: {
+                notification: {
                     message: 'Unable to retrieve projects, please try again later.',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
                     isError: true
                 }
             });
@@ -185,9 +212,12 @@ describe('projects reducer', () => {
                     aProject
                 }
             })).toEqual({
-                data: {
-                    aProject
-                }
+                data: { aProject },
+                notification: {
+                    message: 'Single project has been retrieved.',
+                    level: 'success',
+                    title: 'Success'
+                },
             });
         });
 
@@ -196,8 +226,12 @@ describe('projects reducer', () => {
                 type: 'SINGLE_PROJECT_ERROR',
                 error: 'Unable to retrieve project with id 999, please try again later.'
             })).toEqual({
-                error: {
+                notification: {
                     message: 'Unable to retrieve project with id 999, please try again later.',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
                     isError: true
                 }
             });

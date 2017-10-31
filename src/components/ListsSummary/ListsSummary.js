@@ -1,17 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Table } from 'semantic-ui-react';
-import DisplayMessage from '../Shared/DisplayMessage';
 
-const ListsSummary = ({
-    errors,
-    rows
-}) => (
+const ListsSummary = ({ rows }) => (
     <div className="List main">
-        {
-            (errors && errors.error) &&
-                <DisplayMessage status={errors} />
-        }
         <Container>
             <Table celled striped>
                 <Table.Header>
@@ -33,14 +25,12 @@ const ListsSummary = ({
 );
 
 ListsSummary.propTypes = {
-    errors: PropTypes.shape({}),
     rows: PropTypes.arrayOf(
         PropTypes.shape({})
     )
 };
 
 ListsSummary.defaultProps = {
-    errors: null,
     rows: []
 };
 

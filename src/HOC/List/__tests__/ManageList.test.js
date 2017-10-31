@@ -27,13 +27,19 @@ const props = {
     actions: {
         retrieveListById: jest.fn(() => (
             Promise.resolve(mockSingleList)
+        )),
+        addNotification: jest.fn(() => (
+            Promise.resolve()
         ))
     },
     match: { }
 };
 
 describe('Manage Single List', () => {
-    describe('Retrieve a single list success', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+    describe('Retrieve a single list successful', () => {
         let wrapper;
         const propsWithParamId = Object.assign({}, props, { match: { params: { id: '123' } } });
         beforeEach(() => {
@@ -50,6 +56,7 @@ describe('Manage Single List', () => {
         it('calls the retrieveListById action when the fetchListById function is invoked', async () => {
             wrapper.instance().fetchListById(propsWithParamId.match.params.id);
             await expect(propsWithParamId.actions.retrieveListById).toHaveBeenCalledWith('123');
+            await expect(props.actions.addNotification).toHaveBeenCalled();
         });
     });
 
@@ -78,6 +85,8 @@ describe('Manage Single List', () => {
             wrapper.instance().componentDidMount();
 
             expect(props.match.params).toBe(undefined);
+            await expect(props.actions.retrieveListById).not.toHaveBeenCalled();
+            await expect(props.actions.addNotification).not.toHaveBeenCalled();
             expect(wrapper.instance().fetchListById()).toBe(undefined);
         });
     });

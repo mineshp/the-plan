@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { retrieveSummaryLists } from '../../actions/list';
+import { addNotification } from '../../actions/notification';
 import ListsSummaryRow from '../../components/ListsSummary/ListRow';
 import ListsSummaryComponent from '../../components/ListsSummary/ListsSummary';
 
@@ -17,7 +18,8 @@ class ManageListSummary extends Component {
     }
 
     fetchLists() {
-        this.props.actions.retrieveSummaryLists();
+        this.props.actions.retrieveSummaryLists()
+            .then(() => this.props.actions.addNotification(this.props.notification));
     }
 
     render() {
@@ -29,14 +31,8 @@ class ManageListSummary extends Component {
                 ListRow.push(<ListsSummaryRow data={list} key={list._id} />));
         }
 
-        let listErrors;
-        if (lists && lists.error) {
-            listErrors = lists.error;
-        }
-
         return (
             <ListsSummaryComponent
-                errors={listErrors}
                 rows={ListRow}
             />
         );
@@ -45,26 +41,36 @@ class ManageListSummary extends Component {
 
 ManageListSummary.propTypes = {
     actions: PropTypes.shape({
-        retrieveSummaryLists: PropTypes.func
+        retrieveSummaryLists: PropTypes.func.isRequired,
+        addNotification: PropTypes.func.isRequired
     }),
-    lists: PropTypes.shape([])
+    lists: PropTypes.shape([]),
+    notification: PropTypes.shape({
+        message: PropTypes.string,
+        level: PropTypes.string,
+        title: PropTypes.string
+    })
 };
 
 ManageListSummary.defaultProps = {
     actions: null,
-    lists: null
+    lists: null,
+    notification: null
 };
 
 /* istanbul ignore next: not testing mapStateToProps */
 const mapStateToProps = (state) => (
-    { lists: state.lists }
+    {
+        lists: state.lists,
+        notification: state.lists.notification
+    }
 );
 
 /* istanbul ignore next: not testing mapDispatchToProps */
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({
-            retrieveSummaryLists
+            retrieveSummaryLists, addNotification
         }, dispatch)
     }
 );

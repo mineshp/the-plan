@@ -3,29 +3,18 @@ import renderer from 'react-test-renderer';
 import DisplayMessage from '../DisplayMessage';
 
 describe('DisplayMessage', () => {
-    it('renders a success message', () => {
-        const successfulResult = {
-            success: {
-                message: 'Successful request',
-            }
+    it('renders a message', () => {
+        const data = {
+            icon: 'checkmark',
+            header: 'Success',
+            message: 'Congratulations you have a message notification, yay!',
+            colour: 'olive'
         };
 
-        const tree = renderer.create(<DisplayMessage status={successfulResult} />).toJSON();
-        expect(tree).toMatchSnapshot();
-        expect(tree.props.className).toContain('olive');
-    });
-
-    it('renders an error message', () => {
-        const errorResult = {
-            error: {
-                message: 'Error request',
-                isError: true
-            }
-        };
-
-        const tree = renderer.create(<DisplayMessage status={errorResult} />).toJSON();
-
-        expect(tree).toMatchSnapshot();
-        expect(tree.props.className).toContain('red');
+        renderer.create(
+            <DisplayMessage
+                data={data}
+            />
+        ).toJSON();
     });
 });

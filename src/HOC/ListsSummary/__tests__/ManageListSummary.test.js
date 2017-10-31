@@ -38,9 +38,13 @@ const props = {
     actions: {
         retrieveSummaryLists: jest.fn(() => (
             Promise.resolve(mockListAll)
+        )),
+        addNotification: jest.fn(() => (
+            Promise.resolve()
         ))
     },
-    lists: {} // TODO: Turn to ARRAY
+    lists: {},
+    notification: null
 };
 
 describe('Manage Lists', () => {
@@ -59,6 +63,7 @@ describe('Manage Lists', () => {
         it('calls the retrieveLists action when the fetchLists function is invoked', async () => {
             wrapper.instance().fetchLists();
             await expect(props.actions.retrieveSummaryLists).toHaveBeenCalledWith();
+            await expect(props.actions.addNotification).toHaveBeenCalled();
         });
 
         it('renders a Lists component', async () => {
@@ -70,26 +75,6 @@ describe('Manage Lists', () => {
             const propsAfterFetchAllLists = Object.assign({}, props, { lists: { data: mockListAll } });
             const ManageListComponent = shallow(<ManageListSummary {...propsAfterFetchAllLists} />);
             await expect(ManageListComponent.props().rows.length).toEqual(2);
-        });
-    });
-
-    describe('Get all lists fails', () => {
-        it('sets an api error when the client is unable to connect to the api', async () => {
-            const apiError = {
-                error: {
-                    isError: true,
-                    message: 'Unable to retrieve lists, please try again later.'
-                }
-            };
-            const propsAfterFetchListsError = Object.assign({}, props, { lists: { error: apiError } });
-            const ManageListComponent = shallow(<ManageListSummary {...propsAfterFetchListsError} />);
-
-            expect(ManageListComponent.props().errors).toEqual({
-                error: {
-                    message: 'Unable to retrieve lists, please try again later.',
-                    isError: true
-                }
-            });
         });
     });
 });

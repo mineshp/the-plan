@@ -161,13 +161,6 @@ exports[`List renders successfully after error creating new project 1`] = `
   className="List main"
 >
   <div
-    className="ui red message"
-  >
-    <p>
-      oh no something bad happened
-    </p>
-  </div>
-  <div
     className="ui container"
   >
     <table

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { retrieveListById } from '../../actions/list';
+import { addNotification } from '../../actions/notification';
 import List from '../../components/List/List';
 
 
@@ -19,23 +20,18 @@ class ManageList extends Component {
     }
 
     fetchListById(listId) {
-        this.props.actions.retrieveListById(listId);
+        this.props.actions.retrieveListById(listId)
+            .then(() => this.props.actions.addNotification(this.props.notification));
     }
 
     render() {
         const { lists } = this.props;
 
-        let singleListErrors;
-        if (lists && lists.error) {
-            singleListErrors = lists;
-        }
-
         return (
-            !this.props.lists
+            !lists
                 ? <p>Loading Data...</p>
                 : <List
-                    errors={singleListErrors}
-                    list={this.props.lists.data}
+                    list={lists.data}
                 />
         );
     }
@@ -43,32 +39,42 @@ class ManageList extends Component {
 
 ManageList.propTypes = {
     actions: PropTypes.shape({
-        retrieveListById: PropTypes.func
+        retrieveListById: PropTypes.func.isRequired,
+        addNotification: PropTypes.func.isRequired
     }),
     lists: PropTypes.shape([]),
     match: PropTypes.shape({
         params: PropTypes.shape({
             id: PropTypes.string
         })
+    }),
+    notification: PropTypes.shape({
+        message: PropTypes.string,
+        level: PropTypes.string,
+        title: PropTypes.string
     })
 };
 
 ManageList.defaultProps = {
     actions: null,
     match: null,
-    lists: null
+    lists: null,
+    notification: null
 };
 
 /* istanbul ignore next: not testing mapStateToProps */
 const mapStateToProps = (state) => (
-    { lists: state.lists }
+    {
+        lists: state.lists,
+        notification: state.lists.notification
+    }
 );
 
 /* istanbul ignore next: not testing mapDispatchToProps */
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({
-            retrieveListById
+            retrieveListById, addNotification
         }, dispatch)
     }
 );

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { create, fetchSingleProject, update } from '../../actions/project';
+import { addNotification } from '../../actions/notification';
 import UpdateProjectComponent from '../../components/Project/UpdateProject';
 
 import './Project.css';
@@ -38,19 +39,15 @@ class UpdateProject extends Component {
             // eslint-disable-next-line no-underscore-dangle
             const projectObject = buildProjectData(this.props.result, this.state || {});
             this.props.actions.update(projectObject)
-                .then((projectUpdated) => {
-                    /* istanbul ignore else */
-                    if (projectUpdated && projectUpdated.type === 'PROJECT_UPDATE_SUCCESS') {
-                        this.redirect();
-                    }
+                .then(() => {
+                    this.props.actions.addNotification(this.props.notification);
+                    this.redirect();
                 });
         } else {
             this.props.actions.create(this.state)
-                .then((projectCreated) => {
-                    /* istanbul ignore else */
-                    if (projectCreated && projectCreated.type === 'PROJECT_CREATION_SUCCESS') {
-                        this.redirect();
-                    }
+                .then(() => {
+                    this.props.actions.addNotification(this.props.notification);
+                    this.redirect();
                 });
         }
     }
@@ -94,9 +91,15 @@ UpdateProject.propTypes = {
         create: PropTypes.func.isRequired,
         fetchSingleProject: PropTypes.func.isRequired,
         update: PropTypes.func.isRequired,
+        addNotification: PropTypes.func.isRequired,
     }).isRequired,
     result: PropTypes.shape({
         _id: PropTypes.string
+    }),
+    notification: PropTypes.shape({
+        message: PropTypes.string,
+        level: PropTypes.string,
+        title: PropTypes.string
     }),
     projectName: PropTypes.string,
     match: PropTypes.shape({
@@ -109,7 +112,8 @@ UpdateProject.propTypes = {
 UpdateProject.defaultProps = {
     projectName: null,
     match: null,
-    result: null
+    result: null,
+    notification: null
 };
 
 // Pull in the React Router context so router is available on this.context.router
@@ -123,25 +127,31 @@ const mapStateToProps = (state, ownProps) => {
     const id = ownProps.match.params;
 
     if (Object.keys(id).length !== 0) {
+        // PROJECT_LIST_RETRIEVED action
         if (state.projects.data) {
             project = state.projects.data;
+        // PROJECT_UPDATE_SUCCESS action
         } else if (state.projects && state.projects.success && state.projects.success.data) {
             project = state.projects.success.data;
         }
     } else {
+        // PROJECT_UPDATE_ERROR
         project = state.projects.error
             ? state.projects
             : Object.assign({}, { projectName: '', colour: '' });
     }
 
-    return { result: project };
+    return {
+        result: project,
+        notification: state.projects.notification
+    };
 };
 
 /* istanbul ignore next: not testing mapDispatchToProps */
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({
-            create, fetchSingleProject, update
+            create, fetchSingleProject, update, addNotification
         }, dispatch)
     }
 );

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteProject, listProjects } from '../../actions/project';
+import { addNotification } from '../../actions/notification';
 import ProjectCard from '../../components/Project/ProjectCard';
 import ListProjectsComponent from '../../components/Project/ListProjects';
 
@@ -21,16 +22,15 @@ class ManageProject extends Component {
         event.preventDefault();
         const projectIdToDelete = event.target.value;
         this.props.actions.deleteProject(projectIdToDelete)
-            .then((deleteStatus) => {
-                /* istanbul ignore else */
-                if (deleteStatus && deleteStatus.type === 'PROJECT_DELETION_SUCCESS') {
-                    this.fetchProjectsList();
-                }
+            .then(() => {
+                this.props.actions.addNotification(this.props.notification);
+                this.fetchProjectsList();
             });
     }
 
     fetchProjectsList() {
-        this.props.actions.listProjects();
+        this.props.actions.listProjects()
+            .then(() => this.props.actions.addNotification(this.props.notification));
     }
 
     render() {
@@ -42,14 +42,8 @@ class ManageProject extends Component {
                 Cards.push(<ProjectCard data={project} key={project._id} onDeleteHandler={this.handleDelete} />));
         }
 
-        let projectErrors;
-        if (projects && projects.error) {
-            projectErrors = projects.error;
-        }
-
         return (
             <ListProjectsComponent
-                errors={projectErrors}
                 cards={Cards}
                 onDeleteHandler={this.handleDelete}
             />
@@ -60,27 +54,37 @@ class ManageProject extends Component {
 
 ManageProject.propTypes = {
     actions: PropTypes.shape({
-        deleteProject: PropTypes.func,
-        listProjects: PropTypes.func
+        deleteProject: PropTypes.func.isRequired,
+        listProjects: PropTypes.func.isRequired,
+        addNotification: PropTypes.func.isRequired
     }),
-    projects: PropTypes.shape([])
+    projects: PropTypes.shape([]),
+    notification: PropTypes.shape({
+        message: PropTypes.string,
+        level: PropTypes.string,
+        title: PropTypes.string
+    }),
 };
 
 ManageProject.defaultProps = {
     actions: null,
-    projects: null // TODO: Change to ARRAY
+    projects: null,
+    notification: null
 };
 
 /* istanbul ignore next: not testing mapStateToProps */
 const mapStateToProps = (state) => (
-    { projects: state.projects }
+    {
+        projects: state.projects,
+        notification: state.projects.notification
+    }
 );
 
 /* istanbul ignore next: not testing mapDispatchToProps */
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({
-            deleteProject, listProjects
+            deleteProject, listProjects, addNotification
         }, dispatch)
     }
 );

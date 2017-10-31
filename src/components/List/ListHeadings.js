@@ -22,7 +22,7 @@ ListItems.propTypes = {
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
-            position: PropTypes.number.isRequired
+            position: PropTypes.number
         })
     ).isRequired
 };

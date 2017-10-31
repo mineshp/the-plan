@@ -332,13 +332,6 @@ exports[`Create New List renders successfully after error creating new project 1
 <div
   className="ui container"
 >
-  <div
-    className="ui red message"
-  >
-    <p>
-      uh-oh
-    </p>
-  </div>
   <h2
     className="ui header"
   >

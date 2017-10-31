@@ -17,6 +17,11 @@ describe('lists reducer', () => {
                     updatedDate: '2016-05-18T16:00:00Z'
                 }
             })).toEqual({
+                notification: {
+                    message: 'Successfully created list Shopping List.',
+                    level: 'success',
+                    title: 'Success'
+                },
                 success: {
                     data: {
                         _id: '1234',
@@ -24,8 +29,7 @@ describe('lists reducer', () => {
                         listName: 'Shopping List',
                         createdDate: '2016-05-18T16:00:00Z',
                         updatedDate: '2016-05-18T16:00:00Z'
-                    },
-                    message: 'Successfully created list Shopping List.'
+                    }
                 }
             });
         });
@@ -35,8 +39,12 @@ describe('lists reducer', () => {
                 type: 'LIST_CREATION_ERROR',
                 error: 'Error creating list'
             })).toEqual({
-                error: {
+                notification: {
                     message: 'Error creating list',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
                     isError: true
                 }
             });
@@ -63,13 +71,14 @@ describe('lists reducer', () => {
         it('should handle LISTS_RETRIEVED', () => {
             expect(lists({}, {
                 type: 'LISTS_RETRIEVED',
-                data: {
-                    allLists
-                }
+                data: { allLists }
             })).toEqual({
-                data: {
-                    allLists
-                }
+                notification: {
+                    message: 'Lists have been retrieved.',
+                    level: 'success',
+                    title: 'Success'
+                },
+                data: { allLists }
             });
         });
 
@@ -78,8 +87,12 @@ describe('lists reducer', () => {
                 type: 'LISTS_RETRIEVED_ERROR',
                 error: 'Unable to retrieve lists, please try again later.'
             })).toEqual({
-                error: {
+                notification: {
                     message: 'Unable to retrieve lists, please try again later.',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
                     isError: true
                 }
             });
@@ -100,13 +113,14 @@ describe('lists reducer', () => {
         it('should handle LIST_RETRIEVED', () => {
             expect(lists({}, {
                 type: 'LIST_RETRIEVED',
-                data: {
-                    aList
-                }
+                data: { aList }
             })).toEqual({
-                data: {
-                    aList
-                }
+                data: { aList },
+                notification: {
+                    message: 'List has been retrieved.',
+                    level: 'success',
+                    title: 'Success'
+                },
             });
         });
 
@@ -115,8 +129,12 @@ describe('lists reducer', () => {
                 type: 'LIST_RETRIEVED_ERROR',
                 error: 'Unable to retrieve list with id 1234, please try again later.'
             })).toEqual({
-                error: {
+                notification: {
                     message: 'Unable to retrieve list with id 1234, please try again later.',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
                     isError: true
                 }
             });
