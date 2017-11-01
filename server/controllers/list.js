@@ -38,3 +38,25 @@ exports.createNewList = function (req, res) {
 		}
 	});
 };
+
+exports.delete = function (req, res) {
+	const id = req.params.id;
+	List.findOne({ _id: id }, function (err, collection) {
+		if (err) {
+			res.status(400);
+			res.json(
+				{
+					message: `Error: Unable to delete list with id ${id} not found with error ${err}.`
+				}
+			);
+		}
+		else {
+			List.remove({ '_id': id }, function (err, result) {
+				const data = Object.assign({}, result, {
+					listName: collection.listName
+				});
+				return res.send(data);
+			});
+		}
+	});
+};

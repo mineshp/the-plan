@@ -36,6 +36,9 @@ const mockListAll = [
 
 const props = {
     actions: {
+        deleteList: jest.fn(() => (
+            Promise.resolve()
+        )),
         retrieveSummaryLists: jest.fn(() => (
             Promise.resolve(mockListAll)
         )),
@@ -75,6 +78,56 @@ describe('Manage Lists', () => {
             const propsAfterFetchAllLists = Object.assign({}, props, { lists: { data: mockListAll } });
             const ManageListComponent = shallow(<ManageListSummary {...propsAfterFetchAllLists} />);
             await expect(ManageListComponent.props().rows.length).toEqual(2);
+        });
+    });
+
+    describe('deleteList', () => {
+        const mockEvent = {
+            preventDefault: jest.fn(),
+            target: {
+                value: '123'
+            }
+        };
+
+        const propsAfterSuccessfulDelete = {
+            actions: {
+                deleteList: jest.fn(() => (
+                    Promise.resolve({
+                        type: 'LIST_DELETION_SUCCESS'
+                    })
+                )),
+                retrieveSummaryLists: jest.fn(() => (
+                    Promise.resolve(mockListAll)
+                )),
+                addNotification: jest.fn(() => (
+                    Promise.resolve()
+                ))
+            },
+            lists: {},
+            notification: null
+        };
+
+        let wrapper;
+
+        beforeEach(() => {
+            wrapper = shallow(<ManageListSummary {...propsAfterSuccessfulDelete} />);
+        });
+
+        it('calls the deleteList action when the deleteList event is invoked', async () => {
+            wrapper.instance().deleteList(mockEvent);
+
+            await expect(propsAfterSuccessfulDelete.actions.deleteList).toHaveBeenCalledWith('123');
+            await expect(propsAfterSuccessfulDelete.actions.deleteList()).resolves.toEqual({ type: 'LIST_DELETION_SUCCESS' });
+            await expect(propsAfterSuccessfulDelete.actions.addNotification).toHaveBeenCalled;
+        });
+
+        it('calls the fetchLists function when a list was deleted successfully', async () => {
+            wrapper.instance().fetchLists();
+
+            await expect(propsAfterSuccessfulDelete.actions.retrieveSummaryLists).toHaveBeenCalled();
+            await expect(propsAfterSuccessfulDelete.actions.retrieveSummaryLists).toHaveBeenCalledTimes(2);
+            await expect(propsAfterSuccessfulDelete.actions.retrieveSummaryLists()).resolves.toEqual(mockListAll);
+            await expect(propsAfterSuccessfulDelete.actions.addNotification).toHaveBeenCalled;
         });
     });
 });

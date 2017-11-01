@@ -140,4 +140,42 @@ describe('lists reducer', () => {
             });
         });
     });
+
+    describe('DELETE ACTIONS', () => {
+        it('should handle LIST_DELETION_SUCCESS', () => {
+            expect(lists({}, {
+                type: 'LIST_DELETION_SUCCESS',
+                data: {
+                    listName: 'TEST LIST',
+                }
+            })).toEqual({
+                notification: {
+                    message: 'Successfully deleted list TEST LIST.',
+                    level: 'success',
+                    title: 'Success'
+                },
+                success: {
+                    data: {
+                        listName: 'TEST LIST'
+                    }
+                }
+            });
+        });
+
+        it('should handle LIST_DELETION_ERROR', () => {
+            expect(lists({}, {
+                type: 'LIST_DELETION_ERROR',
+                error: 'Error deleting list'
+            })).toEqual({
+                notification: {
+                    message: 'Error deleting list',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
+                    isError: true
+                }
+            });
+        });
+    });
 });

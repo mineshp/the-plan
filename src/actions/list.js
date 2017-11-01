@@ -28,6 +28,16 @@ export const errorRetrievingList = (error) => ({
     error
 });
 
+export const deletedList = (data) => ({
+    type: 'LIST_DELETION_SUCCESS',
+    data
+});
+
+export const errorDeletingList = (error) => ({
+    type: 'LIST_DELETION_ERROR',
+    error
+});
+
 export function retrieveSummaryLists() {
     return (dispatch) =>
         fetch('/list/all')
@@ -73,4 +83,24 @@ export function create(newList) {
             })
             .then((data) => dispatch(createdList(data)))
             .catch((error) => dispatch(errorCreatingList(error.message)));
+}
+
+export function deleteList(id) {
+    return (dispatch) =>
+        fetch(`/list/delete/${id}`, {
+            method: 'delete',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(
+                    new Error('Error deleting list, please try again later.'));
+            })
+            .then((data) => dispatch(deletedList(data)))
+            .catch((error) => dispatch(errorDeletingList(error.message)));
 }

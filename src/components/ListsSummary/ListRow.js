@@ -13,7 +13,7 @@ const projectLabels = (projects) => projects.map((project) => (
     </Label>
 ));
 
-const List = ({ data }) => {
+const List = ({ data, onDeleteHandler }) => {
     const listID = data._id; // eslint-disable-line no-underscore-dangle
     return (
         <Table.Row>
@@ -21,7 +21,17 @@ const List = ({ data }) => {
             <Table.Cell>{data.createdDate}</Table.Cell>
             <Table.Cell>{data.updatedDate}</Table.Cell>
             <Table.Cell>{projectLabels(data.projects)}</Table.Cell>
-            <Table.Cell><Button as="a" href={`/list/view/${listID}`}>View</Button></Table.Cell>
+            <Table.Cell>
+                <Button as="a" href={`/list/view/${listID}`}>View</Button>
+                <Button
+                    content="Delete"
+                    icon="trash"
+                    labelPosition="left"
+                    color="blue"
+                    value={listID}
+                    onClick={onDeleteHandler}
+                />
+            </Table.Cell>
         </Table.Row>
     );
 };
@@ -30,7 +40,8 @@ List.propTypes = {
     data: PropTypes.shape({
         _id: PropTypes.string.isRequired,
         listName: PropTypes.string.isRequired
-    }).isRequired
+    }).isRequired,
+    onDeleteHandler: PropTypes.func.isRequired
 };
 
 export default List;

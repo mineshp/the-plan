@@ -280,4 +280,85 @@ describe('List actions', () => {
             });
         });
     });
+
+    describe('Delete List Actions', () => {
+        const listIdToDelete = 1;
+
+        it('should dispatch an action for LIST_DELETION_SUCCESS when calling deletedList to confirm a list has been deleted', () => {
+            const mockDeleteSuccessAPIResponse = {
+                ok: 1,
+                n: 1,
+                listName: 'TEST LIST'
+            };
+
+            const expectedAction = {
+                type: 'LIST_DELETION_SUCCESS',
+                data: mockDeleteSuccessAPIResponse
+            };
+
+            expect(actions.deletedList(mockDeleteSuccessAPIResponse)).toEqual(expectedAction);
+        });
+
+        it('should dispatch an action for LIST_DELETION_ERROR when calling errorDeletingList to notify the user a list has failed to be deleted', () => {
+            const mockListDeletetionFailureAPIResponse = {
+                message: 'Error deleting list'
+            };
+
+            const expectedAction = {
+                type: 'LIST_DELETION_ERROR',
+                error: mockListDeletetionFailureAPIResponse.message
+            };
+
+            expect(actions.errorDeletingList(mockListDeletetionFailureAPIResponse.message))
+                .toEqual(expectedAction);
+        });
+
+        it('a successful deleteList call via the store, dispatches the LIST_DELETION_SUCCESS action', async () => {
+            const mockDeleteSuccessAPIResponse = {
+                ok: 1,
+                n: 1,
+                listName: 'TEST LIST'
+            };
+
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(200, null, JSON.stringify(mockDeleteSuccessAPIResponse))));
+
+            const store = mockStore({ lists: [] });
+
+            const expectedActions = [
+                {
+                    type: 'LIST_DELETION_SUCCESS',
+                    data: mockDeleteSuccessAPIResponse
+                }
+            ];
+
+            return store.dispatch(actions.deleteList(listIdToDelete)).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+
+        it('an unsuccessful deleteList call via the store, dispatches the LIST_DELETION_ERROR action', async () => {
+            const mockListDeletetionFailureAPIResponse = {
+                message: 'Error deleting list, please try again later.'
+            };
+
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(500, null, JSON.stringify(mockListDeletetionFailureAPIResponse))));
+
+            const store = mockStore({ lists: [] });
+
+            const expectedAction = [
+                {
+                    type: 'LIST_DELETION_ERROR',
+                    error: mockListDeletetionFailureAPIResponse.message
+                }
+            ];
+
+            return store.dispatch(actions.deleteList(listIdToDelete)).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedAction);
+            });
+        });
+    });
 });

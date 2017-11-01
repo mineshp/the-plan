@@ -68,6 +68,30 @@ const lists = (state = {}, action) => {
             }
         };
 
+    case 'LIST_DELETION_SUCCESS':
+        return {
+            notification: {
+                message: `Successfully deleted list ${action.data.listName}.`,
+                level: 'success',
+                title: 'Success'
+            },
+            success: {
+                data: action.data
+            }
+        };
+
+    case 'LIST_DELETION_ERROR':
+        return {
+            notification: {
+                message: action.error,
+                level: 'error',
+                title: 'Error'
+            },
+            error: {
+                isError: true
+            }
+        };
+
     default:
         return state;
     }

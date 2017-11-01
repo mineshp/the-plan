@@ -52,6 +52,20 @@ exports[`ListRow renders correctly 1`] = `
     >
       View
     </a>
+    <button
+      className="ui blue icon left labeled button"
+      disabled={undefined}
+      onClick={[Function]}
+      role="button"
+      tabIndex={undefined}
+      value="1234456"
+    >
+      <i
+        aria-hidden="true"
+        className="trash icon"
+      />
+      Delete
+    </button>
   </td>
 </tr>
 `;

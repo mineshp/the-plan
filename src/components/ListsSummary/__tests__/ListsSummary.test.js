@@ -3,13 +3,6 @@ import renderer from 'react-test-renderer';
 import ListsSummary from '../ListsSummary';
 import List from '../ListRow';
 
-const mockResult = {};
-const mockErrorResult = {
-    error: {
-        message: 'oh no something bad happened',
-        isError: true
-    }
-};
 const mockListAll = [
     {
         _id: '001',
@@ -41,32 +34,17 @@ const mockListAll = [
     }
 ];
 
+const mockDeleteList = jest.fn();
+
 const Rows = [];
 mockListAll.map((list) =>
     // eslint-disable-next-line no-underscore-dangle
-    Rows.push(<List data={list} key={list._id} />)
+    Rows.push(<List data={list} key={list._id} onDeleteHandler={mockDeleteList} />)
 );
 
 describe('List', () => {
     it('renders lists correctly', () => {
         const tree = renderer.create(<ListsSummary
-            errors={mockResult}
-            rows={Rows}
-        />).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    it('renders successfully after successful creation of project', () => {
-        const tree = renderer.create(<ListsSummary
-            errors={mockResult}
-            rows={Rows}
-        />).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    it('renders successfully after error creating new project', () => {
-        const tree = renderer.create(<ListsSummary
-            errors={mockErrorResult}
             rows={Rows}
         />).toJSON();
         expect(tree).toMatchSnapshot();

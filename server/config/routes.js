@@ -9,6 +9,7 @@ module.exports = function (app) {
     app.get('/list/all', list.getAllLists);
 	app.get('/list/view/:id', list.getListById);
 	app.post('/list/update', list.createNewList);
+	app.delete('/list/delete/:id', list.delete);
 
 	app.get('/project/all', project.getAllProjects);
 	app.post('/project/update/:id', project.updateProject);

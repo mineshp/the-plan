@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { retrieveSummaryLists } from '../../actions/list';
+import { deleteList, retrieveSummaryLists } from '../../actions/list';
 import { addNotification } from '../../actions/notification';
 import ListsSummaryRow from '../../components/ListsSummary/ListRow';
 import ListsSummaryComponent from '../../components/ListsSummary/ListsSummary';
@@ -11,10 +11,21 @@ class ManageListSummary extends Component {
     constructor(props) {
         super(props);
         this.fetchLists = this.fetchLists.bind(this);
+        this.deleteList = this.deleteList.bind(this);
     }
 
     componentDidMount() {
         this.fetchLists();
+    }
+
+    deleteList(event) {
+        event.preventDefault();
+        const listIdToDelete = event.target.value;
+        this.props.actions.deleteList(listIdToDelete)
+            .then(() => {
+                this.props.actions.addNotification(this.props.notification);
+                this.fetchLists();
+            });
     }
 
     fetchLists() {
@@ -28,7 +39,7 @@ class ManageListSummary extends Component {
         if (lists && lists.data) {
             lists.data.map((list) =>
                 // eslint-disable-next-line no-underscore-dangle
-                ListRow.push(<ListsSummaryRow data={list} key={list._id} />));
+                ListRow.push(<ListsSummaryRow data={list} key={list._id} onDeleteHandler={this.deleteList} />));
         }
 
         return (
@@ -41,6 +52,7 @@ class ManageListSummary extends Component {
 
 ManageListSummary.propTypes = {
     actions: PropTypes.shape({
+        deleteList: PropTypes.func.isRequired,
         retrieveSummaryLists: PropTypes.func.isRequired,
         addNotification: PropTypes.func.isRequired
     }),
@@ -70,7 +82,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({
-            retrieveSummaryLists, addNotification
+            deleteList, retrieveSummaryLists, addNotification
         }, dispatch)
     }
 );
