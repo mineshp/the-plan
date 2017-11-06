@@ -24,6 +24,14 @@ const List = ({ data, onDeleteHandler }) => {
             <Table.Cell>
                 <Button as="a" href={`/list/view/${listID}`}>View</Button>
                 <Button
+                    as="a"
+                    content="Update"
+                    icon="edit"
+                    labelPosition="left"
+                    color="teal"
+                    href={`/list/update/${listID}`}
+                />
+                <Button
                     content="Delete"
                     icon="trash"
                     labelPosition="left"

@@ -52,6 +52,20 @@ exports[`ListRow renders correctly 1`] = `
     >
       View
     </a>
+    <a
+      className="ui teal icon left labeled button"
+      disabled={undefined}
+      href="/list/update/1234456"
+      onClick={[Function]}
+      role="button"
+      tabIndex={undefined}
+    >
+      <i
+        aria-hidden="true"
+        className="edit icon"
+      />
+      Update
+    </a>
     <button
       className="ui blue icon left labeled button"
       disabled={undefined}

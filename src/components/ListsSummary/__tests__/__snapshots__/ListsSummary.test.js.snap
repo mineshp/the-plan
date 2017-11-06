@@ -101,6 +101,20 @@ exports[`List renders lists correctly 1`] = `
             >
               View
             </a>
+            <a
+              className="ui teal icon left labeled button"
+              disabled={undefined}
+              href="/list/update/001"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="edit icon"
+              />
+              Update
+            </a>
             <button
               className="ui blue icon left labeled button"
               disabled={undefined}
@@ -161,6 +175,20 @@ exports[`List renders lists correctly 1`] = `
               tabIndex={undefined}
             >
               View
+            </a>
+            <a
+              className="ui teal icon left labeled button"
+              disabled={undefined}
+              href="/list/update/002"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="edit icon"
+              />
+              Update
             </a>
             <button
               className="ui blue icon left labeled button"

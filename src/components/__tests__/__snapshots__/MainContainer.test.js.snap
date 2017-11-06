@@ -24,7 +24,7 @@ ShallowWrapper {
     />
     <Route
         component={[Function]}
-        path="/list/update2"
+        path="/list/update/:id"
     />
     <Route
         component={[Function]}
@@ -64,7 +64,7 @@ ShallowWrapper {
       />
       <Route
             component={[Function]}
-            path="/list/update2"
+            path="/list/update/:id"
       />
       <Route
             component={[Function]}
@@ -138,7 +138,7 @@ ShallowWrapper {
           />
           <Route
                     component={[Function]}
-                    path="/list/update2"
+                    path="/list/update/:id"
           />
           <Route
                     component={[Function]}
@@ -178,7 +178,7 @@ ShallowWrapper {
           />
           <Route
                     component={[Function]}
-                    path="/list/update2"
+                    path="/list/update/:id"
           />
           <Route
                     component={[Function]}

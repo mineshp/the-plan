@@ -8,6 +8,16 @@ export const errorCreatingList = (error) => ({
     error
 });
 
+export const updatedList = (data) => ({
+    type: 'LIST_UPDATE_SUCCESS',
+    data
+});
+
+export const errorUpdatingList = (error) => ({
+    type: 'LIST_UPDATE_ERROR',
+    error
+});
+
 export const successListingLists = (data) => ({
     type: 'LISTS_RETRIEVED',
     data
@@ -83,6 +93,27 @@ export function create(newList) {
             })
             .then((data) => dispatch(createdList(data)))
             .catch((error) => dispatch(errorCreatingList(error.message)));
+}
+
+export function update(existingList) {
+    return (dispatch) =>
+        fetch(`/list/update/${existingList._id}`, { // eslint-disable-line no-underscore-dangle
+            method: 'post',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(existingList)
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(
+                    new Error(`Error updating list ${existingList.listName}, please try again later.`));
+            })
+            .then((data) => dispatch(updatedList(data)))
+            .catch((error) => dispatch(errorUpdatingList(error.message)));
 }
 
 export function deleteList(id) {

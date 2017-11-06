@@ -8,6 +8,7 @@ module.exports = function (app) {
 
     app.get('/list/all', list.getAllLists);
 	app.get('/list/view/:id', list.getListById);
+	app.post('/list/update/:id', list.updateList);
 	app.post('/list/update', list.createNewList);
 	app.delete('/list/delete/:id', list.delete);
 

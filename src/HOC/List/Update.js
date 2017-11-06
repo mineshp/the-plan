@@ -3,9 +3,54 @@ import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { create } from '../../actions/list';
+import { create, retrieveListById, update } from '../../actions/list';
 import { listProjects } from '../../actions/project';
+import { addNotification } from '../../actions/notification';
 import UpdateListComponent from '../../components/List/UpdateList';
+
+const getHeadings = (updatedHeadings, originalHeadings) => {
+    if (updatedHeadings && updatedHeadings.length > 0 && updatedHeadings[0].name !== '') {
+        return updatedHeadings;
+    }
+    return originalHeadings;
+};
+
+const getProjects = (updatedProjects, originalProjects) => {
+    if (updatedProjects && updatedProjects.length > 0 && updatedProjects[0].name !== '') {
+        return updatedProjects;
+    }
+    return originalProjects;
+};
+
+const buildListData = (originalObject, { listName, headings, projects }) => (
+    Object.assign({}, {
+        _id: originalObject._id, // eslint-disable-line no-underscore-dangle
+        listName: listName || originalObject.listName,
+        headings: getHeadings(headings, originalObject.headings),
+        projects: getProjects(projects, originalObject.projects),
+        items: originalObject.items,
+        updatedDate: new Date(),
+        createdDate: originalObject.createdDate
+    })
+);
+
+const hasHeadings = (headingsFromState, headingsFromProps) => {
+    if (headingsFromState && headingsFromState.length > 0 && headingsFromState[0].name !== '') {
+        return true;
+    } else if (headingsFromProps && headingsFromProps.length > 0 && headingsFromProps[0].name !== '') {
+        return true;
+    }
+    return false;
+};
+
+const hasProjects = (projectsFromState, projectsFromProps) => {
+    if (projectsFromState && projectsFromState.length > 0 && projectsFromState[0].name !== '') {
+        return true;
+    } else if (projectsFromProps && projectsFromProps.length > 0 && projectsFromProps[0].name !== '') {
+        return true;
+    }
+    return false;
+};
 
 class UpdateList extends Component {
     constructor(props, context) {
@@ -26,31 +71,62 @@ class UpdateList extends Component {
                     name: '',
                     id: uuidv4()
                 }
-            ]
+            ],
+            projects: []
         };
     }
 
     componentWillMount() {
         this.props.actions.listProjects();
+        if (this.props.match.params && this.props.match.params.id) {
+            const listId = this.props.match.params.id;
+            this.props.actions.retrieveListById(listId)
+                .then((listRetrieved) => {
+                    /* istanbul ignore else */
+                    if (listRetrieved.type === 'LIST_RETRIEVED') {
+                        const headingsClone = Object.assign([], listRetrieved.data.headings);
+                        this.setState({
+                            headings: headingsClone
+                        });
+                    }
+                });
+        }
     }
 
-    createOrUpdateList() {
+    setupNewList() {
         this.props.actions.create(this.state)
-            .then((listCreated) => {
-                /* istanbul ignore else */
-                if (listCreated && listCreated.type === 'LIST_CREATION_SUCCESS') {
-                    this.redirect();
-                }
+            .then(() => {
+                this.props.actions.addNotification(this.props.notification);
+                this.redirect();
             });
     }
 
+    updateList() {
+        const listObject = buildListData(this.props.result, this.state);
+        this.props.actions.update(listObject)
+            .then(() => {
+                this.props.actions.addNotification(this.props.notification);
+                this.redirect();
+            });
+    }
+
+    createOrUpdateList() {
+        if (this.props.result && this.props.result._id) { // eslint-disable-line no-underscore-dangle
+            this.updateList();
+        } else {
+            this.setupNewList();
+        }
+    }
+
     addHeading() {
-        const headings = this.state.headings;
-        headings.push({
+        const headingsClone = Object.assign([], this.state.headings);
+        headingsClone.push({
             id: uuidv4(),
             name: ''
         });
-        this.setState(headings);
+        this.setState({
+            headings: headingsClone
+        });
     }
 
     removeHeading(event, data) {
@@ -96,9 +172,8 @@ class UpdateList extends Component {
 
     listSetupIsComplete() {
         if (
-            this.state.listName !== '' &&
-            this.state.headings[0].name !== '' &&
-            (this.state.projects && this.state.projects.length > 0)
+            hasHeadings(this.state.headings, this.props.result.headings) &&
+            hasProjects(this.state.projects, this.props.result.projects)
         ) {
             return true;
         }
@@ -138,14 +213,31 @@ class UpdateList extends Component {
 UpdateList.propTypes = {
     actions: PropTypes.shape({
         create: PropTypes.func.isRequired,
-        listProjects: PropTypes.func.isRequired
+        listProjects: PropTypes.func.isRequired,
+        addNotification: PropTypes.func.isRequired,
+        retrieveListById: PropTypes.func.isRequired,
+        update: PropTypes.func.isRequired
     }).isRequired,
+    notification: PropTypes.shape({
+        message: PropTypes.string,
+        level: PropTypes.string,
+        title: PropTypes.string
+    }),
     result: PropTypes.shape({
-        _id: PropTypes.string
+        _id: PropTypes.string,
+        headings: PropTypes.arrayOf(PropTypes.shape({
+            name: PropTypes.string
+        })),
+        projects: PropTypes.arrayOf(PropTypes.shape({}))
     }),
     projectOptions: PropTypes.arrayOf(
         PropTypes.shape({})
-    ).isRequired
+    ).isRequired,
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            id: PropTypes.string
+        })
+    })
 };
 
 UpdateList.defaultProps = {
@@ -153,7 +245,8 @@ UpdateList.defaultProps = {
     match: null,
     result: null,
     projects: { data: [] },
-    headings: []
+    headings: [],
+    notification: null
 };
 
 // Pull in the React Router context so router is available on this.context.router
@@ -161,6 +254,7 @@ UpdateList.contextTypes = {
     router: PropTypes.object
 };
 
+/* istanbul ignore next: not testing buildProjectDropdownOptions */
 const buildProjectDropdownOptions = (allProjects) => {
     if (!allProjects.data) { return []; }
     return allProjects.data.map((project) => ({
@@ -172,26 +266,36 @@ const buildProjectDropdownOptions = (allProjects) => {
 };
 
 /* istanbul ignore next: not testing mapStateToProps */
-const mapStateToProps = (state) => {
-    const { projects } = state;
+const mapStateToProps = (state, ownProps) => {
+    const { headings, lists, projects } = state;
+    const listID = ownProps.match.params;
 
-    // TODO: Build empty list object
     const emptyList = {
         listName: '',
-        headings: [
-            {
-                name: '',
-                position: 1,
-                id: 'aaaa1-uuiui-jjj' // guid generator
-            }
-        ],
-        items: []
+        items: [],
+        headings
     };
 
-    const list = Object.assign({}, emptyList);
+    let list;
+    if (Object.keys(listID).length !== 0) {
+        // LIST_RETRIEVED action
+        if (lists.data) {
+            list = lists.data;
+        // LIST_SUCCESS action
+        } else if (lists && lists.success && lists.success.data) {
+            list = lists.success.data;
+        }
+    } else {
+        // LIST_UPDATE_ERROR
+        list = lists.error
+            ? lists
+            : Object.assign({}, emptyList);
+    }
+
     return {
         result: list,
-        projectOptions: buildProjectDropdownOptions(projects)
+        projectOptions: buildProjectDropdownOptions(projects),
+        notification: lists.notification
     };
 };
 
@@ -199,7 +303,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({
-            create, listProjects
+            create, listProjects, addNotification, retrieveListById, update
         }, dispatch)
     }
 );
@@ -211,6 +315,5 @@ const UpdateListConnectedComponent = connect(
 
 export {
     UpdateList,
-    UpdateListConnectedComponent,
-    buildProjectDropdownOptions // Exported for testing only
+    UpdateListConnectedComponent
 };

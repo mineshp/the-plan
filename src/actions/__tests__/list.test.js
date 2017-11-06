@@ -281,6 +281,113 @@ describe('List actions', () => {
         });
     });
 
+    describe('Update List Actions', () => {
+        const existingListToUpdate = {
+            _id: '1234TESTABC',
+            projects: [{ name: 'Alpha', id: '00123' }, { name: 'Beta', id: '00124' }],
+            listName: 'Explorers',
+            createdDate: '2017-10-15T09:02:00.000Z',
+            updatedDate: '2017-10-15T09:30:00.000Z',
+            headings: [{ name: 'A', id: '000001' }, { name: 'B', id: '000002' }],
+            items: [{
+                id: 'aax',
+                columns: [
+                    {
+                        columnName: 'Name',
+                        columnValue: 'Mario',
+                        columnId: '001mk'
+                    },
+                    {
+                        columnName: 'OutfitColour',
+                        columnValue: 'Red',
+                        columnId: '002mk'
+                    }
+                ]
+            },
+            {
+                id: 'aay',
+                columns: [
+                    {
+                        columnName: 'Name',
+                        columnValue: 'Luigi',
+                        columnId: '003mk'
+                    },
+                    {
+                        columnName: 'OutfitColour',
+                        columnValue: 'Green',
+                        columnId: '004mk'
+                    }
+                ]
+            }]
+        };
+
+        it('should dispatch an action for LIST_UPDATE_SUCCESS when calling updatedList to notify the user a list has been updated', () => {
+            const expectedAction = {
+                type: 'LIST_UPDATE_SUCCESS',
+                data: existingListToUpdate
+            };
+
+            expect(actions.updatedList(existingListToUpdate)).toEqual(expectedAction);
+        });
+
+        it('should dispatch an action for LIST_UPDATE_ERROR when calling update to notify the user there was an error updating the list', () => {
+            const mockListUpdateFailureAPIResponse = {
+                message: 'Error updating list'
+            };
+
+            const expectedAction = {
+                type: 'LIST_UPDATE_ERROR',
+                error: mockListUpdateFailureAPIResponse.message
+            };
+
+            expect(actions.errorUpdatingList(mockListUpdateFailureAPIResponse.message))
+                .toEqual(expectedAction);
+        });
+
+        it('a successful update list call via the store, dispatches the LIST_UPDATE_SUCCESS action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(200, null, JSON.stringify(existingListToUpdate))));
+
+            const store = mockStore({ list: {} });
+
+            const expectedActions = [
+                {
+                    type: 'LIST_UPDATE_SUCCESS',
+                    data: existingListToUpdate
+                }
+            ];
+
+            return store.dispatch(actions.update(existingListToUpdate)).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+
+        it('an unsuccessful update list call via the store, dispatches the LIST_UPDATE_ERROR action', async () => {
+            const mockListUpdateFailureAPIResponse = {
+                message: 'Error updating list Explorers, please try again later.'
+            };
+
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(403, null, JSON.stringify(mockListUpdateFailureAPIResponse))));
+
+
+            const store = mockStore({ list: {} });
+
+            const expectedAction = [
+                {
+                    type: 'LIST_UPDATE_ERROR',
+                    error: mockListUpdateFailureAPIResponse.message
+                }
+            ];
+
+            return store.dispatch(actions.update(existingListToUpdate)).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedAction);
+            });
+        });
+    });
+
     describe('Delete List Actions', () => {
         const listIdToDelete = 1;
 

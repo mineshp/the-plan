@@ -14,6 +14,7 @@ const HeadingInput = ({ headings, handleAddColumn, handleRemoveColumn, handleHea
                             name={heading.name}
                             id={heading.id}
                             key={heading.id}
+                            defaultValue={heading.name}
                             onChange={handleHeaderInputChange}
                         />
                     </Form.Field>

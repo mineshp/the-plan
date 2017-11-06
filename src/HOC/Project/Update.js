@@ -36,7 +36,6 @@ class UpdateProject extends Component {
 
     createOrUpdateProject() {
         if (this.props.result && this.props.result._id) { // eslint-disable-line no-underscore-dangle
-            // eslint-disable-next-line no-underscore-dangle
             const projectObject = buildProjectData(this.props.result, this.state || {});
             this.props.actions.update(projectObject)
                 .then(() => {

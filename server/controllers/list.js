@@ -15,9 +15,7 @@ exports.getListById = function (req, res) {
 exports.createNewList = function (req, res) {
 	List.find({ listName: req.body.listName }, function (err, collection) {
 		if (collection.length === 0) {
-			console.log("BODY ", req.body);
 			const newList = new List(req.body);
-			console.log("NEWLIST", newList);
 			newList.save((err, result) => {
 				if (err) {
 					return res.send(`Error saving new list, ${err}`);
@@ -35,6 +33,24 @@ exports.createNewList = function (req, res) {
 					message: 'Error: List with the same name already exists, please choose another name.'
 				}
 			);
+		}
+	});
+};
+
+exports.updateList = function (req, res) {
+	const data = req.body;
+	List.update({ _id: req.params.id }, data, function (err, result) {
+		if (err) {
+			res.status(400);
+			res.json(
+				{
+					message: `Error: List update failed for id ${req.params.id}.`
+				}
+			);
+		}
+		else {
+			res.status(200);
+			res.send(data);
 		}
 	});
 };

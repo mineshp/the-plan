@@ -50,7 +50,81 @@ describe('lists reducer', () => {
             });
         });
     });
-    describe('Get all list actions', () => {
+
+    describe('UPDATE ACTIONS', () => {
+        const existingListToUpdate = {
+            _id: '1234TESTABC',
+            projects: [{ name: 'Alpha', id: '00123' }, { name: 'Beta', id: '00124' }],
+            listName: 'Explorers',
+            createdDate: '2017-10-15T09:02:00.000Z',
+            updatedDate: '2017-10-15T09:30:00.000Z',
+            headings: [{ name: 'A', id: '000001' }, { name: 'B', id: '000002' }],
+            items: [{
+                id: 'aax',
+                columns: [
+                    {
+                        columnName: 'Name',
+                        columnValue: 'Mario',
+                        columnId: '001mk'
+                    },
+                    {
+                        columnName: 'OutfitColour',
+                        columnValue: 'Red',
+                        columnId: '002mk'
+                    }
+                ]
+            },
+            {
+                id: 'aay',
+                columns: [
+                    {
+                        columnName: 'Name',
+                        columnValue: 'Luigi',
+                        columnId: '003mk'
+                    },
+                    {
+                        columnName: 'OutfitColour',
+                        columnValue: 'Green',
+                        columnId: '004mk'
+                    }
+                ]
+            }]
+        };
+
+        it('should handle LIST_UPDATE_SUCCESS', () => {
+            expect(lists({}, {
+                type: 'LIST_UPDATE_SUCCESS',
+                data: existingListToUpdate
+            })).toEqual({
+                notification: {
+                    message: 'Successfully updated list Explorers.',
+                    level: 'success',
+                    title: 'Success'
+                },
+                success: {
+                    data: existingListToUpdate
+                }
+            });
+        });
+
+        it('should handle LIST_UPDATE_ERROR', () => {
+            expect(lists({}, {
+                type: 'LIST_UPDATE_ERROR',
+                error: 'Error updating list Explorers'
+            })).toEqual({
+                notification: {
+                    message: 'Error updating list Explorers',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
+                    isError: true
+                }
+            });
+        });
+    });
+
+    describe('GET ALL LIST actions', () => {
         const allLists = [
             {
                 _id: '1234',

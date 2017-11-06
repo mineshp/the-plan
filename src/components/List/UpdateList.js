@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Dropdown, Form, Grid, Header, Input } from 'semantic-ui-react';
+import { Button, Container, Select, Form, Grid, Header, Input } from 'semantic-ui-react';
 import HeadingInput from './HeadingInput';
 import './List.css';
 
@@ -14,55 +14,70 @@ const UpdateList = ({
     addHeading,
     removeHeading,
     headings
-}) => (
-    <Container>
-        <Header as="h2">Setup List</Header>
-        <Form onSubmit={handleSubmit}>
-            <Grid columns={1}>
-                <Grid.Row>
-                    <Grid.Column>
-                        <Form.Field>
-                            <Input
-                                placeholder="List Name..."
-                                className="text-box-single-col-max"
-                                defaultValue={result.listName}
-                                onChange={handleChange}
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <Dropdown
-                                placeholder="Projects"
-                                fluid
-                                multiple
-                                search
-                                selection
-                                options={projectOptions}
-                                onChange={handleDropDownSelection}
-                            />
-                        </Form.Field>
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-            <HeadingInput
-                headings={headings}
-                handleAddColumn={addHeading}
-                handleRemoveColumn={removeHeading}
-                handleHeaderInputChange={handleHeaderInputChange}
-            />
-            <Grid columns={1}>
-                <Grid.Row>
-                    <Button fluid className="formSpacing" color="teal" type="submit">Save</Button>
-                </Grid.Row>
-            </Grid>
-        </Form>
-    </Container>
-);
+}) => {
+    const projectsAlreadyAssignedToList = [];
+
+    if (result.projects) {
+        result.projects.map((project) => (
+            projectsAlreadyAssignedToList.push(project.name)
+        ));
+    }
+
+    return (
+        <Container>
+            <Header as="h2">Setup List</Header>
+            <Form onSubmit={handleSubmit}>
+                <Grid columns={1}>
+                    <Grid.Row>
+                        <Grid.Column>
+                            <Form.Field>
+                                <Input
+                                    placeholder="List Name..."
+                                    className="text-box-single-col-max"
+                                    defaultValue={result.listName}
+                                    onChange={handleChange}
+                                />
+                            </Form.Field>
+                            <Form.Field>
+                                <Select
+                                    placeholder="Projects"
+                                    fluid
+                                    multiple
+                                    search
+                                    selection
+                                    options={projectOptions}
+                                    onChange={handleDropDownSelection}
+                                    defaultValue={projectsAlreadyAssignedToList}
+                                />
+                            </Form.Field>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+                <HeadingInput
+                    headings={headings}
+                    handleAddColumn={addHeading}
+                    handleRemoveColumn={removeHeading}
+                    handleHeaderInputChange={handleHeaderInputChange}
+                />
+                <Grid columns={1}>
+                    <Grid.Row>
+                        <Button fluid className="formSpacing" color="teal" type="submit">Save</Button>
+                    </Grid.Row>
+                </Grid>
+            </Form>
+        </Container>
+    );
+};
 
 UpdateList.propTypes = {
     projectOptions: PropTypes.arrayOf(
         PropTypes.shape({})
     ).isRequired,
-    result: PropTypes.shape({}),
+    result: PropTypes.shape({
+        projects: PropTypes.arrayOf(
+            PropTypes.shape({})
+        )
+    }),
     handleSubmit: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleDropDownSelection: PropTypes.func.isRequired,

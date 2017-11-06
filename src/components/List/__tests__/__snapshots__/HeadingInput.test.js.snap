@@ -23,6 +23,7 @@ exports[`HeadingInput renders column headings in a grid correctly 1`] = `
             className="ui input"
           >
             <input
+              defaultValue="A"
               disabled={undefined}
               id="000001"
               name="A"
@@ -88,6 +89,7 @@ exports[`HeadingInput renders column headings in a grid correctly 1`] = `
             className="ui input"
           >
             <input
+              defaultValue="B"
               disabled={undefined}
               id="000002"
               name="B"
