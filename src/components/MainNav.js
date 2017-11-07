@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dropdown, Header, Menu } from 'semantic-ui-react';
+import { Dropdown, Menu } from 'semantic-ui-react';
 import logo from '../md-logo-green.png';
 
 export default class MainNav extends Component {

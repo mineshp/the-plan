@@ -151,7 +151,11 @@ exports[`MainNav Component renders correctly 1`] = `
     className="item"
     onClick={[Function]}
   >
-    
+    <span
+      className="moto"
+    >
+      Haz tus sueños realidad
+    </span>
   </div>
   <a
     className="right item"
