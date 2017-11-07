@@ -1,0 +1,14 @@
++# Colours
++
++## Pastel Green: #a3ebd0
++## Pastel Pink: #eba3c1 OR #eba3a3
++## Pastel Blue: #a3e3eb
++
++# Fonts
++
++HANDWRITING
++
++<link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
++
++font-family: 'Allura', cursive;
++

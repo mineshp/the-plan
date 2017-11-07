@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dropdown, Menu } from 'semantic-ui-react';
-import logo from '../md-logo.png';
+import logo from '../md-logo-green.png';
 
 export default class MainNav extends Component {
     constructor() {
@@ -50,6 +50,11 @@ export default class MainNav extends Component {
                         <Dropdown.Item>Search</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
+
+                <Menu.Item>
+                    <span className="moto">Haz tus sueños realidad</span>
+                </Menu.Item>
+
 
                 <Menu.Item
                     position="right"

@@ -11,7 +11,7 @@ exports[`MainNav Component renders correctly 1`] = `
   >
     <img
       alt="logo"
-      src="md-logo.png"
+      src="md-logo-green.png"
     />
   </a>
   <a
@@ -146,6 +146,16 @@ exports[`MainNav Component renders correctly 1`] = `
         Search
       </div>
     </div>
+  </div>
+  <div
+    className="item"
+    onClick={[Function]}
+  >
+    <span
+      className="moto"
+    >
+      Haz tus sueños realidad
+    </span>
   </div>
   <a
     className="right item"
