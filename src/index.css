@@ -4,3 +4,9 @@ body {
   font-family: sans-serif;
   min-height: 100%;
 }
+
+.moto {
+  font-family: 'Allura', cursive;
+  font-size: 30px;
+  color: #eba3a3;
+}
