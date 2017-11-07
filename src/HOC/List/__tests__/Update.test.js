@@ -209,6 +209,24 @@ describe('Update or Create List', () => {
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
         });
 
+        it('calls handleHeaderInputChange with empty headings data, the empty headings are discarded', async () => {
+            createWrapper.setState({
+                headings: [{ id: '1', name: 'Name' }, { id: '2', name: '' }, { id: '3', name: 'Desc' }],
+                projects: [{ id: '123', name: 'language' }],
+                listName: 'New Shopping List',
+            });
+
+            await createWrapper.instance().handleSubmit(mockEvent);
+
+            await expect(props.actions.create).toHaveBeenCalledWith({
+                listName: 'New Shopping List',
+                headings: [{ id: '1', name: 'Name' }, { id: '3', name: 'Desc' }],
+                projects: [{ id: '123', name: 'language' }]
+            });
+            await expect(props.actions.addNotification).toHaveBeenCalled();
+            await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
+        });
+
         it('calls createOrUpdateList action with correct data when handleSubmit is called and projects have been created - handleDropDownSelection', async () => {
             createWrapper.setState({
                 headings: [

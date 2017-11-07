@@ -7,50 +7,7 @@ import { create, retrieveListById, update } from '../../actions/list';
 import { listProjects } from '../../actions/project';
 import { addNotification } from '../../actions/notification';
 import UpdateListComponent from '../../components/List/UpdateList';
-
-const getHeadings = (updatedHeadings, originalHeadings) => {
-    if (updatedHeadings && updatedHeadings.length > 0 && updatedHeadings[0].name !== '') {
-        return updatedHeadings;
-    }
-    return originalHeadings;
-};
-
-const getProjects = (updatedProjects, originalProjects) => {
-    if (updatedProjects && updatedProjects.length > 0 && updatedProjects[0].name !== '') {
-        return updatedProjects;
-    }
-    return originalProjects;
-};
-
-const buildListData = (originalObject, { listName, headings, projects }) => (
-    Object.assign({}, {
-        _id: originalObject._id, // eslint-disable-line no-underscore-dangle
-        listName: listName || originalObject.listName,
-        headings: getHeadings(headings, originalObject.headings),
-        projects: getProjects(projects, originalObject.projects),
-        items: originalObject.items,
-        updatedDate: new Date(),
-        createdDate: originalObject.createdDate
-    })
-);
-
-const hasHeadings = (headingsFromState, headingsFromProps) => {
-    if (headingsFromState && headingsFromState.length > 0 && headingsFromState[0].name !== '') {
-        return true;
-    } else if (headingsFromProps && headingsFromProps.length > 0 && headingsFromProps[0].name !== '') {
-        return true;
-    }
-    return false;
-};
-
-const hasProjects = (projectsFromState, projectsFromProps) => {
-    if (projectsFromState && projectsFromState.length > 0 && projectsFromState[0].name !== '') {
-        return true;
-    } else if (projectsFromProps && projectsFromProps.length > 0 && projectsFromProps[0].name !== '') {
-        return true;
-    }
-    return false;
-};
+import { buildListData, listSetupIsComplete, validateHeadings } from '../../helpers/validators/list';
 
 class UpdateList extends Component {
     constructor(props, context) {
@@ -63,7 +20,6 @@ class UpdateList extends Component {
         this.handleHeaderInputChange = this.handleHeaderInputChange.bind(this);
         this.addHeading = this.addHeading.bind(this);
         this.removeHeading = this.removeHeading.bind(this);
-        this.listSetupIsComplete = this.listSetupIsComplete.bind(this);
 
         this.state = {
             headings: [
@@ -94,7 +50,10 @@ class UpdateList extends Component {
     }
 
     setupNewList() {
-        this.props.actions.create(this.state)
+        const validatedHeadings = validateHeadings(this.state.headings);
+        const setupListState = Object.assign({}, this.state, { headings: validatedHeadings });
+
+        this.props.actions.create(setupListState)
             .then(() => {
                 this.props.actions.addNotification(this.props.notification);
                 this.redirect();
@@ -170,19 +129,9 @@ class UpdateList extends Component {
         this.setState({ projects: projectsData });
     }
 
-    listSetupIsComplete() {
-        if (
-            hasHeadings(this.state.headings, this.props.result.headings) &&
-            hasProjects(this.state.projects, this.props.result.projects)
-        ) {
-            return true;
-        }
-        return false;
-    }
-
     handleSubmit(event) {
         event.preventDefault();
-        if (this.listSetupIsComplete()) {
+        if (listSetupIsComplete(this.state, this.props.result)) {
             this.createOrUpdateList();
         }
     }
