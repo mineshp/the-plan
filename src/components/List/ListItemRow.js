@@ -1,13 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'semantic-ui-react';
+import { Input, Table } from 'semantic-ui-react';
 
-const ListItemRow = ({ itemRow }) => {
+const ListItemRow = ({ handleChange, itemRow }) => {
     const row = [];
-
-    itemRow.map((columnObj) => (
-        row.push(<Table.Cell key={columnObj.columnId}>{columnObj.columnValue}</Table.Cell>)
-    ));
+    itemRow.columns.map((column) => {
+        const itemInputKey = `${itemRow.rowId}-${column.columnName}`;
+        return row.push(
+            <Table.Cell key={itemInputKey} width="6">
+                <Input
+                    fluid
+                    id={itemRow.rowId}
+                    name={column.columnName}
+                    value={column.columnValue}
+                    onChange={handleChange}
+                />
+            </Table.Cell>
+        );
+    });
 
     return (
         <Table.Row>
@@ -17,9 +27,8 @@ const ListItemRow = ({ itemRow }) => {
 };
 
 ListItemRow.propTypes = {
-    itemRow: PropTypes.arrayOf(
-        PropTypes.shape({})
-    ).isRequired
+    itemRow: PropTypes.shape({}).isRequired,
+    handleChange: PropTypes.func.isRequired
 };
 
 export default ListItemRow;

@@ -30,7 +30,8 @@ class View extends Component {
         items.map((item) => ItemRow.push(<Row data={item} key={item.id} listID={listID} />));
 
         const ItemHeadings = [];
-        headings.map((heading) => ItemHeadings.push(<Table.HeaderCell key={heading.id}>
+        // eslint-disable-next-line no-underscore-dangle
+        headings.map((heading) => ItemHeadings.push(<Table.HeaderCell key={heading._id}>
             {heading.name}
         </Table.HeaderCell>));
 

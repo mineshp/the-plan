@@ -8,28 +8,76 @@ exports[`ListItems renders list items correctly 1`] = `
     className=""
   >
     <td
-      className=""
+      className="six wide"
     >
-      Bread
+      <div
+        className="ui fluid input"
+      >
+        <input
+          disabled={undefined}
+          id="0001"
+          name="ItemName"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="text"
+          value="Bread"
+        />
+      </div>
     </td>
     <td
-      className=""
+      className="six wide"
     >
-      Loaf of granary bread
+      <div
+        className="ui fluid input"
+      >
+        <input
+          disabled={undefined}
+          id="0001"
+          name="Description"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="text"
+          value="Loaf of granary bread"
+        />
+      </div>
     </td>
   </tr>
   <tr
     className=""
   >
     <td
-      className=""
+      className="six wide"
     >
-      Milk
+      <div
+        className="ui fluid input"
+      >
+        <input
+          disabled={undefined}
+          id="0002"
+          name="ItemName"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="text"
+          value="Milk"
+        />
+      </div>
     </td>
     <td
-      className=""
+      className="six wide"
     >
-      1 Pint of Milk
+      <div
+        className="ui fluid input"
+      >
+        <input
+          disabled={undefined}
+          id="0002"
+          name="Description"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="text"
+          value="1 Pint of Milk"
+        />
+      </div>
     </td>
   </tr>
 </tbody>

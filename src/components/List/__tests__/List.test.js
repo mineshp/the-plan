@@ -5,7 +5,27 @@ import List from '../List';
 import ListHeadingComponent from '../ListHeadings';
 import ListItemsComponent from '../ListItems';
 
+const mockHandleAddItem = jest.fn();
+const mockHandleChange = jest.fn();
+const mockHandleSubmit = jest.fn();
+const mockItems = [
+    {
+        rowId: '001-002',
+        columns: [
+            {
+                columnName: 'Name',
+                columnValue: 'Value1'
+            },
+            {
+                columnName: 'Desc',
+                columnValue: 'Value2'
+            }
+        ]
+    }
+];
+
 const mockListData = {
+    _id: '12345678',
     headings: [
         {
             name: 'A',
@@ -21,11 +41,11 @@ const mockListData = {
     projects: [],
     items: [
         {
-            id: '001',
+            rowId: '001',
             columns: []
         },
         {
-            id: '002',
+            rowId: '002',
             columns: []
         }
     ]
@@ -33,17 +53,36 @@ const mockListData = {
 
 describe('List', () => {
     it('renders list correctly', () => {
-        const tree = renderer.create(<List list={mockListData} />).toJSON();
+        const tree = renderer.create(
+            <List
+                list={mockListData}
+                handleAddItem={mockHandleAddItem}
+                handleChange={mockHandleChange}
+                handleSubmit={mockHandleSubmit}
+                items={mockItems}
+            />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('renders ListHeadings component', () => {
-        const wrapper = shallow(<List list={mockListData} />);
+        const wrapper = shallow(<List
+            list={mockListData}
+            handleAddItem={mockHandleAddItem}
+            handleChange={mockHandleChange}
+            handleSubmit={mockHandleSubmit}
+            items={mockItems}
+        />);
         expect(wrapper.find(ListHeadingComponent)).toHaveLength(1);
     });
 
     it('renders ListItemsComponent component', () => {
-        const wrapper = shallow(<List list={mockListData} />);
+        const wrapper = shallow(<List
+            list={mockListData}
+            handleAddItem={mockHandleAddItem}
+            handleChange={mockHandleChange}
+            handleSubmit={mockHandleSubmit}
+            items={mockItems}
+        />);
         expect(wrapper.find(ListItemsComponent)).toHaveLength(1);
     });
 });

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { ManageList } from '../ManageList';
 
 const mockSingleList = {
-    _id: '001',
+    _id: '123',
     projects: [
         {
             id: 'abc123',
@@ -17,18 +17,40 @@ const mockSingleList = {
     listName: 'HumanBody',
     headings: [{ id: 1, name: 'a' }, { id: 2, name: 'b' }, { id: 3, name: 'c' }],
     items: [
-        { id: 1, name: 'hola', position: 1 },
-        { id: 2, name: 'buenos dias', position: 2 },
-        { id: 3, name: 'como estas', position: 3 }
-    ]
+        {
+            rowId: '123',
+            columns: [
+                {
+                    columnName: 'a',
+                    columnValue: 'hola'
+                },
+                {
+                    columnName: 'b',
+                    columnValue: 'buenos dias'
+                },
+                {
+                    columnName: 'c',
+                    columnValue: 'como estas'
+                }
+            ]
+        }
+    ],
+    createdDate: new Date()
 };
+const handleSubmitMock = jest.fn();
+const handleChangeMock = jest.fn();
+const addItemMock = jest.fn();
+const mockEvent = { preventDefault: jest.fn() };
 
 const props = {
     actions: {
         retrieveListById: jest.fn(() => (
-            Promise.resolve(mockSingleList)
+            Promise.resolve({ type: 'LIST_RETRIEVED', data: mockSingleList })
         )),
         addNotification: jest.fn(() => (
+            Promise.resolve()
+        )),
+        update: jest.fn(() => (
             Promise.resolve()
         ))
     },
@@ -41,9 +63,20 @@ describe('Manage Single List', () => {
     });
     describe('Retrieve a single list successful', () => {
         let wrapper;
-        const propsWithParamId = Object.assign({}, props, { match: { params: { id: '123' } } });
+        const propsWithParamId = Object.assign({}, props, {
+            lists: { data: mockSingleList },
+            match: { params: { id: '123' } }
+        });
         beforeEach(() => {
-            wrapper = shallow(<ManageList {...propsWithParamId} />);
+            wrapper = shallow(
+                <ManageList
+                    handleChange={handleChangeMock}
+                    handleSubmit={handleSubmitMock}
+                    handleAddItem={addItemMock}
+                    // list={mockSingleList}
+                    {...propsWithParamId}
+                />
+            );
         });
 
         it('calls componentDidMount', async () => {
@@ -57,6 +90,164 @@ describe('Manage Single List', () => {
             wrapper.instance().fetchListById(propsWithParamId.match.params.id);
             await expect(propsWithParamId.actions.retrieveListById).toHaveBeenCalledWith('123');
             await expect(props.actions.addNotification).toHaveBeenCalled();
+        });
+
+        it('sets the updated items when handleChange is called for updating items  - handleChange', async () => {
+            wrapper.setState({
+                items: [
+                    {
+                        rowId: '123',
+                        columns: [
+                            {
+                                columnName: 'Name',
+                                columnValue: 'Hola'
+                            }
+                        ]
+                    },
+                    {
+                        rowId: '124',
+                        columns: [
+                            {
+                                columnName: 'Name',
+                                columnValue: 'Como estas'
+                            }
+                        ]
+                    }
+                ]
+            });
+            const event = { target: { value: 'Hola Bella' } };
+
+            wrapper.instance().handleChange(event, { id: '124', name: 'Name' });
+            expect(wrapper.state().items).toEqual(
+                [
+                    {
+                        rowId: '123',
+                        columns: [
+                            {
+                                columnName: 'Name',
+                                columnValue: 'Hola'
+                            }
+                        ]
+                    },
+                    {
+                        rowId: '124',
+                        columns: [
+                            {
+                                columnName: 'Name',
+                                columnValue: 'Hola Bella'
+                            }
+                        ]
+                    }
+                ]
+            );
+        });
+
+        it('calls handleChange but does not update items state if no value is present  - handleChange', async () => {
+            const event = { target: { value: 'Change me ...' } };
+
+            wrapper.instance().handleChange(event, { id: '124', name: 'Name' });
+            expect(wrapper.state().items).toEqual([]);
+        });
+
+        it('calls updateList action with correct data when handleSubmit is called - handleSubmit', async () => {
+            wrapper.setState({
+                headings: [{ id: '9999', name: 'Name' }],
+                projects: [{ id: '123', name: 'language' }],
+                items: [{
+                    rowId: '001',
+                    columns: [
+                        {
+                            columnName: 'Name',
+                            columnValue: 'Test'
+                        }
+                    ]
+                }],
+                listName: 'Languages'
+            });
+            await wrapper.instance().handleSubmit(mockEvent);
+
+            await expect(props.actions.update).toHaveBeenCalledWith({
+                _id: '123',
+                createdDate: expect.any(Date),
+                updatedDate: expect.any(Date),
+                headings: [{ id: '9999', name: 'Name' }],
+                projects: [{ id: '123', name: 'language' }],
+                items: [{
+                    rowId: '001',
+                    columns: [
+                        {
+                            columnName: 'Name',
+                            columnValue: 'Test'
+                        }
+                    ]
+                }],
+                listName: 'Languages'
+            });
+            await expect(props.actions.addNotification).toHaveBeenCalled();
+        });
+
+        it('calls addItem when add new row item button is clicked', async () => {
+            wrapper.setState({
+                items: [
+                    {
+                        rowId: '123',
+                        columns: [
+                            {
+                                columnName: 'a',
+                                columnValue: 'Hola'
+                            },
+                            {
+                                columnName: 'b',
+                                columnValue: 'buenos dias'
+                            },
+                            {
+                                columnName: 'c',
+                                columnValue: 'Como estas'
+                            }
+                        ]
+                    }
+                ]
+            });
+
+            await wrapper.instance().addItem();
+            expect(wrapper.state().items).toEqual(
+                [
+                    {
+                        rowId: '123',
+                        columns: [
+                            {
+                                columnName: 'a',
+                                columnValue: 'Hola'
+                            },
+                            {
+                                columnName: 'b',
+                                columnValue: 'buenos dias'
+                            },
+                            {
+                                columnName: 'c',
+                                columnValue: 'Como estas'
+                            }
+                        ]
+                    },
+                    {
+                        rowId: expect.any(String),
+                        columns: [
+                            {
+                                columnName: 'a',
+                                columnValue: 'PLACEHOLDER'
+                            },
+                            {
+                                columnName: 'b',
+                                columnValue: 'PLACEHOLDER'
+                            },
+                            {
+                                columnName: 'c',
+                                columnValue: 'PLACEHOLDER'
+                            }
+                        ]
+                    }
+                ]
+            );
         });
     });
 
@@ -82,8 +273,9 @@ describe('Manage Single List', () => {
         });
 
         it('fails to call fetchListById when no params are provided', async () => {
-            wrapper.instance().componentDidMount();
-
+            const componentDidMountSpy = jest.spyOn(ManageList.prototype, 'componentDidMount');
+            await wrapper.instance().componentDidMount();
+            expect(componentDidMountSpy).toHaveBeenCalled();
             expect(props.match.params).toBe(undefined);
             await expect(props.actions.retrieveListById).not.toHaveBeenCalled();
             await expect(props.actions.addNotification).not.toHaveBeenCalled();

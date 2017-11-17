@@ -20,13 +20,11 @@ const mockTestList = {
     updatedDate: '2016-05-18T16:00:00Z',
     headings: [
         {
-            position: 1,
-            id: '1',
+            _id: '1',
             name: 'Name'
         },
         {
-            position: 2,
-            id: '2',
+            _id: '2',
             name: 'Created'
         }
     ],
@@ -64,13 +62,13 @@ describe('View List', () => {
 
     it('calls componentDidMount', () => {
         const componentDidMountSpy = jest.spyOn(View.prototype, 'componentDidMount');
-        const wrapper = mount(<View />);
+        const wrapper = mount(<View listID={123} />);
         wrapper.instance().componentDidMount();
         expect(componentDidMountSpy).toHaveBeenCalled();
     });
 
     it('fetch a view', async () => {
-        const wrapper = mount(<View />);
+        const wrapper = mount(<View listID={123} />);
         expect(wrapper.state().list).toEqual({ headings: [], items: [] });
         await fetch('/foo/1/bar')
             .then((res) => res.json())
@@ -78,7 +76,7 @@ describe('View List', () => {
     });
 
     it('renders an ItemRow correctly for a list', async () => {
-        const ViewComponent = shallow(<View />);
+        const ViewComponent = shallow(<View listID={123} />);
         ViewComponent.setState({ list: mockTestList });
         expect(ViewComponent.find(ItemRow).length).toEqual(2);
     });

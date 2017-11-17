@@ -8,28 +8,76 @@ exports[`ListHeadings renders headings correctly 1`] = `
     className=""
   >
     <td
-      className=""
+      className="six wide"
     >
-      Hola
+      <div
+        className="ui fluid input"
+      >
+        <input
+          disabled={undefined}
+          id="001"
+          name="Spanish"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="text"
+          value="Hola"
+        />
+      </div>
     </td>
     <td
-      className=""
+      className="six wide"
     >
-      Hello
+      <div
+        className="ui fluid input"
+      >
+        <input
+          disabled={undefined}
+          id="001"
+          name="English"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="text"
+          value="Hello"
+        />
+      </div>
     </td>
   </tr>
   <tr
     className=""
   >
     <td
-      className=""
+      className="six wide"
     >
-      Adios
+      <div
+        className="ui fluid input"
+      >
+        <input
+          disabled={undefined}
+          id="002"
+          name="Spanish"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="text"
+          value="Adios"
+        />
+      </div>
     </td>
     <td
-      className=""
+      className="six wide"
     >
-      Bye
+      <div
+        className="ui fluid input"
+      >
+        <input
+          disabled={undefined}
+          id="002"
+          name="English"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="text"
+          value="Bye"
+        />
+      </div>
     </td>
   </tr>
 </tbody>

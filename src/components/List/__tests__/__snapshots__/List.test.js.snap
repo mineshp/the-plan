@@ -33,11 +33,85 @@ exports[`List renders list correctly 1`] = `
       >
         <tr
           className=""
-        />
+        >
+          <td
+            className="six wide"
+          >
+            <div
+              className="ui fluid input"
+            >
+              <input
+                disabled={undefined}
+                id="001-002"
+                name="Name"
+                onChange={[Function]}
+                tabIndex={undefined}
+                type="text"
+                value="Value1"
+              />
+            </div>
+          </td>
+          <td
+            className="six wide"
+          >
+            <div
+              className="ui fluid input"
+            >
+              <input
+                disabled={undefined}
+                id="001-002"
+                name="Desc"
+                onChange={[Function]}
+                tabIndex={undefined}
+                type="text"
+                value="Value2"
+              />
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot
+        className="full-width"
+      >
         <tr
           className=""
-        />
-      </tbody>
+        >
+          <th
+            className=""
+          >
+            <button
+              className="ui small icon left floated left labeled button"
+              disabled={undefined}
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="plus icon"
+              />
+               Add Item
+            </button>
+          </th>
+          <th
+            className=""
+          >
+            <button
+              className="ui teal small icon right floated left labeled button"
+              disabled={undefined}
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="save icon"
+              />
+               Save
+            </button>
+          </th>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>

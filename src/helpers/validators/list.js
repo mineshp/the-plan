@@ -47,13 +47,13 @@ const listSetupIsComplete = (stateData, propsData) => {
     return false;
 };
 
-const buildListData = (originalObject, { listName, headings, projects }) => (
+const buildListData = (originalObject, { listName, headings, projects, items }) => (
     Object.assign({}, {
         _id: originalObject._id, // eslint-disable-line no-underscore-dangle
         listName: listName || originalObject.listName,
         headings: getHeadings(headings, originalObject.headings),
         projects: getProjects(projects, originalObject.projects),
-        items: originalObject.items,
+        items: items || originalObject.items,
         updatedDate: new Date(),
         createdDate: originalObject.createdDate
     })
