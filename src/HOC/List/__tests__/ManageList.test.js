@@ -249,6 +249,33 @@ describe('Manage Single List', () => {
                 ]
             );
         });
+
+        it('calls handleDelete when delete item row item button is clicked', async () => {
+            wrapper.setState({
+                items: [
+                    {
+                        rowId: '123',
+                        columns: [
+                            {
+                                columnName: 'a',
+                                columnValue: 'Hola'
+                            },
+                            {
+                                columnName: 'b',
+                                columnValue: 'buenos dias'
+                            },
+                            {
+                                columnName: 'c',
+                                columnValue: 'Como estas'
+                            }
+                        ]
+                    }
+                ]
+            });
+
+            await wrapper.instance().handleDelete(mockEvent, { id: '123' });
+            expect(wrapper.state().items).toEqual([]);
+        });
     });
 
     describe('Retrieve a single list fails', () => {

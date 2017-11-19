@@ -8,6 +8,7 @@ import ListItemsComponent from '../ListItems';
 const mockHandleAddItem = jest.fn();
 const mockHandleChange = jest.fn();
 const mockHandleSubmit = jest.fn();
+const mockHandleDelete = jest.fn();
 const mockItems = [
     {
         rowId: '001-002',
@@ -59,6 +60,7 @@ describe('List', () => {
                 handleAddItem={mockHandleAddItem}
                 handleChange={mockHandleChange}
                 handleSubmit={mockHandleSubmit}
+                handleDelete={mockHandleDelete}
                 items={mockItems}
             />).toJSON();
         expect(tree).toMatchSnapshot();
@@ -70,6 +72,7 @@ describe('List', () => {
             handleAddItem={mockHandleAddItem}
             handleChange={mockHandleChange}
             handleSubmit={mockHandleSubmit}
+            handleDelete={mockHandleDelete}
             items={mockItems}
         />);
         expect(wrapper.find(ListHeadingComponent)).toHaveLength(1);
@@ -81,6 +84,7 @@ describe('List', () => {
             handleAddItem={mockHandleAddItem}
             handleChange={mockHandleChange}
             handleSubmit={mockHandleSubmit}
+            handleDelete={mockHandleDelete}
             items={mockItems}
         />);
         expect(wrapper.find(ListItemsComponent)).toHaveLength(1);

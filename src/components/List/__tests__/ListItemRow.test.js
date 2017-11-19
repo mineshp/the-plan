@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import ListItems from '../ListItems';
 
 const mockhandleChange = jest.fn();
-
+const mockHandleDelete = jest.fn();
 const mockItems = [
     {
         rowId: '0001',
@@ -35,7 +35,7 @@ const mockItems = [
 
 describe('ListItems', () => {
     it('renders list items correctly', () => {
-        const tree = renderer.create(<ListItems items={mockItems} handleChange={mockhandleChange} />).toJSON();
+        const tree = renderer.create(<ListItems items={mockItems} handleChange={mockhandleChange} handleDelete={mockHandleDelete} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

@@ -6,13 +6,13 @@ exports.getAllLists = function(req,res) {
 	});
 };
 
-exports.getListById = function (req, res) {
+exports.getListById = function(req, res) {
     List.findOne({ _id: req.params.id }, function (err, collection) {
 		res.send(collection);
 	});
 };
 
-exports.createNewList = function (req, res) {
+exports.createNewList = function(req, res) {
 	List.find({ listName: req.body.listName }, function (err, collection) {
 		if (collection.length === 0) {
 			const newList = new List(req.body);
@@ -37,7 +37,7 @@ exports.createNewList = function (req, res) {
 	});
 };
 
-exports.updateList = function (req, res) {
+exports.updateList = function(req, res) {
 	const data = req.body;
 	List.update({ _id: req.params.id }, data, function (err, result) {
 		if (err) {
@@ -55,7 +55,7 @@ exports.updateList = function (req, res) {
 	});
 };
 
-exports.delete = function (req, res) {
+exports.delete = function(req, res) {
 	const id = req.params.id;
 	List.findOne({ _id: id }, function (err, collection) {
 		if (err) {
@@ -63,6 +63,28 @@ exports.delete = function (req, res) {
 			res.json(
 				{
 					message: `Error: Unable to delete list with id ${id} not found with error ${err}.`
+				}
+			);
+		} else {
+			List.remove({ '_id': id }, function (err, result) {
+				const data = Object.assign({}, result, {
+					listName: collection.listName
+				});
+				return res.send(data);
+			});
+		}
+	});
+};
+
+exports.deleteItem = function(req, res) {
+	const listId = req.params.listId;
+	const itemId = req.params.itemId;
+	List.findOne({ _id: listId }, function (err, collection) {
+		if (err) {
+			res.status(400);
+			res.json(
+				{
+					message: `Error: Unable to delete list item with item id ${itemId}, error ${err}.`
 				}
 			);
 		}

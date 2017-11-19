@@ -4,7 +4,7 @@ import { Button, Container, Icon, Table } from 'semantic-ui-react';
 import ListHeadings from './ListHeadings';
 import ListItems from './ListItems';
 
-const List = ({ handleAddItem, handleChange, handleSubmit, items, list }) => (
+const List = ({ handleAddItem, handleChange, handleDelete, handleSubmit, items, list }) => (
     <div className="List main">
         <Container>
             <Table celled striped>
@@ -12,6 +12,7 @@ const List = ({ handleAddItem, handleChange, handleSubmit, items, list }) => (
                 <ListItems
                     items={items}
                     handleChange={handleChange}
+                    handleDelete={handleDelete}
                 />
                 <Table.Footer fullWidth>
                     <Table.Row>
@@ -46,6 +47,7 @@ List.propTypes = {
     ).isRequired,
     handleAddItem: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired
 };
 

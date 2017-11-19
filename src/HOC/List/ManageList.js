@@ -16,6 +16,7 @@ class ManageList extends Component {
         this.addItem = this.addItem.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
 
         this.state = {
             items: []
@@ -79,6 +80,18 @@ class ManageList extends Component {
         });
     }
 
+    async handleDelete(event, data) {
+        event.preventDefault();
+        const rowToReplaceIndex = this.state.items.findIndex((row) => row.rowId === data.id);
+        const itemsClone = Object.assign([], this.state.items);
+        itemsClone.splice(rowToReplaceIndex, 1);
+        // Ensure we wait and setState before calling updateList
+        await this.setState({
+            items: itemsClone
+        });
+        this.updateList();
+    }
+
     handleSubmit(event) {
         event.preventDefault();
         this.updateList();
@@ -99,11 +112,12 @@ class ManageList extends Component {
             !lists
                 ? <p>Loading Data...</p>
                 : <List
-                    list={lists}
+                    list={lists.data} // TODO: Why is it lists.data and not lists, check actions/reducers
                     items={this.state.items}
                     handleAddItem={this.addItem}
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
+                    handleDelete={this.handleDelete}
                 />
         );
     }

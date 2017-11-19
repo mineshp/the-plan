@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Table } from 'semantic-ui-react';
+import { Button, Input, Table } from 'semantic-ui-react';
 
-const ListItemRow = ({ handleChange, itemRow }) => {
+const ListItemRow = ({ handleChange, handleDelete, itemRow }) => {
     const row = [];
     itemRow.columns.map((column) => {
         const itemInputKey = `${itemRow.rowId}-${column.columnName}`;
@@ -19,6 +19,18 @@ const ListItemRow = ({ handleChange, itemRow }) => {
         );
     });
 
+    const deleteRowBtnKey = `${itemRow.rowId}-deleteRow`;
+    row.push(
+        <Table.Cell key={deleteRowBtnKey} width="6">
+            <Button
+                icon="trash"
+                color="red"
+                id={itemRow.rowId}
+                onClick={handleDelete}
+            />
+        </Table.Cell>
+    );
+
     return (
         <Table.Row>
             {row}
@@ -28,7 +40,8 @@ const ListItemRow = ({ handleChange, itemRow }) => {
 
 ListItemRow.propTypes = {
     itemRow: PropTypes.shape({}).isRequired,
-    handleChange: PropTypes.func.isRequired
+    handleChange: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func.isRequired
 };
 
 export default ListItemRow;

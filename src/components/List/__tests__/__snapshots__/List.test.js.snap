@@ -68,6 +68,23 @@ exports[`List renders list correctly 1`] = `
               />
             </div>
           </td>
+          <td
+            className="six wide"
+          >
+            <button
+              className="ui red icon button"
+              disabled={undefined}
+              id="001-002"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="trash icon"
+              />
+            </button>
+          </td>
         </tr>
       </tbody>
       <tfoot

@@ -41,6 +41,23 @@ exports[`ListItems renders list items correctly 1`] = `
         />
       </div>
     </td>
+    <td
+      className="six wide"
+    >
+      <button
+        className="ui red icon button"
+        disabled={undefined}
+        id="0001"
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="trash icon"
+        />
+      </button>
+    </td>
   </tr>
   <tr
     className=""
@@ -78,6 +95,23 @@ exports[`ListItems renders list items correctly 1`] = `
           value="1 Pint of Milk"
         />
       </div>
+    </td>
+    <td
+      className="six wide"
+    >
+      <button
+        className="ui red icon button"
+        disabled={undefined}
+        id="0002"
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="trash icon"
+        />
+      </button>
     </td>
   </tr>
 </tbody>
