@@ -8,6 +8,8 @@ const ListItems = ({ headings }) => {
         columnHeadings.push(<Table.HeaderCell key={heading.id}>{heading.name}</Table.HeaderCell>)
     ));
 
+    columnHeadings.push(<Table.HeaderCell key={'actions'} />);
+
     return (
         <Table.Header>
             <Table.Row key={123}>

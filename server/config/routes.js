@@ -11,7 +11,6 @@ module.exports = function (app) {
 	app.post('/list/update/:id', list.updateList);
 	app.post('/list/update', list.createNewList);
 	app.delete('/list/delete/:id', list.delete);
-	app.delete('/list/:listId/item/:itemId', list.deleteItem);
 
 	app.get('/project/all', project.getAllProjects);
 	app.post('/project/update/:id', project.updateProject);

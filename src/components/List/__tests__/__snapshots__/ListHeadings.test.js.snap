@@ -17,6 +17,9 @@ exports[`ListHeadings renders headings correctly 1`] = `
     >
       B
     </th>
+    <th
+      className=""
+    />
   </tr>
 </thead>
 `;

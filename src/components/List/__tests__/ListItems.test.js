@@ -39,7 +39,12 @@ const mockItems = [
 
 describe('ListHeadings', () => {
     it('renders headings correctly', () => {
-        const tree = renderer.create(<ListItems items={mockItems} handleChange={mockHandleChange} handleDelete={mockHandleDelete} />).toJSON();
+        const tree = renderer.create(
+            <ListItems
+                items={mockItems}
+                handleChange={mockHandleChange}
+                handleDelete={mockHandleDelete}
+            />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

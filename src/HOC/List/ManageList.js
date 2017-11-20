@@ -8,7 +8,6 @@ import { addNotification } from '../../actions/notification';
 import List from '../../components/List/List';
 import { buildListData } from '../../helpers/validators/list';
 
-
 class ManageList extends Component {
     constructor(props) {
         super(props);
@@ -49,7 +48,7 @@ class ManageList extends Component {
         this.props.lists.data.headings.map((heading) => (
             columns.push({
                 columnName: heading.name,
-                columnValue: 'PLACEHOLDER'
+                columnValue: 'edit'
             })
         ));
 

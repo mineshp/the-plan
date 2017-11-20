@@ -76,25 +76,3 @@ exports.delete = function(req, res) {
 	});
 };
 
-exports.deleteItem = function(req, res) {
-	const listId = req.params.listId;
-	const itemId = req.params.itemId;
-	List.findOne({ _id: listId }, function (err, collection) {
-		if (err) {
-			res.status(400);
-			res.json(
-				{
-					message: `Error: Unable to delete list item with item id ${itemId}, error ${err}.`
-				}
-			);
-		}
-		else {
-			List.remove({ '_id': id }, function (err, result) {
-				const data = Object.assign({}, result, {
-					listName: collection.listName
-				});
-				return res.send(data);
-			});
-		}
-	});
-};

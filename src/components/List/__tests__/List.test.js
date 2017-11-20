@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import List from '../List';
 import ListHeadingComponent from '../ListHeadings';
 import ListItemsComponent from '../ListItems';
+import ListFooterComponent from '../ListFooter';
 
 const mockHandleAddItem = jest.fn();
 const mockHandleChange = jest.fn();
@@ -88,5 +89,17 @@ describe('List', () => {
             items={mockItems}
         />);
         expect(wrapper.find(ListItemsComponent)).toHaveLength(1);
+    });
+
+    it('renders ListFooterComponent component', () => {
+        const wrapper = shallow(<List
+            list={mockListData}
+            handleAddItem={mockHandleAddItem}
+            handleChange={mockHandleChange}
+            handleSubmit={mockHandleSubmit}
+            handleDelete={mockHandleDelete}
+            items={mockItems}
+        />);
+        expect(wrapper.find(ListFooterComponent)).toHaveLength(1);
     });
 });
