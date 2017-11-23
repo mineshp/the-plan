@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { ManageListSummary } from '../ManageListSummary';
 import ListsComponent from '../../../components/ListsSummary/ListsSummary';
+import LoadingComponent from '../../../components/Shared/Loading';
 
 const mockListAll = [
     {
@@ -40,21 +41,26 @@ const props = {
             Promise.resolve()
         )),
         retrieveSummaryLists: jest.fn(() => (
-            Promise.resolve(mockListAll)
+            Promise.resolve({ data: mockListAll })
         )),
         addNotification: jest.fn(() => (
             Promise.resolve()
         ))
     },
-    lists: {},
     notification: null
 };
 
 describe('Manage Lists', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
     describe('Get all lists success', () => {
         let wrapper;
+        const propsWithListData = Object.assign({}, props, {
+            lists: { data: mockListAll }
+        });
         beforeEach(() => {
-            wrapper = shallow(<ManageListSummary {...props} />);
+            wrapper = shallow(<ManageListSummary {...propsWithListData} />);
         });
 
         it('calls componentDidMount', async () => {
@@ -65,19 +71,33 @@ describe('Manage Lists', () => {
 
         it('calls the retrieveLists action when the fetchLists function is invoked', async () => {
             wrapper.instance().fetchLists();
-            await expect(props.actions.retrieveSummaryLists).toHaveBeenCalledWith();
-            await expect(props.actions.addNotification).toHaveBeenCalled();
+            await expect(propsWithListData.actions.retrieveSummaryLists).toHaveBeenCalledWith();
+            await expect(propsWithListData.actions.addNotification).toHaveBeenCalled();
         });
 
-        it('renders a Lists component', async () => {
-            const ManageListComponent = shallow(<ManageListSummary />);
-            expect(ManageListComponent.find(ListsComponent).length).toEqual(1);
+        it('renders a Lists component', () => {
+            expect(wrapper.find(ListsComponent).length).toEqual(1);
         });
 
         it('builds an array of ProjectCards', async () => {
-            const propsAfterFetchAllLists = Object.assign({}, props, { lists: { data: mockListAll } });
-            const ManageListComponent = shallow(<ManageListSummary {...propsAfterFetchAllLists} />);
+            const ManageListComponent = shallow(<ManageListSummary {...propsWithListData} />);
             await expect(ManageListComponent.props().rows.length).toEqual(2);
+        });
+    });
+
+    describe('Get all lists fails', () => {
+        it('sets an api error when the client is unable to connect to the api', async () => {
+            const apiError = {
+                error: {
+                    isError: true,
+                    message: 'Unable to retrieve a list summary, please try again later.'
+                }
+            };
+            const propsAfterFetchListSummaryError = Object.assign({}, props, { lists: { error: apiError } });
+            const ManageListComponent = shallow(<ManageListSummary {...propsAfterFetchListSummaryError} />);
+
+            expect(ManageListComponent.props().lists).toBe(undefined);
+            expect(ManageListComponent.find(LoadingComponent).length).toEqual(1);
         });
     });
 
@@ -125,7 +145,7 @@ describe('Manage Lists', () => {
             wrapper.instance().fetchLists();
 
             await expect(propsAfterSuccessfulDelete.actions.retrieveSummaryLists).toHaveBeenCalled();
-            await expect(propsAfterSuccessfulDelete.actions.retrieveSummaryLists).toHaveBeenCalledTimes(2);
+            await expect(propsAfterSuccessfulDelete.actions.retrieveSummaryLists).toHaveBeenCalledTimes(1);
             await expect(propsAfterSuccessfulDelete.actions.retrieveSummaryLists()).resolves.toEqual(mockListAll);
             await expect(propsAfterSuccessfulDelete.actions.addNotification).toHaveBeenCalled;
         });

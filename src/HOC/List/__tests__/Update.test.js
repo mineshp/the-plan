@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { UpdateList } from '../Update';
+import LoadingComponent from '../../../components/Shared/Loading';
 
 const mockList = {
     _id: '12345678',
@@ -502,7 +503,7 @@ describe('Update or Create List', () => {
         });
 
         it('shows loading data when no results exist', () => {
-            expect(updateListWithNoResultsWrapper.props().children).toBe('Loading Data...');
+            expect(updateListWithNoResultsWrapper.contains(<LoadingComponent />)).toBe(true);
         });
 
         it('shows loading data when no projectOptions exist', () => {
@@ -516,7 +517,7 @@ describe('Update or Create List', () => {
             const updateListWithNoProjectOptionsWrapper = shallow(<UpdateList
                 {...noProjectOptionsProps}
             />, { context });
-            expect(updateListWithNoProjectOptionsWrapper.props().children).toBe('Loading Data...');
+            expect(updateListWithNoProjectOptionsWrapper.contains(<LoadingComponent />)).toBe(true);
         });
     });
 });

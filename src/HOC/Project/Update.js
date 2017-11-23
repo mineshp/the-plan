@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { create, fetchSingleProject, update } from '../../actions/project';
 import { addNotification } from '../../actions/notification';
 import UpdateProjectComponent from '../../components/Project/UpdateProject';
+import LoadingComponent from '../../components/Shared/Loading';
 
 import './Project.css';
 
@@ -73,7 +74,7 @@ class UpdateProject extends Component {
     render() {
         return (
             !this.props.result
-                ? <p>Loading Data...</p>
+                ? <LoadingComponent />
                 : <UpdateProjectComponent
                     result={this.props.result}
                     handleChange={this.handleChange}

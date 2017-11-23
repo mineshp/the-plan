@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { UpdateProject } from '../Update';
+import LoadingComponent from '../../../components/Shared/Loading';
 
 const handleSubmitMock = jest.fn();
 const handleChangeMock = jest.fn();
@@ -202,6 +203,6 @@ describe('Render loading', () => {
     });
 
     it('shows loading data when no results exist', () => {
-        expect(updateProjectWithNoResultsWrapper.props().children).toBe('Loading Data...');
+        expect(updateProjectWithNoResultsWrapper.contains(<LoadingComponent />)).toBe(true);
     });
 });

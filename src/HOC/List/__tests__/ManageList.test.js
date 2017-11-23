@@ -234,15 +234,15 @@ describe('Manage Single List', () => {
                         columns: [
                             {
                                 columnName: 'a',
-                                columnValue: 'PLACEHOLDER'
+                                columnValue: 'edit'
                             },
                             {
                                 columnName: 'b',
-                                columnValue: 'PLACEHOLDER'
+                                columnValue: 'edit'
                             },
                             {
                                 columnName: 'c',
-                                columnValue: 'PLACEHOLDER'
+                                columnValue: 'edit'
                             }
                         ]
                     }
@@ -296,7 +296,8 @@ describe('Manage Single List', () => {
     describe('Api call to retrieve list is not made if no params are sent', () => {
         let wrapper;
         beforeEach(() => {
-            wrapper = shallow(<ManageList {...props} />);
+            const noListDataProps = Object.assign({}, props, { lists: {} });
+            wrapper = shallow(<ManageList {...noListDataProps} />);
         });
 
         it('fails to call fetchListById when no params are provided', async () => {

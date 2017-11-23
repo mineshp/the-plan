@@ -6,6 +6,7 @@ import { deleteList, retrieveSummaryLists } from '../../actions/list';
 import { addNotification } from '../../actions/notification';
 import ListsSummaryRow from '../../components/ListsSummary/ListRow';
 import ListsSummaryComponent from '../../components/ListsSummary/ListsSummary';
+import LoadingComponent from '../../components/Shared/Loading';
 
 class ManageListSummary extends Component {
     constructor(props) {
@@ -43,9 +44,11 @@ class ManageListSummary extends Component {
         }
 
         return (
-            <ListsSummaryComponent
-                rows={ListRow}
-            />
+            !lists.data
+                ? <LoadingComponent />
+                : <ListsSummaryComponent
+                    rows={ListRow}
+                />
         );
     }
 }

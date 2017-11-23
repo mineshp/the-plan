@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListHeadings renders footer correctly 1`] = `
+<tfoot
+  className="full-width"
+>
+  <tr
+    className=""
+  >
+    <th
+      className=""
+      colSpan={3}
+    >
+      <button
+        className="ui small icon left floated left labeled button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="plus icon"
+        />
+         Add Item
+      </button>
+      <button
+        className="ui teal small icon right floated left labeled button"
+        disabled={undefined}
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="save icon"
+        />
+         Save
+      </button>
+    </th>
+  </tr>
+</tfoot>
+`;

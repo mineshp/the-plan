@@ -7,6 +7,8 @@ import { retrieveListById, update } from '../../actions/list';
 import { addNotification } from '../../actions/notification';
 import List from '../../components/List/List';
 import { buildListData } from '../../helpers/validators/list';
+import LoadingComponent from '../../components/Shared/Loading';
+
 
 class ManageList extends Component {
     constructor(props) {
@@ -108,8 +110,8 @@ class ManageList extends Component {
     render() {
         const { lists } = this.props;
         return (
-            !lists
-                ? <p>Loading Data...</p>
+            !lists.data
+                ? <LoadingComponent />
                 : <List
                     list={lists.data} // TODO: Why is it lists.data and not lists, check actions/reducers
                     items={this.state.items}

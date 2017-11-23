@@ -8,6 +8,7 @@ import { listProjects } from '../../actions/project';
 import { addNotification } from '../../actions/notification';
 import UpdateListComponent from '../../components/List/UpdateList';
 import { buildListData, listSetupIsComplete, validateHeadings } from '../../helpers/validators/list';
+import LoadingComponent from '../../components/Shared/Loading';
 
 class UpdateList extends Component {
     constructor(props, context) {
@@ -141,12 +142,13 @@ class UpdateList extends Component {
     }
 
     render() {
+        const { projectOptions, result } = this.props;
         return (
-            (!this.props.result || this.props.projectOptions.length === 0)
-                ? <p>Loading Data...</p>
+            (!result || projectOptions.length === 0)
+                ? <LoadingComponent />
                 : <UpdateListComponent
-                    result={this.props.result}
-                    projectOptions={this.props.projectOptions}
+                    result={result}
+                    projectOptions={projectOptions}
                     handleSubmit={this.handleSubmit}
                     handleChange={this.handleChange}
                     handleDropDownSelection={this.handleDropDownSelection}
