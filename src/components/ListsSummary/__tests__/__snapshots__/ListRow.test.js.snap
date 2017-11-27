@@ -7,7 +7,7 @@ exports[`ListRow renders correctly 1`] = `
   <td
     className=""
   >
-    My Awesome List
+    Avengers - Age of Ultron
   </td>
   <td
     className=""
@@ -26,7 +26,7 @@ exports[`ListRow renders correctly 1`] = `
         aria-hidden="true"
         className="empty star icon"
       />
-      ABC
+      Thor
     </a>
     <a
       className="ui red label"
@@ -36,7 +36,7 @@ exports[`ListRow renders correctly 1`] = `
         aria-hidden="true"
         className="empty star icon"
       />
-      XYZ
+      Loki
     </a>
   </td>
   <td

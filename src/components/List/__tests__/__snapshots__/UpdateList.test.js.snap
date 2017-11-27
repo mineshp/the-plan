@@ -30,7 +30,7 @@ exports[`Create New List renders create new list form correctly 1`] = `
               className="ui input text-box-single-col-max"
             >
               <input
-                defaultValue="New List"
+                defaultValue="New Avengers"
                 disabled={undefined}
                 onChange={[Function]}
                 placeholder="List Name..."
@@ -174,10 +174,10 @@ exports[`Create New List renders create new list form correctly 1`] = `
                 className="ui input"
               >
                 <input
-                  defaultValue="Spanish"
+                  defaultValue="A"
                   disabled={undefined}
-                  id="1"
-                  name="Spanish"
+                  id="000001"
+                  name="A"
                   onChange={[Function]}
                   placeholder="Header Name..."
                   tabIndex={undefined}
@@ -197,8 +197,8 @@ exports[`Create New List renders create new list form correctly 1`] = `
               >
                 <input
                   disabled={undefined}
-                  id="1"
-                  name={1}
+                  id="000001"
+                  name={undefined}
                   onChange={[Function]}
                   placeholder="Position..."
                   tabIndex={undefined}
@@ -213,7 +213,7 @@ exports[`Create New List renders create new list form correctly 1`] = `
             <button
               className="ui pink icon left labeled button"
               disabled={undefined}
-              id="1"
+              id="000001"
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
@@ -240,10 +240,10 @@ exports[`Create New List renders create new list form correctly 1`] = `
                 className="ui input"
               >
                 <input
-                  defaultValue="English"
+                  defaultValue="B"
                   disabled={undefined}
-                  id="2"
-                  name="English"
+                  id="000002"
+                  name="B"
                   onChange={[Function]}
                   placeholder="Header Name..."
                   tabIndex={undefined}
@@ -263,8 +263,8 @@ exports[`Create New List renders create new list form correctly 1`] = `
               >
                 <input
                   disabled={undefined}
-                  id="2"
-                  name={2}
+                  id="000002"
+                  name={undefined}
                   onChange={[Function]}
                   placeholder="Position..."
                   tabIndex={undefined}
@@ -279,7 +279,7 @@ exports[`Create New List renders create new list form correctly 1`] = `
             <button
               className="ui pink icon left labeled button"
               disabled={undefined}
-              id="2"
+              id="000002"
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
@@ -360,7 +360,7 @@ exports[`Update List renders existing list form correctly when no projects have 
               className="ui input text-box-single-col-max"
             >
               <input
-                defaultValue="Existing List"
+                defaultValue="Original Avengers"
                 disabled={undefined}
                 onChange={[Function]}
                 placeholder="List Name..."
@@ -504,10 +504,10 @@ exports[`Update List renders existing list form correctly when no projects have 
                 className="ui input"
               >
                 <input
-                  defaultValue="Spanish"
+                  defaultValue="A"
                   disabled={undefined}
-                  id="1"
-                  name="Spanish"
+                  id="000001"
+                  name="A"
                   onChange={[Function]}
                   placeholder="Header Name..."
                   tabIndex={undefined}
@@ -527,8 +527,8 @@ exports[`Update List renders existing list form correctly when no projects have 
               >
                 <input
                   disabled={undefined}
-                  id="1"
-                  name={1}
+                  id="000001"
+                  name={undefined}
                   onChange={[Function]}
                   placeholder="Position..."
                   tabIndex={undefined}
@@ -543,7 +543,7 @@ exports[`Update List renders existing list form correctly when no projects have 
             <button
               className="ui pink icon left labeled button"
               disabled={undefined}
-              id="1"
+              id="000001"
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
@@ -570,10 +570,10 @@ exports[`Update List renders existing list form correctly when no projects have 
                 className="ui input"
               >
                 <input
-                  defaultValue="English"
+                  defaultValue="B"
                   disabled={undefined}
-                  id="2"
-                  name="English"
+                  id="000002"
+                  name="B"
                   onChange={[Function]}
                   placeholder="Header Name..."
                   tabIndex={undefined}
@@ -593,8 +593,8 @@ exports[`Update List renders existing list form correctly when no projects have 
               >
                 <input
                   disabled={undefined}
-                  id="2"
-                  name={2}
+                  id="000002"
+                  name={undefined}
                   onChange={[Function]}
                   placeholder="Position..."
                   tabIndex={undefined}
@@ -609,7 +609,7 @@ exports[`Update List renders existing list form correctly when no projects have 
             <button
               className="ui pink icon left labeled button"
               disabled={undefined}
-              id="2"
+              id="000002"
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
@@ -690,7 +690,7 @@ exports[`Update List renders existing list form correctly when projects have alr
               className="ui input text-box-single-col-max"
             >
               <input
-                defaultValue="Existing List"
+                defaultValue={undefined}
                 disabled={undefined}
                 onChange={[Function]}
                 placeholder="List Name..."
@@ -832,10 +832,10 @@ exports[`Update List renders existing list form correctly when projects have alr
                 className="ui input"
               >
                 <input
-                  defaultValue="Spanish"
+                  defaultValue="A"
                   disabled={undefined}
-                  id="1"
-                  name="Spanish"
+                  id="000001"
+                  name="A"
                   onChange={[Function]}
                   placeholder="Header Name..."
                   tabIndex={undefined}
@@ -855,8 +855,8 @@ exports[`Update List renders existing list form correctly when projects have alr
               >
                 <input
                   disabled={undefined}
-                  id="1"
-                  name={1}
+                  id="000001"
+                  name={undefined}
                   onChange={[Function]}
                   placeholder="Position..."
                   tabIndex={undefined}
@@ -871,7 +871,7 @@ exports[`Update List renders existing list form correctly when projects have alr
             <button
               className="ui pink icon left labeled button"
               disabled={undefined}
-              id="1"
+              id="000001"
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
@@ -898,10 +898,10 @@ exports[`Update List renders existing list form correctly when projects have alr
                 className="ui input"
               >
                 <input
-                  defaultValue="English"
+                  defaultValue="B"
                   disabled={undefined}
-                  id="2"
-                  name="English"
+                  id="000002"
+                  name="B"
                   onChange={[Function]}
                   placeholder="Header Name..."
                   tabIndex={undefined}
@@ -921,8 +921,8 @@ exports[`Update List renders existing list form correctly when projects have alr
               >
                 <input
                   disabled={undefined}
-                  id="2"
-                  name={2}
+                  id="000002"
+                  name={undefined}
                   onChange={[Function]}
                   placeholder="Position..."
                   tabIndex={undefined}
@@ -937,7 +937,7 @@ exports[`Update List renders existing list form correctly when projects have alr
             <button
               className="ui pink icon left labeled button"
               disabled={undefined}
-              id="2"
+              id="000002"
               onClick={[Function]}
               role="button"
               tabIndex={undefined}

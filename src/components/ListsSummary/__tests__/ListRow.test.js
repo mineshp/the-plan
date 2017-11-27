@@ -3,21 +3,10 @@ import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 import { Label } from 'semantic-ui-react';
 import ListRow from '../ListRow';
+import { mockListRowData } from '../../../helpers/test/testData/listData';
 
 const deleteList = jest.fn();
-
-const mockListRow = {
-    _id: '1234456',
-    listName: 'My Awesome List',
-    projects: [{
-        id: '1',
-        name: 'ABC'
-    },
-    {
-        id: '2',
-        name: 'XYZ'
-    }]
-};
+const mockListRow = mockListRowData();
 
 describe('ListRow', () => {
     const mockListRowID = mockListRow._id; // eslint-disable-line no-underscore-dangle

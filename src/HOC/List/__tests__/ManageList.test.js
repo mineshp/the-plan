@@ -1,42 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ManageList } from '../ManageList';
+import { mockSingleList } from '../../../helpers/test/testData/listData';
 
-const mockSingleList = {
-    _id: '123',
-    projects: [
-        {
-            id: 'abc123',
-            name: 'biology'
-        },
-        {
-            id: 'xyz123',
-            name: 'chemistry'
-        }
-    ],
-    listName: 'HumanBody',
-    headings: [{ id: 1, name: 'a' }, { id: 2, name: 'b' }, { id: 3, name: 'c' }],
-    items: [
-        {
-            rowId: '123',
-            columns: [
-                {
-                    columnName: 'a',
-                    columnValue: 'hola'
-                },
-                {
-                    columnName: 'b',
-                    columnValue: 'buenos dias'
-                },
-                {
-                    columnName: 'c',
-                    columnValue: 'como estas'
-                }
-            ]
-        }
-    ],
-    createdDate: new Date()
-};
 const handleSubmitMock = jest.fn();
 const handleChangeMock = jest.fn();
 const addItemMock = jest.fn();
@@ -45,7 +11,7 @@ const mockEvent = { preventDefault: jest.fn() };
 const props = {
     actions: {
         retrieveListById: jest.fn(() => (
-            Promise.resolve({ type: 'LIST_RETRIEVED', data: mockSingleList })
+            Promise.resolve({ type: 'LIST_RETRIEVED', data: mockSingleList() })
         )),
         addNotification: jest.fn(() => (
             Promise.resolve()
@@ -64,7 +30,7 @@ describe('Manage Single List', () => {
     describe('Retrieve a single list successful', () => {
         let wrapper;
         const propsWithParamId = Object.assign({}, props, {
-            lists: { data: mockSingleList },
+            lists: { data: mockSingleList() },
             match: { params: { id: '123' } }
         });
         beforeEach(() => {
@@ -73,7 +39,6 @@ describe('Manage Single List', () => {
                     handleChange={handleChangeMock}
                     handleSubmit={handleSubmitMock}
                     handleAddItem={addItemMock}
-                    // list={mockSingleList}
                     {...propsWithParamId}
                 />
             );
@@ -99,8 +64,8 @@ describe('Manage Single List', () => {
                         rowId: '123',
                         columns: [
                             {
-                                columnName: 'Name',
-                                columnValue: 'Hola'
+                                columnName: 'a',
+                                columnValue: 'Black Panther'
                             }
                         ]
                     },
@@ -108,24 +73,24 @@ describe('Manage Single List', () => {
                         rowId: '124',
                         columns: [
                             {
-                                columnName: 'Name',
-                                columnValue: 'Como estas'
+                                columnName: 'b',
+                                columnValue: 'Black Widow'
                             }
                         ]
                     }
                 ]
             });
-            const event = { target: { value: 'Hola Bella' } };
+            const event = { target: { value: 'Hawkeye' } };
 
-            wrapper.instance().handleChange(event, { id: '124', name: 'Name' });
+            wrapper.instance().handleChange(event, { id: '124', name: 'b' });
             expect(wrapper.state().items).toEqual(
                 [
                     {
                         rowId: '123',
                         columns: [
                             {
-                                columnName: 'Name',
-                                columnValue: 'Hola'
+                                columnName: 'a',
+                                columnValue: 'Black Panther'
                             }
                         ]
                     },
@@ -133,8 +98,8 @@ describe('Manage Single List', () => {
                         rowId: '124',
                         columns: [
                             {
-                                columnName: 'Name',
-                                columnValue: 'Hola Bella'
+                                columnName: 'b',
+                                columnValue: 'Hawkeye'
                             }
                         ]
                     }
@@ -145,24 +110,24 @@ describe('Manage Single List', () => {
         it('calls handleChange but does not update items state if no value is present  - handleChange', async () => {
             const event = { target: { value: 'Change me ...' } };
 
-            wrapper.instance().handleChange(event, { id: '124', name: 'Name' });
+            wrapper.instance().handleChange(event, { id: '124', name: 'b' });
             expect(wrapper.state().items).toEqual([]);
         });
 
         it('calls updateList action with correct data when handleSubmit is called - handleSubmit', async () => {
             wrapper.setState({
-                headings: [{ id: '9999', name: 'Name' }],
-                projects: [{ id: '123', name: 'language' }],
+                headings: [{ id: '1', name: 'Name' }],
+                projects: [{ id: '2', name: 'Avengers' }],
                 items: [{
                     rowId: '001',
                     columns: [
                         {
                             columnName: 'Name',
-                            columnValue: 'Test'
+                            columnValue: 'Antman'
                         }
                     ]
                 }],
-                listName: 'Languages'
+                listName: 'Superheroes'
             });
             await wrapper.instance().handleSubmit(mockEvent);
 
@@ -170,18 +135,18 @@ describe('Manage Single List', () => {
                 _id: '123',
                 createdDate: expect.any(Date),
                 updatedDate: expect.any(Date),
-                headings: [{ id: '9999', name: 'Name' }],
-                projects: [{ id: '123', name: 'language' }],
+                headings: [{ id: '1', name: 'Name' }],
+                projects: [{ id: '2', name: 'Avengers' }],
                 items: [{
                     rowId: '001',
                     columns: [
                         {
                             columnName: 'Name',
-                            columnValue: 'Test'
+                            columnValue: 'Antman'
                         }
                     ]
                 }],
-                listName: 'Languages'
+                listName: 'Superheroes'
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
         });
@@ -194,15 +159,15 @@ describe('Manage Single List', () => {
                         columns: [
                             {
                                 columnName: 'a',
-                                columnValue: 'Hola'
+                                columnValue: 'Thor'
                             },
                             {
                                 columnName: 'b',
-                                columnValue: 'buenos dias'
+                                columnValue: 'Captain America'
                             },
                             {
                                 columnName: 'c',
-                                columnValue: 'Como estas'
+                                columnValue: 'Iron Man'
                             }
                         ]
                     }
@@ -217,15 +182,15 @@ describe('Manage Single List', () => {
                         columns: [
                             {
                                 columnName: 'a',
-                                columnValue: 'Hola'
+                                columnValue: 'Thor'
                             },
                             {
                                 columnName: 'b',
-                                columnValue: 'buenos dias'
+                                columnValue: 'Captain America'
                             },
                             {
                                 columnName: 'c',
-                                columnValue: 'Como estas'
+                                columnValue: 'Iron Man'
                             }
                         ]
                     },
@@ -258,15 +223,15 @@ describe('Manage Single List', () => {
                         columns: [
                             {
                                 columnName: 'a',
-                                columnValue: 'Hola'
+                                columnValue: 'Thor'
                             },
                             {
                                 columnName: 'b',
-                                columnValue: 'buenos dias'
+                                columnValue: 'Captain America'
                             },
                             {
                                 columnName: 'c',
-                                columnValue: 'Como estas'
+                                columnValue: 'Iron Man'
                             }
                         ]
                     }

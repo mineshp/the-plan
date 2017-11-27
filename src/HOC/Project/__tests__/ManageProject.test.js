@@ -2,29 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { ManageProject } from '../ManageProject';
 import ListProjectsComponent from '../../../components/Project/ListProjects';
+import { mockListProjects } from '../../../helpers/test/testData/projectData';
+import mockEvent from '../../../helpers/test/testData';
 
-const mockListAllProjects = [
-    {
-        _id: '5992d50066a7043f2598e12d',
-        projectName: 'PROJECT 1',
-        colour: 'red',
-        createdDate: '2017-08-15T12:02:00.000Z'
-    },
-    {
-        _id: '59a08710e57cb1da97cd1477',
-        projectName: 'PROJECT 2',
-        colour: 'red',
-        __v: 0,
-        createdDate: '2017-08-25T20:22:40.994Z'
-    },
-    {
-        _id: '59a08bb6e57cb1da97cd1478',
-        projectName: 'PROJECT 3',
-        colour: 'grey',
-        __v: 0,
-        createdDate: '2017-08-25T20:42:30.159Z'
-    }
-];
+const mockListAllProjects = mockListProjects();
 
 const props = {
     actions: {
@@ -75,13 +56,6 @@ describe('Manage Projects', () => {
     });
 
     describe('handleDelete', () => {
-        const mockEvent = {
-            preventDefault: jest.fn(),
-            target: {
-                value: '123'
-            }
-        };
-
         const propsAfterSuccessfulDelete = Object.assign(
             {}, props, {
                 actions: {
@@ -108,7 +82,7 @@ describe('Manage Projects', () => {
         });
 
         it('calls the deleteProject action when the handleDelete event is invoked', async () => {
-            wrapper.instance().handleDelete(mockEvent);
+            wrapper.instance().handleDelete(mockEvent());
 
             await expect(propsAfterSuccessfulDelete.actions.deleteProject).toHaveBeenCalledWith('123');
             await expect(propsAfterSuccessfulDelete.actions.deleteProject()).resolves.toEqual({ type: 'PROJECT_DELETION_SUCCESS' });

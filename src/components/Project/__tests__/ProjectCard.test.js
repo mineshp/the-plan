@@ -1,16 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ProjectCard from '../ProjectCard';
+import { mockProjectData } from '../../../helpers/test/testData/projectData';
 
 const deleteHandler = jest.fn();
 
 describe('ProjectCard', () => {
     it('renders correctly', () => {
-        const project = {
-            _id: '12345',
-            color: 'blue',
-            projectName: 'test-project'
-        };
+        const project = mockProjectData();
 
         const tree = renderer.create(<ProjectCard
             data={project}

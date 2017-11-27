@@ -5,53 +5,14 @@ import List from '../List';
 import ListHeadingComponent from '../ListHeadings';
 import ListItemsComponent from '../ListItems';
 import ListFooterComponent from '../ListFooter';
+import { mockSingleList, mockItemsData } from '../../../helpers/test/testData/listData';
 
 const mockHandleAddItem = jest.fn();
 const mockHandleChange = jest.fn();
 const mockHandleSubmit = jest.fn();
 const mockHandleDelete = jest.fn();
-const mockItems = [
-    {
-        rowId: '001-002',
-        columns: [
-            {
-                columnName: 'Name',
-                columnValue: 'Value1'
-            },
-            {
-                columnName: 'Desc',
-                columnValue: 'Value2'
-            }
-        ]
-    }
-];
-
-const mockListData = {
-    _id: '12345678',
-    headings: [
-        {
-            name: 'A',
-            id: '000001',
-            position: 1
-        },
-        {
-            name: 'B',
-            id: '000002',
-            position: 2
-        }
-    ],
-    projects: [],
-    items: [
-        {
-            rowId: '001',
-            columns: []
-        },
-        {
-            rowId: '002',
-            columns: []
-        }
-    ]
-};
+const mockItems = mockItemsData();
+const mockListData = mockSingleList();
 
 describe('List', () => {
     it('renders list correctly', () => {

@@ -19,12 +19,17 @@ exports[`List renders list correctly 1`] = `
           <th
             className=""
           >
-            A
+            a
           </th>
           <th
             className=""
           >
-            B
+            b
+          </th>
+          <th
+            className=""
+          >
+            c
           </th>
           <th
             className=""
@@ -50,7 +55,7 @@ exports[`List renders list correctly 1`] = `
                 onChange={[Function]}
                 tabIndex={undefined}
                 type="text"
-                value="Value1"
+                value="Captain America"
               />
             </div>
           </td>
@@ -67,7 +72,7 @@ exports[`List renders list correctly 1`] = `
                 onChange={[Function]}
                 tabIndex={undefined}
                 type="text"
-                value="Value2"
+                value="The first avenger"
               />
             </div>
           </td>
@@ -98,7 +103,7 @@ exports[`List renders list correctly 1`] = `
         >
           <th
             className=""
-            colSpan={3}
+            colSpan={4}
           >
             <button
               className="ui small icon left floated left labeled button"

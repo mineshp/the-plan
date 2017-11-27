@@ -1,17 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import HeadingInput from '../HeadingInput';
+import { mockHeadingsData } from '../../../helpers/test/testData/listData';
 
-const mockHeadings = [
-    {
-        name: 'A',
-        id: '000001'
-    },
-    {
-        name: 'B',
-        id: '000002'
-    }
-];
+const mockHeadings = mockHeadingsData();
 
 const mockHandleAddColumn = jest.fn();
 const mockHandleRemoveColumn = jest.fn();

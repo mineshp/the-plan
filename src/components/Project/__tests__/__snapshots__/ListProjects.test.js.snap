@@ -11,7 +11,7 @@ exports[`List Projects renders projects correctly 1`] = `
       className="ui three cards"
     >
       <div
-        className="ui card"
+        className="ui blue card"
         href={undefined}
         onClick={[Function]}
       >
@@ -21,7 +21,7 @@ exports[`List Projects renders projects correctly 1`] = `
           <div
             className="header"
           >
-            test
+            Avengers
           </div>
         </div>
         <div
@@ -89,7 +89,7 @@ exports[`List Projects renders successfully after error creating new project 1`]
       className="ui three cards"
     >
       <div
-        className="ui card"
+        className="ui blue card"
         href={undefined}
         onClick={[Function]}
       >
@@ -99,7 +99,7 @@ exports[`List Projects renders successfully after error creating new project 1`]
           <div
             className="header"
           >
-            test
+            Avengers
           </div>
         </div>
         <div
@@ -167,7 +167,7 @@ exports[`List Projects renders successfully after successful creation of project
       className="ui three cards"
     >
       <div
-        className="ui card"
+        className="ui blue card"
         href={undefined}
         onClick={[Function]}
       >
@@ -177,7 +177,7 @@ exports[`List Projects renders successfully after successful creation of project
           <div
             className="header"
           >
-            test
+            Avengers
           </div>
         </div>
         <div

@@ -35,7 +35,6 @@ const context = {
         }
     }
 };
-
 const mockEvent = { preventDefault: jest.fn() };
 
 describe('Create new project', () => {
@@ -69,19 +68,19 @@ describe('Create new project', () => {
     it('sets the projectName when the handleChange event is invoked', () => {
         const event = {
             target: {
-                value: 'my-project-name'
+                value: 'Black Widow'
             }
         };
 
         wrapper.instance().handleChange(event);
 
-        expect(wrapper.state().projectName).toBe('my-project-name');
+        expect(wrapper.state().projectName).toBe('Black Widow');
     });
 
     it('sets the colour when the handleDropDownSelection event is invoked', () => {
-        wrapper.instance().handleDropDownSelection(mockEvent, { value: 'turquoise' });
+        wrapper.instance().handleDropDownSelection(mockEvent, { value: 'black' });
 
-        expect(wrapper.state().colour).toBe('turquoise');
+        expect(wrapper.state().colour).toBe('black');
     });
 
     it('calls the createOrUpdateProject action when handleSubmit is called', async () => {
@@ -103,7 +102,7 @@ describe('Update existing project', () => {
         match: { params: { id: '56789' } },
         result: {
             _id: '56789',
-            projectName: 'Senor',
+            projectName: 'Hawkeye',
             colour: 'red'
         }
     };
@@ -141,7 +140,7 @@ describe('Update existing project', () => {
 
         await expect(updateProps.actions.update).toHaveBeenCalledWith({
             _id: '56789',
-            projectName: 'Senor',
+            projectName: 'Hawkeye',
             colour: 'red',
             createdDate: expect.anything()
         });
@@ -149,14 +148,14 @@ describe('Update existing project', () => {
     });
 
     it('calls createOrUpdateProject action with correct data when handleSubmit is called and projectName has been updated', async () => {
-        const event = { target: { value: 'Senorita' } };
+        const event = { target: { value: 'Black Panther' } };
 
         updateProjectWrapper.instance().handleChange(event);
         updateProjectWrapper.instance().handleSubmit(mockEvent);
 
         await expect(updateProps.actions.update).toHaveBeenCalledWith({
             _id: '56789',
-            projectName: 'Senorita',
+            projectName: 'Black Panther',
             colour: 'red',
             createdDate: expect.anything()
         });
@@ -169,7 +168,7 @@ describe('Update existing project', () => {
 
         await expect(updateProps.actions.update).toHaveBeenCalledWith({
             _id: '56789',
-            projectName: 'Senor',
+            projectName: 'Hawkeye',
             colour: 'blue',
             createdDate: expect.anything()
         });

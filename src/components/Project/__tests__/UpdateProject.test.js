@@ -1,32 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import UpdateProject from '../UpdateProject';
+import { mockProjectData, mockNewProjectResultData, mockProjectErrorResultData, mockProjectSuccessResultData } from '../../../helpers/test/testData/projectData';
 
-const mockNewProjectResult = {
-    projectName: '',
-    colour: ''
-};
-
-const mockExistingProjectResult = {
-    _id: '1234',
-    projectName: 'Senorita',
-    colour: 'Teal'
-};
-
-const mockSuccessResult = (action) => (
-    {
-        success: {
-            message: `successfully ${action} project, woohoo`
-        }
-    }
-);
-
-const mockErrorResult = {
-    error: {
-        message: 'oh no something bad happened',
-        isError: true
-    }
-};
+const mockNewProjectResult = mockNewProjectResultData();
+const mockExistingProjectResult = mockProjectData();
+const mockErrorResult = mockProjectErrorResultData();
 
 const mockHandleSubmit = jest.fn();
 const mockHandleChange = jest.fn();
@@ -45,7 +24,7 @@ describe('Create New Project', () => {
 
     it('renders successfully after successful creation of project', () => {
         const tree = renderer.create(<UpdateProject
-            result={mockSuccessResult('created')}
+            result={mockProjectSuccessResultData('created')}
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
             handleDropDownSelection={mockHandleDropDownSelection}
@@ -77,7 +56,7 @@ describe('Update Existing Project', () => {
 
     it('renders successfully after successful creation of project', () => {
         const tree = renderer.create(<UpdateProject
-            result={mockSuccessResult('updated')}
+            result={mockProjectSuccessResultData('updated')}
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
             handleDropDownSelection={mockHandleDropDownSelection}

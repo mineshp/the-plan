@@ -2,28 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { UpdateList } from '../Update';
 import LoadingComponent from '../../../components/Shared/Loading';
+import { mockUpdateSingleList } from '../../../helpers/test/testData/listData';
 
-const mockList = {
-    _id: '12345678',
-    listName: 'test',
-    projects: [
-        {
-            name: 'TestProject',
-            id: '001'
-        }
-    ],
-    headings: [
-        {
-            id: '1',
-            name: 'A'
-        },
-        {
-            id: '2',
-            name: 'B'
-        }
-    ],
-    createdDate: new Date()
-};
+const mockList = mockUpdateSingleList();
 
 const handleSubmitMock = jest.fn();
 const handleChangeMock = jest.fn();
@@ -152,15 +133,15 @@ describe('Update or Create List', () => {
 
         it('calls setupNewList action when handleSubmit is called and form setup is complete', async () => {
             createWrapper.setState({
-                listName: 'testList',
+                listName: 'Avengers Assemble',
                 headings: [
                     {
-                        id: '123', name: 'name'
+                        id: '123', name: 'Film'
                     }
                 ],
                 projects: [
                     {
-                        id: '001', name: 'proj1'
+                        id: '001', name: 'Avengers'
                     }
                 ]
             });
@@ -175,17 +156,17 @@ describe('Update or Create List', () => {
         it('calls createOrUpdateList action with correct data when handleSubmit is called and listName has been created - handleChange', async () => {
             createWrapper.setState({
                 headings: [{ id: '123', name: 'name' }],
-                projects: [{ id: '123', name: 'language' }]
+                projects: [{ id: '123', name: 'superheroes' }]
             });
-            const event = { target: { value: 'New Shopping List' } };
+            const event = { target: { value: 'Avengers' } };
 
             createWrapper.instance().handleChange(event);
             createWrapper.instance().handleSubmit(mockEvent);
 
             await expect(props.actions.create).toHaveBeenCalledWith({
-                listName: 'New Shopping List',
+                listName: 'Avengers',
                 headings: [{ id: '123', name: 'name' }],
-                projects: [{ id: '123', name: 'language' }]
+                projects: [{ id: '123', name: 'superheroes' }]
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
@@ -194,17 +175,17 @@ describe('Update or Create List', () => {
         it('calls createOrUpdateList action with correct data when handleSubmit is called and the headings have been created - handleHeaderInputChange', async () => {
             createWrapper.setState({
                 headings: [{ id: '9999', name: '' }],
-                projects: [{ id: '123', name: 'language' }],
-                listName: 'New Shopping List',
+                projects: [{ id: '123', name: 'superheroes' }],
+                listName: 'Avengers',
             });
-            const event = { target: { value: 'A' } };
+            const event = { target: { value: 'description' } };
             createWrapper.instance().handleHeaderInputChange(event, { id: '9999' });
             await createWrapper.instance().handleSubmit(mockEvent);
 
             await expect(props.actions.create).toHaveBeenCalledWith({
-                listName: 'New Shopping List',
-                headings: [{ id: '9999', name: 'A' }],
-                projects: [{ id: '123', name: 'language' }]
+                listName: 'Avengers',
+                headings: [{ id: '9999', name: 'description' }],
+                projects: [{ id: '123', name: 'superheroes' }]
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
@@ -213,16 +194,16 @@ describe('Update or Create List', () => {
         it('calls handleHeaderInputChange with empty headings data, the empty headings are discarded', async () => {
             createWrapper.setState({
                 headings: [{ id: '1', name: 'Name' }, { id: '2', name: '' }, { id: '3', name: 'Desc' }],
-                projects: [{ id: '123', name: 'language' }],
-                listName: 'New Shopping List',
+                projects: [{ id: '123', name: 'superheroes' }],
+                listName: 'Avengers',
             });
 
             await createWrapper.instance().handleSubmit(mockEvent);
 
             await expect(props.actions.create).toHaveBeenCalledWith({
-                listName: 'New Shopping List',
+                listName: 'Avengers',
                 headings: [{ id: '1', name: 'Name' }, { id: '3', name: 'Desc' }],
-                projects: [{ id: '123', name: 'language' }]
+                projects: [{ id: '123', name: 'superheroes' }]
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
@@ -235,18 +216,18 @@ describe('Update or Create List', () => {
                         id: '9999', name: 'name'
                     }
                 ],
-                listName: 'New Shopping List',
+                listName: 'Avengers',
             });
-            createWrapper.instance().handleDropDownSelection(mockEvent, { value: ['history'] });
+            createWrapper.instance().handleDropDownSelection(mockEvent, { value: ['movies'] });
             await createWrapper.instance().handleSubmit(mockEvent);
 
             await expect(props.actions.create).toHaveBeenCalledWith({
-                listName: 'New Shopping List',
+                listName: 'Avengers',
                 headings: [{ id: '9999', name: 'name' }],
                 projects: [
                     {
                         id: expect.any(String),
-                        name: 'history'
+                        name: 'movies'
                     }
                 ]
             });
@@ -324,12 +305,12 @@ describe('Update or Create List', () => {
             match: { params: { id: '123' } },
             result: {
                 _id: '12345678',
-                listName: 'New Shopping List',
+                listName: 'Avengers',
                 headings: [{ name: 'A' }, { name: 'B' }],
                 createdDate: new Date(),
                 projects: [{
                     id: '12345',
-                    name: 'language'
+                    name: 'superheroes'
                 }]
             }
         };
@@ -361,7 +342,7 @@ describe('Update or Create List', () => {
             expect(updateProps.match.params.id).toEqual('123');
             expect(updateProps.actions.retrieveListById).toHaveBeenCalled();
             expect(updateListWrapper.state().headings).toEqual([
-                { id: '1', name: 'A' }, { id: '2', name: 'B' }
+                { id: '1', name: 'Name' }, { id: '2', name: 'Role' }
             ]);
 
             componentWillMountUpdateSpy.mockReset();
@@ -369,16 +350,16 @@ describe('Update or Create List', () => {
         });
 
         it('calls createOrUpdateList action with correct data when handleSubmit is called and listName has been updated - handleChange', async () => {
-            const event = { target: { value: 'New Shopping List' } };
+            const event = { target: { value: 'Avengers - Age of Ultron' } };
 
             updateListWrapper.instance().handleChange(event);
             updateListWrapper.instance().handleSubmit(mockEvent);
 
             await expect(updateProps.actions.update).toHaveBeenCalledWith({
                 _id: '12345678',
-                listName: 'New Shopping List',
-                headings: [{ id: '1', name: 'A' }, { id: '2', name: 'B' }],
-                projects: [{ id: '12345', name: 'language' }],
+                listName: 'Avengers - Age of Ultron',
+                headings: [{ id: '1', name: 'Name' }, { id: '2', name: 'Role' }],
+                projects: [{ id: '12345', name: 'superheroes' }],
                 items: undefined,
                 createdDate: expect.any(Date),
                 updatedDate: expect.any(Date)
@@ -394,9 +375,9 @@ describe('Update or Create List', () => {
 
             await expect(updateProps.actions.update).toHaveBeenCalledWith({
                 _id: '12345678',
-                listName: 'New Shopping List',
-                headings: [{ id: '1', name: 'A' }, { id: '2', name: 'C' }],
-                projects: [{ id: '12345', name: 'language' }],
+                listName: 'Avengers',
+                headings: [{ id: '1', name: 'Name' }, { id: '2', name: 'C' }],
+                projects: [{ id: '12345', name: 'superheroes' }],
                 items: undefined,
                 createdDate: expect.any(Date),
                 updatedDate: expect.any(Date)
@@ -420,9 +401,9 @@ describe('Update or Create List', () => {
 
             await expect(updateProps.actions.update).toHaveBeenCalledWith({
                 _id: '12345678',
-                listName: 'New Shopping List',
+                listName: 'Avengers',
                 headings: [{ id: '1', name: 'A' }],
-                projects: [{ id: '12345', name: 'language' }],
+                projects: [{ id: '12345', name: 'superheroes' }],
                 items: undefined,
                 createdDate: expect.any(Date),
                 updatedDate: expect.any(Date)
@@ -432,21 +413,21 @@ describe('Update or Create List', () => {
         });
 
         it('calls createOrUpdateList action with correct data when handleSubmit is called and projects have been updated - handleDropDownSelection', async () => {
-            updateListWrapper.instance().handleDropDownSelection(mockEvent, { value: ['history', 'science'] });
+            updateListWrapper.instance().handleDropDownSelection(mockEvent, { value: ['movies', 'shield'] });
             await updateListWrapper.instance().handleSubmit(mockEvent);
 
             await expect(updateProps.actions.update).toHaveBeenCalledWith({
                 _id: '12345678',
-                listName: 'New Shopping List',
-                headings: [{ id: '1', name: 'A' }, { id: '2', name: 'C' }],
+                listName: 'Avengers',
+                headings: [{ id: '1', name: 'Name' }, { id: '2', name: 'C' }],
                 projects: [
                     {
                         id: expect.any(String),
-                        name: 'history'
+                        name: 'movies'
                     },
                     {
                         id: expect.any(String),
-                        name: 'science'
+                        name: 'shield'
                     }
                 ],
                 items: undefined,
@@ -467,9 +448,9 @@ describe('Update or Create List', () => {
 
             await expect(updateProps.actions.update).toHaveBeenCalledWith({
                 _id: '12345678',
-                listName: 'New Shopping List',
+                listName: 'Avengers',
                 headings: [{ name: 'A' }, { name: 'B' }],
-                projects: [{ name: 'language', id: '12345' }],
+                projects: [{ name: 'superheroes', id: '12345' }],
                 items: undefined,
                 createdDate: expect.any(Date),
                 updatedDate: expect.any(Date)

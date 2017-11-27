@@ -15,12 +15,12 @@ exports[`ListHeadings renders headings correctly 1`] = `
       >
         <input
           disabled={undefined}
-          id="001"
-          name="Spanish"
+          id="001-002"
+          name="Name"
           onChange={[Function]}
           tabIndex={undefined}
           type="text"
-          value="Hola"
+          value="Captain America"
         />
       </div>
     </td>
@@ -32,12 +32,12 @@ exports[`ListHeadings renders headings correctly 1`] = `
       >
         <input
           disabled={undefined}
-          id="001"
-          name="English"
+          id="001-002"
+          name="Desc"
           onChange={[Function]}
           tabIndex={undefined}
           type="text"
-          value="Hello"
+          value="The first avenger"
         />
       </div>
     </td>
@@ -47,62 +47,7 @@ exports[`ListHeadings renders headings correctly 1`] = `
       <button
         className="ui red icon button"
         disabled={undefined}
-        id="001"
-        onClick={[Function]}
-        role="button"
-        tabIndex={undefined}
-      >
-        <i
-          aria-hidden="true"
-          className="trash icon"
-        />
-      </button>
-    </td>
-  </tr>
-  <tr
-    className=""
-  >
-    <td
-      className="six wide"
-    >
-      <div
-        className="ui fluid input"
-      >
-        <input
-          disabled={undefined}
-          id="002"
-          name="Spanish"
-          onChange={[Function]}
-          tabIndex={undefined}
-          type="text"
-          value="Adios"
-        />
-      </div>
-    </td>
-    <td
-      className="six wide"
-    >
-      <div
-        className="ui fluid input"
-      >
-        <input
-          disabled={undefined}
-          id="002"
-          name="English"
-          onChange={[Function]}
-          tabIndex={undefined}
-          type="text"
-          value="Bye"
-        />
-      </div>
-    </td>
-    <td
-      className="six wide"
-    >
-      <button
-        className="ui red icon button"
-        disabled={undefined}
-        id="002"
+        id="001-002"
         onClick={[Function]}
         role="button"
         tabIndex={undefined}

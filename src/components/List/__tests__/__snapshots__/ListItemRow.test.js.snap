@@ -15,12 +15,12 @@ exports[`ListItems renders list items correctly 1`] = `
       >
         <input
           disabled={undefined}
-          id="0001"
-          name="ItemName"
+          id="001-002"
+          name="Name"
           onChange={[Function]}
           tabIndex={undefined}
           type="text"
-          value="Bread"
+          value="Captain America"
         />
       </div>
     </td>
@@ -32,12 +32,12 @@ exports[`ListItems renders list items correctly 1`] = `
       >
         <input
           disabled={undefined}
-          id="0001"
-          name="Description"
+          id="001-002"
+          name="Desc"
           onChange={[Function]}
           tabIndex={undefined}
           type="text"
-          value="Loaf of granary bread"
+          value="The first avenger"
         />
       </div>
     </td>
@@ -47,62 +47,7 @@ exports[`ListItems renders list items correctly 1`] = `
       <button
         className="ui red icon button"
         disabled={undefined}
-        id="0001"
-        onClick={[Function]}
-        role="button"
-        tabIndex={undefined}
-      >
-        <i
-          aria-hidden="true"
-          className="trash icon"
-        />
-      </button>
-    </td>
-  </tr>
-  <tr
-    className=""
-  >
-    <td
-      className="six wide"
-    >
-      <div
-        className="ui fluid input"
-      >
-        <input
-          disabled={undefined}
-          id="0002"
-          name="ItemName"
-          onChange={[Function]}
-          tabIndex={undefined}
-          type="text"
-          value="Milk"
-        />
-      </div>
-    </td>
-    <td
-      className="six wide"
-    >
-      <div
-        className="ui fluid input"
-      >
-        <input
-          disabled={undefined}
-          id="0002"
-          name="Description"
-          onChange={[Function]}
-          tabIndex={undefined}
-          type="text"
-          value="1 Pint of Milk"
-        />
-      </div>
-    </td>
-    <td
-      className="six wide"
-    >
-      <button
-        className="ui red icon button"
-        disabled={undefined}
-        id="0002"
+        id="001-002"
         onClick={[Function]}
         role="button"
         tabIndex={undefined}

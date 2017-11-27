@@ -1,19 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ListItems from '../ListHeadings';
+import { mockHeadingsData } from '../../../helpers/test/testData/listData';
 
-const mockHeadings = [
-    {
-        name: 'A',
-        id: '000001',
-        position: 1
-    },
-    {
-        name: 'B',
-        id: '000002',
-        position: 2
-    }
-];
+const mockHeadings = mockHeadingsData();
 
 describe('ListHeadings', () => {
     it('renders headings correctly', () => {

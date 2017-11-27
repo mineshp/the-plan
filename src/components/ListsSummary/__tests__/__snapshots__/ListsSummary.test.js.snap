@@ -52,7 +52,7 @@ exports[`List renders lists correctly 1`] = `
           <td
             className=""
           >
-            HumanBody
+            Iron Man
           </td>
           <td
             className=""
@@ -75,7 +75,7 @@ exports[`List renders lists correctly 1`] = `
                 aria-hidden="true"
                 className="empty star icon"
               />
-              biology
+              technology
             </a>
             <a
               className="ui red label"
@@ -85,7 +85,7 @@ exports[`List renders lists correctly 1`] = `
                 aria-hidden="true"
                 className="empty star icon"
               />
-              chemistry
+              reactor
             </a>
           </td>
           <td
@@ -137,7 +137,7 @@ exports[`List renders lists correctly 1`] = `
           <td
             className=""
           >
-            Explorers
+            Thor
           </td>
           <td
             className=""
@@ -160,7 +160,7 @@ exports[`List renders lists correctly 1`] = `
                 aria-hidden="true"
                 className="empty star icon"
               />
-              history
+              hammer
             </a>
           </td>
           <td

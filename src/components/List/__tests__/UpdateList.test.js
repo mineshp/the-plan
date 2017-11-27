@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import UpdateList from '../UpdateList';
+import { mockHeadingsData, mockProjectDropDownOptionsData, mockNewListResultData, mockExistingListWithNoProjects } from '../../../helpers/test/testData/listData';
 
 const mockHandleSubmit = jest.fn();
 const mockHandleChange = jest.fn();
@@ -9,27 +10,15 @@ const mockHandleHeaderInputChange = jest.fn();
 const mockAddHeading = jest.fn();
 const mockRemoveHeading = jest.fn();
 
-const mockProjectOptions = [
-    { key: '001', value: 'proj1', text: 'proj1' },
-    { key: '002', value: 'proj2', text: 'proj2' },
-    { key: '003', value: 'proj3', text: 'proj3' },
-];
+const mockProjectOptions = mockProjectDropDownOptionsData();
 
-const mockHeadings = [
-    { name: 'Spanish', id: '1', position: 1 },
-    { name: 'English', id: '2', position: 2 }
-];
+const mockHeadings = mockHeadingsData();
 
 describe('Create New List', () => {
-    const mockNewListResult = {
-        listName: 'New List',
-        projects: []
-    };
-
     it('renders create new list form correctly', () => {
         const tree = renderer.create(<UpdateList
             projectOptions={mockProjectOptions}
-            result={mockNewListResult}
+            result={mockNewListResultData()}
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
             handleDropDownSelection={mockHandleDropDownSelection}
@@ -43,16 +32,6 @@ describe('Create New List', () => {
 });
 
 describe('Update List', () => {
-    const mockExistingListWithNoProjects = {
-        listName: 'Existing List',
-        headings: [
-            {
-                id: '101',
-                name: 'Description'
-            }
-        ]
-    };
-
     const mockExistingListWithProjects = Object.assign({}, mockExistingListWithNoProjects, {
         projects: [
             {
@@ -65,7 +44,7 @@ describe('Update List', () => {
     it('renders existing list form correctly when no projects have been assigned', () => {
         const tree = renderer.create(<UpdateList
             projectOptions={mockProjectOptions}
-            result={mockExistingListWithNoProjects}
+            result={mockExistingListWithNoProjects()}
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
             handleDropDownSelection={mockHandleDropDownSelection}

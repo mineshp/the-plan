@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import ProjectCard from '../ProjectCard';
 import ListProjects from '../ListProjects';
+import { mockProjectData } from '../../../helpers/test/testData/projectData';
 
 const mockResult = {};
 const mockErrorResult = {
@@ -10,10 +11,7 @@ const mockErrorResult = {
         isError: true
     }
 };
-const mockProject = {
-    _id: '1',
-    projectName: 'test'
-};
+const mockProject = mockProjectData();
 
 const mockHandleDelete = jest.fn();
 const mockCards = [

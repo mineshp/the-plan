@@ -1881,7 +1881,7 @@ exports[`Update Existing Project renders update existing project form correctly 
         className="ui input text-box-single-col-min"
       >
         <input
-          defaultValue="Senorita"
+          defaultValue="Avengers"
           disabled={undefined}
           onChange={[Function]}
           placeholder="Project Name..."
@@ -1912,7 +1912,7 @@ exports[`Update Existing Project renders update existing project form correctly 
           className="text"
           role="alert"
         >
-          TEAL
+          BLUE
         </div>
         <i
           aria-hidden="true"
@@ -1946,10 +1946,10 @@ exports[`Update Existing Project renders update existing project form correctly 
             </span>
           </div>
           <div
-            aria-checked={false}
+            aria-checked={true}
             aria-disabled={undefined}
-            aria-selected={false}
-            className="item"
+            aria-selected={true}
+            className="active selected item"
             onClick={[Function]}
             role="option"
             style={
@@ -2061,10 +2061,10 @@ exports[`Update Existing Project renders update existing project form correctly 
             </span>
           </div>
           <div
-            aria-checked={true}
+            aria-checked={false}
             aria-disabled={undefined}
-            aria-selected={true}
-            className="active selected item"
+            aria-selected={false}
+            className="item"
             onClick={[Function]}
             role="option"
             style={
