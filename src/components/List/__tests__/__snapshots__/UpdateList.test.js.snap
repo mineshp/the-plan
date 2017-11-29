@@ -4,11 +4,11 @@ exports[`Create New List renders create new list form correctly 1`] = `
 <div
   className="ui container"
 >
-  <h2
+  <h1
     className="ui header"
   >
-    Setup List
-  </h2>
+    Update New Avengers
+  </h1>
   <form
     action={undefined}
     className="ui form"
@@ -297,7 +297,7 @@ exports[`Create New List renders create new list form correctly 1`] = `
           className="ui divider"
         />
         <button
-          className="ui fluid button"
+          className="ui blue fluid button"
           disabled={undefined}
           onClick={[Function]}
           role="button"
@@ -315,7 +315,7 @@ exports[`Create New List renders create new list form correctly 1`] = `
         className="row"
       >
         <button
-          className="ui teal fluid button formSpacing"
+          className="ui green fluid button formSpacing"
           disabled={undefined}
           onClick={[Function]}
           role="button"
@@ -334,11 +334,11 @@ exports[`Update List renders existing list form correctly when no projects have 
 <div
   className="ui container"
 >
-  <h2
+  <h1
     className="ui header"
   >
-    Setup List
-  </h2>
+    Update Original Avengers
+  </h1>
   <form
     action={undefined}
     className="ui form"
@@ -627,7 +627,7 @@ exports[`Update List renders existing list form correctly when no projects have 
           className="ui divider"
         />
         <button
-          className="ui fluid button"
+          className="ui blue fluid button"
           disabled={undefined}
           onClick={[Function]}
           role="button"
@@ -645,7 +645,7 @@ exports[`Update List renders existing list form correctly when no projects have 
         className="row"
       >
         <button
-          className="ui teal fluid button formSpacing"
+          className="ui green fluid button formSpacing"
           disabled={undefined}
           onClick={[Function]}
           role="button"
@@ -664,11 +664,11 @@ exports[`Update List renders existing list form correctly when projects have alr
 <div
   className="ui container"
 >
-  <h2
+  <h1
     className="ui header"
   >
     Setup List
-  </h2>
+  </h1>
   <form
     action={undefined}
     className="ui form"
@@ -955,7 +955,7 @@ exports[`Update List renders existing list form correctly when projects have alr
           className="ui divider"
         />
         <button
-          className="ui fluid button"
+          className="ui blue fluid button"
           disabled={undefined}
           onClick={[Function]}
           role="button"
@@ -973,7 +973,7 @@ exports[`Update List renders existing list form correctly when projects have alr
         className="row"
       >
         <button
-          className="ui teal fluid button formSpacing"
+          className="ui green fluid button formSpacing"
           disabled={undefined}
           onClick={[Function]}
           role="button"

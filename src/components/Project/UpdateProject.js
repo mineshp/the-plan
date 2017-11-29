@@ -23,7 +23,7 @@ const UpdateProject = ({
                 <Form.Field>
                     <ColourDropDown value={result.colour} handleChange={handleDropDownSelection} />
                 </Form.Field>
-                <Button color="teal" type="submit">Save</Button>
+                <Button color="green" type="submit">Save</Button>
             </Form>
         </Container>
     );

@@ -6,7 +6,7 @@ const projectLabels = (projects) => projects.map((project) => (
     <Label
         as="a"
         key={project.id}
-        color="red"
+        color="brown"
     >
         <Icon name="empty star" />
         {project.name}
@@ -22,20 +22,21 @@ const List = ({ data, onDeleteHandler }) => {
             <Table.Cell>{data.updatedDate}</Table.Cell>
             <Table.Cell>{projectLabels(data.projects)}</Table.Cell>
             <Table.Cell>
-                <Button as="a" href={`/list/view/${listID}`}>View</Button>
                 <Button
                     as="a"
-                    content="Update"
+                    color="blue"
+                    icon="list layout"
+                    href={`/list/view/${listID}`}
+                />
+                <Button
+                    as="a"
                     icon="edit"
-                    labelPosition="left"
-                    color="teal"
+                    color="green"
                     href={`/list/update/${listID}`}
                 />
                 <Button
-                    content="Delete"
                     icon="trash"
-                    labelPosition="left"
-                    color="blue"
+                    color="pink"
                     value={listID}
                     onClick={onDeleteHandler}
                 />

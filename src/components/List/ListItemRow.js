@@ -21,10 +21,10 @@ const ListItemRow = ({ handleChange, handleDelete, itemRow }) => {
 
     const deleteRowBtnKey = `${itemRow.rowId}-deleteRow`;
     row.push(
-        <Table.Cell key={deleteRowBtnKey} width="6">
+        <Table.Cell key={deleteRowBtnKey} width="6" textAlign="right">
             <Button
                 icon="trash"
-                color="red"
+                color="pink"
                 id={itemRow.rowId}
                 onClick={handleDelete}
             />

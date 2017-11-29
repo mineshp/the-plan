@@ -16,6 +16,9 @@ const UpdateList = ({
     headings
 }) => {
     const projectsAlreadyAssignedToList = [];
+    const heading = (result.listName)
+        ? `Update ${result.listName}`
+        : 'Setup List';
 
     if (result.projects) {
         result.projects.map((project) => (
@@ -25,7 +28,7 @@ const UpdateList = ({
 
     return (
         <Container>
-            <Header as="h2">Setup List</Header>
+            <Header as="h1">{heading}</Header>
             <Form onSubmit={handleSubmit}>
                 <Grid columns={1}>
                     <Grid.Row>
@@ -61,7 +64,7 @@ const UpdateList = ({
                 />
                 <Grid columns={1}>
                     <Grid.Row>
-                        <Button fluid className="formSpacing" color="teal" type="submit">Save</Button>
+                        <Button fluid className="formSpacing" color="green" type="submit">Save</Button>
                     </Grid.Row>
                 </Grid>
             </Form>

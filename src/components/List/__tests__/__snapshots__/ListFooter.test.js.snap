@@ -12,7 +12,7 @@ exports[`ListHeadings renders footer correctly 1`] = `
       colSpan={3}
     >
       <button
-        className="ui small icon left floated left labeled button"
+        className="ui blue small icon left floated left labeled button"
         disabled={undefined}
         onClick={[Function]}
         role="button"
@@ -25,7 +25,7 @@ exports[`ListHeadings renders footer correctly 1`] = `
          Add Item
       </button>
       <button
-        className="ui teal small icon right floated left labeled button"
+        className="ui green small icon right floated left labeled button"
         disabled={undefined}
         onClick={[Function]}
         role="button"

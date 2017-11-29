@@ -53,7 +53,7 @@ const HeadingInput = ({ headings, handleAddColumn, handleRemoveColumn, handleHea
                 <Divider horizontal>COLUMNS</Divider>
                 {headerRows}
                 <Divider />
-                <Button fluid type="button" onClick={handleAddColumn}>Add Column</Button>
+                <Button fluid type="button" color="blue" onClick={handleAddColumn}>Add Column</Button>
             </Grid>
 
         </div>

@@ -6,14 +6,14 @@ const ListFooter = ({ numColumns, handleAddItem, handleSubmit }) => (
     <Table.Footer fullWidth>
         <Table.Row>
             <Table.HeaderCell colSpan={numColumns}>
-                <Button floated="left" icon labelPosition="left" size="small" onClick={handleAddItem}>
+                <Button floated="left" color="blue" icon labelPosition="left" size="small" onClick={handleAddItem}>
                     <Icon name="plus" /> Add Item
                 </Button>
                 <Button
                     floated="right"
                     icon
                     labelPosition="left"
-                    color="teal"
+                    color="green"
                     size="small"
                     onClick={handleSubmit}
                 >

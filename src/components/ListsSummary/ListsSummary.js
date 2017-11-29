@@ -5,7 +5,7 @@ import { Container, Table } from 'semantic-ui-react';
 const ListsSummary = ({ rows }) => (
     <div className="List main">
         <Container>
-            <Table celled striped>
+            <Table striped>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Name</Table.HeaderCell>

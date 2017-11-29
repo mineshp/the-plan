@@ -7,8 +7,13 @@ exports[`List renders list correctly 1`] = `
   <div
     className="ui container"
   >
+    <h1
+      className="ui header"
+    >
+      Avengers
+    </h1>
     <table
-      className="ui celled striped table"
+      className="ui striped table"
     >
       <thead
         className=""
@@ -77,10 +82,10 @@ exports[`List renders list correctly 1`] = `
             </div>
           </td>
           <td
-            className="six wide"
+            className="right aligned six wide"
           >
             <button
-              className="ui red icon button"
+              className="ui pink icon button"
               disabled={undefined}
               id="001-002"
               onClick={[Function]}
@@ -106,7 +111,7 @@ exports[`List renders list correctly 1`] = `
             colSpan={4}
           >
             <button
-              className="ui small icon left floated left labeled button"
+              className="ui blue small icon left floated left labeled button"
               disabled={undefined}
               onClick={[Function]}
               role="button"
@@ -119,7 +124,7 @@ exports[`List renders list correctly 1`] = `
                Add Item
             </button>
             <button
-              className="ui teal small icon right floated left labeled button"
+              className="ui green small icon right floated left labeled button"
               disabled={undefined}
               onClick={[Function]}
               role="button"

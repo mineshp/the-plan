@@ -24,14 +24,14 @@ const ProjectCard = ({ data, onDeleteHandler }) => (
                     content="Update"
                     icon="edit"
                     labelPosition="left"
-                    color="teal"
+                    color="green"
                     href={`/project/update/${data._id}`} // eslint-disable-line no-underscore-dangle
                 />
                 <Button
                     content="Delete"
                     icon="trash"
                     labelPosition="left"
-                    color="blue"
+                    color="pink"
                     value={data._id} // eslint-disable-line no-underscore-dangle
                     onClick={onDeleteHandler}
                 />

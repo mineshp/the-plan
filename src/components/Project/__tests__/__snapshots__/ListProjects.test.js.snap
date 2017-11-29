@@ -43,7 +43,7 @@ exports[`List Projects renders projects correctly 1`] = `
             className="buttons"
           >
             <a
-              className="ui teal icon left labeled button"
+              className="ui green icon left labeled button"
               disabled={undefined}
               href="/project/update/1"
               onClick={[Function]}
@@ -57,7 +57,7 @@ exports[`List Projects renders projects correctly 1`] = `
               Update
             </a>
             <button
-              className="ui blue icon left labeled button"
+              className="ui pink icon left labeled button"
               disabled={undefined}
               onClick={[Function]}
               role="button"
@@ -121,7 +121,7 @@ exports[`List Projects renders successfully after error creating new project 1`]
             className="buttons"
           >
             <a
-              className="ui teal icon left labeled button"
+              className="ui green icon left labeled button"
               disabled={undefined}
               href="/project/update/1"
               onClick={[Function]}
@@ -135,7 +135,7 @@ exports[`List Projects renders successfully after error creating new project 1`]
               Update
             </a>
             <button
-              className="ui blue icon left labeled button"
+              className="ui pink icon left labeled button"
               disabled={undefined}
               onClick={[Function]}
               role="button"
@@ -199,7 +199,7 @@ exports[`List Projects renders successfully after successful creation of project
             className="buttons"
           >
             <a
-              className="ui teal icon left labeled button"
+              className="ui green icon left labeled button"
               disabled={undefined}
               href="/project/update/1"
               onClick={[Function]}
@@ -213,7 +213,7 @@ exports[`List Projects renders successfully after successful creation of project
               Update
             </a>
             <button
-              className="ui blue icon left labeled button"
+              className="ui pink icon left labeled button"
               disabled={undefined}
               onClick={[Function]}
               role="button"

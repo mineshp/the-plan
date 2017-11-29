@@ -19,7 +19,7 @@ exports[`ListRow renders correctly 1`] = `
     className=""
   >
     <a
-      className="ui red label"
+      className="ui brown label"
       onClick={[Function]}
     >
       <i
@@ -29,7 +29,7 @@ exports[`ListRow renders correctly 1`] = `
       Thor
     </a>
     <a
-      className="ui red label"
+      className="ui brown label"
       onClick={[Function]}
     >
       <i
@@ -43,17 +43,20 @@ exports[`ListRow renders correctly 1`] = `
     className=""
   >
     <a
-      className="ui button"
+      className="ui blue icon button"
       disabled={undefined}
       href="/list/view/1234456"
       onClick={[Function]}
       role="button"
       tabIndex={undefined}
     >
-      View
+      <i
+        aria-hidden="true"
+        className="list layout icon"
+      />
     </a>
     <a
-      className="ui teal icon left labeled button"
+      className="ui green icon button"
       disabled={undefined}
       href="/list/update/1234456"
       onClick={[Function]}
@@ -64,10 +67,9 @@ exports[`ListRow renders correctly 1`] = `
         aria-hidden="true"
         className="edit icon"
       />
-      Update
     </a>
     <button
-      className="ui blue icon left labeled button"
+      className="ui pink icon button"
       disabled={undefined}
       onClick={[Function]}
       role="button"
@@ -78,7 +80,6 @@ exports[`ListRow renders correctly 1`] = `
         aria-hidden="true"
         className="trash icon"
       />
-      Delete
     </button>
   </td>
 </tr>

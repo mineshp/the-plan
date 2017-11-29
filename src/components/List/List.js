@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Table } from 'semantic-ui-react';
+import { Container, Header, Table } from 'semantic-ui-react';
 import ListHeadings from './ListHeadings';
 import ListItems from './ListItems';
 import ListFooter from './ListFooter';
@@ -10,7 +10,8 @@ const List = ({ handleAddItem, handleChange, handleDelete, handleSubmit, items, 
     return (
         <div className="List main">
             <Container>
-                <Table celled striped>
+                <Header as="h1">{list.listName}</Header>
+                <Table striped>
                     <ListHeadings headings={list.headings} />
                     <ListItems
                         items={items}

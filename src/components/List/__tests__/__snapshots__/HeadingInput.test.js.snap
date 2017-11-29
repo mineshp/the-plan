@@ -146,7 +146,7 @@ exports[`HeadingInput renders column headings in a grid correctly 1`] = `
       className="ui divider"
     />
     <button
-      className="ui fluid button"
+      className="ui blue fluid button"
       disabled={undefined}
       onClick={[Function]}
       role="button"

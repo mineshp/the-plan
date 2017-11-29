@@ -42,10 +42,10 @@ exports[`ListHeadings renders headings correctly 1`] = `
       </div>
     </td>
     <td
-      className="six wide"
+      className="right aligned six wide"
     >
       <button
-        className="ui red icon button"
+        className="ui pink icon button"
         disabled={undefined}
         id="001-002"
         onClick={[Function]}
