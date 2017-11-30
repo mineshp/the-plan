@@ -27,14 +27,6 @@ export default class MainNav extends Component {
                     <img alt="logo" src={logo} />
                 </Menu.Item>
 
-                <Menu.Item
-                    name="list"
-                    active={activeItem === 'list'}
-                    onClick={this.handleItemClick}
-                    href="/list"
-                >List
-                </Menu.Item>
-
                 <Dropdown item text="Projects">
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={this.handleItemClick} href="/project/all">List</Dropdown.Item>

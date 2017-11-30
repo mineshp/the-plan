@@ -14,13 +14,6 @@ exports[`MainNav Component renders correctly 1`] = `
       src="md-logo-green.png"
     />
   </a>
-  <a
-    className="item"
-    href="/list"
-    onClick={[Function]}
-  >
-    List
-  </a>
   <div
     aria-busy={undefined}
     aria-disabled={undefined}

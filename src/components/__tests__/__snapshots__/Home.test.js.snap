@@ -2,8 +2,89 @@
 
 exports[`renders correctly 1`] = `
 <div>
-  <h1>
-    Welcome
-  </h1>
+  <div
+    className="ui inverted vertical center aligned segment"
+    style={
+      Object {
+        "minHeight": 700,
+        "padding": "1em 0em",
+      }
+    }
+  >
+    <div
+      className="ui text container"
+    >
+      <h1
+        className="ui inverted header"
+        style={
+          Object {
+            "fontSize": "4em",
+            "fontWeight": "normal",
+            "marginBottom": 0,
+            "marginTop": "3em",
+          }
+        }
+      >
+        Time to make plans...
+      </h1>
+      <h2
+        className="ui inverted header"
+        style={
+          Object {
+            "color": "#eba3a3",
+            "fontSize": "1.7em",
+            "fontWeight": "normal",
+          }
+        }
+      >
+        Stars can't shine without darkness.
+      </h2>
+      <div
+        className="ui inverted section divider"
+      />
+      <a
+        className="ui green button"
+        disabled={undefined}
+        href="/list/all"
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="list layout icon"
+        />
+        View lists
+      </a>
+      <a
+        className="ui pink button"
+        disabled={undefined}
+        href="/list/update"
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="edit icon"
+        />
+        Create lists
+      </a>
+      <a
+        className="ui blue button"
+        disabled={undefined}
+        href="/project/all"
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="cubes icon"
+        />
+        View Projects
+      </a>
+    </div>
+  </div>
 </div>
 `;

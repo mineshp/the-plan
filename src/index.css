@@ -21,9 +21,27 @@ body {
   font-family: 'Allura', cursive;
 }
 
+.ui.inverted.segment, .ui.primary.inverted.segment {
+  background-color:#565656;
+}
+
 .ui.divider {
   color: #76323F;
   font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Footer */
+
+.footer-header {
+  margin: 0 !important;
+}
+
+@media (min-height: 800px) {
+  .ui.segment { /* Increased specificity for SO snippet priority */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 }
 
 /* Cards */
@@ -108,6 +126,9 @@ body {
 }
 
 /* Buttons */
+.ui.button {
+  font-family: 'Josefin Sans', sans-serif;
+}
 
 .ui.blue.button {
   background-color: #a3e3eb;
@@ -139,7 +160,15 @@ body {
   background-color: #8fccb3;
 }
 
+.ui.green.button:focus {
+  background-color: #8fccb3;
+}
+
 .ui.pink.button:hover {
+  background-color: #cc8986;
+}
+
+.ui.pink.button:focus {
   background-color: #cc8986;
 }
 
@@ -166,4 +195,13 @@ body {
 /* Label:hover */
 .ui.brown.label:hover {
   background-color: #997d63 !important;
+}
+
+/* Loader */
+.ui.loader {
+  color: #8fccb3;
+}
+
+.ui.dimmer {
+  color: #cc8986;
 }
