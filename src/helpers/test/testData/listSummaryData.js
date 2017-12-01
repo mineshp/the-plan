@@ -1,4 +1,4 @@
-export const mockListSummary = () => ([
+module.exports.mockListSummary = () => ([
     {
         _id: '001',
         projects: [
@@ -28,11 +28,3 @@ export const mockListSummary = () => ([
         updatedDate: '2016-10-8T16:00:00Z',
     }
 ]);
-
-export const a = () => ({
-    a: 1
-});
-
-exports = {
-    mockListSummary
-};

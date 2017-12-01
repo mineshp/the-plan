@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'semantic-ui-react';
+import { formatDate } from '../../helpers/validators/common';
 
 const ProjectCard = ({ data, onDeleteHandler }) => (
     <Card color={data.colour}>
@@ -11,7 +12,7 @@ const ProjectCard = ({ data, onDeleteHandler }) => (
         </Card.Content>
         <Card.Content>
             <Card.Meta>
-                {data.createdDate}
+                {formatDate(data.createdDate)}
             </Card.Meta>
             <Card.Description>
             Add a description here

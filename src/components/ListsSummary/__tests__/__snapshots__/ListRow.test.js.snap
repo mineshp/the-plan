@@ -11,10 +11,14 @@ exports[`ListRow renders correctly 1`] = `
   </td>
   <td
     className=""
-  />
+  >
+    Invalid Date
+  </td>
   <td
     className=""
-  />
+  >
+    Invalid Date
+  </td>
   <td
     className=""
   >

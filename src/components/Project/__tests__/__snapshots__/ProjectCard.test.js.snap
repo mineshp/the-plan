@@ -20,7 +20,9 @@ exports[`ProjectCard renders correctly 1`] = `
   >
     <div
       className="meta"
-    />
+    >
+      Invalid Date
+    </div>
     <div
       className="description"
     >
