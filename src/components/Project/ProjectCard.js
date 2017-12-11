@@ -8,6 +8,12 @@ const ProjectCard = ({ data, onDeleteHandler }) => (
         <Card.Content>
             <Card.Header>
                 {data.projectName}
+                <Button
+                    floated="right"
+                    icon="list layout"
+                    color="blue"
+                    href={`/project/${data.projectName}/lists`} // eslint-disable-line no-underscore-dangle
+                />
             </Card.Header>
         </Card.Content>
         <Card.Content>

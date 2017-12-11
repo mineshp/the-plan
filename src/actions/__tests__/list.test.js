@@ -94,6 +94,67 @@ describe('List actions', () => {
         });
     });
 
+    describe('Get lists for a given project actions', () => {
+        const mockListSuccessAPIResponse = [
+            {
+                _id: '1234',
+                project: ['a', 'b'],
+                listName: 'Shopping List',
+                createdDate: '2016-05-18T16:00:00Z',
+                updatedDate: '2016-05-18T16:00:00Z'
+            },
+            {
+                _id: '1235',
+                project: ['b'],
+                listName: 'Holiday',
+                createdDate: '2016-05-19T16:00:00Z',
+                updatedDate: '2016-05-19T16:05:00Z',
+            }
+        ];
+
+        const mockListRetrievalFailureAPIResponse = {
+            message: 'Unable to retrieve lists, please try again later.'
+        };
+
+        it('a successful retrieveSummaryListsByProject call via the store, dispatches the LISTS_RETRIEVED action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(200, null, JSON.stringify(mockListSuccessAPIResponse))));
+
+            const store = mockStore({ lists: [] });
+
+            const expectedActions = [
+                {
+                    type: 'LISTS_RETRIEVED',
+                    data: mockListSuccessAPIResponse
+                }
+            ];
+
+            return store.dispatch(actions.retrieveSummaryListsByProject('b')).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+
+        it('an unsuccessful retrieveLists call via the store, dispatches the LISTS_RETRIEVED_ERROR action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(500, null, JSON.stringify(mockListRetrievalFailureAPIResponse))));
+
+            const store = mockStore({ lists: [] });
+
+            const expectedAction = [
+                {
+                    type: 'LISTS_RETRIEVED_ERROR',
+                    error: mockListRetrievalFailureAPIResponse.message
+                }
+            ];
+
+            return store.dispatch(actions.retrieveSummaryListsByProject('x')).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedAction);
+            });
+        });
+    });
+
     describe('Get a single list actions', () => {
         const mockListSuccessAPIResponse = [
             {

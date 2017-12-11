@@ -67,7 +67,7 @@ export function create(newProject) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                projectName: newProject.projectName,
+                projectName: newProject.projectName.toLowerCase(),
                 colour: newProject.colour.toLowerCase()
             })
         })

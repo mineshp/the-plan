@@ -13,7 +13,7 @@ exports[`Loading renders spinner 1`] = `
         className="center"
       >
         <div
-          className="ui text loader"
+          className="ui medium text loader"
         >
           Magic is happening...
         </div>

@@ -61,6 +61,19 @@ export function retrieveSummaryLists() {
             .catch((error) => dispatch(errorListingLists(error.message)));
 }
 
+export function retrieveSummaryListsByProject(projectName) {
+    return (dispatch) =>
+        fetch(`/project/${projectName}/lists`)
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(new Error('Unable to retrieve lists, please try again later.'));
+            })
+            .then((data) => dispatch(successListingLists(data)))
+            .catch((error) => dispatch(errorListingLists(error.message)));
+}
+
 export function retrieveListById(listId) {
     return (dispatch) =>
         fetch(`/list/view/${listId}`)

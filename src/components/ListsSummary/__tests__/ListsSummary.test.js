@@ -18,6 +18,7 @@ describe('List', () => {
     it('renders lists correctly', () => {
         const tree = renderer.create(<ListsSummary
             rows={Rows}
+            retrieveListBy={'all'}
         />).toJSON();
         expect(tree).toMatchSnapshot();
     });

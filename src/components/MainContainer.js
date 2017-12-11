@@ -23,6 +23,7 @@ const Main = () => (
         <Route path="/project/all" component={ManageProjectConnectedComponent} />
         <Route path="/project/update/:id" component={UpdateProjectConnectedComponent} />
         <Route path="/project/update" component={UpdateProjectConnectedComponent} />
+        <Route path="/project/:projectName/lists" component={ManageListSummaryConnectedComponent} />
     </Switch>
 );
 

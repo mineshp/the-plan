@@ -6,6 +6,14 @@ exports.getAllLists = function(req,res) {
 	});
 };
 
+exports.getAllListsForProject = function (req, res) {
+	List.find({
+		'projects.name': req.params.projectName
+	}, function(err, collection) {
+		res.send(collection);
+	});
+};
+
 exports.getListById = function(req, res) {
     List.findOne({ _id: req.params.id }, function (err, collection) {
 		res.send(collection);

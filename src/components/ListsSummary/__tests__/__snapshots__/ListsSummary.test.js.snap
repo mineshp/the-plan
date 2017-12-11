@@ -7,6 +7,11 @@ exports[`List renders lists correctly 1`] = `
   <div
     className="ui container"
   >
+    <h1
+      className="ui header firstletter-capitalise"
+    >
+      Lists for all.
+    </h1>
     <table
       className="ui striped table"
     >
@@ -69,6 +74,7 @@ exports[`List renders lists correctly 1`] = `
           >
             <a
               className="ui brown label"
+              href="/project/technology/lists"
               onClick={[Function]}
             >
               <i
@@ -79,6 +85,7 @@ exports[`List renders lists correctly 1`] = `
             </a>
             <a
               className="ui brown label"
+              href="/project/reactor/lists"
               onClick={[Function]}
             >
               <i
@@ -155,6 +162,7 @@ exports[`List renders lists correctly 1`] = `
           >
             <a
               className="ui brown label"
+              href="/project/hammer/lists"
               onClick={[Function]}
             >
               <i

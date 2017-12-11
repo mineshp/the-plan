@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Table } from 'semantic-ui-react';
+import { Container, Header, Table } from 'semantic-ui-react';
 
-const ListsSummary = ({ rows }) => (
+const ListsSummary = ({ retrieveListBy, rows }) => (
     <div className="List main">
         <Container>
+            <Header as="h1" className="firstletter-capitalise">{`Lists for ${retrieveListBy}.`}</Header>
             <Table striped>
                 <Table.Header>
                     <Table.Row>
@@ -27,7 +28,8 @@ const ListsSummary = ({ rows }) => (
 ListsSummary.propTypes = {
     rows: PropTypes.arrayOf(
         PropTypes.shape({})
-    )
+    ),
+    retrieveListBy: PropTypes.string.isRequired
 };
 
 ListsSummary.defaultProps = {

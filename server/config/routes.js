@@ -6,7 +6,7 @@ module.exports = function (app) {
         res.send('Welcome to the backend')
     });
 
-    app.get('/list/all', list.getAllLists);
+	app.get('/list/all', list.getAllLists);
 	app.get('/list/view/:id', list.getListById);
 	app.post('/list/update/:id', list.updateList);
 	app.post('/list/update', list.createNewList);
@@ -17,6 +17,7 @@ module.exports = function (app) {
 	app.post('/project/update', project.createNewProject);
 	app.delete('/project/delete/:id', project.delete);
 	app.get('/project/:id', project.getProjectById);
+	app.get('/project/:projectName/lists/', list.getAllListsForProject);
 
 	// app.all('/api/*', function(req,res) {
 	// 	res.send(404);

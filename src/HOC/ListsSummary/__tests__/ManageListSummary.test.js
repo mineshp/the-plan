@@ -4,9 +4,10 @@ import { ManageListSummary } from '../ManageListSummary';
 import ListsComponent from '../../../components/ListsSummary/ListsSummary';
 import LoadingComponent from '../../../components/Shared/Loading';
 import mockEvent from '../../../helpers/test/testData';
-import { mockListSummary } from '../../../helpers/test/testData/listSummaryData';
+import { mockListSummary, mockListSummaryByProject } from '../../../helpers/test/testData/listSummaryData';
 
 const mockListAll = mockListSummary();
+const mockListByProject = mockListSummaryByProject();
 const props = {
     actions: {
         deleteList: jest.fn(() => (
@@ -15,11 +16,17 @@ const props = {
         retrieveSummaryLists: jest.fn(() => (
             Promise.resolve({ data: mockListAll })
         )),
+        retrieveSummaryListsByProject: jest.fn(() => (
+            Promise.resolve({ data: mockListByProject })
+        )),
         addNotification: jest.fn(() => (
             Promise.resolve()
         ))
     },
-    notification: null
+    notification: null,
+    match: {
+        params: null
+    }
 };
 
 describe('Manage Lists', () => {
@@ -45,6 +52,39 @@ describe('Manage Lists', () => {
         it('calls the retrieveLists action when the fetchLists function is invoked', async () => {
             wrapper.instance().fetchLists();
             await expect(propsWithListData.actions.retrieveSummaryLists).toHaveBeenCalledWith();
+            await expect(propsWithListData.actions.addNotification).toHaveBeenCalled();
+        });
+
+        it('renders a Lists component', () => {
+            expect(wrapper.find(ListsComponent).length).toEqual(1);
+        });
+
+        it('builds an array of ProjectCards', async () => {
+            await expect(wrapper.props().rows.length).toEqual(2);
+        });
+    });
+
+    describe('Get lists for a given project success', () => {
+        let wrapper;
+        const propsWithListData = Object.assign({}, props, {
+            lists: { data: mockListAll },
+            match: { params: { projectName: 'marvel' } }
+        });
+
+        beforeEach(() => {
+            wrapper = shallow(<ManageListSummary {...propsWithListData} />);
+        });
+
+        it('calls componentDidMount', async () => {
+            const componentDidMountSpy = jest.spyOn(ManageListSummary.prototype, 'componentDidMount');
+            await wrapper.instance().componentDidMount();
+            expect(componentDidMountSpy).toHaveBeenCalled();
+        });
+
+        it('calls the retrieveLists action when the fetchLists function is invoked', async () => {
+            wrapper.instance().fetchLists();
+            await expect(propsWithListData.actions.retrieveSummaryListsByProject).toHaveBeenCalledWith('marvel');
+            await expect(propsWithListData.actions.retrieveSummaryLists).not.toHaveBeenCalled();
             await expect(propsWithListData.actions.addNotification).toHaveBeenCalled();
         });
 
@@ -84,12 +124,18 @@ describe('Manage Lists', () => {
                 retrieveSummaryLists: jest.fn(() => (
                     Promise.resolve(mockListAll)
                 )),
+                retrieveSummaryListsByProject: jest.fn(() => (
+                    Promise.resolve({ data: mockListByProject })
+                )),
                 addNotification: jest.fn(() => (
                     Promise.resolve()
                 ))
             },
             lists: {},
-            notification: null
+            notification: null,
+            match: {
+                params: null
+            }
         };
 
         let wrapper;

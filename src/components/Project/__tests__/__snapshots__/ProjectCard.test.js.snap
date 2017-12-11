@@ -13,6 +13,19 @@ exports[`ProjectCard renders correctly 1`] = `
       className="header"
     >
       Avengers
+      <a
+        className="ui blue icon right floated button"
+        disabled={undefined}
+        href="/project/Avengers/lists"
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="list layout icon"
+        />
+      </a>
     </div>
   </div>
   <div

@@ -63,7 +63,7 @@ ManageProject.propTypes = {
         message: PropTypes.string,
         level: PropTypes.string,
         title: PropTypes.string
-    }),
+    })
 };
 
 ManageProject.defaultProps = {

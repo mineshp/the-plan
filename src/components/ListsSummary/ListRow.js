@@ -8,6 +8,7 @@ const projectLabels = (projects) => projects.map((project) => (
         as="a"
         key={project.id}
         color="brown"
+        href={`/project/${project.name}/lists`}
     >
         <Icon name="empty star" />
         {project.name}
