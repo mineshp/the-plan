@@ -116,6 +116,35 @@ const lists = (state = {}, action) => {
             }
         };
 
+    case 'PDF_DOWNLOAD_REQUEST':
+        return {
+            isFetching: true,
+        };
+
+    case 'PDF_DOWNLOAD_SUCCESS':
+        return {
+            notification: {
+                message: `Successfully downloaded pdf for list - ${action.data.listName}.`,
+                level: 'success',
+                title: 'Success'
+            },
+            data: action.data,
+            isFetching: false
+        };
+
+    case 'PDF_DOWNLOAD_ERROR':
+        return {
+            notification: {
+                message: action.error,
+                level: 'error',
+                title: 'Error'
+            },
+            error: {
+                isError: true
+            },
+            isFetching: false
+        };
+
     default:
         return state;
     }

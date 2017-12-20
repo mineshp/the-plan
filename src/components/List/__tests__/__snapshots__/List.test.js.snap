@@ -37,8 +37,61 @@ exports[`List renders list correctly 1`] = `
             c
           </th>
           <th
-            className=""
-          />
+            className="right aligned"
+          >
+            <div
+              aria-busy={undefined}
+              aria-disabled={undefined}
+              aria-expanded={false}
+              aria-multiselectable={undefined}
+              className="ui button floating labeled dropdown icon pdf"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseDown={[Function]}
+              role="listbox"
+              tabIndex={0}
+            >
+              <div
+                aria-live="polite"
+                className="text"
+                role="alert"
+              >
+                Export PDF
+              </div>
+              <i
+                aria-hidden="true"
+                className="file pdf outline icon"
+                onClick={[Function]}
+              />
+              <div
+                className="menu transition"
+              >
+                <div
+                  aria-checked={undefined}
+                  aria-disabled={undefined}
+                  aria-selected={undefined}
+                  className="item"
+                  id="123"
+                  onClick={[Function]}
+                  role="option"
+                >
+                  Save
+                </div>
+                <div
+                  aria-checked={undefined}
+                  aria-disabled={true}
+                  aria-selected={undefined}
+                  className="disabled item"
+                  onClick={[Function]}
+                  role="option"
+                >
+                  Email
+                </div>
+              </div>
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody

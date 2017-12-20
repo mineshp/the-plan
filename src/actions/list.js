@@ -48,6 +48,35 @@ export const errorDeletingList = (error) => ({
     error
 });
 
+export const requestDownloadingPDF = () => ({
+    type: 'PDF_DOWNLOAD_REQUEST'
+});
+
+export const successDownloadingPDF = (data) => ({
+    type: 'PDF_DOWNLOAD_SUCCESS',
+    data
+});
+
+export const errorDownloadingPDF = (error) => ({
+    type: 'PDF_DOWNLOAD_ERROR',
+    error
+});
+
+export function downloadPDF(listId) {
+    return (dispatch) => {
+        dispatch(requestDownloadingPDF());
+        return fetch(`/list/generate/pdf/${listId}`)
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(new Error('Unable to download PDF, please try again later.'));
+            })
+            .then((data) => dispatch(successDownloadingPDF(data)))
+            .catch((error) => dispatch(errorDownloadingPDF(error.message)));
+    };
+}
+
 export function retrieveSummaryLists() {
     return (dispatch) =>
         fetch('/list/all')

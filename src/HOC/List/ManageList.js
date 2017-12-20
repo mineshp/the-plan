@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { retrieveListById, update } from '../../actions/list';
+import { downloadPDF, retrieveListById, update } from '../../actions/list';
 import { addNotification } from '../../actions/notification';
 import List from '../../components/List/List';
 import { buildListData } from '../../helpers/validators/list';
@@ -15,6 +15,7 @@ class ManageList extends Component {
         super(props);
         this.fetchListById = this.fetchListById.bind(this);
         this.addItem = this.addItem.bind(this);
+        this.downloadPDF = this.downloadPDF.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
@@ -41,6 +42,16 @@ class ManageList extends Component {
                     });
                     this.props.actions.addNotification(this.props.notification);
                 }
+            });
+    }
+
+    downloadPDF(event, data) {
+        this.props.actions.downloadPDF(data.id)
+            .then((pdfExport) => {
+                // TODO: Implement the actual pdf download
+                // const listName = pdfExport.data.listName.replace(/\s/g, '-');
+                // const pdfFileName = `${listName}-list.pdf`;
+                this.props.actions.addNotification(this.props.notification);
             });
     }
 
@@ -108,13 +119,14 @@ class ManageList extends Component {
     }
 
     render() {
-        const { lists } = this.props;
+        const { lists, isFetching } = this.props;
         return (
-            !lists.data
+            !lists.data || isFetching
                 ? <LoadingComponent />
                 : <List
                     list={lists.data} // TODO: Why is it lists.data and not lists, check actions/reducers
                     items={this.state.items}
+                    downloadPDF={this.downloadPDF}
                     handleAddItem={this.addItem}
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
@@ -126,11 +138,13 @@ class ManageList extends Component {
 
 ManageList.propTypes = {
     actions: PropTypes.shape({
+        downloadPDF: PropTypes.func.isRequired,
         retrieveListById: PropTypes.func.isRequired,
         addNotification: PropTypes.func.isRequired,
         update: PropTypes.func.isRequired
     }),
     lists: PropTypes.shape([]),
+    isFetching: PropTypes.bool,
     match: PropTypes.shape({
         params: PropTypes.shape({
             id: PropTypes.string
@@ -147,6 +161,7 @@ ManageList.defaultProps = {
     actions: null,
     match: null,
     lists: null,
+    isFetching: false,
     items: [],
     notification: null
 };
@@ -155,6 +170,7 @@ ManageList.defaultProps = {
 const mapStateToProps = (state) => (
     {
         lists: state.lists,
+        isFetching: state.isFetching,
         notification: state.lists.notification
     }
 );
@@ -163,7 +179,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({
-            retrieveListById, addNotification, update
+            downloadPDF, retrieveListById, addNotification, update
         }, dispatch)
     }
 );

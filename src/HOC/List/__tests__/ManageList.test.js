@@ -7,6 +7,7 @@ const handleSubmitMock = jest.fn();
 const handleChangeMock = jest.fn();
 const addItemMock = jest.fn();
 const mockEvent = { preventDefault: jest.fn() };
+const mockDownloadPDF = jest.fn();
 
 const props = {
     actions: {
@@ -17,6 +18,9 @@ const props = {
             Promise.resolve()
         )),
         update: jest.fn(() => (
+            Promise.resolve()
+        )),
+        downloadPDF: jest.fn(() => (
             Promise.resolve()
         ))
     },
@@ -240,6 +244,39 @@ describe('Manage Single List', () => {
 
             await wrapper.instance().handleDelete(mockEvent, { id: '123' });
             expect(wrapper.state().items).toEqual([]);
+        });
+    });
+
+    describe('Download a pdf', () => {
+        let wrapper;
+        const propsWithParamId = Object.assign({}, props, {
+            lists: { data: mockSingleList() },
+            match: { params: { id: '123' } },
+            actions: Object.assign({}, props.actions, {
+                downloadPDF: jest.fn(() => (
+                    Promise.resolve({
+                        data: mockSingleList(),
+                        isFetching: false
+                    })
+                ))
+            })
+        });
+        beforeEach(() => {
+            wrapper = shallow(
+                <ManageList
+                    handleChange={handleChangeMock}
+                    handleSubmit={handleSubmitMock}
+                    handleAddItem={addItemMock}
+                    downloadPDF={mockDownloadPDF}
+                    {...propsWithParamId}
+                />
+            );
+        });
+        it('calls downloadPDF action with correct data when downloadPDF is called - downloadPDF', async () => {
+            await wrapper.instance().downloadPDF(mockEvent, { id: '123' });
+
+            await expect(propsWithParamId.actions.downloadPDF).toHaveBeenCalledWith('123');
+            await expect(props.actions.addNotification).toHaveBeenCalled();
         });
     });
 

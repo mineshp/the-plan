@@ -5,14 +5,16 @@ import ListHeadings from './ListHeadings';
 import ListItems from './ListItems';
 import ListFooter from './ListFooter';
 
-const List = ({ handleAddItem, handleChange, handleDelete, handleSubmit, items, list }) => {
+const List = ({ downloadPDF, handleAddItem, handleChange, handleDelete, handleSubmit, items, list }) => {
     const numColumns = list.headings.length + 1;
+    const listId = list._id; // eslint-disable-line no-underscore-dangle
     return (
         <div className="List main">
             <Container>
                 <Header as="h1">{list.listName}</Header>
+
                 <Table striped>
-                    <ListHeadings headings={list.headings} />
+                    <ListHeadings downloadPDF={downloadPDF} listId={listId} headings={list.headings} />
                     <ListItems
                         items={items}
                         handleChange={handleChange}
@@ -34,6 +36,7 @@ List.propTypes = {
     items: PropTypes.arrayOf(
         PropTypes.shape({})
     ).isRequired,
+    downloadPDF: PropTypes.func.isRequired,
     handleAddItem: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleDelete: PropTypes.func.isRequired,

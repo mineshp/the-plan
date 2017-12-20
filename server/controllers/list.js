@@ -1,4 +1,6 @@
 const List = require('mongoose').model('List');
+const pdfExporter = require('../export/pdf');
+
 
 exports.getAllLists = function(req,res) {
 	List.find({}, function (err, collection) {
@@ -84,3 +86,18 @@ exports.delete = function(req, res) {
 	});
 };
 
+exports.generatePDF = function (req, res) {
+	List.findOne({ _id: req.params.id }, function (err, collection) {
+		pdfExporter.renderPDF(collection)
+			.then((file) => res.send(collection))
+			.catch((error) => {
+				res.status(400);
+				res.json(
+					{
+						message: `Error: Unable to generate pdf for list ${collection.listName}, error ${err}.`
+					}
+				);
+			});
+	});
+
+}

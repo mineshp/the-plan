@@ -1,14 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'semantic-ui-react';
+import { Dropdown, Table } from 'semantic-ui-react';
 
-const ListItems = ({ headings }) => {
+const ListItems = ({ downloadPDF, headings, listId }) => {
     const columnHeadings = [];
     headings.map((heading) => (
         columnHeadings.push(<Table.HeaderCell key={heading.id}>{heading.name}</Table.HeaderCell>)
     ));
 
-    columnHeadings.push(<Table.HeaderCell key={'actions'} />);
+    columnHeadings.push(
+        <Table.HeaderCell key={'actions'} textAlign="right" >
+            <Dropdown text="Export PDF" icon="file pdf outline" floating labeled button className="icon pdf">
+                <Dropdown.Menu>
+                    <Dropdown.Item id={listId} onClick={downloadPDF}>Save</Dropdown.Item>
+                    <Dropdown.Item disabled>Email</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+        </Table.HeaderCell>
+    );
 
     return (
         <Table.Header>
@@ -26,7 +35,9 @@ ListItems.propTypes = {
             name: PropTypes.string.isRequired,
             position: PropTypes.number
         })
-    ).isRequired
+    ).isRequired,
+    downloadPDF: PropTypes.func.isRequired,
+    listId: PropTypes.string.isRequired
 };
 
 ListItems.defaultProps = {

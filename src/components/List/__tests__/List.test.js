@@ -13,6 +13,7 @@ const mockHandleSubmit = jest.fn();
 const mockHandleDelete = jest.fn();
 const mockItems = mockItemsData();
 const mockListData = mockSingleList();
+const mockDownloadPDF = jest.fn();
 
 describe('List', () => {
     it('renders list correctly', () => {
@@ -23,6 +24,7 @@ describe('List', () => {
                 handleChange={mockHandleChange}
                 handleSubmit={mockHandleSubmit}
                 handleDelete={mockHandleDelete}
+                downloadPDF={mockDownloadPDF}
                 items={mockItems}
             />).toJSON();
         expect(tree).toMatchSnapshot();
@@ -35,6 +37,7 @@ describe('List', () => {
             handleChange={mockHandleChange}
             handleSubmit={mockHandleSubmit}
             handleDelete={mockHandleDelete}
+            downloadPDF={mockDownloadPDF}
             items={mockItems}
         />);
         expect(wrapper.find(ListHeadingComponent)).toHaveLength(1);
@@ -47,6 +50,7 @@ describe('List', () => {
             handleChange={mockHandleChange}
             handleSubmit={mockHandleSubmit}
             handleDelete={mockHandleDelete}
+            downloadPDF={mockDownloadPDF}
             items={mockItems}
         />);
         expect(wrapper.find(ListItemsComponent)).toHaveLength(1);
@@ -59,6 +63,7 @@ describe('List', () => {
             handleChange={mockHandleChange}
             handleSubmit={mockHandleSubmit}
             handleDelete={mockHandleDelete}
+            downloadPDF={mockDownloadPDF}
             items={mockItems}
         />);
         expect(wrapper.find(ListFooterComponent)).toHaveLength(1);

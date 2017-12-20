@@ -4,7 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha test --recursive"
+    "test": "mocha test --recursive",
+    "pdf:clean": "rm -f ./export/files/*",
+    "pdf:open": "open ./export/files/*",
+    "pdf:export": "node ./export/test/generate-pdf.js",
+    "pdf:download": "npm run pdf:clean && npm run pdf:export && npm run pdf:open"
+
   },
   "jest": {
     "verbose": true
@@ -14,7 +19,15 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
-    "mongoose": "^4.11.7"
+    "install": "^0.10.2",
+    "jsreport-core": "^1.5.1",
+    "jsreport-handlebars": "^1.1.2",
+    "jsreport-jsrender": "^1.0.2",
+    "jsreport-phantom-pdf": "^1.4.6",
+    "mongoose": "^4.11.7",
+    "npm": "^5.6.0",
+    "phantom-pdf": "^0.4.1",
+    "phantomjs-exact-2-1-1": "^0.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

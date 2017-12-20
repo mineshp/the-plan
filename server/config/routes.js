@@ -11,6 +11,7 @@ module.exports = function (app) {
 	app.post('/list/update/:id', list.updateList);
 	app.post('/list/update', list.createNewList);
 	app.delete('/list/delete/:id', list.delete);
+	app.get('/list/generate/pdf/:id', list.generatePDF);
 
 	app.get('/project/all', project.getAllProjects);
 	app.post('/project/update/:id', project.updateProject);

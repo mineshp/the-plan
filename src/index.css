@@ -24,6 +24,11 @@ body {
   font-family: 'Allura', cursive;
 }
 
+.ui.header.header-dropdown {
+  color: #565656;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 .ui.inverted.segment, .ui.primary.inverted.segment {
   background-color:#565656;
 }
@@ -152,11 +157,11 @@ body {
 /* Buttons:hover */
 
 .ui.blue.button:hover {
-  background-color: #a2b7e3;
+  background-color: #8aa7e2;
 }
 
 .ui.blue.button:focus {
-  background-color: #a2b7e3;
+  background-color: #8aa7e2;
 }
 
 .ui.green.button:hover {
@@ -209,4 +214,15 @@ body {
 
 .ui.dimmer {
   color: #cc8986;
+}
+
+/* PDF */
+.ui.pdf {
+  color: #FFF;
+  background-color: #a2b7e3;
+}
+
+.ui.pdf:hover {
+  color: #FFF;
+  background-color: #8aa7e2;
 }
