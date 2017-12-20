@@ -13,6 +13,10 @@ body {
   color: #eba3a3;
 }
 
+.home-logo {
+  margin-top: 24px;
+}
+
 /* CUSTOM THEME */
 .firstletter-capitalise {
   text-transform:capitalize;

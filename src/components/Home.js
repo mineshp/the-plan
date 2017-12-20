@@ -4,8 +4,10 @@ import {
     Container,
     Divider,
     Header,
+    Image,
     Segment
 } from 'semantic-ui-react';
+import logo from '../md-logo-green.png';
 
 export default class HomepageLayout extends Component {
     constructor() {
@@ -59,7 +61,8 @@ export default class HomepageLayout extends Component {
                             content="View Projects"
                             href={'/project/all'}
                         />
-
+                        <div />
+                        <Image src={logo} className="home-logo" size="tiny" centered />
                     </Container>
                 </Segment>
             </div>

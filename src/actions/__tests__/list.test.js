@@ -540,7 +540,6 @@ describe('List actions', () => {
             updatedDate: '2016-05-18T16:00:00Z'
         };
         it('should dispatch an action for PDF_DOWNLOAD_SUCCESS when calling successDownloadingPDF to confirm a list has been downloaded', () => {
-
             const expectedAction = {
                 type: 'PDF_DOWNLOAD_SUCCESS',
                 data: mockListDownloadSuccessAPIResponse
@@ -564,7 +563,6 @@ describe('List actions', () => {
         });
 
         it('a successful downloadPDF call via the store, dispatches the PDF_DOWNLOAD_SUCCESS action', async () => {
-
             window.fetch = jest.fn().mockImplementation(() =>
                 Promise.resolve(mockResponse(200, null, JSON.stringify(mockListDownloadSuccessAPIResponse))));
 

@@ -84,6 +84,14 @@ exports[`renders correctly 1`] = `
         />
         View Projects
       </a>
+      <div />
+      <img
+        alt={undefined}
+        className="ui tiny centered image home-logo"
+        height={undefined}
+        src="md-logo-green.png"
+        width={undefined}
+      />
     </div>
   </div>
 </div>
