@@ -1,0 +1,48 @@
+version: "3"
+services:
+  morpheus_client:
+    build:
+      context: ../
+      dockerfile: Dockerfile.client
+    ports:
+      - "6001:3000"
+    expose:
+      - "6001"
+    environment:
+      - ENV=local
+      - PORT=3000
+      - NODE_ENV=production
+      - HTTP_PROXY=http://localhost:6002
+    depends_on:
+        - morpheus_server
+
+  morpheus_server:
+    build:
+      context: ../
+      dockerfile: Dockerfile.server
+    ports:
+      - "6002:3030"
+    expose:
+      - "6002"
+    environment:
+      - ENV=local
+      - PORT=3030
+      - NODE_ENV=production
+      - MONGODB_ENDPOINT=mongodb://mongodb:27017
+    links:
+        - mongodb
+    depends_on:
+        - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports:
+        - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+

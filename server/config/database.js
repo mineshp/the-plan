@@ -1,5 +1,4 @@
-let mongoose = require('mongoose');
-const listModel = require('../models/List');
+const mongoose = require('mongoose');
 const projectModel = require('../models/Project');
 
 // https://github.com/guyellis/MEANAppsFiles/blob/master/server/config/mongoose.js
@@ -14,7 +13,6 @@ module.exports.connect = function(config) {
         console.log(`Database connection establshed for ${config.db}`);
     });
 
-    // listModel.createDefaultLists();
     projectModel.createDefaultProjects();
 };
 

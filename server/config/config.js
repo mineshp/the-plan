@@ -5,16 +5,16 @@ module.exports = {
     test: {
         rootPath: rootPath,
         db: 'mongodb://localhost/theplandbtest',
-        port: process.env.PORT || 3030
+        port: process.env.PORT || 3031
     },
     development: {
         rootPath: rootPath,
-        db: 'mongodb://localhost/theplandb',
-        port: process.env.PORT || 3030
+        db: process.env.MONGODB_ENDPOINT || 'mongodb://localhost/theplandb',
+        port: process.env.PORT || 3031
     },
     production: {
         rootPath: rootPath,
-        db: process.env.MONGO_LAB,
-        port: process.env.PORT || 80
+        db: process.env.MONGODB_ENDPOINT,
+        port: process.env.PORT || 3031
     }
 };

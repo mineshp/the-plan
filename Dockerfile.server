@@ -1,0 +1,32 @@
+FROM mhart/alpine-node
+MAINTAINER MineshDesigns
+
+RUN apk --update add \
+      make \
+      git \
+      python3 \
+      python3-dev \
+      docker \
+      bash \
+      openssl \
+      jq \
+      zip \
+      g++ && \
+    python3 -m ensurepip && \
+    rm -r /usr/lib/python*/ensurepip && \
+    pip3 install -U pip setuptools awscli
+
+WORKDIR /opt/morpheus-server
+
+COPY ./server/package.json ./
+
+ENV NODE_ENV=development
+ENV NODE_PATH=/opt/morpheus-server
+
+RUN npm install --production
+
+COPY ./server ./
+
+RUN ls
+
+CMD ["node", "server.js"]
