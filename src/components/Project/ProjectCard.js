@@ -6,7 +6,7 @@ import { formatDate } from '../../helpers/validators/common';
 const ProjectCard = ({ data, onDeleteHandler }) => (
     <Card color={data.colour}>
         <Card.Content>
-            <Card.Header>
+            <Card.Header className="firstletter-capitalise">
                 {data.projectName}
                 <Button
                     floated="right"

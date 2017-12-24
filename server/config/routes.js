@@ -1,5 +1,19 @@
-const list = require('../controllers/list');
-const project = require('../controllers/project');
+const listMongodb = require('../mongodb/controllers/list');
+const projectMongodb = require('../mongodb/controllers/project');
+const listDynamodb = require('../dynamodb/controllers/list');
+const projectDynamodb = require('../dynamodb/controllers/project');
+
+const dbType = process.env.DB_TYPE || 'mongodb';
+let list;
+let project;
+if (dbType === 'mongodb') {
+    list = listMongodb;
+    project = projectMongodb;
+} else {
+    list = listDynamodb;
+    project = projectDynamodb;
+}
+
 
 module.exports = function (app) {
     app.get('/', function (req, res) {

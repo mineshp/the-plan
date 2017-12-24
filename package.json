@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start:client": "react-scripts start",
-    "start:server": "node server/server.js",
+    "start:server": "DB_TYPE=dynamodb node server/server.js",
     "build": "react-scripts build",
     "lint": "eslint --config .eslintrc.js src",
     "lint:fix": "npm run lint -- --fix",

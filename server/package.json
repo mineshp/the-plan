@@ -9,7 +9,6 @@
     "pdf:open": "open ./export/files/*",
     "pdf:export": "node ./export/test/generate-pdf.js",
     "pdf:download": "npm run pdf:clean && npm run pdf:export && npm run pdf:open"
-
   },
   "jest": {
     "verbose": true
@@ -17,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.175.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "install": "^0.10.2",
@@ -27,7 +27,8 @@
     "mongoose": "^4.11.7",
     "npm": "^5.6.0",
     "phantom-pdf": "^0.4.1",
-    "phantomjs-exact-2-1-1": "^0.1.0"
+    "phantomjs-exact-2-1-1": "^0.1.0",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

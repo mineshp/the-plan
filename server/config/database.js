@@ -1,16 +1,16 @@
-let mongoose = require('mongoose');
-const listModel = require('../models/List');
-const projectModel = require('../models/Project');
+const mongoose = require('mongoose');
+const listModel = require('../mongodb/models/List');
+const projectModel = require('../mongodb/models/Project');
 
 // https://github.com/guyellis/MEANAppsFiles/blob/master/server/config/mongoose.js
 
-module.exports.connect = function(config) {
+module.exports.connect = function (config) {
     mongoose.connect(config.db, {
         useMongoClient: true
     });
-    let db = mongoose.connection;
+    const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error...'));
-    db.once('open', function callback() {
+    db.once('open', () => {
         console.log(`Database connection establshed for ${config.db}`);
     });
 
@@ -20,4 +20,4 @@ module.exports.connect = function(config) {
 
 module.exports.clearTable = function () {
     db.projects.remove({});
-}
+};

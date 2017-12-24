@@ -1,5 +1,5 @@
 const List = require('mongoose').model('List');
-const pdfExporter = require('../export/pdf');
+const pdfExporter = require('../../export/pdf');
 
 
 exports.getAllLists = function(req,res) {
