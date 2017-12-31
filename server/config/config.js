@@ -1,5 +1,6 @@
 const path = require('path');
-const rootPath = path.normalize(__dirname + '/../');
+
+const rootPath = path.resolve(path.join(__dirname, '/../'));
 
 module.exports = {
     awsConfig: {
@@ -13,6 +14,17 @@ module.exports = {
         dynamodb: {
             listsTable: 'lists-morpheus-dev',
             projectsTable: 'projects-morpheus-dev'
+        },
+        port: process.env.PORT || 3030
+    },
+    local: {
+        rootPath,
+        mongodb: {
+            db: 'mongodb://localhost/theplandbtest'
+        },
+        dynamodb: {
+            listsTable: 'lists-morpheus-local',
+            projectsTable: 'projects-morpheus-local'
         },
         port: process.env.PORT || 3030
     },
@@ -30,7 +42,7 @@ module.exports = {
     production: {
         rootPath,
         mongodb: {
-            db: 'mongodb://localhost/theplandbtest'
+            db: 'mongodb://localhost/theplandb'
         },
         dynamodb: {
             listsTable: 'lists-morpheus-prod',
