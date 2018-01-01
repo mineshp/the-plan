@@ -1,0 +1,47 @@
+option_settings:
+  aws:elasticbeanstalk:customoption:
+    AppName: morpheus-client
+    EnvName: dev
+    Description: dev environment
+    SolutionStackName: 64bit Amazon Linux 2017.03 v2.6.0 running Docker 1.12.6
+    Tier: WebServer
+    Region: eu-west-1
+    ECR: 805665609698.dkr.ecr.eu-west-1.amazonaws.com/morpheus-client
+    Port: 3000
+
+    listsTableName: lists-morpheus-dev
+    listsTableReadCapUnit: 2
+    listsTableWriteCapUnit: 2
+    listsTableListNameIndex: listName-Index
+    listsTableListNameIndexReadCapUnit: 2
+    listsTableListNameIndexWriteCapUnit: 2
+
+    projectsTableName: projects-morpheus-dev
+    projectsTableReadCapUnit: 2
+    projectsTableWriteCapUnit: 2
+    projectsTableProjectNameIndex: projectName-Index
+    projectsTableProjectNameIndexReadCapUnit: 2
+    projectsTableProjectNameIndexWriteCapUnit: 2
+
+    foo: bar
+
+# elastic beanstalk settings
+  aws:autoscaling:launchconfiguration:
+    InstanceType: "t2.micro"
+  aws:autoscaling:asg:
+    Availability Zones: "Any 3"
+    MinSize: "1"
+    MaxSize: "1"
+  aws:ec2:vpc:
+    VPCId: "vpc-5d3b323a"
+    Subnets: "subnet-50536037,subnet-e1aeaba8,subnet-7a423e21"
+    ELBSubnets: "subnet-50536037,subnet-e1aeaba8,subnet-7a423e21"
+    AssociatePublicIpAddress: "false"
+
+  # application configuration
+  aws:elasticbeanstalk:application:environment:
+    AWS_REGION: '`{ "Ref" : "AWS::Region" }`'
+    ENV_NAME: '`{"Fn::GetOptionSetting": {"OptionName": "EnvName"}}`'
+    LISTS_TABLE: '`{ "Ref" : "listsTableName" }`'
+    PROJECTS_TABLE: '`{ "Ref" : "projectsTableName" }`'
+

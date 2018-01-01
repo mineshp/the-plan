@@ -1,0 +1,33 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowDownloadingDImage",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:ecr:*:805665609698:repository/morpheus-client"
+        },
+        {
+            "Sid": "AllowECRLogin",
+            "Effect": "Allow",
+            "Action": "ecr:GetAuthorizationToken",
+            "Resource": "*"
+        },
+        {
+            "Sid": "AllowAccessToDynamoListsTable",
+            "Effect": "Allow",
+            "Action": "dynamodb:*",
+            "Resource": "arn:aws:dynamodb:eu-west-1:805665609698:table/lists-morpheus-dev"
+        },
+        {
+            "Sid": "AllowAccessToDynamoProjectsTable",
+            "Effect": "Allow",
+            "Action": "dynamodb:*",
+            "Resource": "arn:aws:dynamodb:eu-west-1:805665609698:table/projects-morpheus-dev"
+        }
+    ]
+}
