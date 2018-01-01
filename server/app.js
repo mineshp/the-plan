@@ -11,12 +11,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // req.body params are available
 
 require('./mongodb/models/List');
+
 require('./mongodb/models/Project');
 
 console.log(`Using database: ${dbType}`);
 if (dbType === 'mongodb') {
+    console.log(`DB: ${config.mongodb.db}`);
     // eslint-disable-next-line global-require
-    require('./config/database').connect(config);
+    require('./config/database').connect(config.mongodb);
 }
 
 require('./config/routes')(app);

@@ -16,6 +16,17 @@ module.exports = {
         },
         port: process.env.PORT || 3030
     },
+    local: {
+        rootPath,
+        mongodb: {
+            db: 'mongodb://localhost/theplandb'
+        },
+        dynamodb: {
+            listsTable: 'lists-morpheus-dev',
+            projectsTable: 'projects-morpheus-dev'
+        },
+        port: process.env.PORT || 3030
+    },
     development: {
         rootPath,
         mongodb: {
