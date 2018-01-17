@@ -1,0 +1,73 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          server.js
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: pm2 running server.js
+# Description:       server.js
+### END INIT INFO
+
+
+USER="ec2-user"
+NAME="Morpheus Express Server"
+APP_PATH="/opt/morpheus-server"
+SERVICE_NAME="morpheus-server"
+PM2="/usr/bin/pm2"
+lockfile="/var/lock/subsys/pm2"
+
+start() {
+    echo "Starting $NAME with user $USER"
+    export MORPHEUS_SERVER_HOME=/opt/morpheus-server/
+    su - $USER -c "$PM2 start $APP_PATH/config/server-pm2.json --only $SERVICE_NAME"
+    retval=$?
+    [ $retval -eq 0 ] && touch $lockfile
+}
+
+stop() {
+    echo "Stopping $NAME"
+    su - $USER -c "$PM2 delete $SERVICE_NAME"
+}
+
+kill() {
+    echo "kill all pm2 application processes"
+    su - $USER -c "$PM2 kill"
+    rm -f $lockfile
+}
+
+restart() {
+    echo "Restarting $NAME"
+    stop
+    kill
+    start
+}
+
+status() {
+    echo "Status for $NAME:"
+    su - $USER -c "$PM2 list"
+    RETVAL=$?
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status
+        ;;
+    restart)
+        restart
+        ;;
+    kill)
+        kill
+        ;;
+    *)
+        echo "Usage: {start|stop|status|restart|kill}"
+        exit 1
+        ;;
+esac
+exit $RETVAL

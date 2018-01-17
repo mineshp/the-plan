@@ -1,0 +1,35 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /tmp/morpheus-deploy
+  - source: deploy-scripts/morpheus-server
+    destination: /etc/init.d/
+  - source: deploy-scripts/morpheus-client
+    destination: /etc/init.d/
+permissions:
+  - object: /etc/init.d/morpheus-server
+    mode: 755
+  - object: /etc/init.d/morpheus-client
+    mode: 755
+hooks:
+  ApplicationStop:
+    - location: deploy-scripts/stop_services.sh
+      timeout: 300
+      runas: root
+  BeforeInstall:
+    - location: deploy-scripts/before_install.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: deploy-scripts/after_install.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: deploy-scripts/start_services.sh
+      timeout: 300
+      runas: root
+  ValidateService:
+    - location: deploy-scripts/validate_services.sh
+      timeout: 300
+      runas: root
