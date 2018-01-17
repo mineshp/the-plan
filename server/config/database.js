@@ -11,7 +11,7 @@ module.exports.connect = function (config) {
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error...'));
     db.once('open', () => {
-        console.log(`Database connection establshed for ${config.db}`);
+        console.log(`Env: ${process.env.NODE_ENV} - Database connection establshed for ${config.db}`);
     });
 
     // listModel.createDefaultLists();

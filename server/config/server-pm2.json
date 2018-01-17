@@ -4,7 +4,8 @@
     "instances": "1",
     "args": ["NODE_ENV=production"],
     "env_production": {
-        "NODE_ENV": "production"
+        "NODE_ENV": "production",
+        "PORT": "3030"
     },
     "error_file": "/var/log/morpheus-server-error.log",
     "out_file": "/var/log/morpheus-server-output.log",

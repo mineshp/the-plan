@@ -19,7 +19,7 @@ lockfile="/var/lock/subsys/pm2"
 start() {
     echo "Starting $NAME with user $USER"
     export MORPHEUS_CLIENT_HOME=/opt/morpheus-client/
-    su - $USER -c "$PM2 start $APP_PATH/client-pm2.json --only $SERVICE_NAME"
+    su - $USER -c "$PM2 start $APP_PATH/client-pm2.json --only $SERVICE_NAME --env production"
     retval=$?
     [ $retval -eq 0 ] && touch $lockfile
 }
