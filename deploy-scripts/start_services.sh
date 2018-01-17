@@ -2,7 +2,6 @@
 APP_CLIENT_DIR="/opt/$APPLICATION_NAME-client/"
 APP_SERVER_DIR="/opt/$APPLICATION_NAME-server/"
 
-:wq
 sudo /etc/init.d/mongod start
 echo "MongoDB server running"
 
@@ -10,4 +9,4 @@ echo "MongoDB server running"
 sudo /etc/init.d/morpheus-server start
 
 # # # Install Client
-sudo /etc/init.d/morpheus-client start
+sudo /etc/init.d/morpheus-server start
