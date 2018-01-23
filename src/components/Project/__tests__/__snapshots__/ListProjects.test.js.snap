@@ -19,7 +19,7 @@ exports[`List Projects renders projects correctly 1`] = `
           className="content"
         >
           <div
-            className="header"
+            className="firstletter-capitalise header"
           >
             Avengers
             <a
@@ -112,7 +112,7 @@ exports[`List Projects renders successfully after error creating new project 1`]
           className="content"
         >
           <div
-            className="header"
+            className="firstletter-capitalise header"
           >
             Avengers
             <a
@@ -205,7 +205,7 @@ exports[`List Projects renders successfully after successful creation of project
           className="content"
         >
           <div
-            className="header"
+            className="firstletter-capitalise header"
           >
             Avengers
             <a

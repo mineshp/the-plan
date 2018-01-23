@@ -50,6 +50,10 @@ ShallowWrapper {
         component={[Function]}
         path="/project/:projectName/lists"
     />
+    <Route
+        component={[Function]}
+        path="*"
+    />
 </Switch>,
   "nodes": Array [
     <Switch>
@@ -93,6 +97,10 @@ ShallowWrapper {
       <Route
             component={[Function]}
             path="/project/:projectName/lists"
+      />
+      <Route
+            component={[Function]}
+            path="*"
       />
 </Switch>,
   ],
@@ -172,6 +180,10 @@ ShallowWrapper {
                     component={[Function]}
                     path="/project/:projectName/lists"
           />
+          <Route
+                    component={[Function]}
+                    path="*"
+          />
 </Switch>,
         "_debugID": 16,
         "_renderedOutput": <Switch>
@@ -215,6 +227,10 @@ ShallowWrapper {
           <Route
                     component={[Function]}
                     path="/project/:projectName/lists"
+          />
+          <Route
+                    component={[Function]}
+                    path="*"
           />
 </Switch>,
       },

@@ -10,7 +10,7 @@ exports[`ProjectCard renders correctly 1`] = `
     className="content"
   >
     <div
-      className="header"
+      className="firstletter-capitalise header"
     >
       Avengers
       <a
