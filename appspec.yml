@@ -7,11 +7,15 @@ files:
     destination: /etc/init.d/
   - source: deploy-scripts/morpheus-client
     destination: /etc/init.d/
+  - source: deploy-scripts/morpheus.conf
+    destination: /etc/nginx/conf.d/
 permissions:
   - object: /etc/init.d/morpheus-server
     mode: 755
   - object: /etc/init.d/morpheus-client
     mode: 755
+  - object: /etc/nginx/conf.d/morpheus.conf
+    mode: 644
 hooks:
   ApplicationStop:
     - location: deploy-scripts/stop_services.sh

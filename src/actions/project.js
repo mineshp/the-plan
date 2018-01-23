@@ -47,7 +47,7 @@ export const errorFetchingProject = (error) => ({
 
 export function listProjects() {
     return (dispatch) =>
-        fetch('/project/all')
+        fetch('/api/project/all')
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -60,7 +60,7 @@ export function listProjects() {
 
 export function create(newProject) {
     return (dispatch) =>
-        fetch('/project/update', {
+        fetch('/api/project/update', {
             method: 'post',
             headers: {
                 Accept: 'application/json',
@@ -84,7 +84,7 @@ export function create(newProject) {
 
 export function update(existingProject) {
     return (dispatch) =>
-        fetch(`/project/update/${existingProject._id}`, { // eslint-disable-line no-underscore-dangle
+        fetch(`/api/project/update/${existingProject._id}`, { // eslint-disable-line no-underscore-dangle
             method: 'post',
             headers: {
                 Accept: 'application/json',
@@ -105,7 +105,7 @@ export function update(existingProject) {
 
 export function fetchSingleProject(projectId) {
     return (dispatch) =>
-        fetch(`/project/${projectId}`)
+        fetch(`/api/project/${projectId}`)
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -129,7 +129,7 @@ export const errorDeletingProject = (error) => ({
 
 export function deleteProject(id) {
     return (dispatch) =>
-        fetch(`/project/delete/${id}`, {
+        fetch(`/api/project/delete/${id}`, {
             method: 'delete',
             headers: {
                 Accept: 'application/json',

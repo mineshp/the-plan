@@ -21,6 +21,9 @@ sudo chown -R ec2-user:ec2-user node_modules
 
 # Configure client
 sudo mv /tmp/morpheus-deploy/* $APP_CLIENT_DIR
+sudo rm -rf $APP_CLIENT_DIR/deploy-scripts
+sudo rm -rf $APP_CLIENT_DIR/appspec.yml
+
 sudo chown -R ec2-user:ec2-user $APP_CLIENT_DIR
 cd $APP_CLIENT_DIR
 sudo npm install serve

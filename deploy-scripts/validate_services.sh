@@ -11,7 +11,8 @@ function testService() {
     fi
 }
 
-# Check if we have all three processes listening on the appropriate ports
+# Check if we have all four services are running
 testService "mongod"
+testService "nginx"
 testService "server.js"
 testService "Serve"

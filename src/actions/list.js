@@ -65,7 +65,7 @@ export const errorDownloadingPDF = (error) => ({
 export function downloadPDF(listId) {
     return (dispatch) => {
         dispatch(requestDownloadingPDF());
-        return fetch(`/list/generate/pdf/${listId}`)
+        return fetch(`/api/list/generate/pdf/${listId}`)
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -79,7 +79,7 @@ export function downloadPDF(listId) {
 
 export function retrieveSummaryLists() {
     return (dispatch) =>
-        fetch('/list/all')
+        fetch('/api/list/all')
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -92,7 +92,7 @@ export function retrieveSummaryLists() {
 
 export function retrieveSummaryListsByProject(projectName) {
     return (dispatch) =>
-        fetch(`/project/${projectName}/lists`)
+        fetch(`/api/project/${projectName}/lists`)
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -105,7 +105,7 @@ export function retrieveSummaryListsByProject(projectName) {
 
 export function retrieveListById(listId) {
     return (dispatch) =>
-        fetch(`/list/view/${listId}`)
+        fetch(`/api/list/view/${listId}`)
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -118,7 +118,7 @@ export function retrieveListById(listId) {
 
 export function create(newList) {
     return (dispatch) =>
-        fetch('/list/update', {
+        fetch('/api/list/update', {
             method: 'post',
             headers: {
                 Accept: 'application/json',
@@ -139,7 +139,7 @@ export function create(newList) {
 
 export function update(existingList) {
     return (dispatch) =>
-        fetch(`/list/update/${existingList._id}`, { // eslint-disable-line no-underscore-dangle
+        fetch(`/api/list/update/${existingList._id}`, { // eslint-disable-line no-underscore-dangle
             method: 'post',
             headers: {
                 Accept: 'application/json',
@@ -160,7 +160,7 @@ export function update(existingList) {
 
 export function deleteList(id) {
     return (dispatch) =>
-        fetch(`/list/delete/${id}`, {
+        fetch(`/api/list/delete/${id}`, {
             method: 'delete',
             headers: {
                 Accept: 'application/json',

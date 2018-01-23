@@ -16,31 +16,29 @@ if (dbType === 'mongodb') {
 
 
 module.exports = function (app) {
-    app.get('/', function (req, res) {
+    app.get('/api', function (req, res) {
         res.send('Welcome to the backend')
     });
 
-	app.get('/list/all', list.getAllLists);
-	app.get('/list/view/:id', list.getListById);
-	app.post('/list/update/:id', list.updateList);
-	app.post('/list/update', list.createNewList);
-	app.delete('/list/delete/:id', list.delete);
-	app.get('/list/generate/pdf/:id', list.generatePDF);
+	app.get('/api/list/all', list.getAllLists);
+	app.get('/api/list/view/:id', list.getListById);
+	app.post('/api/list/update/:id', list.updateList);
+	app.post('/api/list/update', list.createNewList);
+	app.delete('/api/list/delete/:id', list.delete);
+	app.get('/api/list/generate/pdf/:id', list.generatePDF);
 
-	app.get('/project/all', project.getAllProjects);
-	app.post('/project/update/:id', project.updateProject);
-	app.post('/project/update', project.createNewProject);
-	app.delete('/project/delete/:id', project.delete);
-	app.get('/project/:id', project.getProjectById);
-	app.get('/project/:projectName/lists/', list.getAllListsForProject);
+	app.get('/api/project/all', project.getAllProjects);
+	app.post('/api/project/update/:id', project.updateProject);
+	app.post('/api/project/update', project.createNewProject);
+	app.delete('/api/project/delete/:id', project.delete);
+	app.get('/api/project/:id', project.getProjectById);
+	app.get('/api/project/:projectName/lists/', list.getAllListsForProject);
 
 	// app.all('/api/*', function(req,res) {
 	// 	res.send(404);
 	// });
 
-	// app.get('*', function (req, res) {
-	// 	res.render('index', {
-	// 		bootstrappedUser: req.user
-	// 	});
-	// });
+	app.get('*', function (req, res) {
+		res.sendFile(path.join(__dirname, './index.html'));
+	});
 };
