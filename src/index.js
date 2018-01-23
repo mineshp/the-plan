@@ -1,7 +1,7 @@
 /* istanbul ignore next not testing file */
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import BrowserRouter from 'react-router-dom/BrowserRouter';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
