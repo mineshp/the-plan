@@ -7,8 +7,15 @@ const dbType = process.env.DB_TYPE || 'mongodb';
 
 const config = require('./config/config')[env];
 
+app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // req.body params are available
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 
 require('./mongodb/models/List');
 

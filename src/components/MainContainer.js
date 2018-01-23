@@ -7,6 +7,7 @@ import { ManageListConnectedComponent } from '../HOC/List/ManageList';
 import { UpdateListConnectedComponent } from '../HOC/List/Update';
 import { ManageProjectConnectedComponent } from '../HOC/Project/ManageProject';
 import { UpdateProjectConnectedComponent } from '../HOC/Project/Update';
+import NotFound from './Shared/NotFound';
 import Home from './Home';
 
 // For more info see
@@ -24,6 +25,7 @@ const Main = () => (
         <Route path="/project/update/:id" component={UpdateProjectConnectedComponent} />
         <Route path="/project/update" component={UpdateProjectConnectedComponent} />
         <Route path="/project/:projectName/lists" component={ManageListSummaryConnectedComponent} />
+        <Route path="*" component={NotFound} />
     </Switch>
 );
 

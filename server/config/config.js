@@ -30,7 +30,7 @@ module.exports = {
     development: {
         rootPath,
         mongodb: {
-            db: 'mongodb://localhost/theplandbtest'
+            db: 'mongodb://localhost/theplandb'
         },
         dynamodb: {
             listsTable: 'lists-morpheus-dev',
