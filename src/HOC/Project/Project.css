@@ -6,6 +6,10 @@
     width: 25% !important;
 }
 
+.ui.form .field .ui.input input, .ui.form .fields .field .ui.input input.text-box-3-col {
+    width: 10% !important;
+}
+
 .ui.dropdown.form-dropdown {
     width: 25% !important;
 }

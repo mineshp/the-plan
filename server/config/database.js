@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const listModel = require('../mongodb/models/List');
 const projectModel = require('../mongodb/models/Project');
+require('../mongodb/models/List');
+require('../mongodb/models/User');
 
 // https://github.com/guyellis/MEANAppsFiles/blob/master/server/config/mongoose.js
 
