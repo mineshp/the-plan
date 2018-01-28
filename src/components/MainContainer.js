@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import List from './App';
 // import ManageLists from './List/Manage';
 import { RegisterConnectedComponent } from '../HOC/Authentication/Register';
+import { LoginConnectedComponent } from '../HOC/Authentication/Login';
 import { ManageListSummaryConnectedComponent } from '../HOC/ListsSummary/ManageListSummary';
 import { ManageListConnectedComponent } from '../HOC/List/ManageList';
 import { UpdateListConnectedComponent } from '../HOC/List/Update';
@@ -18,6 +19,7 @@ const Main = () => (
     <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/user/register" component={RegisterConnectedComponent} />
+        <Route path="/user/login" component={LoginConnectedComponent} />
         <Route path="/list/all" component={ManageListSummaryConnectedComponent} />
         <Route path="/list/view/:id" component={ManageListConnectedComponent} />
         <Route path="/list/update/:id" component={UpdateListConnectedComponent} />

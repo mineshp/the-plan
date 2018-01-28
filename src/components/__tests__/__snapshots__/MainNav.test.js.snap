@@ -152,6 +152,7 @@ exports[`MainNav Component renders correctly 1`] = `
   </div>
   <a
     className="right item"
+    href="/user/login"
     onClick={[Function]}
   >
     Sign-in

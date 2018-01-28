@@ -1,3 +1,6 @@
+// const requestHeaders = () => (
+//     { AUTHORIZATION: `Bearer ${sessionStorage.jwt}` });
+
 export const createdList = (data) => ({
     type: 'LIST_CREATION_SUCCESS',
     data
@@ -65,6 +68,8 @@ export const errorDownloadingPDF = (error) => ({
 export function downloadPDF(listId) {
     return (dispatch) => {
         dispatch(requestDownloadingPDF());
+        // const headers = requestHeaders();
+        // return fetch(`/api/list/generate/pdf/${listId}`, { headers })
         return fetch(`/api/list/generate/pdf/${listId}`)
             .then((res) => {
                 if (res.ok) {

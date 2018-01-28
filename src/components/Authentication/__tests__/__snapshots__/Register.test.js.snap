@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Register component renders correctly with invalid data 1`] = `
+exports[`Login renders correctly with invalid data 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
     "buildPredicate": [Function],
@@ -11,6 +11,11 @@ ShallowWrapper {
   "node": <Container
     text={true}
 >
+    <Header
+        as="h1"
+    >
+        Register
+    </Header>
     <Form
         as="form"
         onSubmit={[Function]}
@@ -144,6 +149,11 @@ ShallowWrapper {
     <Container
       text={true}
 >
+      <Header
+            as="h1"
+      >
+            Register
+      </Header>
       <Form
             as="form"
             onSubmit={[Function]}
@@ -345,6 +355,11 @@ ShallowWrapper {
         "_currentElement": <Container
           text={true}
 >
+          <Header
+                    as="h1"
+          >
+                    Register
+          </Header>
           <Form
                     as="form"
                     onSubmit={[Function]}
@@ -478,6 +493,11 @@ ShallowWrapper {
         "_renderedOutput": <Container
           text={true}
 >
+          <Header
+                    as="h1"
+          >
+                    Register
+          </Header>
           <Form
                     as="form"
                     onSubmit={[Function]}
@@ -641,7 +661,7 @@ ShallowWrapper {
 }
 `;
 
-exports[`Register component renders correctly with valid data 1`] = `
+exports[`Login renders correctly with valid data 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
     "buildPredicate": [Function],
@@ -652,6 +672,11 @@ ShallowWrapper {
   "node": <Container
     text={true}
 >
+    <Header
+        as="h1"
+    >
+        Register
+    </Header>
     <Form
         as="form"
         onSubmit={[Function]}
@@ -753,6 +778,11 @@ ShallowWrapper {
     <Container
       text={true}
 >
+      <Header
+            as="h1"
+      >
+            Register
+      </Header>
       <Form
             as="form"
             onSubmit={[Function]}
@@ -922,6 +952,11 @@ ShallowWrapper {
         "_currentElement": <Container
           text={true}
 >
+          <Header
+                    as="h1"
+          >
+                    Register
+          </Header>
           <Form
                     as="form"
                     onSubmit={[Function]}
@@ -1023,6 +1058,11 @@ ShallowWrapper {
         "_renderedOutput": <Container
           text={true}
 >
+          <Header
+                    as="h1"
+          >
+                    Register
+          </Header>
           <Form
                     as="form"
                     onSubmit={[Function]}

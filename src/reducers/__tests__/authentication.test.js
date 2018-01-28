@@ -48,4 +48,46 @@ describe('authentication reducer', () => {
             });
         });
     });
+
+    describe('LOGIN ACTIONS', () => {
+        it('should handle SUCCESS_LOGIN', () => {
+            expect(authentication({}, {
+                type: 'SUCCESS_LOGIN',
+                data: {
+                    email: 'test@test.com',
+                    username: 'testUser',
+                    password: 'password123'
+                }
+            })).toEqual({
+                notification: {
+                    message: 'Successfully logged in with user testUser.',
+                    level: 'success',
+                    title: 'Success'
+                },
+                success: {
+                    data: {
+                        email: 'test@test.com',
+                        username: 'testUser',
+                        password: 'password123',
+                    }
+                }
+            });
+        });
+
+        it('should handle ERROR_LOGIN', () => {
+            expect(authentication({}, {
+                type: 'ERROR_LOGIN',
+                error: 'Error logging in'
+            })).toEqual({
+                notification: {
+                    message: 'Error logging in',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
+                    isError: true
+                }
+            });
+        });
+    });
 });

@@ -1,0 +1,434 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login component renders correctly with valid data 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <div
+    className="login-form"
+>
+    <Grid
+        style={
+            Object {
+                "height": "100%",
+              }
+        }
+        textAlign="center"
+        verticalAlign="middle"
+    >
+        <GridColumn
+            className="login-form-grid-column"
+        >
+            <Header
+                as="h2"
+                color="teal"
+                textAlign="center"
+            >
+                <Image
+                    as="img"
+                    className="home-logo"
+                    src="md-logo-green.png"
+                    ui={true}
+                />
+                 
+                Login to morpheus
+            </Header>
+            <Form
+                as="form"
+                onSubmit={[Function]}
+                size="large"
+            >
+                <Segment
+                    stacked={true}
+                >
+                    <FormField>
+                        <Input
+                            autoComplete="username"
+                            className="text-box-3-col"
+                            defaultValue=""
+                            fluid={true}
+                            icon="user"
+                            iconPosition="left"
+                            name="username"
+                            onChange={[Function]}
+                            placeholder="Username..."
+                            type="text"
+                        />
+                    </FormField>
+                    <FormField>
+                        <Input
+                            autoComplete="password"
+                            className="text-box-3-col"
+                            defaultValue=""
+                            fluid={true}
+                            icon="lock"
+                            iconPosition="left"
+                            name="password"
+                            onChange={[Function]}
+                            placeholder="Password..."
+                            type="password"
+                        />
+                    </FormField>
+                    <Button
+                        as="button"
+                        color="pink"
+                        fluid={true}
+                        size="large"
+                        type="submit"
+                    >
+                        Login
+                    </Button>
+                </Segment>
+            </Form>
+            <Message>
+                New user? 
+                <a
+                    href="/user/register"
+                >
+                    Register
+                </a>
+            </Message>
+        </GridColumn>
+    </Grid>
+</div>,
+  "nodes": Array [
+    <div
+      className="login-form"
+>
+      <Grid
+            style={
+                  Object {
+                        "height": "100%",
+                      }
+            }
+            textAlign="center"
+            verticalAlign="middle"
+      >
+            <GridColumn
+                  className="login-form-grid-column"
+            >
+                  <Header
+                        as="h2"
+                        color="teal"
+                        textAlign="center"
+                  >
+                        <Image
+                              as="img"
+                              className="home-logo"
+                              src="md-logo-green.png"
+                              ui={true}
+                        />
+                         
+                        Login to morpheus
+                  </Header>
+                  <Form
+                        as="form"
+                        onSubmit={[Function]}
+                        size="large"
+                  >
+                        <Segment
+                              stacked={true}
+                        >
+                              <FormField>
+                                    <Input
+                                          autoComplete="username"
+                                          className="text-box-3-col"
+                                          defaultValue=""
+                                          fluid={true}
+                                          icon="user"
+                                          iconPosition="left"
+                                          name="username"
+                                          onChange={[Function]}
+                                          placeholder="Username..."
+                                          type="text"
+                                    />
+                              </FormField>
+                              <FormField>
+                                    <Input
+                                          autoComplete="password"
+                                          className="text-box-3-col"
+                                          defaultValue=""
+                                          fluid={true}
+                                          icon="lock"
+                                          iconPosition="left"
+                                          name="password"
+                                          onChange={[Function]}
+                                          placeholder="Password..."
+                                          type="password"
+                                    />
+                              </FormField>
+                              <Button
+                                    as="button"
+                                    color="pink"
+                                    fluid={true}
+                                    size="large"
+                                    type="submit"
+                              >
+                                    Login
+                              </Button>
+                        </Segment>
+                  </Form>
+                  <Message>
+                        New user? 
+                        <a
+                              href="/user/register"
+                        >
+                              Register
+                        </a>
+                  </Message>
+            </GridColumn>
+      </Grid>
+</div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 2,
+      "_context": Object {},
+      "_currentElement": <Login
+        data={
+                Object {
+                        "password": "",
+                        "username": "",
+                      }
+        }
+        handleChange={[Function]}
+        handleSubmit={[Function]}
+/>,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": StatelessComponent {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "data": Object {
+            "password": "",
+            "username": "",
+          },
+          "handleChange": [Function],
+          "handleSubmit": [Function],
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="login-form"
+>
+          <Grid
+                    style={
+                              Object {
+                                        "height": "100%",
+                                      }
+                    }
+                    textAlign="center"
+                    verticalAlign="middle"
+          >
+                    <GridColumn
+                              className="login-form-grid-column"
+                    >
+                              <Header
+                                        as="h2"
+                                        color="teal"
+                                        textAlign="center"
+                              >
+                                        <Image
+                                                  as="img"
+                                                  className="home-logo"
+                                                  src="md-logo-green.png"
+                                                  ui={true}
+                                        />
+                                         
+                                        Login to morpheus
+                              </Header>
+                              <Form
+                                        as="form"
+                                        onSubmit={[Function]}
+                                        size="large"
+                              >
+                                        <Segment
+                                                  stacked={true}
+                                        >
+                                                  <FormField>
+                                                            <Input
+                                                                      autoComplete="username"
+                                                                      className="text-box-3-col"
+                                                                      defaultValue=""
+                                                                      fluid={true}
+                                                                      icon="user"
+                                                                      iconPosition="left"
+                                                                      name="username"
+                                                                      onChange={[Function]}
+                                                                      placeholder="Username..."
+                                                                      type="text"
+                                                            />
+                                                  </FormField>
+                                                  <FormField>
+                                                            <Input
+                                                                      autoComplete="password"
+                                                                      className="text-box-3-col"
+                                                                      defaultValue=""
+                                                                      fluid={true}
+                                                                      icon="lock"
+                                                                      iconPosition="left"
+                                                                      name="password"
+                                                                      onChange={[Function]}
+                                                                      placeholder="Password..."
+                                                                      type="password"
+                                                            />
+                                                  </FormField>
+                                                  <Button
+                                                            as="button"
+                                                            color="pink"
+                                                            fluid={true}
+                                                            size="large"
+                                                            type="submit"
+                                                  >
+                                                            Login
+                                                  </Button>
+                                        </Segment>
+                              </Form>
+                              <Message>
+                                        New user? 
+                                        <a
+                                                  href="/user/register"
+                                        >
+                                                  Register
+                                        </a>
+                              </Message>
+                    </GridColumn>
+          </Grid>
+</div>,
+        "_debugID": 2,
+        "_renderedOutput": <div
+          className="login-form"
+>
+          <Grid
+                    style={
+                              Object {
+                                        "height": "100%",
+                                      }
+                    }
+                    textAlign="center"
+                    verticalAlign="middle"
+          >
+                    <GridColumn
+                              className="login-form-grid-column"
+                    >
+                              <Header
+                                        as="h2"
+                                        color="teal"
+                                        textAlign="center"
+                              >
+                                        <Image
+                                                  as="img"
+                                                  className="home-logo"
+                                                  src="md-logo-green.png"
+                                                  ui={true}
+                                        />
+                                         
+                                        Login to morpheus
+                              </Header>
+                              <Form
+                                        as="form"
+                                        onSubmit={[Function]}
+                                        size="large"
+                              >
+                                        <Segment
+                                                  stacked={true}
+                                        >
+                                                  <FormField>
+                                                            <Input
+                                                                      autoComplete="username"
+                                                                      className="text-box-3-col"
+                                                                      defaultValue=""
+                                                                      fluid={true}
+                                                                      icon="user"
+                                                                      iconPosition="left"
+                                                                      name="username"
+                                                                      onChange={[Function]}
+                                                                      placeholder="Username..."
+                                                                      type="text"
+                                                            />
+                                                  </FormField>
+                                                  <FormField>
+                                                            <Input
+                                                                      autoComplete="password"
+                                                                      className="text-box-3-col"
+                                                                      defaultValue=""
+                                                                      fluid={true}
+                                                                      icon="lock"
+                                                                      iconPosition="left"
+                                                                      name="password"
+                                                                      onChange={[Function]}
+                                                                      placeholder="Password..."
+                                                                      type="password"
+                                                            />
+                                                  </FormField>
+                                                  <Button
+                                                            as="button"
+                                                            color="pink"
+                                                            fluid={true}
+                                                            size="large"
+                                                            type="submit"
+                                                  >
+                                                            Login
+                                                  </Button>
+                                        </Segment>
+                              </Form>
+                              <Message>
+                                        New user? 
+                                        <a
+                                                  href="/user/register"
+                                        >
+                                                  Register
+                                        </a>
+                              </Message>
+                    </GridColumn>
+          </Grid>
+</div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Login
+    data={
+        Object {
+            "password": "",
+            "username": "",
+          }
+    }
+    handleChange={[Function]}
+    handleSubmit={[Function]}
+/>,
+}
+`;

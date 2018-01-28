@@ -1,6 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as actions from '../authentication';
+import { mockRegisterUser, mockLoginUser } from '../../helpers/test/testData/authenticationData';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -16,12 +17,7 @@ const mockResponse = (status, statusText, response) => new window.Response(respo
 describe('User authentication', () => {
     describe('Register User', () => {
         const mockRegisterUserSuccessAPIResponse = [
-            {
-                email: 'test@test.com',
-                username: 'testUser',
-                password: 'password123',
-                confirmPassword: 'password123'
-            }
+            mockRegisterUser()
         ];
 
         const mockRegisterUserFailureAPIResponse = {
@@ -69,7 +65,7 @@ describe('User authentication', () => {
             window.fetch = jest.fn().mockImplementation(() =>
                 Promise.resolve(mockResponse(500, null, JSON.stringify(mockRegisterUserFailureAPIResponse))));
 
-            const store = mockStore({ user: [] });
+            const store = mockStore({ authentication: [] });
 
             const expectedAction = [
                 {
@@ -80,6 +76,71 @@ describe('User authentication', () => {
 
             return store.dispatch(actions.registerUser(mockRegisterUserSuccessAPIResponse)).then(() => {
                 // return of async actions
+                expect(store.getActions()).toEqual(expectedAction);
+            });
+        });
+    });
+
+    describe('Login User', () => {
+        const mockLoginUserSuccessApiResponse = [
+            mockLoginUser()
+        ];
+
+        const mockLoginUserFailureApiResponse = {
+            message: `Unable to login with username ${mockLoginUserSuccessApiResponse.username}, please check username and password are correct.`
+        };
+
+        it('should dispatch an action for SUCCESS_LOGIN when calling successLogin to confirm user logged in', () => {
+            const expectedAction = {
+                type: 'SUCCESS_LOGIN',
+                data: mockLoginUserSuccessApiResponse
+            };
+
+            expect(actions.successLogin(mockLoginUserSuccessApiResponse)).toEqual(expectedAction);
+        });
+
+        it('should dispatch an action for ERROR_LOGIN when calling errorLogin to notify the user we were unable to login', () => {
+            const expectedAction = {
+                type: 'ERROR_LOGIN',
+                error: mockLoginUserFailureApiResponse.message
+            };
+
+            expect(actions.errorLogin(mockLoginUserFailureApiResponse.message))
+                .toEqual(expectedAction);
+        });
+
+        it('a successful loginUser call via the store, dispatches the SUCCESS_LOGIN action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(200, null, JSON.stringify(mockLoginUserSuccessApiResponse))));
+
+            const store = mockStore({ authentication: [] });
+
+            const expectedActions = [
+                {
+                    type: 'SUCCESS_LOGIN',
+                    data: mockLoginUserSuccessApiResponse
+                }
+            ];
+
+            return store.dispatch(actions.loginUser(mockLoginUserSuccessApiResponse)).then(() => {
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+
+        it('an unsuccessful registerUser call via the store, dispatches the ERROR_USER_REGISTERED action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(500, null, JSON.stringify(mockLoginUserFailureApiResponse))));
+
+            const store = mockStore({ authentication: [] });
+
+            const expectedAction = [
+                {
+                    type: 'ERROR_LOGIN',
+                    error: mockLoginUserFailureApiResponse.message
+                }
+            ];
+
+            return store.dispatch(actions.loginUser(mockLoginUserSuccessApiResponse)).then(() => {
                 expect(store.getActions()).toEqual(expectedAction);
             });
         });

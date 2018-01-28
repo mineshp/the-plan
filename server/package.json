@@ -21,6 +21,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "install": "^0.10.2",
+    "jsonwebtoken": "^8.1.1",
     "jsreport-core": "^1.5.1",
     "jsreport-handlebars": "^1.1.2",
     "jsreport-jsrender": "^1.0.2",

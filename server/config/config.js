@@ -14,7 +14,8 @@ module.exports = {
             listsTable: 'lists-morpheus-dev',
             projectsTable: 'projects-morpheus-dev'
         },
-        port: process.env.PORT || 3030
+        port: process.env.PORT || 3030,
+        secret: 'ilovecubanrum'
     },
     local: {
         rootPath,
@@ -25,7 +26,8 @@ module.exports = {
             listsTable: 'lists-morpheus-dev',
             projectsTable: 'projects-morpheus-dev'
         },
-        port: process.env.PORT || 3030
+        port: process.env.PORT || 3030,
+        secret: 'ilovecubanrum'
     },
     development: {
         rootPath,
@@ -36,7 +38,8 @@ module.exports = {
             listsTable: 'lists-morpheus-dev',
             projectsTable: 'projects-morpheus-dev'
         },
-        port: process.env.PORT || 3030
+        port: process.env.PORT || 3030,
+        secret: 'ilovecubanrum'
     },
     production: {
         rootPath,
@@ -47,6 +50,7 @@ module.exports = {
             listsTable: 'lists-morpheus-prod',
             projectsTable: 'projects-morpheus-prod'
         },
-        port: process.env.PORT || 80
+        port: process.env.PORT || 80,
+        secret: 'iknowsomethingyoudontknow'
     }
 };

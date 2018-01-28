@@ -1,3 +1,4 @@
+const path = require('path');
 const listMongodb = require('../mongodb/controllers/list');
 const projectMongodb = require('../mongodb/controllers/project');
 const listDynamodb = require('../dynamodb/controllers/list');
@@ -24,6 +25,7 @@ module.exports = function (app) {
     });
 
 	app.post('/api/user/register', user.register);
+	app.post('/api/user/login', user.login);
 
 	app.get('/api/list/all', list.getAllLists);
 	app.get('/api/list/view/:id', list.getListById);
@@ -43,7 +45,7 @@ module.exports = function (app) {
 		res.sendStatus(404);
 	});
 
-	app.get('*', function (req, res) {
-		res.sendFile(path.join(__dirname, './index.html'));
-	});
+	// app.get('*', function (req, res) {
+	// 	res.sendFile(path.join(__dirname, './index.html'));
+	// });
 };

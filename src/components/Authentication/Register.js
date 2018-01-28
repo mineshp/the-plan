@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Form, Grid, Input, Label } from 'semantic-ui-react';
+import { Button, Container, Form, Grid, Header, Input, Label } from 'semantic-ui-react';
 
 const Register = ({
     handleSubmit,
@@ -9,6 +9,7 @@ const Register = ({
     formErrors
 }) => (
     <Container text>
+        <Header as="h1">Register</Header>
         <Form onSubmit={handleSubmit}>
             <Grid columns={2}>
                 <Grid.Row>

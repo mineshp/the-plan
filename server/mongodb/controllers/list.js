@@ -35,8 +35,7 @@ exports.createNewList = function(req, res) {
 					res.send(result);
 				}
 			});
-		}
-		else {
+		} else {
 			res.status(400);
 			res.json(
 				{

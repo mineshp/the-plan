@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Register } from '../Register';
-import mockRegisterUser from '../../../helpers/test/testData/authenticationData';
+import { mockRegisterUser } from '../../../helpers/test/testData/authenticationData';
 import mockEvent from '../../../helpers/test/testData';
 
 const handleSubmitMock = jest.fn();

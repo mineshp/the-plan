@@ -230,3 +230,20 @@ body {
   color: #FFF;
   background-color: #8aa7e2;
 }
+
+/* Login Page */
+body > div,
+body > div > div,
+body > div > div > div.login-form {
+  height: 100%;
+}
+
+.ui.grid.login-form-grid {
+  text-align: 'center';
+  height: 100%;
+  vertical-align: 'middle';
+}
+
+.ui.grid > .login-form-grid-column {
+  max-width: 450px;
+}

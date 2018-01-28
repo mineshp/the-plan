@@ -20,6 +20,10 @@ ShallowWrapper {
     />
     <Route
         component={[Function]}
+        path="/user/login"
+    />
+    <Route
+        component={[Function]}
         path="/list/all"
     />
     <Route
@@ -69,6 +73,10 @@ ShallowWrapper {
       <Route
             component={[Function]}
             path="/user/register"
+      />
+      <Route
+            component={[Function]}
+            path="/user/login"
       />
       <Route
             component={[Function]}
@@ -158,6 +166,10 @@ ShallowWrapper {
           />
           <Route
                     component={[Function]}
+                    path="/user/login"
+          />
+          <Route
+                    component={[Function]}
                     path="/list/all"
           />
           <Route
@@ -207,6 +219,10 @@ ShallowWrapper {
           <Route
                     component={[Function]}
                     path="/user/register"
+          />
+          <Route
+                    component={[Function]}
+                    path="/user/login"
           />
           <Route
                     component={[Function]}

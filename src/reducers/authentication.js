@@ -24,6 +24,31 @@ const authentication = (state = {}, action) => {
             }
         };
 
+    case 'SUCCESS_LOGIN':
+        return {
+            notification: {
+                message: `Successfully logged in with user ${action.data.username}.`,
+                level: 'success',
+                title: 'Success'
+            },
+            success: {
+                data: action.data,
+            },
+            // session: !!sessionStorage.jwt
+        };
+
+    case 'ERROR_LOGIN':
+        return {
+            notification: {
+                message: action.error,
+                level: 'error',
+                title: 'Error'
+            },
+            error: {
+                isError: true
+            }
+        };
+
     default:
         return state;
     }

@@ -49,6 +49,7 @@ export default class MainNav extends Component {
 
 
                 <Menu.Item
+                    href="/user/login"
                     position="right"
                     name="sign-in"
                     active={activeItem === 'sign-in'}

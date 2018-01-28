@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Register from '../Register';
 
-describe('Register component', () => {
+describe('Login', () => {
     it('renders correctly with valid data', () => {
         const handleChange = jest.fn();
         const handleSubmit = jest.fn();
