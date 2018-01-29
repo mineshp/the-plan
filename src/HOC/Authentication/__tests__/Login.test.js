@@ -6,6 +6,20 @@ import mockEvent from '../../../helpers/test/testData';
 const handleSubmitMock = jest.fn();
 const handleChangeMock = jest.fn();
 
+const props = {
+    actions: {
+        loginUser: jest.fn(() => (
+            Promise.resolve({
+                type: 'SUCCESS_LOGIN'
+            })
+        )),
+        addNotification: jest.fn(() => (
+            Promise.resolve()
+        ))
+    },
+    notification: null
+};
+
 const context = {
     router: {
         history: {
@@ -15,117 +29,138 @@ const context = {
 };
 
 describe('Login User', () => {
-    describe('with invalid login credentials', () => {
-        const props = {
-            actions: {
-                loginUser: jest.fn(() => (
-                    Promise.resolve({
-                        type: 'ERROR_LOGIN'
-                    })
-                )),
-                addNotification: jest.fn(() => (
-                    Promise.resolve()
-                ))
-            },
-            notification: null
-        };
-
+    describe('with valid login credentials', () => {
         let wrapper;
-
         beforeEach(() => {
             wrapper = shallow(<Login
-                {...props}
                 handleSubmit={handleSubmitMock}
                 handleChange={handleChangeMock}
+                {...props}
             />, { context }
             );
 
             props.actions.loginUser.mockClear();
             props.actions.addNotification.mockClear();
+            context.router.history.push.mockClear();
         });
 
-        it('does not call the loginUser action if username has not been entered', () => {
-            const loginUserSpyInvalid = jest.spyOn(Login.prototype, 'loginUser');
-
-            wrapper.instance().handleSubmit(mockEvent());
-
-            expect(loginUserSpyInvalid).not.toHaveBeenCalled();
-        });
-
-        it('does not call the loginUser action if password has not been entered', () => {
-            const loginUserSpyInvalid = jest.spyOn(Login.prototype, 'loginUser');
-            wrapper.setState({
-                username: 'testUser'
+        it('calls handleChange for username input field', async () => {
+            const inputLoginDetailsEvent = Object.assign({}, mockEvent(), {
+                target: {
+                    name: 'username',
+                    value: 'test'
+                }
             });
 
-            wrapper.instance().handleSubmit(mockEvent());
+            await wrapper.instance().handleChange(inputLoginDetailsEvent);
 
-            expect(loginUserSpyInvalid).not.toHaveBeenCalled();
+            expect(wrapper.state().username).toEqual('test');
         });
 
-        it('calls the loginUser action but redirects to login page if details are invalid', async () => {
+        it('calls handleChange for password input field', async () => {
+            const inputPasswordLoginDetailsEvent = Object.assign({}, mockEvent(), {
+                target: {
+                    name: 'password',
+                    value: 'secret'
+                }
+            });
+
+            await wrapper.instance().handleChange(inputPasswordLoginDetailsEvent);
+
+            expect(wrapper.state().password).toEqual('secret');
+        });
+
+        it('calls the loginUser action if username and password is valid', async () => {
             const loginUserSpyValid = jest.spyOn(Login.prototype, 'loginUser');
             wrapper.setState({
                 username: 'testUser',
                 password: 'password'
             });
 
-            wrapper.instance().handleSubmit(mockEvent());
-
-            expect(loginUserSpyValid).toHaveBeenCalled();
-            // await expect(context.router.history.push).toHaveBeenCalledWith('/user/login');
-        });
-    });
-    describe('with valid login credentials', () => {
-        const propsValid = {
-            actions: {
-                loginUser: jest.fn(() => (
-                    Promise.resolve({
-                        type: 'LIST_SUCCESS'
-                    })
-                )),
-                addNotification: jest.fn(() => (
-                    Promise.resolve()
-                ))
-            },
-            notification: null
-        };
-
-        let wrapper;
-
-        beforeEach(() => {
-            wrapper = shallow(<Login
-                {...propsValid}
-                handleSubmit={handleSubmitMock}
-                handleChange={handleChangeMock}
-            />, { context }
-            );
-
-            propsValid.actions.loginUser.mockClear();
-            propsValid.actions.addNotification.mockClear();
-        });
-
-        it('does call the loginUser action if username and password is valid', async () => {
-            const loginUserSpyValid = jest.spyOn(Login.prototype, 'loginUser');
-            wrapper.setState({
-                username: 'testUser',
-                password: 'password'
-            });
-
-            wrapper.instance().handleSubmit(mockEvent());
+            await wrapper.instance().handleSubmit(mockEvent());
 
             expect(loginUserSpyValid).toHaveBeenCalled();
             loginUserSpyValid.mockReset();
             loginUserSpyValid.mockRestore();
 
-            await expect(propsValid.actions.loginUser).toHaveBeenCalledWith({
+            await expect(props.actions.loginUser).toHaveBeenCalledWith({
                 username: 'testUser',
                 password: 'password'
             });
 
-            await expect(propsValid.actions.addNotification).toHaveBeenCalled();
+            await expect(props.actions.addNotification).toHaveBeenCalled();
 
-            // await expect(context.router.history.push).toHaveBeenCalledWith('/');
+            await expect(context.router.history.push).toHaveBeenCalledWith('/');
+        });
+    });
+
+    describe('with missing login credentials', () => {
+        let missingCredentialsLoginWrapper;
+
+        beforeEach(() => {
+            missingCredentialsLoginWrapper = shallow(<Login
+                handleSubmit={handleSubmitMock}
+                handleChange={handleChangeMock}
+                {...props}
+            />, { context }
+            );
+        });
+
+        it('does not call the loginUser action if username has not been entered', async () => {
+            const loginUserSpyInvalid = jest.spyOn(Login.prototype, 'loginUser');
+
+            await missingCredentialsLoginWrapper.instance().handleSubmit(mockEvent());
+
+            expect(loginUserSpyInvalid).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('with invalid login credentials', () => {
+        let invalidCredentialsLoginWrapper;
+
+        const invalidCredentialsPropsActions = Object.assign({}, props.actions, {
+            loginUser: jest.fn(() => (
+                Promise.resolve({
+                    type: 'ERROR_LOGIN'
+                })
+            )),
+            addNotification: jest.fn(() => (
+                Promise.resolve()
+            ))
+        });
+
+        const invalidCredentialsProps = Object.assign({}, props, {
+            actions: invalidCredentialsPropsActions
+        });
+
+        beforeEach(() => {
+            invalidCredentialsLoginWrapper = shallow(<Login
+                handleSubmit={handleSubmitMock}
+                handleChange={handleChangeMock}
+                {...invalidCredentialsProps}
+            />, { context }
+            );
+        });
+
+        it('calls the loginUser action but redirects to login page if details are invalid', async () => {
+            const invalidLoginUserSpyValid = jest.spyOn(Login.prototype, 'loginUser');
+            invalidCredentialsLoginWrapper.setState({
+                username: 'testUser',
+                password: 'incorrectPassword'
+            });
+
+            await invalidCredentialsLoginWrapper.instance().handleSubmit(mockEvent());
+
+            expect(invalidLoginUserSpyValid).toHaveBeenCalled();
+
+            await expect(invalidCredentialsProps.actions.loginUser).toHaveBeenCalledWith({
+                username: 'testUser',
+                password: 'incorrectPassword'
+            });
+
+            await expect(invalidCredentialsProps.actions.addNotification).toHaveBeenCalled();
+
+            await expect(context.router.history.push).toHaveBeenCalledWith('/user/login');
         });
     });
 });

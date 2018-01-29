@@ -14,30 +14,26 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
-            username: '',
-            password: '',
-            formValid: false
+            username: null,
+            password: null
         };
     }
 
-    loginUser() {
+    async loginUser() {
         const loginDetails = {
             username: this.state.username,
             password: this.state.password
         };
-        this.props.actions.loginUser(loginDetails)
-            .then((loginStatus) => {
-                console.log('HERE')
-                this.props.actions.addNotification(this.props.notification);
-                console.log('loginStatus', loginStatus);
-                if (loginStatus.type === 'SUCCESS_LOGIN') {
-                    console.log('success login');
-                    this.context.router.history.push('/');
-                } else {
-                    console.log('error login');
-                    this.context.router.history.push('/user/login');
-                }
-            });
+
+        const loginStatus = await this.props.actions.loginUser(loginDetails);
+
+        this.props.actions.addNotification(this.props.notification);
+
+        if (loginStatus.type === 'SUCCESS_LOGIN') {
+            this.context.router.history.push('/');
+        } else {
+            this.context.router.history.push('/user/login');
+        }
     }
 
     handleChange(event) {
@@ -48,11 +44,12 @@ class Login extends Component {
         });
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         if (this.state.username && this.state.password) {
-            this.loginUser();
+            return this.loginUser();
         }
+        return undefined;
     }
 
     render() {
