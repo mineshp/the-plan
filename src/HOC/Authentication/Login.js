@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { loginUser } from '../../actions/authentication';
 import { addNotification } from '../../actions/notification';
 import LoginForm from '../../components/Authentication/Login';
+import Auth from './Auth';
 
 class Login extends Component {
     constructor(props, context) {
@@ -12,6 +13,7 @@ class Login extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.auth = new Auth();
 
         this.state = {
             username: null,
@@ -28,8 +30,8 @@ class Login extends Component {
         const loginStatus = await this.props.actions.loginUser(loginDetails);
 
         this.props.actions.addNotification(this.props.notification);
-
         if (loginStatus.type === 'SUCCESS_LOGIN') {
+            this.auth.setToken(loginStatus.token);
             this.context.router.history.push('/');
         } else {
             this.context.router.history.push('/user/login');

@@ -82,21 +82,18 @@ describe('User authentication', () => {
     });
 
     describe('Login User', () => {
-        const mockLoginUserSuccessApiResponse = [
-            mockLoginUser()
-        ];
-
         const mockLoginUserFailureApiResponse = {
-            message: `Unable to login with username ${mockLoginUserSuccessApiResponse.username}, please check username and password are correct.`
+            message: `Unable to login with username ${mockLoginUser().username}, please check username and password are correct.`
         };
 
         it('should dispatch an action for SUCCESS_LOGIN when calling successLogin to confirm user logged in', () => {
             const expectedAction = {
                 type: 'SUCCESS_LOGIN',
-                data: mockLoginUserSuccessApiResponse
+                username: mockLoginUser().username,
+                token: mockLoginUser().token
             };
 
-            expect(actions.successLogin(mockLoginUserSuccessApiResponse)).toEqual(expectedAction);
+            expect(actions.successLogin(mockLoginUser())).toEqual(expectedAction);
         });
 
         it('should dispatch an action for ERROR_LOGIN when calling errorLogin to notify the user we were unable to login', () => {
@@ -111,18 +108,19 @@ describe('User authentication', () => {
 
         it('a successful loginUser call via the store, dispatches the SUCCESS_LOGIN action', async () => {
             window.fetch = jest.fn().mockImplementation(() =>
-                Promise.resolve(mockResponse(200, null, JSON.stringify(mockLoginUserSuccessApiResponse))));
+                Promise.resolve(mockResponse(200, null, JSON.stringify(mockLoginUser()))));
 
             const store = mockStore({ authentication: [] });
 
             const expectedActions = [
                 {
                     type: 'SUCCESS_LOGIN',
-                    data: mockLoginUserSuccessApiResponse
+                    username: mockLoginUser().username,
+                    token: mockLoginUser().token
                 }
             ];
 
-            return store.dispatch(actions.loginUser(mockLoginUserSuccessApiResponse)).then(() => {
+            return store.dispatch(actions.loginUser(mockLoginUser())).then(() => {
                 expect(store.getActions()).toEqual(expectedActions);
             });
         });
@@ -140,7 +138,7 @@ describe('User authentication', () => {
                 }
             ];
 
-            return store.dispatch(actions.loginUser(mockLoginUserSuccessApiResponse)).then(() => {
+            return store.dispatch(actions.loginUser(mockLoginUser())).then(() => {
                 expect(store.getActions()).toEqual(expectedAction);
             });
         });

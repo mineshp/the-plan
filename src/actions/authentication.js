@@ -29,9 +29,10 @@ export function registerUser(registrationData) {
             .catch((error) => dispatch(errorRegisteringUser(error.message)));
 }
 
-export const successLogin = (data) => ({
+export const successLogin = ({ username, token }) => ({
     type: 'SUCCESS_LOGIN',
-    data
+    username,
+    token
 });
 
 export const errorLogin = (error) => ({
@@ -51,9 +52,6 @@ export function loginUser(loginDetails) {
         })
             .then((res) => {
                 if (res.ok) {
-                    // console.log('res', res);
-                    // console.log('res.jwt', res.jwt);
-                    // sessionStorage.setItem('jwt', res.jwt);
                     return res.json();
                 }
                 return Promise.reject(

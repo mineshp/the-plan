@@ -53,24 +53,16 @@ describe('authentication reducer', () => {
         it('should handle SUCCESS_LOGIN', () => {
             expect(authentication({}, {
                 type: 'SUCCESS_LOGIN',
-                data: {
-                    email: 'test@test.com',
-                    username: 'testUser',
-                    password: 'password123'
-                }
+                username: 'testUser',
+                token: 'asecrettokenonlyforyou'
             })).toEqual({
                 notification: {
                     message: 'Successfully logged in with user testUser.',
                     level: 'success',
                     title: 'Success'
                 },
-                success: {
-                    data: {
-                        email: 'test@test.com',
-                        username: 'testUser',
-                        password: 'password123',
-                    }
-                }
+                username: 'testUser',
+                token: 'asecrettokenonlyforyou'
             });
         });
 

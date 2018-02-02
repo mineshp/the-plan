@@ -2,6 +2,9 @@ const User = require('mongoose').model('User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const env = process.env.NODE_ENV || 'development';
+const config = require('../../config/config')[env];
+
 exports.register = function (req, res) {
     if (
         req.body.email &&
@@ -27,11 +30,16 @@ exports.register = function (req, res) {
     }
 };
 
-exports.login = function (req, res) {
+const generateToken = (payload) =>
+    jwt.sign(payload, config.jwtSecret, {
+        expiresIn: 60 * 60 * 24 // expires in 24 hours
+    });
+
+exports.login = (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    User.findOne({ username }, function (err, collection) {
+    User.findOne({ username }, (err, collection) => {
         if (err) {
             console.log('err finding username', err)
             res.status(400);
@@ -49,21 +57,17 @@ exports.login = function (req, res) {
                 }
             );
         } else {
-            console.log('collection found ', collection);
-            bcrypt.compare(password, collection.password, function (err, result) {
-                console.log('err', err);
-                console.log('result', result);
+            bcrypt.compare(password, collection.password, (bCryptErr, result) => {
                 if (result === true) {
                     const payload = {
                         username: collection.username,
                         email: collection.email
                     };
-                    // console.log('payload', payload);
-                    // const token = jwt.sign(payload, app.get('superSecret'), {
-                    //     expiresInMinutes: 1440 // expires in 24 hours
-                    // });
-                    // res.send(token);
-                    res.send(collection);
+                    res.send({
+                        username: payload.username,
+                        token: generateToken(payload)
+                    });
+                    // res.send(collection);
                 } else {
                     res.status(400);
                     res.json(

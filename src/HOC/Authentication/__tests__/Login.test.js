@@ -1,3 +1,7 @@
+
+jest.mock('../Auth');
+import Auth from '../Auth';
+
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Login } from '../Login';
@@ -10,7 +14,9 @@ const props = {
     actions: {
         loginUser: jest.fn(() => (
             Promise.resolve({
-                type: 'SUCCESS_LOGIN'
+                type: 'SUCCESS_LOGIN',
+                token: 'asecrettokenonlyforyou',
+                username: 'testUser'
             })
         )),
         addNotification: jest.fn(() => (
@@ -27,6 +33,9 @@ const context = {
         }
     }
 };
+
+const setToken = jest.fn();
+Auth.mockImplementation(() => ({ setToken }));
 
 describe('Login User', () => {
     describe('with valid login credentials', () => {
@@ -89,7 +98,7 @@ describe('Login User', () => {
             });
 
             await expect(props.actions.addNotification).toHaveBeenCalled();
-
+            await expect(setToken).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/');
         });
     });

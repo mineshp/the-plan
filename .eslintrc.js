@@ -68,7 +68,15 @@ module.exports = {
                     "**/acceptance_tests/**/*",
                     "**/*.test.js"
                 ]
-            }]
+            }],
+        "class-methods-use-this": ["error", {
+            "exceptMethods": [
+                "isTokenExpired",
+                "setToken",
+                "getToken",
+                "logout"
+            ]
+        }]
     },
     "settings": {
         "import/resolver": {

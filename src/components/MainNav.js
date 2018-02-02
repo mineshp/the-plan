@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Dropdown, Menu } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { Dropdown, Icon, Label, Menu } from 'semantic-ui-react';
 import logo from '../md-logo-green.png';
 
 export default class MainNav extends Component {
-    constructor() {
-        super();
-        this.state = { activeItem: 'view' };
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeItem: 'view'
+        };
         this.handleItemClick = this.handleItemClick.bind(this);
     }
 
@@ -15,7 +18,6 @@ export default class MainNav extends Component {
 
     render() {
         const { activeItem } = this.state;
-
         return (
             <Menu>
                 <Menu.Item
@@ -47,16 +49,36 @@ export default class MainNav extends Component {
                     <span className="moto">Haz tus sueños realidad</span>
                 </Menu.Item>
 
-
-                <Menu.Item
-                    href="/user/login"
-                    position="right"
-                    name="sign-in"
-                    active={activeItem === 'sign-in'}
-                    onClick={this.handleItemClick}
-                >Sign-in
-                </Menu.Item>
+                {
+                    this.props.username
+                        ?
+                        (<Menu.Item
+                            name="user"
+                            position="right"
+                        >
+                            <Label as="a">
+                                <Icon size="big" name="user" /> Hola { this.props.username }
+                            </Label>
+                        </Menu.Item>)
+                        :
+                        (<Menu.Item
+                            href="/user/login"
+                            position="right"
+                            name="sign-in"
+                            active={activeItem === 'sign-in'}
+                            onClick={this.handleItemClick}
+                        >Sign-in
+                        </Menu.Item>)
+                }
             </Menu>
         );
     }
 }
+
+MainNav.propTypes = {
+    username: PropTypes.string
+};
+
+MainNav.defaultProps = {
+    username: null
+};

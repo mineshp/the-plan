@@ -1,6 +1,175 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainNav Component renders correctly 1`] = `
+exports[`MainNav Component renders navigation component with Hola user when user is logged in 1`] = `
+<div
+  className="ui menu"
+>
+  <a
+    className="item"
+    href="/"
+    onClick={[Function]}
+  >
+    <img
+      alt="logo"
+      src="md-logo-green.png"
+    />
+  </a>
+  <div
+    aria-busy={undefined}
+    aria-disabled={undefined}
+    aria-expanded={false}
+    aria-multiselectable={undefined}
+    className="ui item dropdown"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    role="listbox"
+    tabIndex={0}
+  >
+    <div
+      aria-live="polite"
+      className="text"
+      role="alert"
+    >
+      Projects
+    </div>
+    <i
+      aria-hidden="true"
+      className="dropdown icon"
+      onClick={[Function]}
+    />
+    <div
+      className="menu transition"
+    >
+      <a
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        href="/project/all"
+        onClick={[Function]}
+        role="option"
+      >
+        List
+      </a>
+      <a
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        href="/project/update"
+        onClick={[Function]}
+        role="option"
+      >
+        Create
+      </a>
+      <div
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        onClick={[Function]}
+        role="option"
+      >
+        Search
+      </div>
+    </div>
+  </div>
+  <div
+    aria-busy={undefined}
+    aria-disabled={undefined}
+    aria-expanded={false}
+    aria-multiselectable={undefined}
+    className="ui item dropdown"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    role="listbox"
+    tabIndex={0}
+  >
+    <div
+      aria-live="polite"
+      className="text"
+      role="alert"
+    >
+      Lists
+    </div>
+    <i
+      aria-hidden="true"
+      className="dropdown icon"
+      onClick={[Function]}
+    />
+    <div
+      className="menu transition"
+    >
+      <a
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        href="/list/all"
+        onClick={[Function]}
+        role="option"
+      >
+        List
+      </a>
+      <a
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        href="/list/update"
+        onClick={[Function]}
+        role="option"
+      >
+        Create
+      </a>
+      <div
+        aria-checked={undefined}
+        aria-disabled={undefined}
+        aria-selected={undefined}
+        className="item"
+        onClick={[Function]}
+        role="option"
+      >
+        Search
+      </div>
+    </div>
+  </div>
+  <div
+    className="item"
+    onClick={[Function]}
+  >
+    <span
+      className="moto"
+    >
+      Haz tus sueños realidad
+    </span>
+  </div>
+  <div
+    className="right item"
+    onClick={[Function]}
+  >
+    <a
+      className="ui label"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="user big icon"
+      />
+       Hola 
+      testUser
+    </a>
+  </div>
+</div>
+`;
+
+exports[`MainNav Component renders navigation component with Sign In when user is not logged in 1`] = `
 <div
   className="ui menu"
 >

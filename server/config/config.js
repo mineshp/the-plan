@@ -15,7 +15,7 @@ module.exports = {
             projectsTable: 'projects-morpheus-dev'
         },
         port: process.env.PORT || 3030,
-        secret: 'ilovecubanrum'
+        jwtSecret: 'ilovecubanrum'
     },
     local: {
         rootPath,
@@ -27,7 +27,7 @@ module.exports = {
             projectsTable: 'projects-morpheus-dev'
         },
         port: process.env.PORT || 3030,
-        secret: 'ilovecubanrum'
+        jwtSecret: 'ilovecubanrum'
     },
     development: {
         rootPath,
@@ -39,7 +39,7 @@ module.exports = {
             projectsTable: 'projects-morpheus-dev'
         },
         port: process.env.PORT || 3030,
-        secret: 'ilovecubanrum'
+        jwtSecret: 'ilovecubanrum' // TODO: Use complicated string
     },
     production: {
         rootPath,
@@ -51,6 +51,6 @@ module.exports = {
             projectsTable: 'projects-morpheus-prod'
         },
         port: process.env.PORT || 80,
-        secret: 'iknowsomethingyoudontknow'
+        jwtSecret: 'iknowsomethingyoudontknow' // TODO: Use complicated string
     }
 };

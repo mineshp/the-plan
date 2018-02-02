@@ -5,7 +5,16 @@ import { Menu } from 'semantic-ui-react';
 import MainNav from '../MainNav';
 
 describe('MainNav Component', () => {
-    it('renders correctly', () => {
+    const props = {
+        username: 'testUser'
+    };
+
+    it('renders navigation component with Hola user when user is logged in', () => {
+        const tree = renderer.create(<MainNav {...props} />).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it('renders navigation component with Sign In when user is not logged in', () => {
         const tree = renderer.create(<MainNav />).toJSON();
         expect(tree).toMatchSnapshot();
     });
