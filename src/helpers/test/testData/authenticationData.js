@@ -6,6 +6,13 @@ export const mockRegisterUser = () => ({
 });
 
 export const mockLoginUser = () => ({
-    username: 'testUser',
+    user: {
+        username: 'testUser'
+    },
     token: 'asecrettokenonlyforyou'
+});
+
+export const mockLoginDetails = () => ({
+    username: 'testUser',
+    password: 'passwordBlah1'
 });

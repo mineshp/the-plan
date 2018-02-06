@@ -64,7 +64,7 @@ exports.login = (req, res) => {
                         email: collection.email
                     };
                     res.send({
-                        username: payload.username,
+                        user: payload,
                         token: generateToken(payload)
                     });
                     // res.send(collection);
@@ -72,7 +72,7 @@ exports.login = (req, res) => {
                     res.status(400);
                     res.json(
                         {
-                            message: `Unable to login, username or password provided is incorrect.`
+                            message: 'Unable to login, username or password provided is incorrect.'
                         }
                     );
                 }

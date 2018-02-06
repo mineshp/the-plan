@@ -10,6 +10,9 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import App from './App';
 import reducer from './reducers';
+import setAuthorisationToken from './utils/setAuthorisationToken';
+import Auth from './HOC/Authentication/Auth';
+import { setCurrentUser } from './actions/authentication';
 
 /* istanbul ignore next not testing redux-store-boiler-plate */
 // eslint-disable-next-line no-underscore-dangle, no-undef
@@ -44,6 +47,13 @@ function configureStore(preloadedState) {
 }
 /* istanbul ignore next not testing redux-store-boiler-plate */
 const store = configureStore({});
+const auth = new Auth();
+console.log('In index.js');
+
+if (auth.getToken()) {
+    setAuthorisationToken(auth.getToken());
+    store.dispatch(setCurrentUser(auth.getUserProfile()));
+}
 /* istanbul ignore next not testing redux-store-boiler-plate */
 render(
     <Provider store={store}>

@@ -1,4 +1,4 @@
-
+/* eslint-disable import/first */
 jest.mock('../Auth');
 import Auth from '../Auth';
 
@@ -6,6 +6,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Login } from '../Login';
 import mockEvent from '../../../helpers/test/testData';
+/* eslint-enable import/first */
 
 const handleSubmitMock = jest.fn();
 const handleChangeMock = jest.fn();

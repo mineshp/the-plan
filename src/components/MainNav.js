@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown, Icon, Label, Menu } from 'semantic-ui-react';
+import { Dropdown, Menu } from 'semantic-ui-react';
 import logo from '../md-logo-green.png';
 
 export default class MainNav extends Component {
@@ -10,14 +10,23 @@ export default class MainNav extends Component {
             activeItem: 'view'
         };
         this.handleItemClick = this.handleItemClick.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     handleItemClick(e, { name }) {
         this.setState({ activeItem: name });
     }
 
+    logout(e) {
+        e.preventDefault();
+        this.props.logout();
+    }
+
     render() {
         const { activeItem } = this.state;
+        const displayName = this.props.username
+            ? `${this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}`
+            : null;
         return (
             <Menu>
                 <Menu.Item
@@ -52,14 +61,15 @@ export default class MainNav extends Component {
                 {
                     this.props.username
                         ?
-                        (<Menu.Item
-                            name="user"
-                            position="right"
-                        >
-                            <Label as="a">
-                                <Icon size="big" name="user" /> Hola { this.props.username }
-                            </Label>
-                        </Menu.Item>)
+                        (
+                            <Menu.Item position="right">
+                                <Dropdown text={displayName} icon="user" floating labeled button className="icon blue">
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </Menu.Item>
+                        )
                         :
                         (<Menu.Item
                             href="/user/login"
@@ -76,7 +86,8 @@ export default class MainNav extends Component {
 }
 
 MainNav.propTypes = {
-    username: PropTypes.string
+    username: PropTypes.string,
+    logout: PropTypes.func.isRequired
 };
 
 MainNav.defaultProps = {

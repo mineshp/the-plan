@@ -1,7 +1,16 @@
-const authentication = (state = {}, action) => {
+import isEmpty from 'lodash.isempty';
+
+const initialState = {
+    isAuthenticated: false,
+    user: {
+        username: null
+    }
+};
+
+const authentication = (state = initialState, action) => {
     switch (action.type) {
     case 'SUCCESS_USER_REGISTERED':
-        return {
+        return Object.assign({}, state, {
             notification: {
                 message: `Successfully registered user ${action.data.username}.`,
                 level: 'success',
@@ -10,10 +19,10 @@ const authentication = (state = {}, action) => {
             success: {
                 data: action.data
             }
-        };
+        });
 
     case 'ERROR_USER_REGISTERED':
-        return {
+        return Object.assign({}, state, {
             notification: {
                 message: action.error,
                 level: 'error',
@@ -22,21 +31,21 @@ const authentication = (state = {}, action) => {
             error: {
                 isError: true
             }
-        };
+        });
 
     case 'SUCCESS_LOGIN':
-        return {
+        return Object.assign({}, state, {
             notification: {
-                message: `Successfully logged in with user ${action.username}.`,
+                message: `Successfully logged in with user ${action.user.username}.`,
                 level: 'success',
                 title: 'Success'
             },
-            username: action.username,
+            user: action.user,
             token: action.token
-        };
+        });
 
     case 'ERROR_LOGIN':
-        return {
+        return Object.assign({}, state, {
             notification: {
                 message: action.error,
                 level: 'error',
@@ -45,7 +54,13 @@ const authentication = (state = {}, action) => {
             error: {
                 isError: true
             }
-        };
+        });
+
+    case 'SET_CURRENT_USER':
+        return Object.assign({}, state, {
+            isAuthenticated: !isEmpty(action.user),
+            user: action.user
+        });
 
     default:
         return state;

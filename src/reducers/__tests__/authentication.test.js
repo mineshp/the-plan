@@ -3,7 +3,14 @@ import authentication from '../authentication';
 describe('authentication reducer', () => {
     describe('REGISTER ACTIONS', () => {
         it('should handle initial state', () => {
-            expect(authentication(undefined, {})).toEqual({});
+            expect(authentication(undefined, {})).toEqual(
+                {
+                    isAuthenticated: false,
+                    user: {
+                        username: null
+                    }
+                }
+            );
         });
 
         it('should handle SUCCESS_USER_REGISTERED', () => {
@@ -53,7 +60,9 @@ describe('authentication reducer', () => {
         it('should handle SUCCESS_LOGIN', () => {
             expect(authentication({}, {
                 type: 'SUCCESS_LOGIN',
-                username: 'testUser',
+                user: {
+                    username: 'testUser'
+                },
                 token: 'asecrettokenonlyforyou'
             })).toEqual({
                 notification: {
@@ -61,7 +70,9 @@ describe('authentication reducer', () => {
                     level: 'success',
                     title: 'Success'
                 },
-                username: 'testUser',
+                user: {
+                    username: 'testUser'
+                },
                 token: 'asecrettokenonlyforyou'
             });
         });
@@ -78,6 +89,22 @@ describe('authentication reducer', () => {
                 },
                 error: {
                     isError: true
+                }
+            });
+        });
+    });
+
+    describe('SET_CURRENT_USER ACTIONS', () => {
+        it('should handle SET_CURRENT_USER', () => {
+            expect(authentication({}, {
+                type: 'SET_CURRENT_USER',
+                user: {
+                    username: 'testUser'
+                }
+            })).toEqual({
+                isAuthenticated: true,
+                user: {
+                    username: 'testUser'
                 }
             });
         });
