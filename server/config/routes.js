@@ -3,7 +3,7 @@ const projectMongodb = require('../mongodb/controllers/project');
 const listDynamodb = require('../dynamodb/controllers/list');
 const projectDynamodb = require('../dynamodb/controllers/project');
 const userMongodb = require('../mongodb/controllers/user');
-const User = require('mongoose').model('User');
+const authenticate = require('../middlewares/authenticate');
 
 const dbType = process.env.DB_TYPE || 'mongodb';
 let list;
@@ -18,13 +18,8 @@ if (dbType === 'mongodb') {
     project = projectDynamodb;
 }
 
-
 module.exports = function (app) {
     app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
-
-    // app.use(passport.initialize());
-    // app.use(passport.session());
-
     app.get('/api', (req, res) => {
         res.send('Welcome to the backend')
     });
@@ -33,7 +28,7 @@ module.exports = function (app) {
     app.post('/api/user/login', user.login);
 
     app.get('/api/list/all',
-        // require('connect-ensure-login').ensureLoggedIn(),
+        authenticate,
         list.getAllLists
     );
     app.get('/api/list/view/:id', list.getListById);

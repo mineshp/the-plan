@@ -27,12 +27,9 @@ class MainNav extends Component {
 }
 
 /* istanbul ignore next: not testing mapStateToProps */
-const mapStateToProps = (state) => {
-    console.log('state', state);
-    return {
-        username: state.authentication.user.username
-    };
-};
+const mapStateToProps = (state) => ({
+    username: state.authentication.user.username
+});
 
 /* istanbul ignore next: not testing mapDispatchToProps */
 const mapDispatchToProps = (dispatch) => (

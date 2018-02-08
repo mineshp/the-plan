@@ -8,17 +8,10 @@ ShallowWrapper {
     "findWhereUnwrapped": [Function],
   },
   "length": 1,
-  "node": <div
-    className="login-form"
->
+  "node": <Container>
     <Grid
-        style={
-            Object {
-                "height": "100%",
-              }
-        }
-        textAlign="center"
-        verticalAlign="middle"
+        centered={true}
+        stackable={true}
     >
         <GridColumn
             className="login-form-grid-column"
@@ -94,19 +87,12 @@ ShallowWrapper {
             </Message>
         </GridColumn>
     </Grid>
-</div>,
+</Container>,
   "nodes": Array [
-    <div
-      className="login-form"
->
+    <Container>
       <Grid
-            style={
-                  Object {
-                        "height": "100%",
-                      }
-            }
-            textAlign="center"
-            verticalAlign="middle"
+            centered={true}
+            stackable={true}
       >
             <GridColumn
                   className="login-form-grid-column"
@@ -182,7 +168,7 @@ ShallowWrapper {
                   </Message>
             </GridColumn>
       </Grid>
-</div>,
+</Container>,
   ],
   "options": Object {},
   "renderer": ReactShallowRenderer {
@@ -234,17 +220,10 @@ ShallowWrapper {
       "_pendingReplaceState": false,
       "_pendingStateQueue": null,
       "_renderedComponent": NoopInternalComponent {
-        "_currentElement": <div
-          className="login-form"
->
+        "_currentElement": <Container>
           <Grid
-                    style={
-                              Object {
-                                        "height": "100%",
-                                      }
-                    }
-                    textAlign="center"
-                    verticalAlign="middle"
+                    centered={true}
+                    stackable={true}
           >
                     <GridColumn
                               className="login-form-grid-column"
@@ -320,19 +299,12 @@ ShallowWrapper {
                               </Message>
                     </GridColumn>
           </Grid>
-</div>,
+</Container>,
         "_debugID": 2,
-        "_renderedOutput": <div
-          className="login-form"
->
+        "_renderedOutput": <Container>
           <Grid
-                    style={
-                              Object {
-                                        "height": "100%",
-                                      }
-                    }
-                    textAlign="center"
-                    verticalAlign="middle"
+                    centered={true}
+                    stackable={true}
           >
                     <GridColumn
                               className="login-form-grid-column"
@@ -408,9 +380,9 @@ ShallowWrapper {
                               </Message>
                     </GridColumn>
           </Grid>
-</div>,
+</Container>,
       },
-      "_renderedNodeType": 0,
+      "_renderedNodeType": 1,
       "_rootNodeID": 0,
       "_topLevelWrapper": null,
       "_updateBatchNumber": null,

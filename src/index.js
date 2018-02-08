@@ -48,9 +48,9 @@ function configureStore(preloadedState) {
 /* istanbul ignore next not testing redux-store-boiler-plate */
 const store = configureStore({});
 const auth = new Auth();
-console.log('In index.js');
 
 if (auth.getToken()) {
+    // Set this as default headers
     setAuthorisationToken(auth.getToken());
     store.dispatch(setCurrentUser(auth.getUserProfile()));
 }

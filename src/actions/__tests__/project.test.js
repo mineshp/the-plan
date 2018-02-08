@@ -1,3 +1,7 @@
+/* eslint-disable import/first */
+jest.mock('../../HOC/Authentication/Auth');
+import Auth from '../../HOC/Authentication/Auth';
+
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as actions from '../project';
@@ -14,6 +18,8 @@ const mockResponse = (status, statusText, response) => new window.Response(respo
 });
 
 describe('Project actions', () => {
+    const getToken = jest.fn();
+    Auth.mockImplementation(() => ({ getToken }));
     describe('Create Project Actions', () => {
         it('should dispatch an action for CREATE_PROJECT when calling createProject to create a new project', () => {
             const expectedAction = {

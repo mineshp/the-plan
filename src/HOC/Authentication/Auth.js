@@ -2,8 +2,6 @@ import decode from 'jwt-decode';
 
 export default class Auth {
     loggedIn() {
-        console.log('hi');
-        console.log('token', this.getToken());
         const token = this.getToken();
         return !!token && !this.isTokenExpired(token);
     }

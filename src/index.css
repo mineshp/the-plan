@@ -48,7 +48,7 @@ body {
   margin: 0 !important;
 }
 
-@media (min-height: 800px) {
+@media (min-height: 1200px) {
   .ui.segment { /* Increased specificity for SO snippet priority */
     position: absolute;
     bottom: 0;
@@ -232,17 +232,17 @@ body {
 }
 
 /* Login Page */
-body > div,
+/* body > div,
 body > div > div,
 body > div > div > div.login-form {
   height: 100%;
-}
+} */
 
-.ui.grid.login-form-grid {
-  text-align: 'center';
+/* .login-form-grid {
+  text-align: 'center' !important;
   height: 100%;
-  vertical-align: 'middle';
-}
+  vertical-align: 'middle' !important;
+} */
 
 .ui.grid > .login-form-grid-column {
   max-width: 450px;

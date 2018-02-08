@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Form, Grid, Header, Input, Label } from 'semantic-ui-react';
+import { Button, Container, Form, Grid, Header, Image, Input, Label, Segment } from 'semantic-ui-react';
+import logo from '../../md-logo-green.png';
 
 const Register = ({
     handleSubmit,
@@ -9,95 +10,107 @@ const Register = ({
     formErrors
 }) => (
     <Container text>
-        <Header as="h1">Register</Header>
-        <Form onSubmit={handleSubmit}>
-            <Grid columns={2}>
-                <Grid.Row>
-                    <Grid.Column width={8}>
-                        <Form.Field>
-                            <Input
-                                name="email"
-                                type="email"
-                                autoComplete="email"
-                                placeholder="Email..."
-                                className="text-box-3-col"
-                                defaultValue={data.email}
-                                onChange={handleChange}
-                            />
-                        </Form.Field>
-                    </Grid.Column>
-                    <Grid.Column width={8}>
-                        {formErrors.email &&
-                            <Label basic color="red" pointing="left">{formErrors.email}</Label>
-                        }
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column width={8}>
-                        <Form.Field>
-                            <Input
-                                name="username"
-                                autoComplete="username"
-                                placeholder="Username..."
-                                className="text-box-3-col"
-                                defaultValue={data.username}
-                                onChange={handleChange}
-                            />
-                        </Form.Field>
-                    </Grid.Column>
-                    <Grid.Column width={8}>
-                        {formErrors.username &&
-                            <Label basic color="red" pointing="left">{formErrors.username}</Label>
-                        }
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column width={8}>
-                        <Form.Field>
-                            <Input
-                                name="password"
-                                type="password"
-                                autoComplete="password"
-                                placeholder="Password..."
-                                className="text-box-3-col"
-                                onChange={handleChange}
-                                defaultValue={data.password}
-                            />
-                        </Form.Field>
-                    </Grid.Column>
-                    <Grid.Column width={8}>
-                        {formErrors.password &&
-                            <Label basic color="red" pointing="left">{formErrors.password}</Label>
-                        }
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column width={8}>
-                        <Form.Field>
-                            <Input
-                                type="password"
-                                autoComplete="password"
-                                name="confirmPassword"
-                                placeholder="Confirm Password..."
-                                className="text-box-3-col"
-                                onChange={handleChange}
-                            />
-                        </Form.Field>
-                    </Grid.Column>
-                    <Grid.Column width={8}>
-                        {formErrors.confirmPassword &&
-                            <Label basic color="red" pointing="left">{formErrors.confirmPassword}</Label>
-                        }
-                    </Grid.Column>
-                </Grid.Row>
-                <Button
-                    color="green"
-                    type="submit"
-                    disabled={!data.formValid}
-                >Register
-                </Button>
-            </Grid>
-        </Form>
+        <Grid stackable centered>
+            <Grid.Column className="login-form-grid-column">
+                <Header as="h2" color="teal" textAlign="center">
+                    <Image src={logo} className="home-logo" />
+                    {' '}Register User
+                </Header>
+                <Form size="large" onSubmit={handleSubmit}>
+                    <Segment stacked>
+                        <Grid columns={2}>
+                            <Grid.Row>
+                                <Grid.Column width={10}>
+                                    <Form.Field>
+                                        <Input
+                                            name="email"
+                                            type="email"
+                                            autoComplete="email"
+                                            placeholder="Email..."
+                                            className="text-box-3-col"
+                                            defaultValue={data.email}
+                                            onChange={handleChange}
+                                        />
+                                    </Form.Field>
+                                </Grid.Column>
+                                <Grid.Column width={6}>
+                                    {formErrors.email &&
+                                    <Label basic color="red" pointing="left">{formErrors.email}</Label>
+                                    }
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Grid.Column width={10}>
+                                    <Form.Field>
+                                        <Input
+                                            name="username"
+                                            autoComplete="username"
+                                            placeholder="Username..."
+                                            className="text-box-3-col"
+                                            defaultValue={data.username}
+                                            onChange={handleChange}
+                                        />
+                                    </Form.Field>
+                                </Grid.Column>
+                                <Grid.Column width={6}>
+                                    {formErrors.username &&
+                                    <Label basic color="red" pointing="left">{formErrors.username}</Label>
+                                    }
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Grid.Column width={10}>
+                                    <Form.Field>
+                                        <Input
+                                            name="password"
+                                            type="password"
+                                            autoComplete="password"
+                                            placeholder="Password..."
+                                            className="text-box-3-col"
+                                            onChange={handleChange}
+                                            defaultValue={data.password}
+                                        />
+                                    </Form.Field>
+                                </Grid.Column>
+                                <Grid.Column width={6}>
+                                    {formErrors.password &&
+                                    <Label basic color="red" pointing="left">{formErrors.password}</Label>
+                                    }
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Grid.Column width={10}>
+                                    <Form.Field>
+                                        <Input
+                                            type="password"
+                                            autoComplete="password"
+                                            name="confirmPassword"
+                                            placeholder="Confirm Password..."
+                                            className="text-box-3-col"
+                                            onChange={handleChange}
+                                        />
+                                    </Form.Field>
+                                </Grid.Column>
+                                <Grid.Column width={6}>
+                                    {formErrors.confirmPassword &&
+                                    <Label basic color="red" pointing="left">{formErrors.confirmPassword}</Label>
+                                    }
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row />
+                        </Grid>
+                        <Button
+                            color="pink"
+                            type="submit"
+                            fluid
+                            size="large"
+                            disabled={!data.formValid}
+                        >Register
+                        </Button>
+                    </Segment>
+                </Form>
+            </Grid.Column>
+        </Grid>
     </Container>
 );
 

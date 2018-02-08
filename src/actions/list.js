@@ -1,5 +1,7 @@
-// const requestHeaders = () => (
-//     { AUTHORIZATION: `Bearer ${sessionStorage.jwt}` });
+import setAuthorisationToken from '../utils/setAuthorisationToken';
+import Auth from '../HOC/Authentication/Auth';
+
+const auth = new Auth();
 
 export const createdList = (data) => ({
     type: 'LIST_CREATION_SUCCESS',
@@ -66,11 +68,12 @@ export const errorDownloadingPDF = (error) => ({
 });
 
 export function downloadPDF(listId) {
+    const token = auth.getToken();
     return (dispatch) => {
         dispatch(requestDownloadingPDF());
-        // const headers = requestHeaders();
-        // return fetch(`/api/list/generate/pdf/${listId}`, { headers })
-        return fetch(`/api/list/generate/pdf/${listId}`)
+        return fetch(`/api/list/generate/pdf/${listId}`, {
+            headers: setAuthorisationToken(token)
+        })
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -83,8 +86,11 @@ export function downloadPDF(listId) {
 }
 
 export function retrieveSummaryLists() {
+    const token = auth.getToken();
     return (dispatch) =>
-        fetch('/api/list/all')
+        fetch('/api/list/all', {
+            headers: setAuthorisationToken(token)
+        })
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -96,8 +102,11 @@ export function retrieveSummaryLists() {
 }
 
 export function retrieveSummaryListsByProject(projectName) {
+    const token = auth.getToken();
     return (dispatch) =>
-        fetch(`/api/project/${projectName}/lists`)
+        fetch(`/api/project/${projectName}/lists`, {
+            headers: setAuthorisationToken(token)
+        })
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -109,8 +118,11 @@ export function retrieveSummaryListsByProject(projectName) {
 }
 
 export function retrieveListById(listId) {
+    const token = auth.getToken();
     return (dispatch) =>
-        fetch(`/api/list/view/${listId}`)
+        fetch(`/api/list/view/${listId}`, {
+            headers: setAuthorisationToken(token)
+        })
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -122,13 +134,11 @@ export function retrieveListById(listId) {
 }
 
 export function create(newList) {
+    const token = auth.getToken();
     return (dispatch) =>
         fetch('/api/list/update', {
             method: 'post',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
+            headers: setAuthorisationToken(token),
             body: JSON.stringify(newList)
         })
             .then((res) => {
@@ -143,13 +153,11 @@ export function create(newList) {
 }
 
 export function update(existingList) {
+    const token = auth.getToken();
     return (dispatch) =>
         fetch(`/api/list/update/${existingList._id}`, { // eslint-disable-line no-underscore-dangle
             method: 'post',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
+            headers: setAuthorisationToken(token),
             body: JSON.stringify(existingList)
         })
             .then((res) => {
@@ -164,13 +172,11 @@ export function update(existingList) {
 }
 
 export function deleteList(id) {
+    const token = auth.getToken();
     return (dispatch) =>
         fetch(`/api/list/delete/${id}`, {
             method: 'delete',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            }
+            headers: setAuthorisationToken(token)
         })
             .then((res) => {
                 if (res.ok) {

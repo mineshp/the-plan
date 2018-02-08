@@ -1,3 +1,7 @@
+import setAuthorisationToken from '../utils/setAuthorisationToken';
+import Auth from '../HOC/Authentication/Auth';
+
+const auth = new Auth();
 
 export const createProject = (projectName, colour) => ({
     type: 'CREATE_PROJECT',
@@ -46,8 +50,11 @@ export const errorFetchingProject = (error) => ({
 });
 
 export function listProjects() {
+    const token = auth.getToken();
     return (dispatch) =>
-        fetch('/api/project/all')
+        fetch('/api/project/all', {
+            headers: setAuthorisationToken(token)
+        })
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -59,13 +66,11 @@ export function listProjects() {
 }
 
 export function create(newProject) {
+    const token = auth.getToken();
     return (dispatch) =>
         fetch('/api/project/update', {
             method: 'post',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
+            headers: setAuthorisationToken(token),
             body: JSON.stringify({
                 projectName: newProject.projectName.toLowerCase(),
                 colour: newProject.colour.toLowerCase()
@@ -83,13 +88,11 @@ export function create(newProject) {
 }
 
 export function update(existingProject) {
+    const token = auth.getToken();
     return (dispatch) =>
         fetch(`/api/project/update/${existingProject._id}`, { // eslint-disable-line no-underscore-dangle
             method: 'post',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
+            headers: setAuthorisationToken(token),
             body: JSON.stringify(existingProject)
         })
             .then((res) => {
@@ -104,8 +107,11 @@ export function update(existingProject) {
 }
 
 export function fetchSingleProject(projectId) {
+    const token = auth.getToken();
     return (dispatch) =>
-        fetch(`/api/project/${projectId}`)
+        fetch(`/api/project/${projectId}`, {
+            headers: setAuthorisationToken(token)
+        })
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -128,13 +134,11 @@ export const errorDeletingProject = (error) => ({
 });
 
 export function deleteProject(id) {
+    const token = auth.getToken();
     return (dispatch) =>
         fetch(`/api/project/delete/${id}`, {
             method: 'delete',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            }
+            headers: setAuthorisationToken(token)
         })
             .then((res) => {
                 if (res.ok) {

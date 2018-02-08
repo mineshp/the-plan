@@ -41,7 +41,6 @@ exports.login = (req, res) => {
 
     User.findOne({ username }, (err, collection) => {
         if (err) {
-            console.log('err finding username', err)
             res.status(400);
             res.json(
                 {
@@ -49,8 +48,6 @@ exports.login = (req, res) => {
                 }
             );
         } else if (!collection) {
-            console.log('collection is undefined ', collection);
-            // res.status(400);
             res.status(404).json(
                 {
                     message: `Unable to login with username ${username}, no such user found.`
@@ -60,6 +57,7 @@ exports.login = (req, res) => {
             bcrypt.compare(password, collection.password, (bCryptErr, result) => {
                 if (result === true) {
                     const payload = {
+                        id: collection.id,
                         username: collection.username,
                         email: collection.email
                     };
@@ -67,7 +65,6 @@ exports.login = (req, res) => {
                         user: payload,
                         token: generateToken(payload)
                     });
-                    // res.send(collection);
                 } else {
                     res.status(400);
                     res.json(

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, Grid, Header, Image, Input, Message, Segment } from 'semantic-ui-react';
+import { Button, Container, Form, Grid, Header, Image, Input, Message, Segment } from 'semantic-ui-react';
 import logo from '../../md-logo-green.png';
 
 const Login = ({
@@ -8,12 +8,8 @@ const Login = ({
     handleChange,
     data
 }) => (
-    <div className="login-form">
-        <Grid
-            textAlign="center"
-            style={{ height: '100%' }}
-            verticalAlign="middle"
-        >
+    <Container>
+        <Grid stackable centered>
             <Grid.Column className="login-form-grid-column">
                 <Header as="h2" color="teal" textAlign="center">
                     <Image src={logo} className="home-logo" />
@@ -52,11 +48,11 @@ const Login = ({
                     </Segment>
                 </Form>
                 <Message>
-                    New user? <a href="/user/register">Register</a>
+                New user? <a href="/user/register">Register</a>
                 </Message>
             </Grid.Column>
         </Grid>
-    </div>
+    </Container>
 );
 
 Login.propTypes = {
