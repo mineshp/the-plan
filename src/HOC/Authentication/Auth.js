@@ -14,7 +14,7 @@ export default class Auth {
             }
             return false;
         } catch (err) {
-            return false;
+            return true;
         }
     }
 
