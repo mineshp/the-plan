@@ -18,6 +18,13 @@ export default function (ComposedComponent) {
             }
         }
 
+        /* istanbul ignore next: not testing componentWillMount */
+        componentWillUpdate(nextProps) {
+            if (!nextProps.isAuthenticated) {
+                this.context.router.history.push('/');
+            }
+        }
+
         /* istanbul ignore next: not testing render */
         render() {
             return (
