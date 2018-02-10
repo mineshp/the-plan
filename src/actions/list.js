@@ -95,7 +95,7 @@ export function retrieveSummaryLists() {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(new Error('Unable to retrieve lists, please try again later.'));
+                return Promise.reject(new Error('Unable to retrieve lists.'));
             })
             .then((data) => dispatch(successListingLists(data)))
             .catch((error) => dispatch(errorListingLists(error.message)));
@@ -111,10 +111,10 @@ export function retrieveSummaryListsByProject(projectName) {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(new Error('Unable to retrieve lists, please try again later.'));
+                return Promise.reject('Unable to retrieve lists, please try again later.');
             })
             .then((data) => dispatch(successListingLists(data)))
-            .catch((error) => dispatch(errorListingLists(error.message)));
+            .catch((error) => dispatch(errorListingLists(error)));
 }
 
 export function retrieveListById(listId) {

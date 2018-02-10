@@ -33,10 +33,28 @@ class ManageListSummary extends Component {
         if (this.props.match.params && this.props.match.params.projectName) {
             const projectName = this.props.match.params.projectName;
             this.props.actions.retrieveSummaryListsByProject(projectName)
-                .then(() => this.props.actions.addNotification(this.props.notification));
+                .then((data) => {
+                    const notification = this.props.notification
+                        ? this.props.notification
+                        : Object.assign({}, {
+                            message: data.error,
+                            level: 'error',
+                            title: 'Unknown Error'
+                        });
+                    this.props.actions.addNotification(notification);
+                });
         } else {
             this.props.actions.retrieveSummaryLists()
-                .then(() => this.props.actions.addNotification(this.props.notification));
+                .then((data) => {
+                    const notification = this.props.notification
+                        ? this.props.notification
+                        : Object.assign({}, {
+                            message: data.error,
+                            level: 'error',
+                            title: 'Unknown Error'
+                        });
+                    this.props.actions.addNotification(notification);
+                });
         }
     }
 

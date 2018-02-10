@@ -25,7 +25,8 @@ const props = {
             Promise.resolve()
         ))
     },
-    match: { params: { } }
+    match: { params: {} },
+    notification: null
 };
 
 const context = {
@@ -39,6 +40,13 @@ const mockEvent = { preventDefault: jest.fn() };
 
 describe('Create new project', () => {
     let wrapper;
+    const newProjectProps = Object.assign({}, props, {
+        notification: {
+            message: 'Project created',
+            level: 'success',
+            title: 'success'
+        }
+    });
     beforeEach(() => {
         wrapper = shallow(<UpdateProject
             result={{}}
@@ -46,10 +54,10 @@ describe('Create new project', () => {
             handleDropDownSelection={handleDropDownSelectionMock}
             handleSubmit={handleSubmitMock}
             projectName="A new project"
-            {...props}
+            {...newProjectProps}
         />, { context });
 
-        props.actions.create.mockClear();
+        newProjectProps.actions.create.mockClear();
     });
 
     it('calls componentWillMount', () => {
@@ -58,8 +66,8 @@ describe('Create new project', () => {
 
         expect(componentWillMountSpy).toHaveBeenCalled();
         expect(componentWillMountSpy).toHaveBeenCalledTimes(1);
-        expect(props.match.params.id).toBeUndefined();
-        expect(props.actions.fetchSingleProject).not.toHaveBeenCalled();
+        expect(newProjectProps.match.params.id).toBeUndefined();
+        expect(newProjectProps.actions.fetchSingleProject).not.toHaveBeenCalled();
 
         componentWillMountSpy.mockReset();
         componentWillMountSpy.mockRestore();
@@ -86,9 +94,13 @@ describe('Create new project', () => {
     it('calls the createOrUpdateProject action when handleSubmit is called', async () => {
         wrapper.instance().handleSubmit(mockEvent);
         expect(wrapper.instance().props.match.params).toEqual({});
-        await expect(props.actions.create).toHaveBeenCalled();
-        await expect(props.actions.addNotification).toHaveBeenCalled();
-        await expect(props.actions.update).not.toHaveBeenCalled();
+        await expect(newProjectProps.actions.create).toHaveBeenCalled();
+        await expect(newProjectProps.actions.addNotification).toHaveBeenCalledWith({
+            message: 'Project created',
+            level: 'success',
+            title: 'success'
+        });
+        await expect(newProjectProps.actions.update).not.toHaveBeenCalled();
     });
 
     it('calls the redirect method when the createOrUpdateProject actions returns successfully', async () => {
@@ -104,6 +116,11 @@ describe('Update existing project', () => {
             _id: '56789',
             projectName: 'Hawkeye',
             colour: 'red'
+        },
+        notification: {
+            message: 'Project updated',
+            level: 'success',
+            title: 'success'
         }
     };
 
@@ -172,7 +189,11 @@ describe('Update existing project', () => {
             colour: 'blue',
             createdDate: expect.anything()
         });
-        await expect(props.actions.addNotification).toHaveBeenCalled();
+        await expect(props.actions.addNotification).toHaveBeenCalledWith({
+            message: 'Project updated',
+            level: 'success',
+            title: 'success'
+        });
     });
 
     it('calls the redirect method when the createOrUpdateProject actions returns successfully', async () => {
@@ -181,8 +202,84 @@ describe('Update existing project', () => {
             colour: 'green'
         });
         updateProjectWrapper.instance().handleSubmit(mockEvent);
-
         await expect(context.router.history.push).toHaveBeenCalledWith('/project/all');
+    });
+});
+
+describe('calls fail due to user not being logged in', () => {
+    let wrapper;
+    let propsActions;
+
+    beforeEach(() => {
+        props.actions.addNotification.mockReset();
+        propsActions = Object.assign({}, {
+            create: jest.fn(() => (
+                Promise.resolve({
+                    error: 'oh-no'
+                })
+            )),
+            update: jest.fn(() => (
+                Promise.resolve({
+                    error: 'oh-dear'
+                })
+            )),
+            fetchSingleProject: jest.fn(() => (
+                Promise.resolve({})
+            )),
+            addNotification: jest.fn(() => (
+                Promise.resolve()
+            ))
+        });
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+    it('creates a project', async () => {
+        const updateProps = Object.assign({}, props, {
+            actions: propsActions
+        });
+
+        wrapper = shallow(<UpdateProject
+            handleChange={handleChangeMock}
+            handleDropDownSelection={handleDropDownSelectionMock}
+            handleSubmit={handleSubmitMock}
+            projectName="A new project"
+            {...updateProps}
+        />, { context });
+
+        wrapper.instance().createOrUpdateProject();
+        await expect(updateProps.actions.create).toHaveBeenCalled();
+        await expect(updateProps.actions.update).not.toHaveBeenCalled();
+        await expect(updateProps.actions.addNotification).toHaveBeenCalledWith({
+            message: 'oh-no',
+            level: 'error',
+            title: 'Unknown Error'
+        });
+    });
+
+    it('updates a project', async () => {
+        const updateProps = Object.assign({}, props, {
+            actions: propsActions,
+            result: { _id: '1234' }
+        });
+
+        wrapper = shallow(<UpdateProject
+            handleChange={handleChangeMock}
+            handleDropDownSelection={handleDropDownSelectionMock}
+            handleSubmit={handleSubmitMock}
+            projectName="A new project"
+            {...updateProps}
+        />, { context });
+
+        wrapper.instance().createOrUpdateProject();
+        await expect(updateProps.actions.update).toHaveBeenCalled();
+        await expect(updateProps.actions.create).not.toHaveBeenCalled();
+        await expect(updateProps.actions.addNotification).toHaveBeenCalledWith({
+            message: 'oh-dear',
+            level: 'error',
+            title: 'Unknown Error'
+        });
     });
 });
 

@@ -39,7 +39,7 @@ describe('List actions', () => {
         ];
 
         const mockListRetrievalFailureAPIResponse = {
-            message: 'Unable to retrieve lists, please try again later.'
+            message: 'Unable to retrieve lists.'
         };
 
         it('should dispatch an action for LISTS_RETRIEVED when calling successListingLists to confirm lists were retrieved', () => {

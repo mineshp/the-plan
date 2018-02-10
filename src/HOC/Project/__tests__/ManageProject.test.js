@@ -26,8 +26,16 @@ const props = {
 describe('Manage Projects', () => {
     describe('Get all projects success', () => {
         let wrapper;
+        let successProjectsListsProps;
         beforeEach(() => {
-            wrapper = shallow(<ManageProject {...props} />);
+            successProjectsListsProps = Object.assign({}, props, {
+                notification: {
+                    message: 'Retrieved projects',
+                    level: 'success',
+                    title: 'success'
+                }
+            });
+            wrapper = shallow(<ManageProject {...successProjectsListsProps} />);
         });
 
         it('calls componentDidMount', async () => {
@@ -39,8 +47,14 @@ describe('Manage Projects', () => {
 
         it('calls the listProjects action when the fetchProjectsList function is invoked', async () => {
             wrapper.instance().fetchProjectsList();
-            await expect(props.actions.listProjects).toHaveBeenCalled();
-            await expect(props.actions.addNotification).toHaveBeenCalled();
+            await expect(successProjectsListsProps.actions.listProjects).toHaveBeenCalled();
+            await expect(successProjectsListsProps.actions.addNotification).toHaveBeenCalledWith(
+                {
+                    message: 'Retrieved projects',
+                    level: 'success',
+                    title: 'success'
+                }
+            );
         });
 
         it('renders a ListProjects component', async () => {
@@ -52,6 +66,53 @@ describe('Manage Projects', () => {
             const propsAfterFetchAllLists = Object.assign({}, props, { projects: { data: mockListAllProjects } });
             const ManageProjectComponent = shallow(<ManageProject {...propsAfterFetchAllLists} />);
             await expect(ManageProjectComponent.props().cards.length).toEqual(3);
+        });
+    });
+
+    describe('Get all projects failure', () => {
+        let wrapper;
+        let propsAfterFetchProjectsError;
+        beforeEach(() => {
+            const propsActions = Object.assign({}, {
+                deleteProject: jest.fn(() => (
+                    Promise.resolve()
+                )),
+                listProjects: jest.fn(() => (
+                    Promise.resolve({ error: 'oh-dear' })
+                )),
+                addNotification: jest.fn(() => (
+                    Promise.resolve()
+                ))
+            });
+
+            const apiError = {
+                error: {
+                    isError: true,
+                    message: 'Unable to retrieve a list summary, please try again later.'
+                }
+            };
+
+            propsAfterFetchProjectsError = Object.assign({}, props,
+                {
+                    actions: propsActions,
+                    projects: { error: apiError }
+                }
+            );
+
+            wrapper = shallow(<ManageProject {...propsAfterFetchProjectsError} />);
+        });
+
+        afterEach(() => {
+            jest.clearAllMocks();
+        });
+        it('calls the listProjects action when a user is not logged in, return notification error', async () => {
+            wrapper.instance().fetchProjectsList();
+            await expect(propsAfterFetchProjectsError.actions.listProjects).toHaveBeenCalled();
+            await expect(propsAfterFetchProjectsError.actions.addNotification).toHaveBeenCalledWith({
+                message: 'oh-dear',
+                level: 'error',
+                title: 'Unknown Error'
+            });
         });
     });
 

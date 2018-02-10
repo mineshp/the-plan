@@ -11,6 +11,7 @@ import { ManageProjectConnectedComponent } from '../HOC/Project/ManageProject';
 import { UpdateProjectConnectedComponent } from '../HOC/Project/Update';
 import NotFound from './Shared/NotFound';
 import Home from './Home';
+import requireAuth from '../utils/requireAuth';
 
 // For more info see
 // https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
@@ -20,15 +21,15 @@ const Main = () => (
         <Route exact path="/" component={Home} />
         <Route path="/user/register" component={RegisterConnectedComponent} />
         <Route path="/user/login" component={LoginConnectedComponent} />
-        <Route path="/list/all" component={ManageListSummaryConnectedComponent} />
-        <Route path="/list/view/:id" component={ManageListConnectedComponent} />
-        <Route path="/list/update/:id" component={UpdateListConnectedComponent} />
-        <Route path="/list/update" component={UpdateListConnectedComponent} />
-        <Route path="/list" component={List} />
-        <Route path="/project/all" component={ManageProjectConnectedComponent} />
-        <Route path="/project/update/:id" component={UpdateProjectConnectedComponent} />
-        <Route path="/project/update" component={UpdateProjectConnectedComponent} />
-        <Route path="/project/:projectName/lists" component={ManageListSummaryConnectedComponent} />
+        <Route path="/list/all" component={requireAuth(ManageListSummaryConnectedComponent)} />
+        <Route path="/list/view/:id" component={requireAuth(ManageListConnectedComponent)} />
+        <Route path="/list/update/:id" component={requireAuth(UpdateListConnectedComponent)} />
+        <Route path="/list/update" component={requireAuth(UpdateListConnectedComponent)} />
+        <Route path="/list" component={requireAuth(List)} />
+        <Route path="/project/all" component={requireAuth(ManageProjectConnectedComponent)} />
+        <Route path="/project/update/:id" component={requireAuth(UpdateProjectConnectedComponent)} />
+        <Route path="/project/update" component={requireAuth(UpdateProjectConnectedComponent)} />
+        <Route path="/project/:projectName/lists" component={requireAuth(ManageListSummaryConnectedComponent)} />
         <Route path="*" component={NotFound} />
     </Switch>
 );

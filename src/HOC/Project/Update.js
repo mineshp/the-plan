@@ -39,14 +39,28 @@ class UpdateProject extends Component {
         if (this.props.result && this.props.result._id) { // eslint-disable-line no-underscore-dangle
             const projectObject = buildProjectData(this.props.result, this.state || {});
             this.props.actions.update(projectObject)
-                .then(() => {
-                    this.props.actions.addNotification(this.props.notification);
+                .then((data) => {
+                    const notification = this.props.notification
+                        ? this.props.notification
+                        : Object.assign({}, {
+                            message: data.error,
+                            level: 'error',
+                            title: 'Unknown Error'
+                        });
+                    this.props.actions.addNotification(notification);
                     this.redirect();
                 });
         } else {
             this.props.actions.create(this.state)
-                .then(() => {
-                    this.props.actions.addNotification(this.props.notification);
+                .then((data) => {
+                    const notification = this.props.notification
+                        ? this.props.notification
+                        : Object.assign({}, {
+                            message: data.error,
+                            level: 'error',
+                            title: 'Unknown Error'
+                        });
+                    this.props.actions.addNotification(notification);
                     this.redirect();
                 });
         }

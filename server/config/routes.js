@@ -27,22 +27,19 @@ module.exports = function (app) {
     app.post('/api/user/register', user.register);
     app.post('/api/user/login', user.login);
 
-    app.get('/api/list/all',
-        authenticate,
-        list.getAllLists
-    );
-    app.get('/api/list/view/:id', list.getListById);
-    app.post('/api/list/update/:id', list.updateList);
-    app.post('/api/list/update', list.createNewList);
-    app.delete('/api/list/delete/:id', list.delete);
-    app.get('/api/list/generate/pdf/:id', list.generatePDF);
+    app.get('/api/list/all', authenticate, list.getAllLists);
+    app.get('/api/list/view/:id', authenticate, list.getListById);
+    app.post('/api/list/update/:id', authenticate, list.updateList);
+    app.post('/api/list/update', authenticate, list.createNewList);
+    app.delete('/api/list/delete/:id', authenticate, list.delete);
+    app.get('/api/list/generate/pdf/:id', authenticate, list.generatePDF);
 
-    app.get('/api/project/all', project.getAllProjects);
-    app.post('/api/project/update/:id', project.updateProject);
-    app.post('/api/project/update', project.createNewProject);
-    app.delete('/api/project/delete/:id', project.delete);
-    app.get('/api/project/:id', project.getProjectById);
-    app.get('/api/project/:projectName/lis0ts/', list.getAllListsForProject);
+    app.get('/api/project/all', authenticate, project.getAllProjects);
+    app.post('/api/project/update/:id', authenticate, project.updateProject);
+    app.post('/api/project/update', authenticate, project.createNewProject);
+    app.delete('/api/project/delete/:id', authenticate, project.delete);
+    app.get('/api/project/:id', authenticate, project.getProjectById);
+    app.get('/api/project/:projectName/lists/', authenticate, list.getAllListsForProject);
 
     app.all('/api/*', (req,res) => {
 		res.sendStatus(404);
