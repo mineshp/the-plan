@@ -2,13 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Route } from 'react-router-dom';
 import Home from '../Home';
-import { ManageListConnectedComponent } from '../../HOC/List/ManageList';
-import { ManageListSummaryConnectedComponent } from '../../HOC/ListsSummary/ManageListSummary';
-import { UpdateProjectConnectedComponent } from '../../HOC/Project/Update';
-import { ManageProjectConnectedComponent } from '../../HOC/Project/ManageProject';
-import List from '../App';
 import MainContainerRoutes from '../MainContainer';
-import requireAuth from '../../utils/requireAuth';
 
 
 describe('MainContainer Routes', () => {
