@@ -1,3 +1,4 @@
+const cookieSession = require('cookie-session');
 const listMongodb = require('../mongodb/controllers/list');
 const projectMongodb = require('../mongodb/controllers/project');
 const listDynamodb = require('../dynamodb/controllers/list');
@@ -19,7 +20,10 @@ if (dbType === 'mongodb') {
 }
 
 module.exports = function (app) {
-    app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+    app.use(cookieSession({
+        name: 'morpheus-session',
+        keys: ['vJC3mBKEekM1wkfA4Gje', 'AsU9cUuydo49BgsvjYos']
+    }))
     app.get('/api', (req, res) => {
         res.send('Welcome to the backend')
     });
