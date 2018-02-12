@@ -19,17 +19,17 @@ export default class Auth {
     }
 
     setToken(jwtToken) {
-        sessionStorage.setItem('jwtToken', jwtToken);
-        sessionStorage.setItem('isLoggedIn', true);
+        localStorage.setItem('jwtToken', jwtToken);
+        localStorage.setItem('isLoggedIn', true);
     }
 
     getToken() {
-        return sessionStorage.getItem('jwtToken');
+        return localStorage.getItem('jwtToken');
     }
 
     logout() {
-        sessionStorage.removeItem('jwtToken');
-        sessionStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('jwtToken');
+        localStorage.removeItem('isLoggedIn');
     }
 
     getUserProfile() {

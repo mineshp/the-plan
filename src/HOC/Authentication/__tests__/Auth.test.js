@@ -4,31 +4,31 @@ const Auth = require('../Auth').default;
 
 describe('Auth Service', () => {
     beforeEach(() => {
-        const sessionStorageMock = {
+        const localStorageMock = {
             getItem: jest.fn(),
             setItem: jest.fn(),
             removeItem: jest.fn()
         };
-        global.sessionStorage = sessionStorageMock;
+        global.localStorage = localStorageMock;
     });
 
     afterEach(() => {
-        global.sessionStorage.getItem.mockReset();
-        global.sessionStorage.setItem.mockReset();
-        global.sessionStorage.removeItem.mockReset();
+        global.localStorage.getItem.mockReset();
+        global.localStorage.setItem.mockReset();
+        global.localStorage.removeItem.mockReset();
     });
 
     describe('LoggedIn', () => {
         it('returns true when the user is logged in', () => {
             const date = new Date();
             decode.mockImplementation(() => ({ exp: date.getTime() }));
-            global.sessionStorage.getItem.mockImplementation(() => 'asecrettoken');
+            global.localStorage.getItem.mockImplementation(() => 'asecrettoken');
             expect(Auth.prototype.loggedIn()).toBe(true);
         });
 
         it('returns false when the user is logged in but the token has expired', () => {
             decode.mockImplementation(() => ({ exp: 12345 }));
-            global.sessionStorage.getItem.mockImplementation(() => 'asecrettoken');
+            global.localStorage.getItem.mockImplementation(() => 'asecrettoken');
             expect(Auth.prototype.loggedIn()).toBe(false);
         });
 
@@ -71,21 +71,21 @@ describe('Auth Service', () => {
     describe('setToken', () => {
         it('jwtToken and isLoggedOn is set', () => {
             Auth.prototype.setToken('aSecretToken');
-            expect(global.sessionStorage.setItem).toHaveBeenCalledTimes(2);
+            expect(global.localStorage.setItem).toHaveBeenCalledTimes(2);
         });
     });
 
     describe('getToken', () => {
         it('key jwtToken', () => {
-            global.sessionStorage.getItem.mockImplementation(() => 'abc');
+            global.localStorage.getItem.mockImplementation(() => 'abc');
             expect(Auth.prototype.getToken()).toEqual('abc');
         });
     });
 
     describe('logout', () => {
-        it('remove sessionStorage items', () => {
+        it('remove localStorage items', () => {
             Auth.prototype.logout();
-            expect(global.sessionStorage.removeItem).toHaveBeenCalledTimes(2);
+            expect(global.localStorage.removeItem).toHaveBeenCalledTimes(2);
         });
     });
 
