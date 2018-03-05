@@ -1,5 +1,4 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 import List from '../List';
 import ListHeadingComponent from '../ListHeadings';
@@ -16,20 +15,6 @@ const mockListData = mockSingleList();
 const mockDownloadPDF = jest.fn();
 
 describe('List', () => {
-    it('renders list correctly', () => {
-        const tree = renderer.create(
-            <List
-                list={mockListData}
-                handleAddItem={mockHandleAddItem}
-                handleChange={mockHandleChange}
-                handleSubmit={mockHandleSubmit}
-                handleDelete={mockHandleDelete}
-                downloadPDF={mockDownloadPDF}
-                items={mockItems}
-            />).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
     it('renders ListHeadings component', () => {
         const wrapper = shallow(<List
             list={mockListData}

@@ -11,6 +11,7 @@ export const mockSingleList = () => ({
         }
     ],
     listName: 'Avengers',
+    owner: 'testUser',
     headings: [{ id: '1', name: 'a' }, { id: '2', name: 'b' }, { id: '3', name: 'c' }],
     items: [
         {

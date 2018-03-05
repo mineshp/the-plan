@@ -241,6 +241,7 @@ describe('List actions', () => {
             listName: 'Explorers',
             createdDate: '2017-10-15T09:02:00.000Z',
             updatedDate: '2017-10-15T09:30:00.000Z',
+            owner: 'testUser',
             headings: [{ name: 'A', id: '000001' }, { name: 'B', id: '000002' }],
             items: [{
                 id: 'aax',
@@ -355,6 +356,7 @@ describe('List actions', () => {
             listName: 'Explorers',
             createdDate: '2017-10-15T09:02:00.000Z',
             updatedDate: '2017-10-15T09:30:00.000Z',
+            owner: 'testUser',
             headings: [{ name: 'A', id: '000001' }, { name: 'B', id: '000002' }],
             items: [{
                 id: 'aax',

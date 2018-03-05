@@ -4,6 +4,7 @@ import { Container, Header, Table } from 'semantic-ui-react';
 import ListHeadings from './ListHeadings';
 import ListItems from './ListItems';
 import ListFooter from './ListFooter';
+import ListDetails from './ListDetails';
 
 const List = ({ downloadPDF, handleAddItem, handleChange, handleDelete, handleSubmit, items, list }) => {
     const numColumns = list.headings.length + 1;
@@ -12,7 +13,7 @@ const List = ({ downloadPDF, handleAddItem, handleChange, handleDelete, handleSu
         <div className="List main">
             <Container>
                 <Header as="h1">{list.listName}</Header>
-
+                <ListDetails list={list} />
                 <Table striped>
                     <ListHeadings downloadPDF={downloadPDF} listId={listId} headings={list.headings} />
                     <ListItems

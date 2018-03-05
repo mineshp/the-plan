@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const ListSchema = mongoose.Schema({
     listName: { type: String, required: '{PATH} is required' },
+    owner: { type: String },
     createdDate: { type: Date, default: Date.now },
     updatedDate: { type: Date, default: Date.now },
     projects: [{
@@ -13,8 +14,7 @@ const ListSchema = mongoose.Schema({
         id: String,
         position: Number
     }],
-    items: [{
-    }]
+    items: [{}]
 });
 
 const List = mongoose.model('List', ListSchema);

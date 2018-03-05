@@ -40,6 +40,9 @@ const props = {
             Promise.resolve(Promise.resolve())
         ))
     },
+    authentication: {
+        user: { username: 'testUser' }
+    },
     projectOptions: [
         {
             key: 1,
@@ -134,6 +137,7 @@ describe('Update or Create List', () => {
         it('calls setupNewList action when handleSubmit is called and form setup is complete', async () => {
             createWrapper.setState({
                 listName: 'Avengers Assemble',
+                owner: 'testUser',
                 headings: [
                     {
                         id: '123', name: 'Film'
@@ -165,6 +169,7 @@ describe('Update or Create List', () => {
 
             await expect(props.actions.create).toHaveBeenCalledWith({
                 listName: 'Avengers',
+                owner: 'testUser',
                 headings: [{ id: '123', name: 'name' }],
                 projects: [{ id: '123', name: 'superheroes' }]
             });
@@ -177,6 +182,7 @@ describe('Update or Create List', () => {
                 headings: [{ id: '9999', name: '' }],
                 projects: [{ id: '123', name: 'superheroes' }],
                 listName: 'Avengers',
+                owner: 'testUser'
             });
             const event = { target: { value: 'description' } };
             createWrapper.instance().handleHeaderInputChange(event, { id: '9999' });
@@ -184,6 +190,7 @@ describe('Update or Create List', () => {
 
             await expect(props.actions.create).toHaveBeenCalledWith({
                 listName: 'Avengers',
+                owner: 'testUser',
                 headings: [{ id: '9999', name: 'description' }],
                 projects: [{ id: '123', name: 'superheroes' }]
             });
@@ -196,12 +203,14 @@ describe('Update or Create List', () => {
                 headings: [{ id: '1', name: 'Name' }, { id: '2', name: '' }, { id: '3', name: 'Desc' }],
                 projects: [{ id: '123', name: 'superheroes' }],
                 listName: 'Avengers',
+                owner: 'testUser'
             });
 
             await createWrapper.instance().handleSubmit(mockEvent);
 
             await expect(props.actions.create).toHaveBeenCalledWith({
                 listName: 'Avengers',
+                owner: 'testUser',
                 headings: [{ id: '1', name: 'Name' }, { id: '3', name: 'Desc' }],
                 projects: [{ id: '123', name: 'superheroes' }]
             });
@@ -223,6 +232,7 @@ describe('Update or Create List', () => {
 
             await expect(props.actions.create).toHaveBeenCalledWith({
                 listName: 'Avengers',
+                owner: 'testUser',
                 headings: [{ id: '9999', name: 'name' }],
                 projects: [
                     {
@@ -472,6 +482,7 @@ describe('Update or Create List', () => {
                     update: jest.fn(() => (Promise.resolve())),
                     addNotification: jest.fn(() => (Promise.resolve()))
                 },
+                authentication: { user: { username: 'testUser' } },
                 projectOptions: [{
                     id: '1'
                 }],

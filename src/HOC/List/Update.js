@@ -52,7 +52,9 @@ class UpdateList extends Component {
 
     setupNewList() {
         const validatedHeadings = validateHeadings(this.state.headings);
-        const setupListState = Object.assign({}, this.state, { headings: validatedHeadings });
+        const { user } = this.props.authentication;
+        const setupListState = Object.assign(
+            {}, this.state, { headings: validatedHeadings }, { owner: user.username });
 
         this.props.actions.create(setupListState)
             .then(() => {
@@ -169,6 +171,9 @@ UpdateList.propTypes = {
         retrieveListById: PropTypes.func.isRequired,
         update: PropTypes.func.isRequired
     }).isRequired,
+    authentication: PropTypes.shape({
+        user: PropTypes.shape({})
+    }).isRequired,
     notification: PropTypes.shape({
         message: PropTypes.string,
         level: PropTypes.string,
@@ -218,7 +223,7 @@ const buildProjectDropdownOptions = (allProjects) => {
 
 /* istanbul ignore next: not testing mapStateToProps */
 const mapStateToProps = (state, ownProps) => {
-    const { headings, lists, projects } = state;
+    const { authentication, headings, lists, projects } = state;
     const listID = ownProps.match.params;
 
     const emptyList = {
@@ -246,7 +251,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         result: list,
         projectOptions: buildProjectDropdownOptions(projects),
-        notification: lists.notification
+        notification: lists.notification,
+        authentication
     };
 };
 
