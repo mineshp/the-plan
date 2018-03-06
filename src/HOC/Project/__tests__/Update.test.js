@@ -25,6 +25,9 @@ const props = {
             Promise.resolve()
         ))
     },
+    authentication: {
+        user: { username: 'testUser' }
+    },
     match: { params: {} },
     notification: null
 };

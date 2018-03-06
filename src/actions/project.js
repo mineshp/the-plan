@@ -3,12 +3,6 @@ import Auth from '../HOC/Authentication/Auth';
 
 const auth = new Auth();
 
-export const createProject = (projectName, colour) => ({
-    type: 'CREATE_PROJECT',
-    projectName,
-    colour
-});
-
 export const createdProject = (data) => ({
     type: 'PROJECT_CREATION_SUCCESS',
     data
@@ -73,7 +67,8 @@ export function create(newProject) {
             headers: setAuthorisationToken(token),
             body: JSON.stringify({
                 projectName: newProject.projectName.toLowerCase(),
-                colour: newProject.colour.toLowerCase()
+                colour: newProject.colour.toLowerCase(),
+                owner: newProject.owner
             })
         })
             .then((res) => {

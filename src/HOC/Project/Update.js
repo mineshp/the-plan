@@ -51,7 +51,10 @@ class UpdateProject extends Component {
                     this.redirect();
                 });
         } else {
-            this.props.actions.create(this.state)
+            const { user } = this.props.authentication;
+            const setupNewProject = Object.assign({}, this.state, { owner: user.username });
+
+            this.props.actions.create(setupNewProject)
                 .then((data) => {
                     const notification = this.props.notification
                         ? this.props.notification
@@ -107,6 +110,9 @@ UpdateProject.propTypes = {
         update: PropTypes.func.isRequired,
         addNotification: PropTypes.func.isRequired,
     }).isRequired,
+    authentication: PropTypes.shape({
+        user: PropTypes.shape({})
+    }).isRequired,
     result: PropTypes.shape({
         _id: PropTypes.string
     }),
@@ -157,7 +163,8 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         result: project,
-        notification: state.projects.notification
+        notification: state.projects.notification,
+        authentication: state.authentication
     };
 };
 

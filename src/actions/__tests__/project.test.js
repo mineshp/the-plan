@@ -21,21 +21,13 @@ describe('Project actions', () => {
     const getToken = jest.fn();
     Auth.mockImplementation(() => ({ getToken }));
     describe('Create Project Actions', () => {
-        it('should dispatch an action for CREATE_PROJECT when calling createProject to create a new project', () => {
-            const expectedAction = {
-                type: 'CREATE_PROJECT',
-                projectName: 'newProjectName',
-                colour: 'blue'
-            };
-            expect(actions.createProject('newProjectName', 'blue')).toEqual(expectedAction);
-        });
-
         it('should dispatch an action for PROJECT_CREATION_SUCCESS when calling createdProject to notify the user a project has been created', () => {
             const mockNewProjectCreationSuccessAPIResponse = {
                 _id: '1234',
                 projectName: 'TEST PROJECT',
                 colour: 'green',
-                createdDate: '2017-08-15T12:02:00.000Z'
+                createdDate: '2017-08-15T12:02:00.000Z',
+                owner: 'testUser'
             };
 
             const expectedAction = {
@@ -65,7 +57,8 @@ describe('Project actions', () => {
                 _id: '1234',
                 projectName: 'TEST PROJECT',
                 colour: 'green',
-                createdDate: '2017-08-15T12:02:00.000Z'
+                createdDate: '2017-08-15T12:02:00.000Z',
+                owner: 'testUser'
             };
 
             window.fetch = jest.fn().mockImplementation(() =>
@@ -75,7 +68,8 @@ describe('Project actions', () => {
             const store = mockStore({ project: {} });
             const newProjectData = {
                 projectName: 'test',
-                colour: 'bluey'
+                colour: 'bluey',
+                owner: 'testUser'
             };
 
             const expectedActions = [
@@ -103,7 +97,8 @@ describe('Project actions', () => {
             const store = mockStore({ project: {} });
             const newProjectData = {
                 projectName: 'test',
-                colour: 'bluey'
+                colour: 'bluey',
+                owner: 'testUser'
             };
 
             const expectedAction = [

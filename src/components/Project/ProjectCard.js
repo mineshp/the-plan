@@ -18,6 +18,9 @@ const ProjectCard = ({ data, onDeleteHandler }) => (
         </Card.Content>
         <Card.Content>
             <Card.Meta>
+                Created by: {data.owner}
+            </Card.Meta>
+            <Card.Meta>
                 {formatDate(data.createdDate)}
             </Card.Meta>
             <Card.Description>

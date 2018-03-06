@@ -76,4 +76,4 @@ exports.login = (req, res) => {
             });
         }
     });
-}
+};

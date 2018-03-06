@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const ProjectSchema = mongoose.Schema({
     projectName: { type: String, required: '{PATH} is required' },
     colour: { type: 'String' },
-    createdDate: { type: Date, default: Date.now }
+    createdDate: { type: Date, default: Date.now },
+    owner: { type: String }
 });
 
 const Project = mongoose.model('Project', ProjectSchema);
