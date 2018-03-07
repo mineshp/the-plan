@@ -19,6 +19,7 @@ exports[`ListHeadings renders headings correctly 1`] = `
     </th>
     <th
       className="right aligned"
+      colSpan="2"
     >
       <div
         aria-busy={undefined}

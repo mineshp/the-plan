@@ -42,7 +42,24 @@ exports[`ListHeadings renders headings correctly 1`] = `
       </div>
     </td>
     <td
-      className="right aligned six wide"
+      className="right aligned three wide"
+    >
+      <button
+        className="ui yellow icon button"
+        disabled={undefined}
+        id="001-002"
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="thumbs up icon"
+        />
+      </button>
+    </td>
+    <td
+      className="right aligned three wide"
     >
       <button
         className="ui pink icon button"

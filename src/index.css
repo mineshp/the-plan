@@ -22,6 +22,10 @@ body {
   text-transform:capitalize;
 }
 
+.completed-item {
+  text-decoration: line-through;
+}
+
 /* Header */
 .ui.header {
   color: #76323F;
@@ -163,6 +167,10 @@ body {
   background-color: #76323F;
 }
 
+.ui.yellow.button {
+  background-color: #f0dd74;
+}
+
 /* Buttons:hover */
 
 .ui.blue.button:hover {
@@ -191,6 +199,14 @@ body {
 
 .ui.red.button {
   background-color: #76323F;
+}
+
+.ui.yellow.button:hover {
+  background-color: #fde396;
+}
+
+.ui.yellow.button:focus {
+  background-color: #fde396;
 }
 
 /* Icon */

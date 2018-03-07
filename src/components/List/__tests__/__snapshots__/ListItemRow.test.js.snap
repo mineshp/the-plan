@@ -42,7 +42,103 @@ exports[`ListItems renders list items correctly 1`] = `
       </div>
     </td>
     <td
-      className="right aligned six wide"
+      className="right aligned three wide"
+    >
+      <button
+        className="ui yellow icon button"
+        disabled={undefined}
+        id="001-002"
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="thumbs up icon"
+        />
+      </button>
+    </td>
+    <td
+      className="right aligned three wide"
+    >
+      <button
+        className="ui pink icon button"
+        disabled={undefined}
+        id="001-002"
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="trash icon"
+        />
+      </button>
+    </td>
+  </tr>
+</tbody>
+`;
+
+exports[`ListItems renders list items correctly that have some completed items 1`] = `
+<tbody
+  className=""
+>
+  <tr
+    className=""
+  >
+    <td
+      className="positive six wide"
+    >
+      <div
+        className="ui disabled fluid input completed-item"
+      >
+        <input
+          disabled={true}
+          id="001-002"
+          name="Name"
+          onChange={[Function]}
+          tabIndex={-1}
+          type="text"
+          value="Captain America"
+        />
+      </div>
+    </td>
+    <td
+      className="positive six wide"
+    >
+      <div
+        className="ui disabled fluid input completed-item"
+      >
+        <input
+          disabled={true}
+          id="001-002"
+          name="Desc"
+          onChange={[Function]}
+          tabIndex={-1}
+          type="text"
+          value="The first avenger"
+        />
+      </div>
+    </td>
+    <td
+      className="positive right aligned three wide"
+    >
+      <button
+        className="ui green icon button"
+        disabled={undefined}
+        id="001-002"
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="check icon"
+        />
+      </button>
+    </td>
+    <td
+      className="positive right aligned three wide"
     >
       <button
         className="ui pink icon button"

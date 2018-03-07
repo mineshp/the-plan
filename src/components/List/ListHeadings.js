@@ -9,7 +9,7 @@ const ListItems = ({ downloadPDF, headings, listId }) => {
     ));
 
     columnHeadings.push(
-        <Table.HeaderCell key={'actions'} textAlign="right" >
+        <Table.HeaderCell key={'actions'} textAlign="right" colSpan="2">
             <Dropdown text="Export PDF" icon="file pdf outline" floating labeled button className="icon pdf">
                 <Dropdown.Menu>
                     <Dropdown.Item id={listId} onClick={downloadPDF}>Save</Dropdown.Item>

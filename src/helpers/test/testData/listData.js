@@ -128,6 +128,23 @@ export const mockItemsData = () => ([
     }
 ]);
 
+export const mockCompletedItemsData = () => ([
+    {
+        rowId: '001-002',
+        completed: true,
+        columns: [
+            {
+                columnName: 'Name',
+                columnValue: 'Captain America'
+            },
+            {
+                columnName: 'Desc',
+                columnValue: 'The first avenger'
+            }
+        ]
+    }
+]);
+
 export const mockProjectDropDownOptionsData = () => ([
     { key: '001', value: 'proj1', text: 'proj1' },
     { key: '002', value: 'proj2', text: 'proj2' },
@@ -156,6 +173,7 @@ exports = {
     mockAllListsData,
     mockHeadingsData,
     mockItemsData,
+    mockCompletedItemsData,
     mockNewListResultData,
     mockExistingListWithNoProjects
 };

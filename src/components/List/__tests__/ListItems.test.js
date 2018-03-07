@@ -5,6 +5,7 @@ import { mockItemsData } from '../../../helpers/test/testData/listData';
 
 const mockHandleChange = jest.fn();
 const mockHandleDelete = jest.fn();
+const mockHandleCompleted = jest.fn();
 const mockItems = mockItemsData();
 
 describe('ListHeadings', () => {
@@ -14,6 +15,7 @@ describe('ListHeadings', () => {
                 items={mockItems}
                 handleChange={mockHandleChange}
                 handleDelete={mockHandleDelete}
+                handleCompleted={mockHandleCompleted}
             />).toJSON();
         expect(tree).toMatchSnapshot();
     });

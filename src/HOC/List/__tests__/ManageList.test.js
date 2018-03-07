@@ -245,6 +245,61 @@ describe('Manage Single List', () => {
             await wrapper.instance().handleDelete(mockEvent, { id: '123' });
             expect(wrapper.state().items).toEqual([]);
         });
+
+        it('calls handleCompleted when marking item as completed when the item row completed button is clicked', async () => {
+            wrapper.setState({
+                items: [
+                    {
+                        rowId: '123',
+                        columns: [
+                            {
+                                columnName: 'a',
+                                columnValue: 'Thor'
+                            },
+                            {
+                                columnName: 'b',
+                                columnValue: 'Captain America'
+                            },
+                            {
+                                columnName: 'c',
+                                columnValue: 'Iron Man'
+                            }
+                        ]
+                    }
+                ]
+            });
+
+            await wrapper.instance().handleCompleted(mockEvent, { id: '123' });
+            expect(wrapper.state().items[0].completed).toEqual(true);
+        });
+
+        it('calls handleCompleted when marking existing completed item as un-completed when the item row completed button is clicked', async () => {
+            wrapper.setState({
+                items: [
+                    {
+                        rowId: '123',
+                        completed: true,
+                        columns: [
+                            {
+                                columnName: 'a',
+                                columnValue: 'Thor'
+                            },
+                            {
+                                columnName: 'b',
+                                columnValue: 'Captain America'
+                            },
+                            {
+                                columnName: 'c',
+                                columnValue: 'Iron Man'
+                            }
+                        ]
+                    }
+                ]
+            });
+
+            await wrapper.instance().handleCompleted(mockEvent, { id: '123' });
+            expect(wrapper.state().items[0].completed).toEqual(false);
+        });
     });
 
     describe('Download a pdf', () => {

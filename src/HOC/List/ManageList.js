@@ -19,6 +19,7 @@ class ManageList extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleCompleted = this.handleCompleted.bind(this);
 
         this.state = {
             items: []
@@ -109,6 +110,17 @@ class ManageList extends Component {
         this.updateList();
     }
 
+    handleCompleted(event, data) {
+        const rowToReplaceIndex = this.state.items.findIndex((row) => row.rowId === data.id);
+        const itemsClone = Object.assign([], this.state.items);
+        const rowToUpdate = itemsClone[rowToReplaceIndex];
+
+        rowToUpdate.completed = !rowToUpdate.completed;
+        this.setState({
+            items: itemsClone
+        });
+    }
+
     updateList() {
         const listObject = buildListData(this.props.lists.data, this.state);
         this.props.actions.update(listObject)
@@ -131,6 +143,7 @@ class ManageList extends Component {
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                     handleDelete={this.handleDelete}
+                    handleCompleted={this.handleCompleted}
                 />
         );
     }

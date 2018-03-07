@@ -6,8 +6,11 @@ import ListItems from './ListItems';
 import ListFooter from './ListFooter';
 import ListDetails from './ListDetails';
 
-const List = ({ downloadPDF, handleAddItem, handleChange, handleDelete, handleSubmit, items, list }) => {
-    const numColumns = list.headings.length + 1;
+const List = ({
+    downloadPDF, handleAddItem, handleChange, handleDelete,
+    handleSubmit, handleCompleted, items, list
+}) => {
+    const numColumns = list.headings.length + 2;
     const listId = list._id; // eslint-disable-line no-underscore-dangle
     return (
         <div className="List main">
@@ -20,6 +23,7 @@ const List = ({ downloadPDF, handleAddItem, handleChange, handleDelete, handleSu
                         items={items}
                         handleChange={handleChange}
                         handleDelete={handleDelete}
+                        handleCompleted={handleCompleted}
                     />
                     <ListFooter
                         numColumns={numColumns}
@@ -41,7 +45,8 @@ List.propTypes = {
     handleAddItem: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleDelete: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired
+    handleSubmit: PropTypes.func.isRequired,
+    handleCompleted: PropTypes.func.isRequired
 };
 
 List.defaultProps = {

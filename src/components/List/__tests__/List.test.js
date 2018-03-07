@@ -10,6 +10,7 @@ const mockHandleAddItem = jest.fn();
 const mockHandleChange = jest.fn();
 const mockHandleSubmit = jest.fn();
 const mockHandleDelete = jest.fn();
+const mockHandleCompleted = jest.fn();
 const mockItems = mockItemsData();
 const mockListData = mockSingleList();
 const mockDownloadPDF = jest.fn();
@@ -22,6 +23,7 @@ describe('List', () => {
             handleChange={mockHandleChange}
             handleSubmit={mockHandleSubmit}
             handleDelete={mockHandleDelete}
+            handleCompleted={mockHandleCompleted}
             downloadPDF={mockDownloadPDF}
             items={mockItems}
         />);
@@ -35,6 +37,7 @@ describe('List', () => {
             handleChange={mockHandleChange}
             handleSubmit={mockHandleSubmit}
             handleDelete={mockHandleDelete}
+            handleCompleted={mockHandleCompleted}
             downloadPDF={mockDownloadPDF}
             items={mockItems}
         />);
@@ -48,6 +51,7 @@ describe('List', () => {
             handleChange={mockHandleChange}
             handleSubmit={mockHandleSubmit}
             handleDelete={mockHandleDelete}
+            handleCompleted={mockHandleCompleted}
             downloadPDF={mockDownloadPDF}
             items={mockItems}
         />);
