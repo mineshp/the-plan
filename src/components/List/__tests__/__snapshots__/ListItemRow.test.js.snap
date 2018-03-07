@@ -8,7 +8,7 @@ exports[`ListItems renders list items correctly 1`] = `
     className=""
   >
     <td
-      className="six wide"
+      className="one wide"
     >
       <div
         className="ui fluid input"
@@ -25,7 +25,7 @@ exports[`ListItems renders list items correctly 1`] = `
       </div>
     </td>
     <td
-      className="six wide"
+      className="one wide"
     >
       <div
         className="ui fluid input"
@@ -42,7 +42,7 @@ exports[`ListItems renders list items correctly 1`] = `
       </div>
     </td>
     <td
-      className="right aligned three wide"
+      className="right aligned one wide"
     >
       <button
         className="ui yellow icon button"
@@ -59,7 +59,7 @@ exports[`ListItems renders list items correctly 1`] = `
       </button>
     </td>
     <td
-      className="right aligned three wide"
+      className="right aligned one wide"
     >
       <button
         className="ui pink icon button"
@@ -87,7 +87,7 @@ exports[`ListItems renders list items correctly that have some completed items 1
     className=""
   >
     <td
-      className="positive six wide"
+      className="positive one wide"
     >
       <div
         className="ui disabled fluid input completed-item"
@@ -104,7 +104,7 @@ exports[`ListItems renders list items correctly that have some completed items 1
       </div>
     </td>
     <td
-      className="positive six wide"
+      className="positive one wide"
     >
       <div
         className="ui disabled fluid input completed-item"
@@ -121,7 +121,7 @@ exports[`ListItems renders list items correctly that have some completed items 1
       </div>
     </td>
     <td
-      className="positive right aligned three wide"
+      className="positive right aligned one wide"
     >
       <button
         className="ui green icon button"
@@ -138,7 +138,7 @@ exports[`ListItems renders list items correctly that have some completed items 1
       </button>
     </td>
     <td
-      className="positive right aligned three wide"
+      className="positive right aligned one wide"
     >
       <button
         className="ui pink icon button"

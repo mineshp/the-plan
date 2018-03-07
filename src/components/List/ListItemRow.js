@@ -2,6 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input, Table } from 'semantic-ui-react';
 
+const calculateColumnWidths = (numOfCols) => {
+    const MAX_WIDTH = 12;
+    const DEL_BTN_WIDTH = 1;
+    const COMPLETED_BTN_WIDTH = 1;
+
+    return Math.ceil(numOfCols / (MAX_WIDTH - (DEL_BTN_WIDTH - COMPLETED_BTN_WIDTH)));
+};
+
 const ListItemRow = ({ handleChange, handleDelete, handleCompleted, itemRow }) => {
     const row = [];
     const rowProps = {};
@@ -10,7 +18,7 @@ const ListItemRow = ({ handleChange, handleDelete, handleCompleted, itemRow }) =
         const itemInputKey = `${itemRow.rowId}-${column.columnName}`;
         rowProps.positive = itemRow.completed;
         return row.push(
-            <Table.Cell key={itemInputKey} width="6" {...rowProps}>
+            <Table.Cell key={itemInputKey} width={calculateColumnWidths(itemRow.columns.length)} {...rowProps}>
                 <Input
                     fluid
                     id={itemRow.rowId}
@@ -46,14 +54,14 @@ const ListItemRow = ({ handleChange, handleDelete, handleCompleted, itemRow }) =
     const completedBtn = itemRow.completed ? markItemAsUnCompleteBtn : markItemAsCompleteBtn;
 
     row.push(
-        <Table.Cell key={completedItemRowBtnKey} width="3" textAlign="right" {...rowProps}>
+        <Table.Cell key={completedItemRowBtnKey} width="1" textAlign="right" {...rowProps}>
             { completedBtn }
         </Table.Cell>
     );
 
     const deleteRowBtnKey = `${itemRow.rowId}-deleteRow`;
     row.push(
-        <Table.Cell key={deleteRowBtnKey} width="3" textAlign="right" {...rowProps}>
+        <Table.Cell key={deleteRowBtnKey} width="1" textAlign="right" {...rowProps}>
             <Button
                 icon="trash"
                 color="pink"
