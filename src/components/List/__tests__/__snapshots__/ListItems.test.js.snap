@@ -8,7 +8,7 @@ exports[`ListHeadings renders headings correctly 1`] = `
     className=""
   >
     <td
-      className="one wide"
+      className="three wide"
     >
       <div
         className="ui fluid input"
@@ -25,7 +25,7 @@ exports[`ListHeadings renders headings correctly 1`] = `
       </div>
     </td>
     <td
-      className="one wide"
+      className="three wide"
     >
       <div
         className="ui fluid input"

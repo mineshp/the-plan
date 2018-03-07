@@ -8,7 +8,7 @@ exports[`ListItems renders list items correctly 1`] = `
     className=""
   >
     <td
-      className="one wide"
+      className="three wide"
     >
       <div
         className="ui fluid input"
@@ -25,7 +25,7 @@ exports[`ListItems renders list items correctly 1`] = `
       </div>
     </td>
     <td
-      className="one wide"
+      className="three wide"
     >
       <div
         className="ui fluid input"
@@ -87,7 +87,7 @@ exports[`ListItems renders list items correctly that have some completed items 1
     className=""
   >
     <td
-      className="positive one wide"
+      className="positive three wide"
     >
       <div
         className="ui disabled fluid input completed-item"
@@ -104,7 +104,7 @@ exports[`ListItems renders list items correctly that have some completed items 1
       </div>
     </td>
     <td
-      className="positive one wide"
+      className="positive three wide"
     >
       <div
         className="ui disabled fluid input completed-item"

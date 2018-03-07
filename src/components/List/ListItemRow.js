@@ -7,7 +7,7 @@ const calculateColumnWidths = (numOfCols) => {
     const DEL_BTN_WIDTH = 1;
     const COMPLETED_BTN_WIDTH = 1;
 
-    return Math.ceil(numOfCols / (MAX_WIDTH - (DEL_BTN_WIDTH - COMPLETED_BTN_WIDTH)));
+    return Math.ceil(MAX_WIDTH / (numOfCols + DEL_BTN_WIDTH + COMPLETED_BTN_WIDTH));
 };
 
 const ListItemRow = ({ handleChange, handleDelete, handleCompleted, itemRow }) => {
