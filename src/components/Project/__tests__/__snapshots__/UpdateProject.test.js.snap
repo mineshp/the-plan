@@ -29,6 +29,22 @@ exports[`Create New Project renders create new project form correctly 1`] = `
       className="field"
     >
       <div
+        className="ui input text-box-single-col-min"
+      >
+        <input
+          defaultValue={undefined}
+          disabled={undefined}
+          onChange={[Function]}
+          placeholder="Project Description..."
+          tabIndex={undefined}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
         aria-busy={undefined}
         aria-disabled={undefined}
         aria-expanded={false}
@@ -393,6 +409,22 @@ exports[`Create New Project renders successfully after error creating new projec
           disabled={undefined}
           onChange={[Function]}
           placeholder="Project Name..."
+          tabIndex={undefined}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="ui input text-box-single-col-min"
+      >
+        <input
+          defaultValue={undefined}
+          disabled={undefined}
+          onChange={[Function]}
+          placeholder="Project Description..."
           tabIndex={undefined}
           type="text"
         />
@@ -775,6 +807,22 @@ exports[`Create New Project renders successfully after successful creation of pr
       className="field"
     >
       <div
+        className="ui input text-box-single-col-min"
+      >
+        <input
+          defaultValue={undefined}
+          disabled={undefined}
+          onChange={[Function]}
+          placeholder="Project Description..."
+          tabIndex={undefined}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
         aria-busy={undefined}
         aria-disabled={undefined}
         aria-expanded={false}
@@ -1139,6 +1187,22 @@ exports[`Update Existing Project renders successfully after error creating new p
           disabled={undefined}
           onChange={[Function]}
           placeholder="Project Name..."
+          tabIndex={undefined}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="ui input text-box-single-col-min"
+      >
+        <input
+          defaultValue={undefined}
+          disabled={undefined}
+          onChange={[Function]}
+          placeholder="Project Description..."
           tabIndex={undefined}
           type="text"
         />
@@ -1521,6 +1585,22 @@ exports[`Update Existing Project renders successfully after successful creation 
       className="field"
     >
       <div
+        className="ui input text-box-single-col-min"
+      >
+        <input
+          defaultValue={undefined}
+          disabled={undefined}
+          onChange={[Function]}
+          placeholder="Project Description..."
+          tabIndex={undefined}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
         aria-busy={undefined}
         aria-disabled={undefined}
         aria-expanded={false}
@@ -1885,6 +1965,22 @@ exports[`Update Existing Project renders update existing project form correctly 
           disabled={undefined}
           onChange={[Function]}
           placeholder="Project Name..."
+          tabIndex={undefined}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="ui input text-box-single-col-min"
+      >
+        <input
+          defaultValue={undefined}
+          disabled={undefined}
+          onChange={[Function]}
+          placeholder="Project Description..."
           tabIndex={undefined}
           type="text"
         />

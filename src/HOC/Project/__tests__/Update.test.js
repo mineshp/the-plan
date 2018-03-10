@@ -5,6 +5,7 @@ import LoadingComponent from '../../../components/Shared/Loading';
 
 const handleSubmitMock = jest.fn();
 const handleChangeMock = jest.fn();
+const handleProjectDescriptionChangeMock = jest.fn();
 const handleDropDownSelectionMock = jest.fn();
 const props = {
     actions: {
@@ -56,6 +57,7 @@ describe('Create new project', () => {
             handleChange={handleChangeMock}
             handleDropDownSelection={handleDropDownSelectionMock}
             handleSubmit={handleSubmitMock}
+            handleProjectDescriptionChangeMock={handleProjectDescriptionChangeMock}
             projectName="A new project"
             {...newProjectProps}
         />, { context });
@@ -118,6 +120,7 @@ describe('Update existing project', () => {
         result: {
             _id: '56789',
             projectName: 'Hawkeye',
+            projectDescription: 'A project about something.',
             colour: 'red'
         },
         notification: {
@@ -135,6 +138,7 @@ describe('Update existing project', () => {
             handleChange={handleChangeMock}
             handleDropDownSelection={handleDropDownSelectionMock}
             handleSubmit={handleSubmitMock}
+            handleProjectDescriptionChangeMock={handleProjectDescriptionChangeMock}
             projectName="A new project"
             {...updateProps}
         />, { context });
@@ -161,6 +165,7 @@ describe('Update existing project', () => {
         await expect(updateProps.actions.update).toHaveBeenCalledWith({
             _id: '56789',
             projectName: 'Hawkeye',
+            projectDescription: 'A project about something.',
             colour: 'red',
             createdDate: expect.anything()
         });
@@ -176,6 +181,23 @@ describe('Update existing project', () => {
         await expect(updateProps.actions.update).toHaveBeenCalledWith({
             _id: '56789',
             projectName: 'Black Panther',
+            projectDescription: 'A project about something.',
+            colour: 'red',
+            createdDate: expect.anything()
+        });
+        await expect(props.actions.addNotification).toHaveBeenCalled();
+    });
+
+    it('calls createOrUpdateProject action with correct data when handleSubmit is called and the projectDecription has been updated', async () => {
+        const event = { target: { value: 'Project about marvels black panther.' } };
+
+        updateProjectWrapper.instance().handleProjectDescriptionChange(event);
+        updateProjectWrapper.instance().handleSubmit(mockEvent);
+
+        await expect(updateProps.actions.update).toHaveBeenCalledWith({
+            _id: '56789',
+            projectName: 'Hawkeye',
+            projectDescription: 'Project about marvels black panther.',
             colour: 'red',
             createdDate: expect.anything()
         });
@@ -189,6 +211,7 @@ describe('Update existing project', () => {
         await expect(updateProps.actions.update).toHaveBeenCalledWith({
             _id: '56789',
             projectName: 'Hawkeye',
+            projectDescription: 'A project about something.',
             colour: 'blue',
             createdDate: expect.anything()
         });
@@ -202,6 +225,7 @@ describe('Update existing project', () => {
     it('calls the redirect method when the createOrUpdateProject actions returns successfully', async () => {
         updateProjectWrapper.setState({
             projectName: 'some other project name',
+            projectDescription: 'A project about something.',
             colour: 'green'
         });
         updateProjectWrapper.instance().handleSubmit(mockEvent);
@@ -247,6 +271,7 @@ describe('calls fail due to user not being logged in', () => {
             handleChange={handleChangeMock}
             handleDropDownSelection={handleDropDownSelectionMock}
             handleSubmit={handleSubmitMock}
+            handleProjectDescriptionChangeMock={handleProjectDescriptionChangeMock}
             projectName="A new project"
             {...updateProps}
         />, { context });
@@ -271,6 +296,7 @@ describe('calls fail due to user not being logged in', () => {
             handleChange={handleChangeMock}
             handleDropDownSelection={handleDropDownSelectionMock}
             handleSubmit={handleSubmitMock}
+            handleProjectDescriptionChangeMock={handleProjectDescriptionChangeMock}
             projectName="A new project"
             {...updateProps}
         />, { context });
@@ -294,6 +320,7 @@ describe('Render loading', () => {
             handleChange={handleChangeMock}
             handleDropDownSelection={handleDropDownSelectionMock}
             handleSubmit={handleSubmitMock}
+            handleProjectDescriptionChangeMock={handleProjectDescriptionChangeMock}
             projectName="A new project"
             {...props}
         />, { context });

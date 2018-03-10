@@ -10,6 +10,7 @@ const mockErrorResult = mockProjectErrorResultData();
 const mockHandleSubmit = jest.fn();
 const mockHandleChange = jest.fn();
 const mockHandleDropDownSelection = jest.fn();
+const mockHandleProjectDescriptionChange = jest.fn();
 
 describe('Create New Project', () => {
     it('renders create new project form correctly', () => {
@@ -18,6 +19,7 @@ describe('Create New Project', () => {
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
             handleDropDownSelection={mockHandleDropDownSelection}
+            handleProjectDescriptionChange={mockHandleProjectDescriptionChange}
         />).toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -28,6 +30,7 @@ describe('Create New Project', () => {
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
             handleDropDownSelection={mockHandleDropDownSelection}
+            handleProjectDescriptionChange={mockHandleProjectDescriptionChange}
         />).toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -38,6 +41,7 @@ describe('Create New Project', () => {
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
             handleDropDownSelection={mockHandleDropDownSelection}
+            handleProjectDescriptionChange={mockHandleProjectDescriptionChange}
         />).toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -50,6 +54,7 @@ describe('Update Existing Project', () => {
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
             handleDropDownSelection={mockHandleDropDownSelection}
+            handleProjectDescriptionChange={mockHandleProjectDescriptionChange}
         />).toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -60,6 +65,7 @@ describe('Update Existing Project', () => {
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
             handleDropDownSelection={mockHandleDropDownSelection}
+            handleProjectDescriptionChange={mockHandleProjectDescriptionChange}
         />).toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -70,6 +76,7 @@ describe('Update Existing Project', () => {
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
             handleDropDownSelection={mockHandleDropDownSelection}
+            handleProjectDescriptionChange={mockHandleProjectDescriptionChange}
         />).toJSON();
         expect(tree).toMatchSnapshot();
     });

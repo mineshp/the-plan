@@ -9,10 +9,11 @@ import LoadingComponent from '../../components/Shared/Loading';
 
 import './Project.css';
 
-const buildProjectData = (originalObject, { projectName, colour }) => (
+const buildProjectData = (originalObject, { projectName, projectDescription, colour }) => (
     Object.assign({}, {
         _id: originalObject._id, // eslint-disable-line no-underscore-dangle
         projectName: projectName || originalObject.projectName,
+        projectDescription: projectDescription || originalObject.projectDescription,
         colour: colour ? colour.toLowerCase() : originalObject.colour,
         createdDate: new Date()
     })
@@ -26,6 +27,7 @@ class UpdateProject extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDropDownSelection = this.handleDropDownSelection.bind(this);
+        this.handleProjectDescriptionChange = this.handleProjectDescriptionChange.bind(this);
     }
 
     componentWillMount() {
@@ -73,6 +75,10 @@ class UpdateProject extends Component {
         this.setState({ projectName: event.target.value });
     }
 
+    handleProjectDescriptionChange(event) {
+        this.setState({ projectDescription: event.target.value });
+    }
+
     handleSubmit(event) {
         event.preventDefault();
 
@@ -97,7 +103,9 @@ class UpdateProject extends Component {
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                     handleDropDownSelection={this.handleDropDownSelection}
+                    handleProjectDescriptionChange={this.handleProjectDescriptionChange}
                     projectName={this.props.projectName}
+                    projectDescription={this.props.projectDescription}
                 />
         );
     }
@@ -122,6 +130,7 @@ UpdateProject.propTypes = {
         title: PropTypes.string
     }),
     projectName: PropTypes.string,
+    projectDescription: PropTypes.string,
     match: PropTypes.shape({
         params: PropTypes.shape({
             id: PropTypes.string
@@ -131,6 +140,7 @@ UpdateProject.propTypes = {
 
 UpdateProject.defaultProps = {
     projectName: null,
+    projectDescription: null,
     match: null,
     result: null,
     notification: null

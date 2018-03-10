@@ -43,9 +43,7 @@ exports[`ProjectCard renders correctly 1`] = `
     </div>
     <div
       className="description"
-    >
-      Add a description here
-    </div>
+    />
   </div>
   <div
     className="extra content"

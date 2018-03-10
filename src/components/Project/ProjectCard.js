@@ -24,7 +24,7 @@ const ProjectCard = ({ data, onDeleteHandler }) => (
                 {formatDate(data.createdDate)}
             </Card.Meta>
             <Card.Description>
-            Add a description here
+                {data.projectDescription}
             </Card.Description>
         </Card.Content>
         <Card.Content extra>

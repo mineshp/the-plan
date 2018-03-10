@@ -52,9 +52,7 @@ exports[`List Projects renders projects correctly 1`] = `
           </div>
           <div
             className="description"
-          >
-            Add a description here
-          </div>
+          />
         </div>
         <div
           className="extra content"
@@ -150,9 +148,7 @@ exports[`List Projects renders successfully after error creating new project 1`]
           </div>
           <div
             className="description"
-          >
-            Add a description here
-          </div>
+          />
         </div>
         <div
           className="extra content"
@@ -248,9 +244,7 @@ exports[`List Projects renders successfully after successful creation of project
           </div>
           <div
             className="description"
-          >
-            Add a description here
-          </div>
+          />
         </div>
         <div
           className="extra content"

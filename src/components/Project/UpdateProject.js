@@ -7,6 +7,7 @@ const UpdateProject = ({
     result,
     handleSubmit,
     handleChange,
+    handleProjectDescriptionChange,
     handleDropDownSelection
 }) =>
     (
@@ -21,6 +22,14 @@ const UpdateProject = ({
                     />
                 </Form.Field>
                 <Form.Field>
+                    <Input
+                        placeholder="Project Description..."
+                        className="text-box-single-col-min"
+                        defaultValue={result.projectDescription}
+                        onChange={handleProjectDescriptionChange}
+                    />
+                </Form.Field>
+                <Form.Field>
                     <ColourDropDown value={result.colour} handleChange={handleDropDownSelection} />
                 </Form.Field>
                 <Button color="green" type="submit">Save</Button>
@@ -32,6 +41,7 @@ UpdateProject.propTypes = {
     result: PropTypes.shape({}),
     handleSubmit: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
+    handleProjectDescriptionChange: PropTypes.func.isRequired,
     handleDropDownSelection: PropTypes.func.isRequired
 };
 

@@ -3,6 +3,7 @@ const projects = (state = {}, action) => {
     case 'CREATE_PROJECT':
         return {
             projectName: action.projectName,
+            projectDescription: action.projectDescription,
             colour: action.colour
         };
 

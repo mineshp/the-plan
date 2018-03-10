@@ -67,6 +67,7 @@ export function create(newProject) {
             headers: setAuthorisationToken(token),
             body: JSON.stringify({
                 projectName: newProject.projectName.toLowerCase(),
+                projectDescription: newProject.projectDescription,
                 colour: newProject.colour.toLowerCase(),
                 owner: newProject.owner
             })
