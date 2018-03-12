@@ -28,6 +28,8 @@ module.exports = function (app) {
         res.send('Welcome to the backend')
     });
 
+    app.get('/api/admin/manage/users', authenticate, user.getAllUsers);
+
     app.post('/api/user/register', user.register);
     app.post('/api/user/login', user.login);
 

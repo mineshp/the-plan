@@ -16,6 +16,10 @@ ShallowWrapper {
     />
     <Route
         component={[Function]}
+        path="/admin/manage"
+    />
+    <Route
+        component={[Function]}
         path="/user/register"
     />
     <Route
@@ -69,6 +73,10 @@ ShallowWrapper {
             component={[Function]}
             exact={true}
             path="/"
+      />
+      <Route
+            component={[Function]}
+            path="/admin/manage"
       />
       <Route
             component={[Function]}
@@ -162,6 +170,10 @@ ShallowWrapper {
           />
           <Route
                     component={[Function]}
+                    path="/admin/manage"
+          />
+          <Route
+                    component={[Function]}
                     path="/user/register"
           />
           <Route
@@ -215,6 +227,10 @@ ShallowWrapper {
                     component={[Function]}
                     exact={true}
                     path="/"
+          />
+          <Route
+                    component={[Function]}
+                    path="/admin/manage"
           />
           <Route
                     component={[Function]}

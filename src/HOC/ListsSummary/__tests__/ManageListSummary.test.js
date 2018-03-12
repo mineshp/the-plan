@@ -155,7 +155,7 @@ describe('Manage Lists', () => {
             jest.clearAllMocks();
         });
 
-        it('sets an api error when the client is unable to connect to the api', async () => {
+        it('displays loading component when action to fetch lists is not complete', async () => {
             expect(wrapper.props().lists).toBe(undefined);
             expect(wrapper.find(LoadingComponent).length).toEqual(1);
         });
