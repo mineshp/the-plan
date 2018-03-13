@@ -24,8 +24,12 @@ export default class MainNav extends Component {
 
     render() {
         const { activeItem } = this.state;
-        const displayName = this.props.username
+        const { isAdmin, username } = this.props;
+        const displayName = username
             ? `${this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}`
+            : null;
+        const displayControlCenterItem = isAdmin
+            ? <Dropdown.Item onClick={this.handleItemClick} href="/admin/manage">Control Center</Dropdown.Item>
             : null;
         return (
             <Menu>
@@ -65,6 +69,7 @@ export default class MainNav extends Component {
                             <Menu.Item position="right">
                                 <Dropdown text={displayName} icon="user" floating labeled button className="icon blue">
                                     <Dropdown.Menu>
+                                        {displayControlCenterItem}
                                         <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
@@ -87,9 +92,11 @@ export default class MainNav extends Component {
 
 MainNav.propTypes = {
     username: PropTypes.string,
+    isAdmin: PropTypes.bool,
     logout: PropTypes.func.isRequired
 };
 
 MainNav.defaultProps = {
-    username: null
+    username: null,
+    isAdmin: false
 };

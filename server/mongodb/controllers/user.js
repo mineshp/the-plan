@@ -59,7 +59,8 @@ exports.login = (req, res) => {
                     const payload = {
                         id: collection.id,
                         username: collection.username,
-                        email: collection.email
+                        email: collection.email,
+                        isAdmin: collection.isAdmin
                     };
                     res.send({
                         user: payload,

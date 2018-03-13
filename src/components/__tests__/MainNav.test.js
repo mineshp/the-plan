@@ -7,6 +7,7 @@ import MainNav from '../MainNav';
 describe('MainNav Component', () => {
     const props = {
         username: 'testUser',
+        isAdmin: false,
         logout: jest.fn()
     };
 
@@ -29,7 +30,7 @@ describe('MainNav Component', () => {
         });
     });
 
-    describe('Logged In User', () => {
+    describe('Logged In User - non admin', () => {
         it('renders navigation component with Username when user is logged in', () => {
             const tree = renderer.create(<MainNav {...props} />).toJSON();
             expect(tree).toMatchSnapshot();
@@ -39,6 +40,13 @@ describe('MainNav Component', () => {
             const wrapper = shallow(<MainNav {...props} />);
             const UserMenu = wrapper.find(Menu.Item).last();
             expect(UserMenu.children().props().text).toEqual('TestUser');
+        });
+
+        it('does not show the control center menu item if user is not admin', () => {
+            const wrapper = shallow(<MainNav {...props} />);
+            const UserMenu = wrapper.find(Menu.Item).last();
+            const UserDropDown = UserMenu.find(Dropdown.Item).childAt(1);
+            expect(UserDropDown.props()).toEqual({});
         });
 
         it('displays a logout menu in the drop down', () => {
@@ -54,6 +62,20 @@ describe('MainNav Component', () => {
             const LogOut = UserMenu.find(Dropdown.Item).first();
             wrapper.find(LogOut.props()).simulate('click', mockEvent());
             expect(props.logout).toHaveBeenCalled();
+        });
+    });
+
+    describe('Logged In User - admin', () => {
+        let adminUserProp;
+        beforeEach(() => {
+            adminUserProp = Object.assign({}, props, { isAdmin: true });
+        });
+
+        it('does show the control center menu item if user is admin', () => {
+            const wrapper = shallow(<MainNav {...adminUserProp} />);
+            const UserMenu = wrapper.find(Menu.Item).last();
+            const UserDropDown = UserMenu.find(Dropdown.Item).first();
+            expect(UserDropDown.props().children).toEqual('Control Center');
         });
     });
 

@@ -20,6 +20,7 @@ class MainNav extends Component {
         return (
             <MainNavComponent
                 username={this.props.username}
+                isAdmin={this.props.isAdmin}
                 logout={this.logout}
             />
         );
@@ -28,7 +29,8 @@ class MainNav extends Component {
 
 /* istanbul ignore next: not testing mapStateToProps */
 const mapStateToProps = (state) => ({
-    username: state.authentication.user.username
+    username: state.authentication.user.username,
+    isAdmin: state.authentication.user.isAdmin
 });
 
 /* istanbul ignore next: not testing mapDispatchToProps */
@@ -45,6 +47,7 @@ const MainNavConnectedComponent = connect(
 
 MainNav.propTypes = {
     username: PropTypes.string,
+    isAdmin: PropTypes.bool,
     actions: PropTypes.shape({
         logout: PropTypes.func.isRequired
     })
@@ -52,6 +55,7 @@ MainNav.propTypes = {
 
 MainNav.defaultProps = {
     username: null,
+    isAdmin: false,
     actions: null,
 };
 

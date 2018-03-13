@@ -160,7 +160,7 @@ exports[`MainNav Component Guest User renders navigation component with Sign In 
 </div>
 `;
 
-exports[`MainNav Component Logged In User renders navigation component with Username when user is logged in 1`] = `
+exports[`MainNav Component Logged In User - non admin renders navigation component with Username when user is logged in 1`] = `
 <div
   className="ui menu"
 >

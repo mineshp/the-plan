@@ -4,7 +4,7 @@ const projectMongodb = require('../mongodb/controllers/project');
 const listDynamodb = require('../dynamodb/controllers/list');
 const projectDynamodb = require('../dynamodb/controllers/project');
 const userMongodb = require('../mongodb/controllers/user');
-const authenticate = require('../middlewares/authenticate');
+const { authenticate, isAdmin } = require('../middlewares/authenticate');
 
 const dbType = process.env.DB_TYPE || 'mongodb';
 let list;
@@ -23,13 +23,13 @@ module.exports = function (app) {
     app.use(cookieSession({
         name: 'morpheus-session',
         keys: ['vJC3mBKEekM1wkfA4Gje', 'AsU9cUuydo49BgsvjYos']
-    }))
+    }));
     app.get('/api', (req, res) => {
-        res.send('Welcome to the backend')
+        res.send('Welcome to the backend');
     });
 
-    app.get('/api/admin/manage/users', authenticate, user.getAllUsers);
-    app.delete('/api/admin/manage/users/delete/:id', authenticate, user.deleteUser);
+    app.get('/api/admin/manage/users', authenticate, isAdmin, user.getAllUsers);
+    app.delete('/api/admin/manage/users/delete/:id', authenticate, isAdmin, user.deleteUser);
 
     app.post('/api/user/register', user.register);
     app.post('/api/user/login', user.login);
