@@ -21,11 +21,11 @@ exports.register = function (req, res) {
         newUser.save((err, user) => {
             if (err) {
                 return res.send(`Error registering new user ${userData.username}, ${err}`);
-            } else {
+            }
                 // return res.redirect('/profile');
                 res.status(201);
                 res.send(user);
-            }
+
         });
     }
 };
@@ -80,6 +80,31 @@ exports.login = (req, res) => {
 
 exports.getAllUsers = (req, res) => {
     User.find({}, (err, collection) => {
-        res.send(collection);
+        const users = [];
+        collection.map((userObj) =>
+            users.push({
+                id: userObj._id, // eslint-disable-line no-underscore-dangle
+                username: userObj.username,
+                email: userObj.email,
+                isAdmin: userObj.isAdmin
+            })
+        );
+        res.send(users);
+    });
+};
+
+exports.deleteUser = (req, res) => {
+    const id = req.params.id;
+    User.findOne({ _id: id }, (err) => {
+        if (err) {
+            res.status(400);
+            res.json(
+                {
+                    message: `Error: Unable to delete user with id ${id} not found with error ${err}.`
+                }
+            );
+        } else {
+            User.remove({ _id: id }, (userErr, result) => res.send(result));
+        }
     });
 };

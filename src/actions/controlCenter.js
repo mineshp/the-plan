@@ -28,3 +28,30 @@ export function retrieveUsers() {
             .then((data) => dispatch(successRetrievingUsers(data)))
             .catch((error) => dispatch(errorRetrievingUsers(error.message)));
 }
+
+export const successDeletingUser = (data) => ({
+    type: 'USER_DELETION_SUCCESS',
+    data
+});
+
+export const errorDeletingUser = (error) => ({
+    type: 'USER_DELETION_ERROR',
+    error
+});
+
+export function deleteUser(id) {
+    const token = auth.getToken();
+    return (dispatch) =>
+        fetch(`/api/admin/manage/users/delete/${id}`, {
+            method: 'delete',
+            headers: setAuthorisationToken(token)
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(new Error('Error deleting user, please try again later.'));
+            })
+            .then((data) => dispatch(successDeletingUser(data)))
+            .catch((error) => dispatch(errorDeletingUser(error.message)));
+}

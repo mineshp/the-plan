@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { retrieveUsers } from '../../actions/controlCenter';
+import { deleteUser, retrieveUsers } from '../../actions/controlCenter';
 import { addNotification } from '../../actions/notification';
 import ControlCenterComponent from '../../components/Admin/ControlCenter';
 import LoadingComponent from '../../components/Shared/Loading';
@@ -38,19 +38,24 @@ class ControlCenter extends Component {
         console.log('reset pwd for id', data.id);
     }
 
-    handleDeleteUser(event, data) {
-        console.log('delete user for id', data.id);
+    async handleDeleteUser(event, data) {
+        event.preventDefault();
+        await this.props.actions.deleteUser(data.id)
+            .then(() => {
+                this.props.actions.addNotification(this.props.notification);
+                this.fetchAllUsers();
+            });
     }
 
     render() {
-        const { controlCenter } = this.props;
+        const { admin } = this.props;
         return (
-            (!controlCenter || !controlCenter.users)
+            (!admin.controlCenter || !admin.controlCenter.users)
                 ? <LoadingComponent />
                 : <ControlCenterComponent
                     handleResetPwd={this.handleResetPwd}
                     handleDeleteUser={this.handleDeleteUser}
-                    users={controlCenter.users}
+                    users={admin.controlCenter.users}
                 />
         );
     }
@@ -59,11 +64,10 @@ class ControlCenter extends Component {
 ControlCenter.propTypes = {
     actions: PropTypes.shape({
         retrieveUsers: PropTypes.func.isRequired,
+        deleteUser: PropTypes.func.isRequired,
         addNotification: PropTypes.func.isRequired
     }),
-    controlCenter: PropTypes.shape({
-        users: PropTypes.array.isRequired
-    }).isRequired,
+    admin: PropTypes.shape({}),
     notification: PropTypes.shape({
         message: PropTypes.string,
         level: PropTypes.string,
@@ -73,13 +77,14 @@ ControlCenter.propTypes = {
 
 ControlCenter.defaultProps = {
     actions: null,
-    notification: null
+    notification: null,
+    admin: null
 };
 
 /* istanbul ignore next: not testing mapStateToProps */
 const mapStateToProps = (state) => (
     {
-        controlCenter: state.controlCenter,
+        admin: state.controlCenter,
         notification: state.controlCenter.notification
     }
 );
@@ -88,7 +93,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({
-            retrieveUsers, addNotification
+            retrieveUsers, deleteUser, addNotification
         }, dispatch)
     }
 );

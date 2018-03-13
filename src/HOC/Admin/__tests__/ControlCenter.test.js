@@ -6,6 +6,9 @@ import { mockListUsers } from '../../../helpers/test/testData/controlCenterData'
 import LoadingComponent from '../../../components/Shared/Loading';
 
 const mockUsers = mockListUsers();
+const mockDeleteUser = {
+    success: { data: {} }
+};
 
 const props = {
     actions: {
@@ -15,14 +18,18 @@ const props = {
                 mockUsers
             })
         )),
+        deleteUser: jest.fn(() => (
+            Promise.resolve({
+                type: 'USER_DELETION_SUCCESS',
+                mockDeleteUser
+            })
+        )),
         addNotification: jest.fn(() => (
             Promise.resolve()
         ))
     },
     notification: null,
-    controlCenter: {
-        users: []
-    }
+    admin: {}
 };
 
 describe('ControlCenter', () => {
@@ -30,8 +37,10 @@ describe('ControlCenter', () => {
         let wrapper;
 
         const propsWithControlCenterData = Object.assign({}, props, {
-            controlCenter: {
-                users: mockUsers
+            admin: {
+                controlCenter: {
+                    users: mockUsers
+                }
             },
             notification: {
                 message: 'Retrieved user summary',
@@ -69,19 +78,14 @@ describe('ControlCenter', () => {
 
         it('calls handleResetPwd when Reset Password is requested', async () => {
             const resetPasswordEvent = Object.assign({}, { id: 123456 });
-
-
             await wrapper.instance().handleResetPwd(mockEvent(), resetPasswordEvent);
-
-            // expect(wrapper.state().username).toEqual('test');
         });
 
         it('calls handleDeleteUser when Delete user is requested', async () => {
             const deleteUserEvent = Object.assign({}, { id: 123456 });
 
             await wrapper.instance().handleDeleteUser(mockEvent(), deleteUserEvent);
-
-            // expect(wrapper.state().username).toEqual('test');
+            await expect(propsWithControlCenterData.actions.deleteUser).toHaveBeenCalledWith(123456);
         });
     });
 
@@ -101,6 +105,12 @@ describe('ControlCenter', () => {
                 retrieveUsers: jest.fn(() => (
                     Promise.resolve({ error: 'oh-dear' })
                 )),
+                deleteUser: jest.fn(() => (
+                    Promise.resolve({
+                        type: 'USER_DELETION_SUCCESS',
+                        mockDeleteUser
+                    })
+                )),
                 addNotification: jest.fn(() => (
                     Promise.resolve()
                 ))
@@ -109,7 +119,7 @@ describe('ControlCenter', () => {
             propsAfterFetchUsersError = Object.assign({}, props,
                 {
                     actions: propsActions,
-                    controlCenter: {}
+                    admin: {}
                 }
             );
             wrapper = shallow(<ControlCenter {...propsAfterFetchUsersError} />);

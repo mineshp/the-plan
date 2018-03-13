@@ -29,6 +29,7 @@ module.exports = function (app) {
     });
 
     app.get('/api/admin/manage/users', authenticate, user.getAllUsers);
+    app.delete('/api/admin/manage/users/delete/:id', authenticate, user.deleteUser);
 
     app.post('/api/user/register', user.register);
     app.post('/api/user/login', user.login);

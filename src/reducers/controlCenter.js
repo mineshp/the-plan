@@ -1,12 +1,14 @@
 const initialState = {
-    users: []
+    controlCenter: {}
 };
 
 const controlCenter = (state = initialState, action) => {
     switch (action.type) {
     case 'USERS_RETRIEVED':
         return {
-            users: action.data,
+            controlCenter: {
+                users: action.data
+            },
             notification: {
                 message: 'Users have been retrieved.',
                 level: 'success',
@@ -15,6 +17,30 @@ const controlCenter = (state = initialState, action) => {
         };
 
     case 'USERS_RETRIEVED_ERROR':
+        return {
+            notification: {
+                message: action.error,
+                level: 'error',
+                title: 'Error'
+            },
+            error: {
+                isError: true
+            }
+        };
+
+    case 'USER_DELETION_SUCCESS':
+        return {
+            notification: {
+                message: 'Successfully deleted user.',
+                level: 'success',
+                title: 'Success'
+            },
+            success: {
+                data: action.data
+            }
+        };
+
+    case 'USER_DELETION_ERROR':
         return {
             notification: {
                 message: action.error,

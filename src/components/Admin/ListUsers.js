@@ -6,9 +6,10 @@ import { Button, Container, Icon, Table } from 'semantic-ui-react';
 const ListUsers = ({ handleDeleteUser, handleResetPwd, users }) => {
     const userRows = [];
     users.map((user) => {
-        const userId = user._id; // eslint-disable-line no-underscore-dangle
+        const disableAction = user.isAdmin ? user.isAdmin : null;
+        const userId = user.id; // eslint-disable-line no-underscore-dangle
         return userRows.push(
-            <Table.Row key={`user-${user.username}`}>
+            <Table.Row key={`user-${user.username}`} warning={user.isAdmin} >
                 <Table.Cell collapsing>
                     <Icon name={user.isAdmin ? 'graduation' : 'user'} /> {user.username}
                 </Table.Cell>
@@ -19,7 +20,7 @@ const ListUsers = ({ handleDeleteUser, handleResetPwd, users }) => {
                     </Button>
                 </Table.Cell>
                 <Table.Cell collapsing>
-                    <Button color="pink" size="small" onClick={handleDeleteUser}>
+                    <Button color="pink" size="small" disabled={disableAction} id={userId} onClick={handleDeleteUser}>
                         Delete User
                     </Button>
                 </Table.Cell>

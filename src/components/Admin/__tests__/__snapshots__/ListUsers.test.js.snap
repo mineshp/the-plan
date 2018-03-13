@@ -39,7 +39,7 @@ exports[`Admin > Manage > ListUsers renders ListUsers component 1`] = `
       className=""
     >
       <tr
-        className=""
+        className="warning"
       >
         <td
           className="collapsing"
@@ -62,7 +62,7 @@ exports[`Admin > Manage > ListUsers renders ListUsers component 1`] = `
           <button
             className="ui green small button"
             disabled={undefined}
-            id="1234567"
+            id={undefined}
             onClick={[Function]}
             role="button"
             tabIndex={undefined}
@@ -74,11 +74,12 @@ exports[`Admin > Manage > ListUsers renders ListUsers component 1`] = `
           className="collapsing"
         >
           <button
-            className="ui pink small button"
-            disabled={undefined}
+            className="ui pink small disabled button"
+            disabled={true}
+            id={undefined}
             onClick={[Function]}
             role="button"
-            tabIndex={undefined}
+            tabIndex={-1}
           >
             Delete User
           </button>
@@ -108,7 +109,7 @@ exports[`Admin > Manage > ListUsers renders ListUsers component 1`] = `
           <button
             className="ui green small button"
             disabled={undefined}
-            id="1234568"
+            id={undefined}
             onClick={[Function]}
             role="button"
             tabIndex={undefined}
@@ -122,6 +123,7 @@ exports[`Admin > Manage > ListUsers renders ListUsers component 1`] = `
           <button
             className="ui pink small button"
             disabled={undefined}
+            id={undefined}
             onClick={[Function]}
             role="button"
             tabIndex={undefined}
