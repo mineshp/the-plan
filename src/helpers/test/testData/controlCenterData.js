@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export
 export const mockListUsers = () => ([
     {
         _id: '1234567',

@@ -7,7 +7,7 @@ import { create, retrieveListById, update } from '../../actions/list';
 import { listProjects } from '../../actions/project';
 import { addNotification } from '../../actions/notification';
 import UpdateListComponent from '../../components/List/UpdateList';
-import { buildListData, listSetupIsComplete, validateHeadings } from '../../helpers/validators/list';
+import { addOrRemoveItems, buildListData, listSetupIsComplete, validateHeadings } from '../../helpers/validators/list';
 import LoadingComponent from '../../components/Shared/Loading';
 
 class UpdateList extends Component {
@@ -29,6 +29,7 @@ class UpdateList extends Component {
                     id: uuidv4()
                 }
             ],
+            items: [],
             projects: []
         };
     }
@@ -42,8 +43,10 @@ class UpdateList extends Component {
                     /* istanbul ignore else */
                     if (listRetrieved.type === 'LIST_RETRIEVED') {
                         const headingsClone = Object.assign([], listRetrieved.data.headings);
+                        const itemsClone = Object.assign([], listRetrieved.data.items);
                         this.setState({
-                            headings: headingsClone
+                            headings: headingsClone,
+                            items: itemsClone
                         });
                     }
                 });
@@ -86,21 +89,46 @@ class UpdateList extends Component {
             id: uuidv4(),
             name: ''
         });
+
         this.setState({
             headings: headingsClone
         });
+
+        this.addItemColumn(this.state.items);
+    }
+
+    addItemColumn(itemsExist) {
+        const ADD_ACTION = 'add';
+        if (itemsExist.length > 0) {
+            const itemsClone = addOrRemoveItems(ADD_ACTION, itemsExist);
+            this.setState({
+                items: itemsClone
+            });
+        }
     }
 
     removeHeading(event, data) {
         const headingToDeleteIndex = this.state.headings.findIndex((heading) => heading.id === data.id);
         const headingsClone = Object.assign([], this.state.headings);
+
         if (headingToDeleteIndex > -1) {
             headingsClone.splice(headingToDeleteIndex, 1);
+            this.removeItemColumn(this.state.items, headingToDeleteIndex);
         }
 
         this.setState({
             headings: headingsClone
         });
+    }
+
+    removeItemColumn(itemsExist, removeAtPosition) {
+        const REMOVE_ACTION = 'remove';
+        if (itemsExist.length > 0) {
+            const itemsClone = addOrRemoveItems(REMOVE_ACTION, itemsExist, removeAtPosition);
+            this.setState({
+                items: itemsClone
+            });
+        }
     }
 
     handleChange(event) {

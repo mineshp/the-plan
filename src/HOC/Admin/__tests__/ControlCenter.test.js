@@ -93,13 +93,6 @@ describe('ControlCenter', () => {
         let wrapper;
         let propsAfterFetchUsersError;
 
-        const apiError = {
-            error: {
-                isError: true,
-                message: 'Unable to retrieve users, please try again later.'
-            }
-        };
-
         beforeEach(() => {
             const propsActions = Object.assign({}, {
                 retrieveUsers: jest.fn(() => (
@@ -145,5 +138,4 @@ describe('ControlCenter', () => {
             });
         });
     });
-
 });

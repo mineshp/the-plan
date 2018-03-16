@@ -1,4 +1,4 @@
-import { buildListData, listSetupIsComplete, validateHeadings } from '../list';
+import { addOrRemoveItems, buildListData, listSetupIsComplete, validateHeadings } from '../list';
 
 describe('Helpers', () => {
     describe('validate', () => {
@@ -80,6 +80,104 @@ describe('Helpers', () => {
                 expect(validateHeadings(mockHeadings)).toEqual([
                     { id: '1', name: 'A' }, { id: '3', name: 'B' }
                 ]);
+            });
+
+            it('call to add headings results in a column being added to existing items', () => {
+                const existingItems = [
+                    {
+                        rowId: '123',
+                        columns: [
+                            {
+                                columnName: 'Name',
+                                columnValue: 'IronMan'
+                            },
+                            {
+                                columnName: 'Gender',
+                                columnValue: 'Man'
+                            }
+                        ]
+                    },
+                    {
+                        rowId: '124',
+                        columns: [
+                            {
+                                columnName: 'Name',
+                                columnValue: 'Black Widow'
+                            },
+                            {
+                                columnName: 'Gender',
+                                columnValue: 'Woman'
+                            }
+                        ]
+                    }
+                ];
+
+                const addItems = addOrRemoveItems('add', existingItems);
+
+                addItems.map((item) => {
+                    expect(item.rowId).toEqual(expect.any(String));
+                    expect(item.columns.length).toBe(3);
+                    expect(item.columns[2].columnName).toEqual(expect.any(String));
+                    expect(item.columns[2].columnValue).toEqual('');
+                    return undefined;
+                });
+            });
+
+            it('call to remove headings results in a column being removed from existing items', () => {
+                const existingItems = [
+                    {
+                        rowId: '123',
+                        columns: [
+                            {
+                                columnName: 'A',
+                                columnValue: 'IronMan'
+                            },
+                            {
+                                columnName: 'B',
+                                columnValue: 'Man'
+                            },
+                            {
+                                columnName: 'C',
+                                columnValue: 'Red'
+                            },
+                        ]
+                    },
+                    {
+                        rowId: '124',
+                        columns: [
+                            {
+                                columnName: 'A',
+                                columnValue: 'Black Widow'
+                            },
+                            {
+                                columnName: 'B',
+                                columnValue: 'Woman'
+                            },
+                            {
+                                columnName: 'C',
+                                columnValue: 'Black'
+                            }
+                        ]
+                    }
+                ];
+
+                const removeItems = addOrRemoveItems('remove', existingItems, 1);
+                expect(removeItems.length).toBe(2);
+
+                removeItems.map((item) => {
+                    expect(item.rowId).toEqual(expect.any(String));
+                    expect(item.columns.length).toBe(2);
+                    expect(item.columns[0].columnName).toEqual('A');
+                    expect(item.columns[0].columnValue).toEqual(expect.any(String));
+                    expect(item.columns[1].columnName).toEqual('C');
+                    expect(item.columns[1].columnValue).toEqual(expect.any(String));
+                    return undefined;
+                });
+            });
+
+            it('call to addOrRemoveItems without a valid action results in no change', () => {
+                const invalid = addOrRemoveItems('INVALID');
+                expect(invalid).toBe(undefined);
             });
         });
     });

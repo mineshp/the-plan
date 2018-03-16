@@ -56,6 +56,7 @@ const props = {
         }
     ],
     headings: [{ id: '999', name: 'TestHeading' }],
+    items: [],
     match: { params: {} }
 };
 
@@ -69,6 +70,128 @@ const context = {
 
 const mockEvent = { preventDefault: jest.fn() };
 
+describe('addOrRemoveItems', () => {
+    let addOrRemoveItemsWrapper;
+    jest.mock('../../../helpers/validators/list');
+    // eslint-disable-next-line global-require
+    const { addOrRemoveItems } = require('../../../helpers/validators/list');
+    beforeEach(() => {
+        addOrRemoveItemsWrapper = shallow(<UpdateList
+            result={{}}
+            handleSubmit={handleSubmitMock}
+            handleChange={handleChangeMock}
+            handleDropDownSelection={handleDropDownSelectionMock}
+            handleHeaderInputChange={handleHeaderInputChangeMock}
+            addHeading={addHeadingMock}
+            removeHeading={removeHeadingMock}
+            headings={[]}
+            items={[]}
+            {...props}
+        />, { context });
+    });
+
+    afterEach(() => {
+        addOrRemoveItems.mockClear();
+        addOrRemoveItems.mockReset();
+        addOrRemoveItems.mockRestore();
+    });
+
+    it('call to addHeading when there are no items results in no call to addItemColumn', () => {
+        addOrRemoveItemsWrapper.setState({
+            headings: [
+                {
+                    id: '1', name: 'A'
+                }
+            ],
+            items: []
+        });
+
+        const addItemColumnSpy = jest.spyOn(UpdateList.prototype, 'addItemColumn');
+        addOrRemoveItemsWrapper.instance().addHeading();
+
+        expect(addItemColumnSpy).toHaveBeenCalledWith([]);
+    });
+
+    it('call to addHeading when there are items results in a call to addItemColumn', () => {
+        const items = [{
+            rowId: '1234567',
+            columns: [
+                {
+                    columnName: 'A',
+                    columnValue: '123'
+                }
+            ]
+        }];
+
+        addOrRemoveItems.mockImplementation(() => items);
+        addOrRemoveItemsWrapper.setState({
+            headings: [
+                {
+                    id: '1', name: 'A'
+                }
+            ],
+            items
+        });
+
+        const addItemColumnSpy = jest.spyOn(UpdateList.prototype, 'addItemColumn');
+        addOrRemoveItemsWrapper.instance().addHeading();
+
+        expect(addItemColumnSpy).toHaveBeenCalledWith(items);
+    });
+
+    it('call to removeHeading when there are no items results in no call to removeItemColumn', () => {
+        addOrRemoveItemsWrapper.setState({
+            headings: [
+                {
+                    id: '1', name: 'A'
+                },
+                {
+                    id: '2', name: 'B'
+                }
+            ],
+            items: []
+        });
+
+        const removeItemColumnSpy = jest.spyOn(UpdateList.prototype, 'removeItemColumn');
+        addOrRemoveItemsWrapper.instance().removeHeading(mockEvent, { id: 1 });
+        expect(removeItemColumnSpy).not.toHaveBeenCalled();
+    });
+
+    it('call to removeHeading when there are items results in a call to removeItemColumn', () => {
+        const items = [{
+            rowId: '1234567',
+            columns: [
+                {
+                    columnName: 'A',
+                    columnValue: '123'
+                },
+                {
+                    columnName: 'B',
+                    columnValue: '123'
+                }
+            ]
+        }];
+
+        addOrRemoveItemsWrapper.setState({
+            headings: [
+                {
+                    id: 1, name: 'A'
+                },
+                {
+                    id: 2, name: 'B'
+                }
+            ],
+            items
+        });
+
+        const removeItemColumnSpy = jest.spyOn(UpdateList.prototype, 'removeItemColumn');
+        addOrRemoveItemsWrapper.instance().removeHeading(mockEvent, { id: 1 });
+
+        expect(removeItemColumnSpy).toHaveBeenCalledWith(items, 0);
+    });
+});
+
+jest.unmock('../../../helpers/validators/list');
 describe('Update or Create List', () => {
     describe('Create new list', () => {
         let createWrapper;
@@ -124,6 +247,7 @@ describe('Update or Create List', () => {
                         id: '123', name: 'name'
                     }
                 ],
+                items: [],
                 projects: []
             });
             createWrapper.instance().handleSubmit(mockEvent);
@@ -160,7 +284,8 @@ describe('Update or Create List', () => {
         it('calls createOrUpdateList action with correct data when handleSubmit is called and listName has been created - handleChange', async () => {
             createWrapper.setState({
                 headings: [{ id: '123', name: 'name' }],
-                projects: [{ id: '123', name: 'superheroes' }]
+                projects: [{ id: '123', name: 'superheroes' }],
+                items: []
             });
             const event = { target: { value: 'Avengers' } };
 
@@ -171,7 +296,8 @@ describe('Update or Create List', () => {
                 listName: 'Avengers',
                 owner: 'testUser',
                 headings: [{ id: '123', name: 'name' }],
-                projects: [{ id: '123', name: 'superheroes' }]
+                projects: [{ id: '123', name: 'superheroes' }],
+                items: []
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
@@ -192,7 +318,8 @@ describe('Update or Create List', () => {
                 listName: 'Avengers',
                 owner: 'testUser',
                 headings: [{ id: '9999', name: 'description' }],
-                projects: [{ id: '123', name: 'superheroes' }]
+                projects: [{ id: '123', name: 'superheroes' }],
+                items: []
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
@@ -212,7 +339,8 @@ describe('Update or Create List', () => {
                 listName: 'Avengers',
                 owner: 'testUser',
                 headings: [{ id: '1', name: 'Name' }, { id: '3', name: 'Desc' }],
-                projects: [{ id: '123', name: 'superheroes' }]
+                projects: [{ id: '123', name: 'superheroes' }],
+                items: []
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
@@ -239,7 +367,8 @@ describe('Update or Create List', () => {
                         id: expect.any(String),
                         name: 'movies'
                     }
-                ]
+                ],
+                items: []
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
@@ -370,7 +499,7 @@ describe('Update or Create List', () => {
                 listName: 'Avengers - Age of Ultron',
                 headings: [{ id: '1', name: 'Name' }, { id: '2', name: 'Role' }],
                 projects: [{ id: '12345', name: 'superheroes' }],
-                items: undefined,
+                items: [],
                 createdDate: expect.any(Date),
                 updatedDate: expect.any(Date)
             });
@@ -388,7 +517,7 @@ describe('Update or Create List', () => {
                 listName: 'Avengers',
                 headings: [{ id: '1', name: 'Name' }, { id: '2', name: 'C' }],
                 projects: [{ id: '12345', name: 'superheroes' }],
-                items: undefined,
+                items: [],
                 createdDate: expect.any(Date),
                 updatedDate: expect.any(Date)
             });
@@ -414,7 +543,7 @@ describe('Update or Create List', () => {
                 listName: 'Avengers',
                 headings: [{ id: '1', name: 'A' }],
                 projects: [{ id: '12345', name: 'superheroes' }],
-                items: undefined,
+                items: [],
                 createdDate: expect.any(Date),
                 updatedDate: expect.any(Date)
             });
@@ -440,7 +569,7 @@ describe('Update or Create List', () => {
                         name: 'shield'
                     }
                 ],
-                items: undefined,
+                items: [],
                 createdDate: expect.any(Date),
                 updatedDate: expect.any(Date)
             });
@@ -461,7 +590,7 @@ describe('Update or Create List', () => {
                 listName: 'Avengers',
                 headings: [{ name: 'A' }, { name: 'B' }],
                 projects: [{ name: 'superheroes', id: '12345' }],
-                items: undefined,
+                items: [],
                 createdDate: expect.any(Date),
                 updatedDate: expect.any(Date)
             });

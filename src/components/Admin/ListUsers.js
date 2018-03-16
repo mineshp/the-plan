@@ -25,7 +25,7 @@ const ListUsers = ({ handleDeleteUser, handleResetPwd, users }) => {
                     </Button>
                 </Table.Cell>
             </Table.Row>
-        )
+        );
     });
 
     return (

@@ -1,3 +1,5 @@
+import uuidv4 from 'uuid/v4';
+
 const hasHeadings = (headingsFromState, headingsFromProps) => {
     if (headingsFromState && headingsFromState.length > 0 && headingsFromState[0].name !== '') {
         return true;
@@ -47,6 +49,33 @@ const listSetupIsComplete = (stateData, propsData) => {
     return false;
 };
 
+const addItemColumn = (headingName) => ({
+    columnName: headingName,
+    columnValue: ''
+});
+
+const addOrRemoveItems = (action, itemsExist, position = 0) => {
+    switch (action) {
+    case 'add':
+        itemsExist.map((item) => {
+            const rowId = uuidv4();
+            item.columns.push(addItemColumn(uuidv4()));
+            item.rowId = rowId; // eslint-disable-line no-param-reassign
+            return undefined;
+        });
+        break;
+    case 'remove':
+        itemsExist.map((item) => {
+            item.columns.splice(position, 1);
+            return undefined;
+        });
+        break;
+    default:
+        break;
+    }
+    return itemsExist;
+};
+
 const buildListData = (originalObject, { listName, headings, projects, items }) => (
     Object.assign({}, {
         _id: originalObject._id, // eslint-disable-line no-underscore-dangle
@@ -59,8 +88,9 @@ const buildListData = (originalObject, { listName, headings, projects, items }) 
     })
 );
 
-module.exports = {
+export {
     buildListData,
     listSetupIsComplete,
-    validateHeadings
+    validateHeadings,
+    addOrRemoveItems
 };
