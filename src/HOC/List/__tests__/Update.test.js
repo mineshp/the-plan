@@ -153,8 +153,8 @@ describe('addOrRemoveItems', () => {
         });
 
         const removeItemColumnSpy = jest.spyOn(UpdateList.prototype, 'removeItemColumn');
-        addOrRemoveItemsWrapper.instance().removeHeading(mockEvent, { id: 1 });
-        expect(removeItemColumnSpy).not.toHaveBeenCalled();
+        addOrRemoveItemsWrapper.instance().removeHeading(mockEvent, { id: '1' });
+        expect(removeItemColumnSpy).toHaveBeenCalledWith([], 0);
     });
 
     it('call to removeHeading when there are items results in a call to removeItemColumn', () => {
@@ -175,17 +175,17 @@ describe('addOrRemoveItems', () => {
         addOrRemoveItemsWrapper.setState({
             headings: [
                 {
-                    id: 1, name: 'A'
+                    id: '1', name: 'A'
                 },
                 {
-                    id: 2, name: 'B'
+                    id: '2', name: 'B'
                 }
             ],
             items
         });
 
         const removeItemColumnSpy = jest.spyOn(UpdateList.prototype, 'removeItemColumn');
-        addOrRemoveItemsWrapper.instance().removeHeading(mockEvent, { id: 1 });
+        addOrRemoveItemsWrapper.instance().removeHeading(mockEvent, { id: '1' });
 
         expect(removeItemColumnSpy).toHaveBeenCalledWith(items, 0);
     });

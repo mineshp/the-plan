@@ -21,6 +21,19 @@ exports[`ListHeadings renders headings correctly 1`] = `
       className="right aligned"
       colSpan="2"
     >
+      <a
+        className="ui green icon button"
+        disabled={undefined}
+        href="/list/update/112"
+        onClick={[Function]}
+        role="button"
+        tabIndex={undefined}
+      >
+        <i
+          aria-hidden="true"
+          className="edit icon"
+        />
+      </a>
       <div
         aria-busy={undefined}
         aria-disabled={undefined}

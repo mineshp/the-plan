@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown, Table } from 'semantic-ui-react';
+import { Button, Dropdown, Table } from 'semantic-ui-react';
 
 const ListItems = ({ downloadPDF, headings, listId }) => {
     const columnHeadings = [];
@@ -10,6 +10,7 @@ const ListItems = ({ downloadPDF, headings, listId }) => {
 
     columnHeadings.push(
         <Table.HeaderCell key={'actions'} textAlign="right" colSpan="2">
+            <Button color="green" as="a" icon="edit" href={`/list/update/${listId}`} />
             <Dropdown text="Export PDF" icon="file pdf outline" floating labeled button className="icon pdf">
                 <Dropdown.Menu>
                     <Dropdown.Item id={listId} onClick={downloadPDF}>Save</Dropdown.Item>
