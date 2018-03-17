@@ -1,6 +1,6 @@
 {
   "name": "the-plan",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "dependencies": {
     "enzyme": "^2.9.1",
@@ -30,6 +30,7 @@
     "start:client": "react-scripts start",
     "start:server": "DB_TYPE=mongodb NODE_ENV=development node server/server.js",
     "build": "react-scripts build",
+    "deploy-minor": "npm version minor --force -m \"version %s\"",
     "lint": "eslint --config .eslintrc.js src",
     "lint:fix": "npm run lint -- --fix",
     "test": "react-scripts test --env=jsdom",
