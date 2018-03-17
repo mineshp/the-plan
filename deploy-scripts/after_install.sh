@@ -32,12 +32,7 @@ sudo chown -R ec2-user:ec2-user node_modules
 
 # TODO: add some log rotate
 
-# Sleep for a bit and then check if everything is up and running
+# Sleep for a bit you have worked hard, and then check if everything is up and running
 sleep 2
-
-# echo "Tagging instance with appropriate version"
-# INSTANCE=$(ec2-metadata -i| sed -En 's/^instance-id: (.*)/\1/p')
-# VERSION=$(cat /opt/image-resizer/package.json |jq -r .version)
-# ec2-create-tags $INSTANCE -t "ynap:instance-version=$VERSION" --region="eu-west-1"
 
 echo 'After Install complete!'
