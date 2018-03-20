@@ -79,6 +79,16 @@ describe('MainNav Component', () => {
         });
     });
 
+    describe('Displays moto specific to user', () => {
+        it('displays the correct moto for minesh', () => {
+            const mUserProps = Object.assign({}, props, { username: 'minesh' });
+            const wrapper = shallow(<MainNav {...mUserProps} />);
+            const moto = wrapper.find(Menu.Item);
+            console.log(moto);
+            // expect(UserMenu.children().props().text).toEqual('TestUser');
+        });
+    });
+
     it('ensure handleclick fires', () => {
         const wrapper = shallow(<MainNav {...props} />);
         const firstMenuItem = wrapper.find(Menu.Item).first();

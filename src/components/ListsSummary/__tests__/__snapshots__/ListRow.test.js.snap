@@ -127,7 +127,7 @@ exports[`ListRow renders correctly 1`] = `
     className=""
   >
     <a
-      className="ui brown label"
+      className="ui purple label"
       href="/project/Thor/lists"
       onClick={[Function]}
     >
@@ -138,7 +138,7 @@ exports[`ListRow renders correctly 1`] = `
       Thor
     </a>
     <a
-      className="ui brown label"
+      className="ui purple label"
       href="/project/Loki/lists"
       onClick={[Function]}
     >

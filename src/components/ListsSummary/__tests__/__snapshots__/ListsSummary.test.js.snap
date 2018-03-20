@@ -73,7 +73,7 @@ exports[`List renders lists correctly 1`] = `
             className=""
           >
             <a
-              className="ui brown label"
+              className="ui purple label"
               href="/project/technology/lists"
               onClick={[Function]}
             >
@@ -84,7 +84,7 @@ exports[`List renders lists correctly 1`] = `
               technology
             </a>
             <a
-              className="ui brown label"
+              className="ui purple label"
               href="/project/reactor/lists"
               onClick={[Function]}
             >
@@ -174,7 +174,7 @@ exports[`List renders lists correctly 1`] = `
             className=""
           >
             <a
-              className="ui brown label"
+              className="ui purple label"
               href="/project/hammer/lists"
               onClick={[Function]}
             >

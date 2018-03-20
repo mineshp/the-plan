@@ -3,11 +3,7 @@ import { Container, Segment, Grid, List, Header, Image } from 'semantic-ui-react
 import logo from '../md-logo-green.png';
 
 const Footer = () => (
-    <Segment
-        inverted
-        vertical
-        style={{ margin: '2em 0em 0em', padding: '2em 0em' }}
-    >
+    <Segment inverted vertical className="footer-main">
         <Container textAlign="center">
             <Grid divided inverted stackable>
                 <Grid.Row>

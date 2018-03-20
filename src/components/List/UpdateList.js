@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Select, Form, Grid, Header, Input } from 'semantic-ui-react';
+import { Button, Container, Divider, Select, Form, Grid, Header, Input } from 'semantic-ui-react';
 import HeadingInput from './HeadingInput';
 import './List.css';
 
@@ -21,7 +21,7 @@ const UpdateList = ({
         : 'Setup List';
 
     if (result.projects) {
-        result.projects.map((project) => (
+        result.projects.slice(0, 3).map((project) => (
             projectsAlreadyAssignedToList.push(project.name)
         ));
     }
@@ -41,6 +41,7 @@ const UpdateList = ({
                                     onChange={handleChange}
                                 />
                             </Form.Field>
+                            <Divider horizontal>ASSIGN LIST TO PROJECTS</Divider>
                             <Form.Field>
                                 <Select
                                     placeholder="Projects"

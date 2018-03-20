@@ -3,12 +3,12 @@
 exports[`HeadingInput renders column headings in a grid correctly 1`] = `
 <div>
   <div
-    className="ui divided three column grid"
+    className="ui divided two column grid"
   >
     <div
       className="ui horizontal divider"
     >
-      COLUMNS
+      ASSIGN TABLE HEADINGS
     </div>
     <div
       className="row"
@@ -38,29 +38,8 @@ exports[`HeadingInput renders column headings in a grid correctly 1`] = `
       <div
         className="column"
       >
-        <div
-          className="field"
-        >
-          <div
-            className="ui input"
-          >
-            <input
-              disabled={undefined}
-              id="000001"
-              name={undefined}
-              onChange={[Function]}
-              placeholder="Position..."
-              tabIndex={undefined}
-              type="text"
-            />
-          </div>
-        </div>
-      </div>
-      <div
-        className="column"
-      >
         <button
-          className="ui pink icon left labeled button"
+          className="ui pink icon left floated left labeled button"
           disabled={undefined}
           id="000001"
           onClick={[Function]}
@@ -104,29 +83,8 @@ exports[`HeadingInput renders column headings in a grid correctly 1`] = `
       <div
         className="column"
       >
-        <div
-          className="field"
-        >
-          <div
-            className="ui input"
-          >
-            <input
-              disabled={undefined}
-              id="000002"
-              name={undefined}
-              onChange={[Function]}
-              placeholder="Position..."
-              tabIndex={undefined}
-              type="text"
-            />
-          </div>
-        </div>
-      </div>
-      <div
-        className="column"
-      >
         <button
-          className="ui pink icon left labeled button"
+          className="ui pink icon left floated left labeled button"
           disabled={undefined}
           id="000002"
           onClick={[Function]}

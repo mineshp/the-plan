@@ -67,9 +67,9 @@ exports[`MainNav Component Guest User renders navigation component with Sign In 
       </a>
       <div
         aria-checked={undefined}
-        aria-disabled={undefined}
+        aria-disabled={true}
         aria-selected={undefined}
-        className="item"
+        className="disabled item"
         onClick={[Function]}
         role="option"
       >
@@ -130,9 +130,9 @@ exports[`MainNav Component Guest User renders navigation component with Sign In 
       </a>
       <div
         aria-checked={undefined}
-        aria-disabled={undefined}
+        aria-disabled={true}
         aria-selected={undefined}
-        className="item"
+        className="disabled item"
         onClick={[Function]}
         role="option"
       >
@@ -147,7 +147,7 @@ exports[`MainNav Component Guest User renders navigation component with Sign In 
     <span
       className="moto"
     >
-      Haz tus sueños realidad
+      Make your dreams a reality
     </span>
   </div>
   <a
@@ -227,9 +227,9 @@ exports[`MainNav Component Logged In User - non admin renders navigation compone
       </a>
       <div
         aria-checked={undefined}
-        aria-disabled={undefined}
+        aria-disabled={true}
         aria-selected={undefined}
-        className="item"
+        className="disabled item"
         onClick={[Function]}
         role="option"
       >
@@ -290,9 +290,9 @@ exports[`MainNav Component Logged In User - non admin renders navigation compone
       </a>
       <div
         aria-checked={undefined}
-        aria-disabled={undefined}
+        aria-disabled={true}
         aria-selected={undefined}
-        className="item"
+        className="disabled item"
         onClick={[Function]}
         role="option"
       >
@@ -307,7 +307,7 @@ exports[`MainNav Component Logged In User - non admin renders navigation compone
     <span
       className="moto"
     >
-      Haz tus sueños realidad
+      Make your dreams a reality
     </span>
   </div>
   <div

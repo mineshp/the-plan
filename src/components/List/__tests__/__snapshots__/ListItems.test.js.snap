@@ -45,7 +45,7 @@ exports[`ListHeadings renders headings correctly 1`] = `
       className="right aligned one wide"
     >
       <button
-        className="ui yellow icon button"
+        className="ui orange icon button"
         disabled={undefined}
         id="001-002"
         onClick={[Function]}

@@ -22,16 +22,6 @@ const HeadingInput = ({ headings, handleAddColumn, handleRemoveColumn, handleHea
                         </Form.Field>
                     </Grid.Column>
                     <Grid.Column>
-                        <Form.Field>
-                            <Input
-                                placeholder="Position..."
-                                name={heading.position}
-                                id={headingID}
-                                key={headingID}
-                            />
-                        </Form.Field>
-                    </Grid.Column>
-                    <Grid.Column>
                         <Button
                             icon="trash"
                             content="Remove"
@@ -40,6 +30,7 @@ const HeadingInput = ({ headings, handleAddColumn, handleRemoveColumn, handleHea
                             color="pink"
                             type="button"
                             onClick={handleRemoveColumn}
+                            floated="left"
                         />
                     </Grid.Column>
                 </Grid.Row>
@@ -49,13 +40,12 @@ const HeadingInput = ({ headings, handleAddColumn, handleRemoveColumn, handleHea
 
     return (
         <div>
-            <Grid columns={3} divided>
-                <Divider horizontal>COLUMNS</Divider>
+            <Grid columns={2} divided>
+                <Divider horizontal>ASSIGN TABLE HEADINGS</Divider>
                 {headerRows}
                 <Divider />
                 <Button fluid type="button" color="blue" onClick={handleAddColumn}>Add Column</Button>
             </Grid>
-
         </div>
     );
 };

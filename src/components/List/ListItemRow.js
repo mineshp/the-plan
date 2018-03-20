@@ -34,7 +34,7 @@ const ListItemRow = ({ handleChange, handleDelete, handleCompleted, itemRow }) =
     const markItemAsCompleteBtn = (
         <Button
             icon="thumbs up"
-            color="yellow"
+            color="orange"
             id={itemRow.rowId}
             onClick={handleCompleted}
         />

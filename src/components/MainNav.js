@@ -7,10 +7,29 @@ export default class MainNav extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeItem: 'view'
+            activeItem: 'view',
+            moto: null
         };
         this.handleItemClick = this.handleItemClick.bind(this);
+        // this.getMotoByUser = this.getMotoByUser.bind(this);
         this.logout = this.logout.bind(this);
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    getMotoByUser({ username }) {
+        let moto;
+        switch (username) {
+        case 'minesh':
+            moto = 'Haz tus sueños realidad';
+            break;
+        case 'jignasha':
+            moto = 'Te amo mucho, Bella';
+            break;
+        default:
+            moto = 'Make your dreams a reality';
+            break;
+        }
+        return moto;
     }
 
     handleItemClick(e, { name }) {
@@ -26,11 +45,12 @@ export default class MainNav extends Component {
         const { activeItem } = this.state;
         const { isAdmin, username } = this.props;
         const displayName = username
-            ? `${this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}`
+            ? `${username.charAt(0).toUpperCase() + username.slice(1)}`
             : null;
         const displayControlCenterItem = isAdmin
             ? <Dropdown.Item onClick={this.handleItemClick} href="/admin/manage">Control Center</Dropdown.Item>
             : null;
+        const moto = this.getMotoByUser({ username });
         return (
             <Menu>
                 <Menu.Item
@@ -46,7 +66,7 @@ export default class MainNav extends Component {
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={this.handleItemClick} href="/project/all">List</Dropdown.Item>
                         <Dropdown.Item onClick={this.handleItemClick} href="/project/update">Create</Dropdown.Item>
-                        <Dropdown.Item>Search</Dropdown.Item>
+                        <Dropdown.Item disabled>Search</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
 
@@ -54,12 +74,12 @@ export default class MainNav extends Component {
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={this.handleItemClick} href="/list/all">List</Dropdown.Item>
                         <Dropdown.Item onClick={this.handleItemClick} href="/list/update">Create</Dropdown.Item>
-                        <Dropdown.Item>Search</Dropdown.Item>
+                        <Dropdown.Item disabled>Search</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
 
                 <Menu.Item>
-                    <span className="moto">Haz tus sueños realidad</span>
+                    <span className="moto">{moto}</span>
                 </Menu.Item>
 
                 {

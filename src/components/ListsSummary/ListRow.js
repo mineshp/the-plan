@@ -7,7 +7,7 @@ const projectLabels = (projects) => projects.slice(0, 3).map((project) => (
     <Label
         as="a"
         key={project.id}
-        color="brown"
+        color="purple"
         href={`/project/${project.name}/lists`}
     >
         <Icon name="empty star" />

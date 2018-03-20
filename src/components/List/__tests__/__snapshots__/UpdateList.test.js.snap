@@ -40,6 +40,11 @@ exports[`Create New List renders create new list form correctly 1`] = `
             </div>
           </div>
           <div
+            className="ui horizontal divider"
+          >
+            ASSIGN LIST TO PROJECTS
+          </div>
+          <div
             className="field"
           >
             <div
@@ -154,12 +159,12 @@ exports[`Create New List renders create new list form correctly 1`] = `
     </div>
     <div>
       <div
-        className="ui divided three column grid"
+        className="ui divided two column grid"
       >
         <div
           className="ui horizontal divider"
         >
-          COLUMNS
+          ASSIGN TABLE HEADINGS
         </div>
         <div
           className="row"
@@ -189,29 +194,8 @@ exports[`Create New List renders create new list form correctly 1`] = `
           <div
             className="column"
           >
-            <div
-              className="field"
-            >
-              <div
-                className="ui input"
-              >
-                <input
-                  disabled={undefined}
-                  id="000001"
-                  name={undefined}
-                  onChange={[Function]}
-                  placeholder="Position..."
-                  tabIndex={undefined}
-                  type="text"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="column"
-          >
             <button
-              className="ui pink icon left labeled button"
+              className="ui pink icon left floated left labeled button"
               disabled={undefined}
               id="000001"
               onClick={[Function]}
@@ -255,29 +239,8 @@ exports[`Create New List renders create new list form correctly 1`] = `
           <div
             className="column"
           >
-            <div
-              className="field"
-            >
-              <div
-                className="ui input"
-              >
-                <input
-                  disabled={undefined}
-                  id="000002"
-                  name={undefined}
-                  onChange={[Function]}
-                  placeholder="Position..."
-                  tabIndex={undefined}
-                  type="text"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="column"
-          >
             <button
-              className="ui pink icon left labeled button"
+              className="ui pink icon left floated left labeled button"
               disabled={undefined}
               id="000002"
               onClick={[Function]}
@@ -370,6 +333,11 @@ exports[`Update List renders existing list form correctly when no projects have 
             </div>
           </div>
           <div
+            className="ui horizontal divider"
+          >
+            ASSIGN LIST TO PROJECTS
+          </div>
+          <div
             className="field"
           >
             <div
@@ -484,12 +452,12 @@ exports[`Update List renders existing list form correctly when no projects have 
     </div>
     <div>
       <div
-        className="ui divided three column grid"
+        className="ui divided two column grid"
       >
         <div
           className="ui horizontal divider"
         >
-          COLUMNS
+          ASSIGN TABLE HEADINGS
         </div>
         <div
           className="row"
@@ -519,29 +487,8 @@ exports[`Update List renders existing list form correctly when no projects have 
           <div
             className="column"
           >
-            <div
-              className="field"
-            >
-              <div
-                className="ui input"
-              >
-                <input
-                  disabled={undefined}
-                  id="000001"
-                  name={undefined}
-                  onChange={[Function]}
-                  placeholder="Position..."
-                  tabIndex={undefined}
-                  type="text"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="column"
-          >
             <button
-              className="ui pink icon left labeled button"
+              className="ui pink icon left floated left labeled button"
               disabled={undefined}
               id="000001"
               onClick={[Function]}
@@ -585,29 +532,8 @@ exports[`Update List renders existing list form correctly when no projects have 
           <div
             className="column"
           >
-            <div
-              className="field"
-            >
-              <div
-                className="ui input"
-              >
-                <input
-                  disabled={undefined}
-                  id="000002"
-                  name={undefined}
-                  onChange={[Function]}
-                  placeholder="Position..."
-                  tabIndex={undefined}
-                  type="text"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="column"
-          >
             <button
-              className="ui pink icon left labeled button"
+              className="ui pink icon left floated left labeled button"
               disabled={undefined}
               id="000002"
               onClick={[Function]}
@@ -698,6 +624,11 @@ exports[`Update List renders existing list form correctly when projects have alr
                 type="text"
               />
             </div>
+          </div>
+          <div
+            className="ui horizontal divider"
+          >
+            ASSIGN LIST TO PROJECTS
           </div>
           <div
             className="field"
@@ -812,12 +743,12 @@ exports[`Update List renders existing list form correctly when projects have alr
     </div>
     <div>
       <div
-        className="ui divided three column grid"
+        className="ui divided two column grid"
       >
         <div
           className="ui horizontal divider"
         >
-          COLUMNS
+          ASSIGN TABLE HEADINGS
         </div>
         <div
           className="row"
@@ -847,29 +778,8 @@ exports[`Update List renders existing list form correctly when projects have alr
           <div
             className="column"
           >
-            <div
-              className="field"
-            >
-              <div
-                className="ui input"
-              >
-                <input
-                  disabled={undefined}
-                  id="000001"
-                  name={undefined}
-                  onChange={[Function]}
-                  placeholder="Position..."
-                  tabIndex={undefined}
-                  type="text"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="column"
-          >
             <button
-              className="ui pink icon left labeled button"
+              className="ui pink icon left floated left labeled button"
               disabled={undefined}
               id="000001"
               onClick={[Function]}
@@ -913,29 +823,8 @@ exports[`Update List renders existing list form correctly when projects have alr
           <div
             className="column"
           >
-            <div
-              className="field"
-            >
-              <div
-                className="ui input"
-              >
-                <input
-                  disabled={undefined}
-                  id="000002"
-                  name={undefined}
-                  onChange={[Function]}
-                  placeholder="Position..."
-                  tabIndex={undefined}
-                  type="text"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="column"
-          >
             <button
-              className="ui pink icon left labeled button"
+              className="ui pink icon left floated left labeled button"
               disabled={undefined}
               id="000002"
               onClick={[Function]}
