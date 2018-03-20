@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Table, Icon, Label } from 'semantic-ui-react';
 import { formatDate } from '../../helpers/validators/common';
 
-const projectLabels = (projects) => projects.map((project) => (
+const projectLabels = (projects) => projects.slice(0, 3).map((project) => (
     <Label
         as="a"
         key={project.id}
@@ -15,10 +15,13 @@ const projectLabels = (projects) => projects.map((project) => (
     </Label>
 ));
 
-const List = ({ data, onDeleteHandler }) => {
+const List = ({ data, onDeleteHandler, handleCompleted }) => {
     const listID = data._id; // eslint-disable-line no-underscore-dangle
+    const rowProps = {};
+    rowProps.negative = data.completed;
+
     return (
-        <Table.Row>
+        <Table.Row {...rowProps}>
             <Table.Cell>{data.listName}</Table.Cell>
             <Table.Cell>{formatDate(data.createdDate)}</Table.Cell>
             <Table.Cell>{formatDate(data.updatedDate)}</Table.Cell>
@@ -37,6 +40,12 @@ const List = ({ data, onDeleteHandler }) => {
                     href={`/list/update/${listID}`}
                 />
                 <Button
+                    icon="thumbs up"
+                    color="yellow"
+                    id={listID}
+                    onClick={handleCompleted}
+                />
+                <Button
                     icon="trash"
                     color="pink"
                     value={listID}
@@ -52,7 +61,8 @@ List.propTypes = {
         _id: PropTypes.string.isRequired,
         listName: PropTypes.string.isRequired
     }).isRequired,
-    onDeleteHandler: PropTypes.func.isRequired
+    onDeleteHandler: PropTypes.func.isRequired,
+    handleCompleted: PropTypes.func.isRequired
 };
 
 export default List;

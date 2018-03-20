@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteList, retrieveSummaryLists, retrieveSummaryListsByProject } from '../../actions/list';
+import { deleteList, retrieveSummaryLists, retrieveSummaryListsByProject, update } from '../../actions/list';
 import { addNotification } from '../../actions/notification';
 import ListsSummaryRow from '../../components/ListsSummary/ListRow';
 import ListsSummaryComponent from '../../components/ListsSummary/ListsSummary';
@@ -13,6 +13,7 @@ class ManageListSummary extends Component {
         super(props);
         this.fetchLists = this.fetchLists.bind(this);
         this.deleteList = this.deleteList.bind(this);
+        this.markListAsComplete = this.markListAsComplete.bind(this);
     }
 
     componentDidMount() {
@@ -26,6 +27,21 @@ class ManageListSummary extends Component {
             .then(() => {
                 this.props.actions.addNotification(this.props.notification);
                 this.fetchLists();
+            });
+    }
+
+    markListAsComplete(event, data) {
+        event.preventDefault();
+        const listToReplaceIndex =
+            this.props.lists.data.findIndex((list) => list._id === data.id); // eslint-disable-line no-underscore-dangle
+        const listsClone = Object.assign([], this.props.lists.data);
+        const listToUpdate = listsClone[listToReplaceIndex];
+
+        const updatedList = Object.assign({}, listToUpdate, { completed: !listToUpdate.completed });
+        this.props.actions.update(updatedList)
+            .then(() => {
+                this.fetchLists();
+                this.props.actions.addNotification(this.props.notification);
             });
     }
 
@@ -67,8 +83,14 @@ class ManageListSummary extends Component {
 
         if (lists && lists.data) {
             lists.data.map((list) =>
-                // eslint-disable-next-line no-underscore-dangle
-                ListRow.push(<ListsSummaryRow data={list} key={list._id} onDeleteHandler={this.deleteList} />));
+                ListRow.push(
+                    <ListsSummaryRow
+                        data={list}
+                        key={list._id} // eslint-disable-line no-underscore-dangle
+                        onDeleteHandler={this.deleteList}
+                        handleCompleted={this.markListAsComplete}
+                    />
+                ));
         }
 
         return (
@@ -87,7 +109,8 @@ ManageListSummary.propTypes = {
         deleteList: PropTypes.func.isRequired,
         retrieveSummaryLists: PropTypes.func.isRequired,
         retrieveSummaryListsByProject: PropTypes.func.isRequired,
-        addNotification: PropTypes.func.isRequired
+        addNotification: PropTypes.func.isRequired,
+        update: PropTypes.func.isRequired
     }),
     lists: PropTypes.shape([]),
     notification: PropTypes.shape({
@@ -121,7 +144,11 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
     {
         actions: bindActionCreators({
-            deleteList, retrieveSummaryLists, retrieveSummaryListsByProject, addNotification
+            deleteList,
+            retrieveSummaryLists,
+            retrieveSummaryListsByProject,
+            addNotification,
+            update
         }, dispatch)
     }
 );

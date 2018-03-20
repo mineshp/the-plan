@@ -62,12 +62,12 @@ exports[`List renders lists correctly 1`] = `
           <td
             className=""
           >
-            18/05/2016, 17:00:00
+            18/05/2016, 18:00:00
           </td>
           <td
             className=""
           >
-            18/05/2016, 17:00:00
+            18/05/2016, 18:00:00
           </td>
           <td
             className=""
@@ -124,6 +124,19 @@ exports[`List renders lists correctly 1`] = `
                 className="edit icon"
               />
             </a>
+            <button
+              className="ui yellow icon button"
+              disabled={undefined}
+              id="001"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="thumbs up icon"
+              />
+            </button>
             <button
               className="ui pink icon button"
               disabled={undefined}
@@ -201,6 +214,19 @@ exports[`List renders lists correctly 1`] = `
                 className="edit icon"
               />
             </a>
+            <button
+              className="ui yellow icon button"
+              disabled={undefined}
+              id="002"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="thumbs up icon"
+              />
+            </button>
             <button
               className="ui pink icon button"
               disabled={undefined}

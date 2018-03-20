@@ -1,5 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ListRow marks the list row as complete if the list is marked as completed 1`] = `
+<tr
+  className="negative"
+>
+  <td
+    className=""
+  >
+    Avengers - Age of Ultron
+  </td>
+  <td
+    className=""
+  >
+    Invalid Date
+  </td>
+  <td
+    className=""
+  >
+    Invalid Date
+  </td>
+  <td
+    className=""
+  >
+    <a
+      className="ui brown label"
+      href="/project/Thor/lists"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="empty star icon"
+      />
+      Thor
+    </a>
+    <a
+      className="ui brown label"
+      href="/project/Loki/lists"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="empty star icon"
+      />
+      Loki
+    </a>
+  </td>
+  <td
+    className=""
+  >
+    <a
+      className="ui blue icon button"
+      disabled={undefined}
+      href="/list/view/1234456"
+      onClick={[Function]}
+      role="button"
+      tabIndex={undefined}
+    >
+      <i
+        aria-hidden="true"
+        className="list layout icon"
+      />
+    </a>
+    <a
+      className="ui green icon button"
+      disabled={undefined}
+      href="/list/update/1234456"
+      onClick={[Function]}
+      role="button"
+      tabIndex={undefined}
+    >
+      <i
+        aria-hidden="true"
+        className="edit icon"
+      />
+    </a>
+    <button
+      className="ui yellow icon button"
+      disabled={undefined}
+      id="1234456"
+      onClick={[Function]}
+      role="button"
+      tabIndex={undefined}
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+      />
+    </button>
+    <button
+      className="ui pink icon button"
+      disabled={undefined}
+      onClick={[Function]}
+      role="button"
+      tabIndex={undefined}
+      value="1234456"
+    >
+      <i
+        aria-hidden="true"
+        className="trash icon"
+      />
+    </button>
+  </td>
+</tr>
+`;
+
 exports[`ListRow renders correctly 1`] = `
 <tr
   className=""
@@ -74,6 +178,19 @@ exports[`ListRow renders correctly 1`] = `
         className="edit icon"
       />
     </a>
+    <button
+      className="ui yellow icon button"
+      disabled={undefined}
+      id="1234456"
+      onClick={[Function]}
+      role="button"
+      tabIndex={undefined}
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+      />
+    </button>
     <button
       className="ui pink icon button"
       disabled={undefined}

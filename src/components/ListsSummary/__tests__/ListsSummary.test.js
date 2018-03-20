@@ -5,13 +5,18 @@ import List from '../ListRow';
 import { mockAllListsData } from '../../../helpers/test/testData/listData';
 
 const mockAllLists = mockAllListsData();
-
 const mockDeleteList = jest.fn();
+const mockHandleCompleted = jest.fn();
 
 const Rows = [];
 mockAllLists.map((list) =>
-    // eslint-disable-next-line no-underscore-dangle
-    Rows.push(<List data={list} key={list._id} onDeleteHandler={mockDeleteList} />)
+    Rows.push(
+        <List
+            data={list}
+            key={list._id} // eslint-disable-line no-underscore-dangle
+            onDeleteHandler={mockDeleteList}
+            handleCompleted={mockHandleCompleted}
+        />)
 );
 
 describe('List', () => {

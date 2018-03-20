@@ -4,10 +4,9 @@ import { Button, Input, Table } from 'semantic-ui-react';
 
 const calculateColumnWidths = (numOfCols) => {
     const MAX_WIDTH = 12;
-    const DEL_BTN_WIDTH = 1;
-    const COMPLETED_BTN_WIDTH = 1;
+    const DEL_AND_COMPLETED_BTN_WIDTH = 1;
 
-    return Math.ceil(MAX_WIDTH / (numOfCols + DEL_BTN_WIDTH + COMPLETED_BTN_WIDTH));
+    return Math.ceil(MAX_WIDTH / (numOfCols + DEL_AND_COMPLETED_BTN_WIDTH));
 };
 
 const ListItemRow = ({ handleChange, handleDelete, handleCompleted, itemRow }) => {
@@ -16,7 +15,7 @@ const ListItemRow = ({ handleChange, handleDelete, handleCompleted, itemRow }) =
     const markAsCompletedClass = itemRow.completed ? 'completed-item' : '';
     itemRow.columns.map((column) => {
         const itemInputKey = `${itemRow.rowId}-${column.columnName}`;
-        rowProps.positive = itemRow.completed;
+        rowProps.negative = itemRow.completed;
         return row.push(
             <Table.Cell key={itemInputKey} width={calculateColumnWidths(itemRow.columns.length)} {...rowProps}>
                 <Input
@@ -32,7 +31,6 @@ const ListItemRow = ({ handleChange, handleDelete, handleCompleted, itemRow }) =
         );
     });
 
-    const completedItemRowBtnKey = `${itemRow.rowId}-completedRow`;
     const markItemAsCompleteBtn = (
         <Button
             icon="thumbs up"
@@ -53,15 +51,10 @@ const ListItemRow = ({ handleChange, handleDelete, handleCompleted, itemRow }) =
 
     const completedBtn = itemRow.completed ? markItemAsUnCompleteBtn : markItemAsCompleteBtn;
 
-    row.push(
-        <Table.Cell key={completedItemRowBtnKey} width="1" textAlign="right" {...rowProps}>
-            { completedBtn }
-        </Table.Cell>
-    );
-
     const deleteRowBtnKey = `${itemRow.rowId}-deleteRow`;
     row.push(
         <Table.Cell key={deleteRowBtnKey} width="1" textAlign="right" {...rowProps}>
+            { completedBtn }
             <Button
                 icon="trash"
                 color="pink"

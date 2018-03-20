@@ -3,7 +3,11 @@ const pdfExporter = require('../../export/pdf');
 
 
 exports.getAllLists = function(req,res) {
-	List.find({}, function (err, collection) {
+	List.find(
+		{},
+		null,
+		{ sort: { updatedDate: -1 } },
+		function (err, collection) {
 		res.send(collection);
 	});
 };
@@ -11,7 +15,10 @@ exports.getAllLists = function(req,res) {
 exports.getAllListsForProject = function (req, res) {
 	List.find({
 		'projects.name': req.params.projectName
-	}, function(err, collection) {
+	},
+	null,
+	{ sort: { updatedDate: -1 } },
+	function (err, collection) {
 		res.send(collection);
 	});
 };

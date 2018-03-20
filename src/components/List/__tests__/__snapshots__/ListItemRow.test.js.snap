@@ -8,7 +8,7 @@ exports[`ListItems renders list items correctly 1`] = `
     className=""
   >
     <td
-      className="three wide"
+      className="four wide"
     >
       <div
         className="ui fluid input"
@@ -25,7 +25,7 @@ exports[`ListItems renders list items correctly 1`] = `
       </div>
     </td>
     <td
-      className="three wide"
+      className="four wide"
     >
       <div
         className="ui fluid input"
@@ -57,10 +57,6 @@ exports[`ListItems renders list items correctly 1`] = `
           className="thumbs up icon"
         />
       </button>
-    </td>
-    <td
-      className="right aligned one wide"
-    >
       <button
         className="ui pink icon button"
         disabled={undefined}
@@ -87,41 +83,41 @@ exports[`ListItems renders list items correctly that have some completed items 1
     className=""
   >
     <td
-      className="positive three wide"
+      className="negative four wide"
     >
       <div
-        className="ui disabled fluid input completed-item"
+        className="ui fluid input completed-item"
       >
         <input
-          disabled={true}
+          disabled={undefined}
           id="001-002"
           name="Name"
           onChange={[Function]}
-          tabIndex={-1}
+          tabIndex={undefined}
           type="text"
           value="Captain America"
         />
       </div>
     </td>
     <td
-      className="positive three wide"
+      className="negative four wide"
     >
       <div
-        className="ui disabled fluid input completed-item"
+        className="ui fluid input completed-item"
       >
         <input
-          disabled={true}
+          disabled={undefined}
           id="001-002"
           name="Desc"
           onChange={[Function]}
-          tabIndex={-1}
+          tabIndex={undefined}
           type="text"
           value="The first avenger"
         />
       </div>
     </td>
     <td
-      className="positive right aligned one wide"
+      className="negative right aligned one wide"
     >
       <button
         className="ui green icon button"
@@ -136,10 +132,6 @@ exports[`ListItems renders list items correctly that have some completed items 1
           className="check icon"
         />
       </button>
-    </td>
-    <td
-      className="positive right aligned one wide"
-    >
       <button
         className="ui pink icon button"
         disabled={undefined}

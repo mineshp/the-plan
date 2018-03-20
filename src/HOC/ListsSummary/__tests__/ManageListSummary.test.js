@@ -21,6 +21,9 @@ const props = {
         )),
         addNotification: jest.fn(() => (
             Promise.resolve()
+        )),
+        update: jest.fn(() => (
+            Promise.resolve()
         ))
     },
     notification: null,
@@ -139,6 +142,9 @@ describe('Manage Lists', () => {
                 )),
                 addNotification: jest.fn(() => (
                     Promise.resolve()
+                )),
+                update: jest.fn(() => (
+                    Promise.resolve()
                 ))
             });
 
@@ -199,6 +205,9 @@ describe('Manage Lists', () => {
                 )),
                 addNotification: jest.fn(() => (
                     Promise.resolve()
+                )),
+                update: jest.fn(() => (
+                    Promise.resolve()
                 ))
             },
             lists: {},
@@ -229,6 +238,50 @@ describe('Manage Lists', () => {
             await expect(propsAfterSuccessfulDelete.actions.retrieveSummaryLists).toHaveBeenCalledTimes(1);
             await expect(propsAfterSuccessfulDelete.actions.retrieveSummaryLists()).resolves.toEqual(mockListAll);
             await expect(propsAfterSuccessfulDelete.actions.addNotification).toHaveBeenCalled;
+        });
+    });
+
+    describe('Mark list as completed', () => {
+        const propsMarkListAsCompleted = {
+            actions: {
+                deleteList: jest.fn(() => (
+                    Promise.resolve({
+                        type: 'LIST_DELETION_SUCCESS'
+                    })
+                )),
+                retrieveSummaryLists: jest.fn(() => (
+                    Promise.resolve(mockListAll)
+                )),
+                retrieveSummaryListsByProject: jest.fn(() => (
+                    Promise.resolve({ data: mockListByProject })
+                )),
+                addNotification: jest.fn(() => (
+                    Promise.resolve()
+                )),
+                update: jest.fn(() => (
+                    Promise.resolve()
+                ))
+            },
+            lists: { data: mockListAll },
+            notification: null,
+            match: {
+                params: null
+            }
+        };
+
+        let wrapper;
+
+        beforeEach(() => {
+            wrapper = shallow(<ManageListSummary {...propsMarkListAsCompleted} />);
+        });
+
+        it('calls the update list action when the markListAsComplete event is invoked', async () => {
+            wrapper.instance().markListAsComplete(mockEvent(), { id: '001' });
+            const mockListToUpdate = Object.assign({}, mockListAll[0], { completed: true });
+
+            await expect(propsMarkListAsCompleted.actions.update).toHaveBeenCalledWith(mockListToUpdate);
+            await expect(propsMarkListAsCompleted.actions.retrieveSummaryLists).toHaveBeenCalled();
+            await expect(propsMarkListAsCompleted.actions.addNotification).toHaveBeenCalled;
         });
     });
 });

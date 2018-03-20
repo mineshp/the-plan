@@ -14,7 +14,8 @@ const ListSchema = mongoose.Schema({
         id: String,
         position: Number
     }],
-    items: [{}]
+    items: [{}],
+    completed: { type: Boolean, default: false }
 });
 
 const List = mongoose.model('List', ListSchema);

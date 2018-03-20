@@ -145,6 +145,23 @@ export const mockCompletedItemsData = () => ([
     }
 ]);
 
+export const mockCompletedListRowData = () => ({
+    _id: '1234456',
+    listName: 'Avengers - Age of Ultron',
+    projects: [{
+        id: '1',
+        name: 'Thor'
+    },
+    {
+        id: '2',
+        name: 'Loki'
+    }],
+    items: [
+        mockCompletedItemsData()
+    ],
+    completed: true
+});
+
 export const mockProjectDropDownOptionsData = () => ([
     { key: '001', value: 'proj1', text: 'proj1' },
     { key: '002', value: 'proj2', text: 'proj2' },
@@ -175,5 +192,6 @@ exports = {
     mockItemsData,
     mockCompletedItemsData,
     mockNewListResultData,
-    mockExistingListWithNoProjects
+    mockExistingListWithNoProjects,
+    mockCompletedListRowData
 };
