@@ -62,12 +62,12 @@ exports[`List renders lists correctly 1`] = `
           <td
             className=""
           >
-            18/05/2016, 18:00:00
+            18/05/2016, 17:00:00
           </td>
           <td
             className=""
           >
-            18/05/2016, 18:00:00
+            18/05/2016, 17:00:00
           </td>
           <td
             className=""
