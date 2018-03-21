@@ -1,6 +1,4 @@
 #!/bin/bash
-APP_CLIENT_DIR="/opt/$APPLICATION_NAME-client/"
-APP_SERVER_DIR="/opt/$APPLICATION_NAME-server/"
 
 # Mongodb running
 sudo /etc/init.d/mongod start
