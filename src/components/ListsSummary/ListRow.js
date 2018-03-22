@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Table, Icon, Label } from 'semantic-ui-react';
+import { Button, Table, Label } from 'semantic-ui-react';
 import { formatDate } from '../../helpers/validators/common';
 
 const projectLabels = (projects) => projects.slice(0, 3).map((project) => (
@@ -9,9 +9,7 @@ const projectLabels = (projects) => projects.slice(0, 3).map((project) => (
         key={project.id}
         color="purple"
         href={`/project/${project.name}/lists`}
-    >
-        <Icon name="empty star" />
-        {project.name}
+    > {project.name}
     </Label>
 ));
 
@@ -20,6 +18,28 @@ const List = ({ data, onDeleteHandler, handleCompleted }) => {
     const rowProps = {};
     rowProps.negative = data.completed;
 
+    const markListAsCompleteBtn = (
+        <Button
+            icon="thumbs up"
+            color="orange"
+            id={listID}
+            onClick={handleCompleted}
+            className="button-divider"
+        />
+    );
+
+    const markListAsUnCompleteBtn = (
+        <Button
+            icon="check"
+            color="green"
+            id={listID}
+            onClick={handleCompleted}
+            className="button-divider"
+        />
+    );
+
+    const completedBtn = data.completed ? markListAsUnCompleteBtn : markListAsCompleteBtn;
+
     return (
         <Table.Row {...rowProps}>
             <Table.Cell>{data.listName}</Table.Cell>
@@ -27,6 +47,7 @@ const List = ({ data, onDeleteHandler, handleCompleted }) => {
             <Table.Cell>{formatDate(data.updatedDate)}</Table.Cell>
             <Table.Cell>{projectLabels(data.projects)}</Table.Cell>
             <Table.Cell>
+                {completedBtn}
                 <Button
                     as="a"
                     color="blue"
@@ -38,12 +59,6 @@ const List = ({ data, onDeleteHandler, handleCompleted }) => {
                     icon="edit"
                     color="green"
                     href={`/list/update/${listID}`}
-                />
-                <Button
-                    icon="thumbs up"
-                    color="yellow"
-                    id={listID}
-                    onClick={handleCompleted}
                 />
                 <Button
                     icon="trash"

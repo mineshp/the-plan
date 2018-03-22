@@ -175,7 +175,7 @@ body {
 }
 
 .ui.orange.button {
-  background-color: #ffc776;
+  background-color: #ffb347;
 }
 
 /* Buttons:hover */
@@ -209,11 +209,11 @@ body {
 }
 
 .ui.orange.button:hover {
-  background-color: #f3cc56;
+  background-color: #f1c02c;
 }
 
 .ui.orange.button:focus {
-  background-color: #f3cc56;
+  background-color: #f1c02c;
 }
 
 /* Icon */

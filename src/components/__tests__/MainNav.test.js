@@ -83,9 +83,22 @@ describe('MainNav Component', () => {
         it('displays the correct moto for minesh', () => {
             const mUserProps = Object.assign({}, props, { username: 'minesh' });
             const wrapper = shallow(<MainNav {...mUserProps} />);
-            const moto = wrapper.find(Menu.Item);
-            console.log(moto);
-            // expect(UserMenu.children().props().text).toEqual('TestUser');
+            const moto = wrapper.find(Menu.Item).at(1);
+            expect(moto.props().children.props.children).toEqual('Haz tus sueños realidad');
+        });
+
+        it('displays the correct moto for jignasha', () => {
+            const mUserProps = Object.assign({}, props, { username: 'jignasha' });
+            const wrapper = shallow(<MainNav {...mUserProps} />);
+            const moto = wrapper.find(Menu.Item).at(1);
+            expect(moto.props().children.props.children).toEqual('Te amo mucho, Bella');
+        });
+
+        it('displays the correct moto for any other user', () => {
+            const mUserProps = Object.assign({}, props, { username: 'testUser' });
+            const wrapper = shallow(<MainNav {...mUserProps} />);
+            const moto = wrapper.find(Menu.Item).at(1);
+            expect(moto.props().children.props.children).toEqual('Make your dreams a reality');
         });
     });
 

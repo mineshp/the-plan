@@ -14,20 +14,20 @@ exports[`renders correctly 1`] = `
     <div
       className="ui text container"
     >
-      <h1
+      <h2
         className="ui inverted header"
         style={
           Object {
-            "fontSize": "4em",
+            "fontSize": "3.5em",
             "fontWeight": "normal",
             "marginBottom": 0,
-            "marginTop": "3em",
+            "marginTop": "2em",
           }
         }
       >
         Time to make plans...
-      </h1>
-      <h2
+      </h2>
+      <h3
         className="ui inverted header"
         style={
           Object {
@@ -38,60 +38,73 @@ exports[`renders correctly 1`] = `
         }
       >
         Stars can't shine without darkness.
-      </h2>
+      </h3>
       <div
         className="ui inverted section divider"
       />
-      <a
-        className="ui green button"
-        disabled={undefined}
-        href="/list/all"
-        onClick={[Function]}
-        role="button"
-        tabIndex={undefined}
+      <div
+        className="ui centered stackable vertically divided grid"
       >
-        <i
-          aria-hidden="true"
-          className="list layout icon"
-        />
-        View lists
-      </a>
-      <a
-        className="ui pink button"
-        disabled={undefined}
-        href="/list/update"
-        onClick={[Function]}
-        role="button"
-        tabIndex={undefined}
-      >
-        <i
-          aria-hidden="true"
-          className="edit icon"
-        />
-        Create lists
-      </a>
-      <a
-        className="ui blue button"
-        disabled={undefined}
-        href="/project/all"
-        onClick={[Function]}
-        role="button"
-        tabIndex={undefined}
-      >
-        <i
-          aria-hidden="true"
-          className="cubes icon"
-        />
-        View Projects
-      </a>
+        <div
+          className="three column row"
+        >
+          <div
+            className="column"
+          >
+            <a
+              className="ui green button"
+              disabled={undefined}
+              href="/list/all"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="list layout icon"
+              />
+              View lists
+            </a>
+          </div>
+          <div
+            className="column"
+          >
+            <a
+              className="ui pink button"
+              disabled={undefined}
+              href="/list/update"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="edit icon"
+              />
+              Create lists
+            </a>
+          </div>
+          <div
+            className="column"
+          >
+            <a
+              className="ui blue button"
+              disabled={undefined}
+              href="/project/all"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+            >
+              <i
+                aria-hidden="true"
+                className="cubes icon"
+              />
+              View Projects
+            </a>
+          </div>
+        </div>
+      </div>
       <div />
-      <img
-        alt={undefined}
-        className="ui tiny centered image home-logo"
-        height={undefined}
-        src="md-logo-green.png"
-        width={undefined}
-      />
     </div>
   </div>
 </div>
