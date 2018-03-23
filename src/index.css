@@ -9,9 +9,20 @@ body {
 }
 
 .content-body {
+  padding-top: 80px;
   padding-bottom: 200px;
   min-height: 100vh;
 }
+
+.header-main {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  min-height: 1200px;
+}
+
+
+/* Header */
 
 
 .moto {
@@ -24,7 +35,6 @@ body {
   margin-top: 24px;
 }
 
-/* Header */
 .ui.header {
   color: #533d53;
   font-family: 'Allura', cursive;
@@ -45,7 +55,6 @@ body {
 }
 
 /* Footer */
-
 .footer-header {
   margin: 0 !important;
 }
