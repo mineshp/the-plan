@@ -88,7 +88,7 @@ describe('MainNav Component', () => {
         });
 
         it('displays the correct moto for jignasha', () => {
-            const mUserProps = Object.assign({}, props, { username: 'jignasha' });
+            const mUserProps = Object.assign({}, props, { username: 'Jignasha' });
             const wrapper = shallow(<MainNav {...mUserProps} />);
             const moto = wrapper.find(Menu.Item).at(1);
             expect(moto.props().children.props.children).toEqual('Te amo mucho, Bella');

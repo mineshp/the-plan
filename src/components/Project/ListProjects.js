@@ -4,7 +4,7 @@ import { Card, Container } from 'semantic-ui-react';
 
 const ListProjects = ({ cards }) => (
     <Container>
-        <div className="List main">
+        <div className="List main content-body">
             <Card.Group itemsPerRow={3}>
                 {cards}
             </Card.Group>

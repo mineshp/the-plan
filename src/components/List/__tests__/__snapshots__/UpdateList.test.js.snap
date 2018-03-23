@@ -2,7 +2,7 @@
 
 exports[`Create New List renders create new list form correctly 1`] = `
 <div
-  className="ui container"
+  className="ui container content-body"
 >
   <h1
     className="ui header"
@@ -295,7 +295,7 @@ exports[`Create New List renders create new list form correctly 1`] = `
 
 exports[`Update List renders existing list form correctly when no projects have been assigned 1`] = `
 <div
-  className="ui container"
+  className="ui container content-body"
 >
   <h1
     className="ui header"
@@ -588,7 +588,7 @@ exports[`Update List renders existing list form correctly when no projects have 
 
 exports[`Update List renders existing list form correctly when projects have already been assigned 1`] = `
 <div
-  className="ui container"
+  className="ui container content-body"
 >
   <h1
     className="ui header"

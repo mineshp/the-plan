@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import './App.css';
 
 const App = () => (
-    <div className="App">
+    <div className="App main-container">
         <NotificationContainer props />
         <MainNavConnectedComponent />
         <MainContainer />

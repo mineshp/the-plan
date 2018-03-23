@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, Header, Table } from 'semantic-ui-react';
 
 const ListsSummary = ({ retrieveListBy, rows }) => (
-    <div className="List main">
+    <div className="List main content-body">
         <Container>
             <Header as="h1" className="firstletter-capitalise">{`Lists for ${retrieveListBy}.`}</Header>
             <Table striped>

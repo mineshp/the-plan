@@ -5,7 +5,7 @@ exports[`List Projects renders projects correctly 1`] = `
   className="ui container"
 >
   <div
-    className="List main"
+    className="List main content-body"
   >
     <div
       className="ui three cards"
@@ -101,7 +101,7 @@ exports[`List Projects renders successfully after error creating new project 1`]
   className="ui container"
 >
   <div
-    className="List main"
+    className="List main content-body"
   >
     <div
       className="ui three cards"
@@ -197,7 +197,7 @@ exports[`List Projects renders successfully after successful creation of project
   className="ui container"
 >
   <div
-    className="List main"
+    className="List main content-body"
   >
     <div
       className="ui three cards"

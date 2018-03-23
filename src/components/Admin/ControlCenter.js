@@ -4,7 +4,7 @@ import { Container, Header } from 'semantic-ui-react';
 import ListUsers from './ListUsers';
 
 const ControlCenter = ({ handleResetPwd, handleDeleteUser, users }) => (
-    <Container>
+    <Container className="content-body">
         <Header as="h1">Control Center</Header>
         <ListUsers
             users={users}

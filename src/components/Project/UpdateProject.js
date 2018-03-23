@@ -11,7 +11,7 @@ const UpdateProject = ({
     handleDropDownSelection
 }) =>
     (
-        <Container>
+        <Container className="content-body">
             <Form onSubmit={handleSubmit}>
                 <Form.Field>
                     <Input

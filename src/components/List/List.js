@@ -13,7 +13,7 @@ const List = ({
     const numColumns = list.headings.length + 2;
     const listId = list._id; // eslint-disable-line no-underscore-dangle
     return (
-        <div className="List main">
+        <div className="List main content-body">
             <Container>
                 <Header as="h1">{list.listName}</Header>
                 <ListDetails list={list} />

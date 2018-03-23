@@ -27,7 +27,7 @@ const UpdateList = ({
     }
 
     return (
-        <Container>
+        <Container className="content-body">
             <Header as="h1">{heading}</Header>
             <Form onSubmit={handleSubmit}>
                 <Grid columns={1}>

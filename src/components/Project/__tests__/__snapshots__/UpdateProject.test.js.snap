@@ -2,7 +2,7 @@
 
 exports[`Create New Project renders create new project form correctly 1`] = `
 <div
-  className="ui container"
+  className="ui container content-body"
 >
   <form
     action={undefined}
@@ -391,7 +391,7 @@ exports[`Create New Project renders create new project form correctly 1`] = `
 
 exports[`Create New Project renders successfully after error creating new project 1`] = `
 <div
-  className="ui container"
+  className="ui container content-body"
 >
   <form
     action={undefined}
@@ -780,7 +780,7 @@ exports[`Create New Project renders successfully after error creating new projec
 
 exports[`Create New Project renders successfully after successful creation of project 1`] = `
 <div
-  className="ui container"
+  className="ui container content-body"
 >
   <form
     action={undefined}
@@ -1169,7 +1169,7 @@ exports[`Create New Project renders successfully after successful creation of pr
 
 exports[`Update Existing Project renders successfully after error creating new project 1`] = `
 <div
-  className="ui container"
+  className="ui container content-body"
 >
   <form
     action={undefined}
@@ -1558,7 +1558,7 @@ exports[`Update Existing Project renders successfully after error creating new p
 
 exports[`Update Existing Project renders successfully after successful creation of project 1`] = `
 <div
-  className="ui container"
+  className="ui container content-body"
 >
   <form
     action={undefined}
@@ -1947,7 +1947,7 @@ exports[`Update Existing Project renders successfully after successful creation 
 
 exports[`Update Existing Project renders update existing project form correctly 1`] = `
 <div
-  className="ui container"
+  className="ui container content-body"
 >
   <form
     action={undefined}

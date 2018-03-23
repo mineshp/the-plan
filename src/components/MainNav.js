@@ -22,7 +22,7 @@ export default class MainNav extends Component {
         case 'minesh':
             moto = 'Haz tus sueños realidad';
             break;
-        case 'jignasha':
+        case 'Jignasha':
             moto = 'Te amo mucho, Bella';
             break;
         default:
