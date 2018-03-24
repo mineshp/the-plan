@@ -20,6 +20,7 @@ exports[`ProjectCard renders correctly 1`] = `
         onClick={[Function]}
         role="button"
         tabIndex={undefined}
+        title="View all lists for project Avengers"
       >
         <i
           aria-hidden="true"

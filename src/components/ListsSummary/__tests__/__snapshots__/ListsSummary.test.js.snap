@@ -73,7 +73,7 @@ exports[`List renders lists correctly 1`] = `
             className=""
           >
             <a
-              className="ui purple label"
+              className="ui pink label"
               href="/project/technology/lists"
               onClick={[Function]}
             >
@@ -81,7 +81,7 @@ exports[`List renders lists correctly 1`] = `
               technology
             </a>
             <a
-              className="ui purple label"
+              className="ui pink label"
               href="/project/reactor/lists"
               onClick={[Function]}
             >
@@ -93,16 +93,17 @@ exports[`List renders lists correctly 1`] = `
             className=""
           >
             <button
-              className="ui orange icon button button-divider"
+              className="ui violet icon button button-divider"
               disabled={undefined}
               id="001"
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
+              title="List is Active"
             >
               <i
                 aria-hidden="true"
-                className="thumbs up icon"
+                className="unlock icon"
               />
             </button>
             <a
@@ -112,6 +113,7 @@ exports[`List renders lists correctly 1`] = `
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
+              title="View/Update List"
             >
               <i
                 aria-hidden="true"
@@ -125,6 +127,7 @@ exports[`List renders lists correctly 1`] = `
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
+              title="Amend List Setup"
             >
               <i
                 aria-hidden="true"
@@ -137,6 +140,7 @@ exports[`List renders lists correctly 1`] = `
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
+              title="Delete List"
               value="001"
             >
               <i
@@ -168,7 +172,7 @@ exports[`List renders lists correctly 1`] = `
             className=""
           >
             <a
-              className="ui purple label"
+              className="ui pink label"
               href="/project/hammer/lists"
               onClick={[Function]}
             >
@@ -180,16 +184,17 @@ exports[`List renders lists correctly 1`] = `
             className=""
           >
             <button
-              className="ui orange icon button button-divider"
+              className="ui violet icon button button-divider"
               disabled={undefined}
               id="002"
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
+              title="List is Active"
             >
               <i
                 aria-hidden="true"
-                className="thumbs up icon"
+                className="unlock icon"
               />
             </button>
             <a
@@ -199,6 +204,7 @@ exports[`List renders lists correctly 1`] = `
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
+              title="View/Update List"
             >
               <i
                 aria-hidden="true"
@@ -212,6 +218,7 @@ exports[`List renders lists correctly 1`] = `
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
+              title="Amend List Setup"
             >
               <i
                 aria-hidden="true"
@@ -224,6 +231,7 @@ exports[`List renders lists correctly 1`] = `
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
+              title="Delete List"
               value="002"
             >
               <i

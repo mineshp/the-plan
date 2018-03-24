@@ -33,19 +33,21 @@ const ListItemRow = ({ handleChange, handleDelete, handleCompleted, itemRow }) =
 
     const markItemAsCompleteBtn = (
         <Button
-            icon="thumbs up"
-            color="orange"
+            icon="unlock"
+            color="violet"
             id={itemRow.rowId}
             onClick={handleCompleted}
+            title="Item is Active"
         />
     );
 
     const markItemAsUnCompleteBtn = (
         <Button
-            icon="check"
-            color="green"
+            icon="lock"
+            color="teal"
             id={itemRow.rowId}
             onClick={handleCompleted}
+            title="Item has been Completed"
         />
     );
 
@@ -60,6 +62,7 @@ const ListItemRow = ({ handleChange, handleDelete, handleCompleted, itemRow }) =
                 color="pink"
                 id={itemRow.rowId}
                 onClick={handleDelete}
+                title="Delete Item"
             />
         </Table.Cell>
     );

@@ -11,7 +11,6 @@ export default class MainNav extends Component {
             moto: null
         };
         this.handleItemClick = this.handleItemClick.bind(this);
-        // this.getMotoByUser = this.getMotoByUser.bind(this);
         this.logout = this.logout.bind(this);
     }
 

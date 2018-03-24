@@ -164,7 +164,7 @@ exports[`Create New List renders create new list form correctly 1`] = `
         <div
           className="ui horizontal divider"
         >
-          ASSIGN TABLE HEADINGS
+          ASSIGN LIST HEADINGS
         </div>
         <div
           className="row"
@@ -457,7 +457,7 @@ exports[`Update List renders existing list form correctly when no projects have 
         <div
           className="ui horizontal divider"
         >
-          ASSIGN TABLE HEADINGS
+          ASSIGN LIST HEADINGS
         </div>
         <div
           className="row"
@@ -748,7 +748,7 @@ exports[`Update List renders existing list form correctly when projects have alr
         <div
           className="ui horizontal divider"
         >
-          ASSIGN TABLE HEADINGS
+          ASSIGN LIST HEADINGS
         </div>
         <div
           className="row"

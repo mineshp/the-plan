@@ -8,7 +8,7 @@ exports[`HeadingInput renders column headings in a grid correctly 1`] = `
     <div
       className="ui horizontal divider"
     >
-      ASSIGN TABLE HEADINGS
+      ASSIGN LIST HEADINGS
     </div>
     <div
       className="row"

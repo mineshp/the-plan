@@ -3,7 +3,7 @@ import { Container, Divider, Segment, Grid, List, Header, Image } from 'semantic
 import logo from '../md-logo-green.png';
 
 const Footer = () => (
-    <Segment inverted vertical className="footer-main">
+    <Segment vertical className="footer-main">
         <Divider />
         <Container textAlign="center">
             <Grid divided inverted stackable>

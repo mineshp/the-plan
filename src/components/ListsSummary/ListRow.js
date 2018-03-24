@@ -7,7 +7,7 @@ const projectLabels = (projects) => projects.slice(0, 3).map((project) => (
     <Label
         as="a"
         key={project.id}
-        color="purple"
+        color="pink"
         href={`/project/${project.name}/lists`}
     > {project.name}
     </Label>
@@ -20,21 +20,23 @@ const List = ({ data, onDeleteHandler, handleCompleted }) => {
 
     const markListAsCompleteBtn = (
         <Button
-            icon="thumbs up"
-            color="orange"
+            icon="unlock"
+            color="violet"
             id={listID}
             onClick={handleCompleted}
             className="button-divider"
+            title="List is Active"
         />
     );
 
     const markListAsUnCompleteBtn = (
         <Button
-            icon="check"
-            color="green"
+            icon="lock"
+            color="teal"
             id={listID}
             onClick={handleCompleted}
             className="button-divider"
+            title="List has been Completed"
         />
     );
 
@@ -53,18 +55,21 @@ const List = ({ data, onDeleteHandler, handleCompleted }) => {
                     color="blue"
                     icon="list layout"
                     href={`/list/view/${listID}`}
+                    title="View/Update List"
                 />
                 <Button
                     as="a"
                     icon="edit"
                     color="green"
                     href={`/list/update/${listID}`}
+                    title="Amend List Setup"
                 />
                 <Button
                     icon="trash"
                     color="pink"
                     value={listID}
                     onClick={onDeleteHandler}
+                    title="Delete List"
                 />
             </Table.Cell>
         </Table.Row>

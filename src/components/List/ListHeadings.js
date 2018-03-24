@@ -15,6 +15,7 @@ const ListItems = ({ downloadPDF, headings, listId }) => {
                 icon="edit"
                 color="green"
                 href={`/list/update/${listId}`}
+                title="Amend List Setup"
             />
             <Dropdown text="Export PDF" icon="file pdf outline" floating labeled button className="icon pdf">
                 <Dropdown.Menu>

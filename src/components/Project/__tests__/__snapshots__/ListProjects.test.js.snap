@@ -29,6 +29,7 @@ exports[`List Projects renders projects correctly 1`] = `
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
+              title="View all lists for project Avengers"
             >
               <i
                 aria-hidden="true"
@@ -125,6 +126,7 @@ exports[`List Projects renders successfully after error creating new project 1`]
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
+              title="View all lists for project Avengers"
             >
               <i
                 aria-hidden="true"
@@ -221,6 +223,7 @@ exports[`List Projects renders successfully after successful creation of project
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
+              title="View all lists for project Avengers"
             >
               <i
                 aria-hidden="true"

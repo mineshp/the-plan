@@ -8,10 +8,10 @@ const Login = ({
     handleChange,
     data
 }) => (
-    <Container>
+    <Container className="content-body">
         <Grid stackable centered>
             <Grid.Column className="login-form-grid-column">
-                <Header as="h2" color="teal" textAlign="center">
+                <Header as="h2" className="login-header" textAlign="center">
                     <Image src={logo} className="home-logo" />
                     {' '}Login to morpheus
                 </Header>

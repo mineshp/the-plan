@@ -13,6 +13,7 @@ const ProjectCard = ({ data, onDeleteHandler }) => (
                     icon="list layout"
                     color="blue"
                     href={`/project/${data.projectName}/lists`} // eslint-disable-line no-underscore-dangle
+                    title={`View all lists for project ${data.projectName}`}
                 />
             </Card.Header>
         </Card.Content>

@@ -1,41 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div>
+<div
+  className="content-body"
+>
   <div
-    className="ui inverted vertical center aligned segment"
-    style={
-      Object {
-        "minHeight": 700,
-        "padding": "1em 0em",
-      }
-    }
+    className="ui vertical center aligned segment home-segment"
   >
     <div
       className="ui text container"
     >
       <h2
-        className="ui inverted header"
-        style={
-          Object {
-            "fontSize": "3.5em",
-            "fontWeight": "normal",
-            "marginBottom": 0,
-            "marginTop": "2em",
-          }
-        }
+        className="ui header home-mainheader"
       >
         Time to make plans...
       </h2>
       <h3
-        className="ui inverted header"
-        style={
-          Object {
-            "color": "#eba3a3",
-            "fontSize": "1.7em",
-            "fontWeight": "normal",
-          }
-        }
+        className="ui header home-header"
       >
         Stars can't shine without darkness.
       </h3>

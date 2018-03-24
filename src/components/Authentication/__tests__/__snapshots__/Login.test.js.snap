@@ -8,7 +8,9 @@ ShallowWrapper {
     "findWhereUnwrapped": [Function],
   },
   "length": 1,
-  "node": <Container>
+  "node": <Container
+    className="content-body"
+>
     <Grid
         centered={true}
         stackable={true}
@@ -18,7 +20,7 @@ ShallowWrapper {
         >
             <Header
                 as="h2"
-                color="teal"
+                className="login-header"
                 textAlign="center"
             >
                 <Image
@@ -89,7 +91,9 @@ ShallowWrapper {
     </Grid>
 </Container>,
   "nodes": Array [
-    <Container>
+    <Container
+      className="content-body"
+>
       <Grid
             centered={true}
             stackable={true}
@@ -99,7 +103,7 @@ ShallowWrapper {
             >
                   <Header
                         as="h2"
-                        color="teal"
+                        className="login-header"
                         textAlign="center"
                   >
                         <Image
@@ -220,7 +224,9 @@ ShallowWrapper {
       "_pendingReplaceState": false,
       "_pendingStateQueue": null,
       "_renderedComponent": NoopInternalComponent {
-        "_currentElement": <Container>
+        "_currentElement": <Container
+          className="content-body"
+>
           <Grid
                     centered={true}
                     stackable={true}
@@ -230,7 +236,7 @@ ShallowWrapper {
                     >
                               <Header
                                         as="h2"
-                                        color="teal"
+                                        className="login-header"
                                         textAlign="center"
                               >
                                         <Image
@@ -301,7 +307,9 @@ ShallowWrapper {
           </Grid>
 </Container>,
         "_debugID": 2,
-        "_renderedOutput": <Container>
+        "_renderedOutput": <Container
+          className="content-body"
+>
           <Grid
                     centered={true}
                     stackable={true}
@@ -311,7 +319,7 @@ ShallowWrapper {
                     >
                               <Header
                                         as="h2"
-                                        color="teal"
+                                        className="login-header"
                                         textAlign="center"
                               >
                                         <Image

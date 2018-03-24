@@ -17,25 +17,22 @@ export default class HomepageLayout extends Component {
     // eslint-disable-next-line class-methods-use-this
     render() {
         return (
-            <div>
+            <div className="content-body">
                 <Segment
-                    inverted
                     textAlign="center"
-                    style={{ minHeight: 700, padding: '1em 0em' }}
+                    className="home-segment"
                     vertical
                 >
                     <Container text>
                         <Header
                             as="h2"
                             content="Time to make plans..."
-                            inverted
-                            style={{ fontSize: '3.5em', fontWeight: 'normal', marginBottom: 0, marginTop: '2em' }}
+                            className="home-mainheader"
                         />
                         <Header
                             as="h3"
                             content="Stars can't shine without darkness."
-                            inverted
-                            style={{ fontSize: '1.7em', fontWeight: 'normal', color: '#eba3a3' }}
+                            className="home-header"
                         />
                         <Divider inverted section />
                         <Grid stackable divided="vertically" centered>
