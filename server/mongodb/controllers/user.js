@@ -80,7 +80,10 @@ exports.login = (req, res) => {
 };
 
 exports.getAllUsers = (req, res) => {
-    User.find({}, (err, collection) => {
+    User.find({},
+        null,
+        { sort: { updatedDate: -1 } },
+        (err, collection) => {
         const users = [];
         collection.map((userObj) =>
             users.push({

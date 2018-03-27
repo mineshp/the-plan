@@ -129,6 +129,14 @@ body {
   color: #565656;
 }
 
+.activeProfileColour {
+  color: #8fccb3;
+}
+
+.inActiveProfileColour {
+  color: #FF8E8E;
+}
+
 /* Input */
 
 .ui.input {
@@ -231,12 +239,16 @@ body {
   background-color: #565656;
 }
 
-.ui.orange.button:hover {
-  background-color: #d19053;
+.ui.violet.active.button {
+  background-color: #65c0db;
 }
 
 .ui.violet.button:hover {
   background-color: #65c0db;
+}
+
+.ui.orange.button:hover {
+  background-color: #d19053;
 }
 
 .ui.orange.button:focus {

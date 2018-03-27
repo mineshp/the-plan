@@ -42,7 +42,7 @@ describe('MainNav Component', () => {
             expect(UserMenu.children().props().text).toEqual('TestUser');
         });
 
-        it('does not show the control center menu item if user is not admin', () => {
+        it('does not show the control centre menu item if user is not admin', () => {
             const wrapper = shallow(<MainNav {...props} />);
             const UserMenu = wrapper.find(Menu.Item).last();
             const UserDropDown = UserMenu.find(Dropdown.Item).childAt(1);
@@ -71,11 +71,11 @@ describe('MainNav Component', () => {
             adminUserProp = Object.assign({}, props, { isAdmin: true });
         });
 
-        it('does show the control center menu item if user is admin', () => {
+        it('does show the control centre menu item if user is admin', () => {
             const wrapper = shallow(<MainNav {...adminUserProp} />);
             const UserMenu = wrapper.find(Menu.Item).last();
             const UserDropDown = UserMenu.find(Dropdown.Item).first();
-            expect(UserDropDown.props().children).toEqual('Control Center');
+            expect(UserDropDown.props().children).toEqual('Control Centre');
         });
     });
 

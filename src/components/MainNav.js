@@ -46,8 +46,8 @@ export default class MainNav extends Component {
         const displayName = username
             ? `${username.charAt(0).toUpperCase() + username.slice(1)}`
             : null;
-        const displayControlCenterItem = isAdmin
-            ? <Dropdown.Item onClick={this.handleItemClick} href="/admin/manage">Control Center</Dropdown.Item>
+        const displayControlCentreItem = isAdmin
+            ? <Dropdown.Item onClick={this.handleItemClick} href="/admin/manage">Control Centre</Dropdown.Item>
             : null;
         const moto = this.getMotoByUser({ username });
         return (
@@ -89,7 +89,7 @@ export default class MainNav extends Component {
                                 <Menu.Item position="right">
                                     <Dropdown text={displayName} icon="user" floating labeled button className="icon blue">
                                         <Dropdown.Menu>
-                                            {displayControlCenterItem}
+                                            {displayControlCentreItem}
                                             <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>

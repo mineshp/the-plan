@@ -1,0 +1,541 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Admin > Manage > ManageProfiles renders ManageProfiles component 1`] = `
+<div
+  className="ui container"
+>
+  <div
+    className="ui fluid styled accordion"
+  >
+    <div
+      className="active title"
+      id="0"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+      />
+      Profiles Setup
+    </div>
+    <div
+      className="content active"
+    >
+      <div
+        className="ui container"
+      >
+        <p>
+          Existing profiles that have been setup.
+        </p>
+        <table
+          className="ui celled striped table"
+        >
+          <thead
+            className=""
+          >
+            <tr
+              className=""
+            >
+              <th
+                className=""
+              >
+                Name
+              </th>
+              <th
+                className=""
+              >
+                Status
+              </th>
+              <th
+                className=""
+              >
+                Update
+              </th>
+              <th
+                className=""
+              >
+                Delete
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            className=""
+          >
+            <tr
+              className=""
+            >
+              <td
+                className=""
+              >
+                MIN_JIGS_WEDDING
+              </td>
+              <td
+                className="activeProfileColour"
+              >
+                ACTIVE
+              </td>
+              <td
+                className="collapsing"
+              >
+                <a
+                  className="ui teal icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  profile={
+                    Object {
+                      "_id": "1234567",
+                      "active": true,
+                      "name": "MIN_JIGS_WEDDING",
+                    }
+                  }
+                  role="button"
+                  tabIndex={undefined}
+                  title="Profile active"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="lock icon"
+                  />
+                </a>
+              </td>
+              <td
+                className="collapsing"
+              >
+                <button
+                  className="ui pink icon button"
+                  disabled={undefined}
+                  id="1234567"
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                  title="Delete Profile"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="trash icon"
+                  />
+                </button>
+              </td>
+            </tr>
+            <tr
+              className=""
+            >
+              <td
+                className=""
+              >
+                HOME_DIY
+              </td>
+              <td
+                className="activeProfileColour"
+              >
+                ACTIVE
+              </td>
+              <td
+                className="collapsing"
+              >
+                <a
+                  className="ui teal icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  profile={
+                    Object {
+                      "_id": "1234568",
+                      "active": true,
+                      "name": "HOME_DIY",
+                    }
+                  }
+                  role="button"
+                  tabIndex={undefined}
+                  title="Profile active"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="lock icon"
+                  />
+                </a>
+              </td>
+              <td
+                className="collapsing"
+              >
+                <button
+                  className="ui pink icon button"
+                  disabled={undefined}
+                  id="1234568"
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                  title="Delete Profile"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="trash icon"
+                  />
+                </button>
+              </td>
+            </tr>
+            <tr
+              className="negative"
+            >
+              <td
+                className=""
+              >
+                CHRISTMAS
+              </td>
+              <td
+                className="inActiveProfileColour"
+              >
+                DISABLED
+              </td>
+              <td
+                className="collapsing"
+              >
+                <a
+                  className="ui violet active icon button"
+                  disabled={undefined}
+                  onClick={[Function]}
+                  profile={
+                    Object {
+                      "_id": "1234569",
+                      "active": false,
+                      "name": "CHRISTMAS",
+                    }
+                  }
+                  role="button"
+                  tabIndex={undefined}
+                  title="Profile disabled"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="unlock icon"
+                  />
+                </a>
+              </td>
+              <td
+                className="collapsing"
+              >
+                <button
+                  className="ui pink icon button"
+                  disabled={undefined}
+                  id="1234569"
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={undefined}
+                  title="Delete Profile"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="trash icon"
+                  />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div
+      className="title"
+      id="1"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+      />
+      Create new profile
+    </div>
+    <div
+      className="content"
+    >
+      <div
+        className="ui container"
+      >
+        <form
+          action={undefined}
+          className="ui form"
+          onSubmit={[Function]}
+        >
+          <div
+            className="field"
+          >
+            <div
+              className="ui input text-box-single-col-min"
+            >
+              <input
+                defaultValue=""
+                disabled={undefined}
+                onChange={[Function]}
+                placeholder="Profile Name..."
+                tabIndex={undefined}
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="field"
+          >
+            <div
+              className="ui checkbox"
+              onChange={[Function]}
+              onClick={[Function]}
+              onMouseDown={[Function]}
+              required={undefined}
+            >
+              <input
+                checked={false}
+                className="hidden"
+                name="activeProfile"
+                readOnly={true}
+                tabIndex={0}
+                type="checkbox"
+                value={undefined}
+              />
+              <label>
+                Profile Active
+              </label>
+            </div>
+          </div>
+          <button
+            className="ui green button"
+            disabled={undefined}
+            onClick={[Function]}
+            role="button"
+            tabIndex={undefined}
+            type="submit"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <div
+      className="title"
+      id="2"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+      />
+      Assign projects to profile
+    </div>
+    <div
+      className="content"
+    >
+      <div
+        className="ui container"
+      >
+        <form
+          action={undefined}
+          className="ui form"
+          onSubmit={[Function]}
+        >
+          <div
+            className="field"
+          >
+            <div
+              aria-busy={undefined}
+              aria-disabled={undefined}
+              aria-expanded={false}
+              aria-multiselectable={undefined}
+              className="ui selection dropdown form-dropdown"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseDown={[Function]}
+              role="listbox"
+              tabIndex={0}
+            >
+              <div
+                aria-live="polite"
+                className="default text"
+                role="alert"
+              >
+                Select Profile
+              </div>
+              <i
+                aria-hidden="true"
+                className="dropdown icon"
+                onClick={[Function]}
+              />
+              <div
+                className="menu transition"
+              >
+                <div
+                  aria-checked={false}
+                  aria-disabled={undefined}
+                  aria-selected={true}
+                  className="selected item"
+                  onClick={[Function]}
+                  role="option"
+                  style={
+                    Object {
+                      "pointerEvents": "all",
+                    }
+                  }
+                >
+                  <span
+                    className="text"
+                  >
+                    MIN_JIGS_WEDDING
+                  </span>
+                </div>
+                <div
+                  aria-checked={false}
+                  aria-disabled={undefined}
+                  aria-selected={false}
+                  className="item"
+                  onClick={[Function]}
+                  role="option"
+                  style={
+                    Object {
+                      "pointerEvents": "all",
+                    }
+                  }
+                >
+                  <span
+                    className="text"
+                  >
+                    HOME_DIY
+                  </span>
+                </div>
+                <div
+                  aria-checked={false}
+                  aria-disabled={undefined}
+                  aria-selected={false}
+                  className="item"
+                  onClick={[Function]}
+                  role="option"
+                  style={
+                    Object {
+                      "pointerEvents": "all",
+                    }
+                  }
+                >
+                  <span
+                    className="text"
+                  >
+                    CHRISTMAS
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="field"
+          >
+            <div
+              className="ui checkbox"
+              data-projcb={
+                Object {
+                  "_id": "5992d50066a7043f2598e12d",
+                  "colour": "red",
+                  "createdDate": "2017-08-15T12:02:00.000Z",
+                  "projectDescription": "a description",
+                  "projectName": "Iron Man",
+                }
+              }
+              id="5992d50066a7043f2598e12d"
+              onChange={[Function]}
+              onClick={[Function]}
+              onMouseDown={[Function]}
+            >
+              <input
+                checked={false}
+                className="hidden"
+                name={undefined}
+                readOnly={true}
+                tabIndex={0}
+                type="checkbox"
+                value={undefined}
+              />
+              <label>
+                Iron Man
+              </label>
+            </div>
+          </div>
+          <div
+            className="field"
+          >
+            <div
+              className="ui checkbox"
+              data-projcb={
+                Object {
+                  "__v": 0,
+                  "_id": "59a08710e57cb1da97cd1477",
+                  "colour": "red",
+                  "createdDate": "2017-08-25T20:22:40.994Z",
+                  "projectDescription": "a description",
+                  "projectName": "Thor",
+                }
+              }
+              id="59a08710e57cb1da97cd1477"
+              onChange={[Function]}
+              onClick={[Function]}
+              onMouseDown={[Function]}
+            >
+              <input
+                checked={false}
+                className="hidden"
+                name={undefined}
+                readOnly={true}
+                tabIndex={0}
+                type="checkbox"
+                value={undefined}
+              />
+              <label>
+                Thor
+              </label>
+            </div>
+          </div>
+          <div
+            className="field"
+          >
+            <div
+              className="ui checkbox"
+              data-projcb={
+                Object {
+                  "__v": 0,
+                  "_id": "59a08bb6e57cb1da97cd1478",
+                  "colour": "grey",
+                  "createdDate": "2017-08-25T20:42:30.159Z",
+                  "projectDescription": "a description",
+                  "projectName": "Captain America",
+                }
+              }
+              id="59a08bb6e57cb1da97cd1478"
+              onChange={[Function]}
+              onClick={[Function]}
+              onMouseDown={[Function]}
+            >
+              <input
+                checked={false}
+                className="hidden"
+                name={undefined}
+                readOnly={true}
+                tabIndex={0}
+                type="checkbox"
+                value={undefined}
+              />
+              <label>
+                Captain America
+              </label>
+            </div>
+          </div>
+          <button
+            className="ui green button"
+            disabled={undefined}
+            onClick={[Function]}
+            role="button"
+            tabIndex={undefined}
+            type="submit"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

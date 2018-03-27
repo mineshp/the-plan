@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Admin > Manage > CreateProfiles renders Create Profile component 1`] = `
+<div
+  className="ui container"
+>
+  <form
+    action={undefined}
+    className="ui form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="field"
+    >
+      <div
+        className="ui input text-box-single-col-min"
+      >
+        <input
+          defaultValue=""
+          disabled={undefined}
+          onChange={[Function]}
+          placeholder="Profile Name..."
+          tabIndex={undefined}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="ui checkbox"
+        onChange={[Function]}
+        onClick={[Function]}
+        onMouseDown={[Function]}
+        required={undefined}
+      >
+        <input
+          checked={false}
+          className="hidden"
+          name="activeProfile"
+          readOnly={true}
+          tabIndex={0}
+          type="checkbox"
+          value={undefined}
+        />
+        <label>
+          Profile Active
+        </label>
+      </div>
+    </div>
+    <button
+      className="ui green button"
+      disabled={undefined}
+      onClick={[Function]}
+      role="button"
+      tabIndex={undefined}
+      type="submit"
+    >
+      Save
+    </button>
+  </form>
+</div>
+`;

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const projectModel = require('../mongodb/models/Project');
 require('../mongodb/models/List');
 require('../mongodb/models/User');
+require('../mongodb/models/Profile');
 
 // https://github.com/guyellis/MEANAppsFiles/blob/master/server/config/mongoose.js
 

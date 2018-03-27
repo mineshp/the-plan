@@ -49,11 +49,13 @@ exports[`List Projects renders projects correctly 1`] = `
           <div
             className="meta"
           >
-            Invalid Date
+            25/08/2017, 21:42:30
           </div>
           <div
             className="description"
-          />
+          >
+            a description
+          </div>
         </div>
         <div
           className="extra content"
@@ -146,11 +148,13 @@ exports[`List Projects renders successfully after error creating new project 1`]
           <div
             className="meta"
           >
-            Invalid Date
+            25/08/2017, 21:42:30
           </div>
           <div
             className="description"
-          />
+          >
+            a description
+          </div>
         </div>
         <div
           className="extra content"
@@ -243,11 +247,13 @@ exports[`List Projects renders successfully after successful creation of project
           <div
             className="meta"
           >
-            Invalid Date
+            25/08/2017, 21:42:30
           </div>
           <div
             className="description"
-          />
+          >
+            a description
+          </div>
         </div>
         <div
           className="extra content"

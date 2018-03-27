@@ -4,12 +4,12 @@ import lists from './lists';
 import projects from './projects';
 import notification from './notification';
 import authentication from './authentication';
-import controlCenter from './controlCenter';
+import controlCentre from './controlCentre';
 
 
 /* istanbul ignore next: not testing combineReducers */
 const thePlanApp = combineReducers({
-    projects, lists, notification, authentication, controlCenter
+    projects, lists, notification, authentication, controlCentre
 });
 
 /* istanbul ignore next: not testing export */

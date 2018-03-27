@@ -1977,7 +1977,7 @@ exports[`Update Existing Project renders update existing project form correctly 
         className="ui input text-box-single-col-min"
       >
         <input
-          defaultValue={undefined}
+          defaultValue="a description"
           disabled={undefined}
           onChange={[Function]}
           placeholder="Project Description..."

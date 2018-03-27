@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ListUsersComponent from '../ListUsers';
-import { mockListUsers } from '../../../helpers/test/testData/controlCenterData';
+import { mockListUsers } from '../../../helpers/test/testData/controlCentreData';
 
 const mockHandleDeleteUser = jest.fn();
 const mockHandleResetPassword = jest.fn();

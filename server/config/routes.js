@@ -4,16 +4,19 @@ const projectMongodb = require('../mongodb/controllers/project');
 const listDynamodb = require('../dynamodb/controllers/list');
 const projectDynamodb = require('../dynamodb/controllers/project');
 const userMongodb = require('../mongodb/controllers/user');
+const profileMongodb = require('../mongodb/controllers/profile');
 const { authenticate, isAdmin } = require('../middlewares/authenticate');
 
 const dbType = process.env.DB_TYPE || 'mongodb';
 let list;
 let project;
 let user;
+let profile;
 if (dbType === 'mongodb') {
     list = listMongodb;
     project = projectMongodb;
     user = userMongodb;
+    profile = profileMongodb;
 } else {
     list = listDynamodb;
     project = projectDynamodb;
@@ -30,6 +33,11 @@ module.exports = function (app) {
 
     app.get('/api/admin/manage/users', authenticate, isAdmin, user.getAllUsers);
     app.delete('/api/admin/manage/users/delete/:id', authenticate, isAdmin, user.deleteUser);
+
+    app.get('/api/admin/manage/profiles', authenticate, isAdmin, profile.getAllProfiles);
+    app.post('/api/admin/manage/profiles/update/:id', authenticate, isAdmin, profile.updateProfile);
+    app.post('/api/admin/manage/profiles/update', authenticate, isAdmin, profile.createNewProfile);
+    app.delete('/api/admin/manage/profiles/delete/:id', authenticate, isAdmin, profile.deleteProfile);
 
     app.post('/api/user/register', user.register);
     app.post('/api/user/login', user.login);

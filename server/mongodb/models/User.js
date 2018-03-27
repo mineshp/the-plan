@@ -23,7 +23,10 @@ const UserSchema = mongoose.Schema({
     isAdmin: {
         type: Boolean,
         default: false
-    }
+    },
+    profile: [{
+        type: String
+    }]
 });
 
 UserSchema.pre('save', function saveHook(next) {

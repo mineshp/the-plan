@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import List from './App';
-// import ManageLists from './List/Manage';
-import { ControlCenterConnectedComponent } from '../HOC/Admin/ControlCenter';
+
+import { ControlCentreConnectedComponent } from '../HOC/Admin/ControlCentre';
 import { RegisterConnectedComponent } from '../HOC/Authentication/Register';
 import { LoginConnectedComponent } from '../HOC/Authentication/Login';
 import { ManageListSummaryConnectedComponent } from '../HOC/ListsSummary/ManageListSummary';
@@ -20,7 +20,7 @@ import requireAuth from '../utils/requireAuth';
 const Main = () => (
     <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/admin/manage" component={ControlCenterConnectedComponent} />
+        <Route path="/admin/manage" component={ControlCentreConnectedComponent} />
         <Route path="/user/register" component={RegisterConnectedComponent} />
         <Route path="/user/login" component={LoginConnectedComponent} />
         <Route path="/list/all" component={requireAuth(ManageListSummaryConnectedComponent)} />
