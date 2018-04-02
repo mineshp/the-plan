@@ -17,3 +17,8 @@ React app
 ## Tests
 Jest tests
 `npm run test`
+
+## Deploy App
+npm run deploy-minor
+build-morpheus <build-number>
+deploy-morpheus <build-number>
