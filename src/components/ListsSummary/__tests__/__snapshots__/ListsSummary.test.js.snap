@@ -46,6 +46,24 @@ exports[`List renders lists correctly 1`] = `
           >
             Actions
           </th>
+          <th
+            className=""
+          >
+            <a
+              className="ui green icon right floated button"
+              disabled={undefined}
+              href="/list/update/"
+              onClick={[Function]}
+              role="button"
+              tabIndex={undefined}
+              title="Create list in projects all"
+            >
+              <i
+                aria-hidden="true"
+                className="plus icon"
+              />
+            </a>
+          </th>
         </tr>
       </thead>
       <tbody
@@ -91,6 +109,7 @@ exports[`List renders lists correctly 1`] = `
           </td>
           <td
             className=""
+            colSpan="2"
           >
             <button
               className="ui violet icon button button-divider"
@@ -182,6 +201,7 @@ exports[`List renders lists correctly 1`] = `
           </td>
           <td
             className=""
+            colSpan="2"
           >
             <button
               className="ui violet icon button button-divider"

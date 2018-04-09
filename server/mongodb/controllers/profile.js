@@ -6,6 +6,7 @@ exports.getAllProfiles = (req, res) => {
 		null,
 		{ sort: { updatedDate: -1 } },
 		function (err, collection) {
+			console.log('COLL', collection);
 		    res.send(collection);
         }
     );

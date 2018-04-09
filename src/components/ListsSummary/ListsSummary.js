@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Header, Table } from 'semantic-ui-react';
+import { Button, Container, Header, Table } from 'semantic-ui-react';
 
 const ListsSummary = ({ retrieveListBy, rows }) => (
     <div className="List main content-body">
@@ -14,6 +14,16 @@ const ListsSummary = ({ retrieveListBy, rows }) => (
                         <Table.HeaderCell>Last Updated</Table.HeaderCell>
                         <Table.HeaderCell>Projects</Table.HeaderCell>
                         <Table.HeaderCell>Actions</Table.HeaderCell>
+                        <Table.HeaderCell>
+                            <Button
+                                as="a"
+                                icon="plus"
+                                color="green"
+                                href={'/list/update/'}
+                                title={`Create list in projects ${retrieveListBy}`}
+                                floated="right"
+                            />
+                        </Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 

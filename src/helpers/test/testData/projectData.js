@@ -4,7 +4,8 @@ export const mockListProjects = () => ([
         projectName: 'Iron Man',
         projectDescription: 'a description',
         colour: 'red',
-        createdDate: '2017-08-15T12:02:00.000Z'
+        createdDate: '2017-08-15T12:02:00.000Z',
+        profilesAssigned: []
     },
     {
         _id: '59a08710e57cb1da97cd1477',
@@ -12,7 +13,8 @@ export const mockListProjects = () => ([
         projectDescription: 'a description',
         colour: 'red',
         __v: 0,
-        createdDate: '2017-08-25T20:22:40.994Z'
+        createdDate: '2017-08-25T20:22:40.994Z',
+        profilesAssigned: []
     },
     {
         _id: '59a08bb6e57cb1da97cd1478',
@@ -20,7 +22,8 @@ export const mockListProjects = () => ([
         projectDescription: 'a description',
         colour: 'grey',
         __v: 0,
-        createdDate: '2017-08-25T20:42:30.159Z'
+        createdDate: '2017-08-25T20:42:30.159Z',
+        profilesAssigned: []
     }
 ]);
 
@@ -44,7 +47,9 @@ export const mockProjectDataWithProfileA = () => ({
 
 export const mockNewProjectResultData = () => ({
     projectName: '',
-    colour: ''
+    projectDescription: '',
+    colour: '',
+    profilesAssigned: []
 });
 
 export const mockProjectErrorResultData = () => ({

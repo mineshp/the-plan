@@ -34,7 +34,7 @@ module.exports = function (app) {
     app.get('/api/admin/manage/users', authenticate, isAdmin, user.getAllUsers);
     app.delete('/api/admin/manage/users/delete/:id', authenticate, isAdmin, user.deleteUser);
 
-    app.get('/api/admin/manage/profiles', authenticate, isAdmin, profile.getAllProfiles);
+    app.get('/api/admin/manage/profiles', authenticate, profile.getAllProfiles);
     app.post('/api/admin/manage/profiles/update/:id', authenticate, isAdmin, profile.updateProfile);
     app.post('/api/admin/manage/profiles/update', authenticate, isAdmin, profile.createNewProfile);
     app.delete('/api/admin/manage/profiles/delete/:id', authenticate, isAdmin, profile.deleteProfile);

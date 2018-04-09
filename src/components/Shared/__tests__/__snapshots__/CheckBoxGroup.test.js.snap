@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly for an item that is not set to checked as default 1`] = `
+<div>
+  <div
+    className="field"
+  >
+    <div
+      className="ui checkbox"
+      data-cb="MIN_JIGS_WEDDING"
+      id="1234567"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+    >
+      <input
+        checked={false}
+        className="hidden"
+        name={undefined}
+        readOnly={true}
+        tabIndex={0}
+        type="checkbox"
+        value="false"
+      />
+      <label>
+        MIN_JIGS_WEDDING
+      </label>
+    </div>
+  </div>
+  <div
+    className="field"
+  >
+    <div
+      className="ui checkbox"
+      data-cb="HOME_DIY"
+      id="1234568"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+    >
+      <input
+        checked={false}
+        className="hidden"
+        name={undefined}
+        readOnly={true}
+        tabIndex={0}
+        type="checkbox"
+        value="false"
+      />
+      <label>
+        HOME_DIY
+      </label>
+    </div>
+  </div>
+  <div
+    className="field"
+  >
+    <div
+      className="ui checkbox"
+      data-cb="CHRISTMAS"
+      id="1234569"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+    >
+      <input
+        checked={false}
+        className="hidden"
+        name={undefined}
+        readOnly={true}
+        tabIndex={0}
+        type="checkbox"
+        value="false"
+      />
+      <label>
+        CHRISTMAS
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly for an item that is set to checked as default 1`] = `
+<div>
+  <div
+    className="field"
+  >
+    <div
+      className="ui checkbox"
+      data-cb="MIN_JIGS_WEDDING"
+      id="1234567"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+    >
+      <input
+        checked={false}
+        className="hidden"
+        name={undefined}
+        readOnly={true}
+        tabIndex={0}
+        type="checkbox"
+        value="false"
+      />
+      <label>
+        MIN_JIGS_WEDDING
+      </label>
+    </div>
+  </div>
+  <div
+    className="field"
+  >
+    <div
+      className="ui checked checkbox"
+      data-cb="HOME_DIY"
+      id="1234568"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+    >
+      <input
+        checked={true}
+        className="hidden"
+        name={undefined}
+        readOnly={true}
+        tabIndex={0}
+        type="checkbox"
+        value="true"
+      />
+      <label>
+        HOME_DIY
+      </label>
+    </div>
+  </div>
+  <div
+    className="field"
+  >
+    <div
+      className="ui checkbox"
+      data-cb="CHRISTMAS"
+      id="1234569"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+    >
+      <input
+        checked={false}
+        className="hidden"
+        name={undefined}
+        readOnly={true}
+        tabIndex={0}
+        type="checkbox"
+        value="false"
+      />
+      <label>
+        CHRISTMAS
+      </label>
+    </div>
+  </div>
+</div>
+`;

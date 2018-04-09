@@ -432,6 +432,7 @@ exports[`Admin > Manage > ManageProfiles renders ManageProfiles component 1`] = 
                   "_id": "5992d50066a7043f2598e12d",
                   "colour": "red",
                   "createdDate": "2017-08-15T12:02:00.000Z",
+                  "profilesAssigned": Array [],
                   "projectDescription": "a description",
                   "projectName": "Iron Man",
                 }
@@ -466,6 +467,7 @@ exports[`Admin > Manage > ManageProfiles renders ManageProfiles component 1`] = 
                   "_id": "59a08710e57cb1da97cd1477",
                   "colour": "red",
                   "createdDate": "2017-08-25T20:22:40.994Z",
+                  "profilesAssigned": Array [],
                   "projectDescription": "a description",
                   "projectName": "Thor",
                 }
@@ -500,6 +502,7 @@ exports[`Admin > Manage > ManageProfiles renders ManageProfiles component 1`] = 
                   "_id": "59a08bb6e57cb1da97cd1478",
                   "colour": "grey",
                   "createdDate": "2017-08-25T20:42:30.159Z",
+                  "profilesAssigned": Array [],
                   "projectDescription": "a description",
                   "projectName": "Captain America",
                 }

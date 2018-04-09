@@ -69,6 +69,7 @@ export function create(newProject) {
                 projectName: newProject.projectName.toLowerCase(),
                 projectDescription: newProject.projectDescription,
                 colour: newProject.colour.toLowerCase(),
+                profilesAssigned: newProject.profilesAssigned,
                 owner: newProject.owner
             })
         })

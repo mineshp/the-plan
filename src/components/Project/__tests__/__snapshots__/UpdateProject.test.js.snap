@@ -32,7 +32,7 @@ exports[`Create New Project renders create new project form correctly 1`] = `
         className="ui input text-box-single-col-min"
       >
         <input
-          defaultValue={undefined}
+          defaultValue=""
           disabled={undefined}
           onChange={[Function]}
           placeholder="Project Description..."
@@ -372,6 +372,83 @@ exports[`Create New Project renders create new project form correctly 1`] = `
               BLACK
             </span>
           </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="MIN_JIGS_WEDDING"
+          id="1234567"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            MIN_JIGS_WEDDING
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="HOME_DIY"
+          id="1234568"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            HOME_DIY
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="CHRISTMAS"
+          id="1234569"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            CHRISTMAS
+          </label>
         </div>
       </div>
     </div>
@@ -764,6 +841,83 @@ exports[`Create New Project renders successfully after error creating new projec
         </div>
       </div>
     </div>
+    <div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="MIN_JIGS_WEDDING"
+          id="1234567"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            MIN_JIGS_WEDDING
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="HOME_DIY"
+          id="1234568"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            HOME_DIY
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="CHRISTMAS"
+          id="1234569"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            CHRISTMAS
+          </label>
+        </div>
+      </div>
+    </div>
     <button
       className="ui green button"
       disabled={undefined}
@@ -1150,6 +1304,83 @@ exports[`Create New Project renders successfully after successful creation of pr
               BLACK
             </span>
           </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="MIN_JIGS_WEDDING"
+          id="1234567"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            MIN_JIGS_WEDDING
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="HOME_DIY"
+          id="1234568"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            HOME_DIY
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="CHRISTMAS"
+          id="1234569"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            CHRISTMAS
+          </label>
         </div>
       </div>
     </div>
@@ -1542,6 +1773,83 @@ exports[`Update Existing Project renders successfully after error creating new p
         </div>
       </div>
     </div>
+    <div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="MIN_JIGS_WEDDING"
+          id="1234567"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            MIN_JIGS_WEDDING
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="HOME_DIY"
+          id="1234568"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            HOME_DIY
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="CHRISTMAS"
+          id="1234569"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            CHRISTMAS
+          </label>
+        </div>
+      </div>
+    </div>
     <button
       className="ui green button"
       disabled={undefined}
@@ -1931,6 +2239,83 @@ exports[`Update Existing Project renders successfully after successful creation 
         </div>
       </div>
     </div>
+    <div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="MIN_JIGS_WEDDING"
+          id="1234567"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            MIN_JIGS_WEDDING
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="HOME_DIY"
+          id="1234568"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            HOME_DIY
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="CHRISTMAS"
+          id="1234569"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            CHRISTMAS
+          </label>
+        </div>
+      </div>
+    </div>
     <button
       className="ui green button"
       disabled={undefined}
@@ -2317,6 +2702,83 @@ exports[`Update Existing Project renders update existing project form correctly 
               BLACK
             </span>
           </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="MIN_JIGS_WEDDING"
+          id="1234567"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            MIN_JIGS_WEDDING
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="HOME_DIY"
+          id="1234568"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            HOME_DIY
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="CHRISTMAS"
+          id="1234569"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            CHRISTMAS
+          </label>
         </div>
       </div>
     </div>

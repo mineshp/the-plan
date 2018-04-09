@@ -41,6 +41,7 @@ exports[`ListRow marks the list row as complete if the list is marked as complet
   </td>
   <td
     className=""
+    colSpan="2"
   >
     <button
       className="ui teal icon button button-divider"
@@ -143,6 +144,7 @@ exports[`ListRow renders correctly 1`] = `
   </td>
   <td
     className=""
+    colSpan="2"
   >
     <button
       className="ui violet icon button button-divider"

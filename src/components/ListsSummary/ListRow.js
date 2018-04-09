@@ -48,7 +48,7 @@ const List = ({ data, onDeleteHandler, handleCompleted }) => {
             <Table.Cell>{formatDate(data.createdDate)}</Table.Cell>
             <Table.Cell>{formatDate(data.updatedDate)}</Table.Cell>
             <Table.Cell>{projectLabels(data.projects)}</Table.Cell>
-            <Table.Cell>
+            <Table.Cell colSpan="2">
                 {completedBtn}
                 <Button
                     as="a"
