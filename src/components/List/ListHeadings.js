@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button, Dropdown, Table } from 'semantic-ui-react';
 
@@ -11,10 +12,10 @@ const ListItems = ({ downloadPDF, headings, listId }) => {
     columnHeadings.push(
         <Table.HeaderCell key={'actions'} textAlign="right" colSpan="2">
             <Button
-                as="a"
+                as={Link}
                 icon="edit"
                 color="green"
-                href={`/list/update/${listId}`}
+                to={`/list/update/${listId}`}
                 title="Amend List Setup"
             />
             <Dropdown text="Export PDF" icon="file pdf outline" floating labeled button className="icon pdf">

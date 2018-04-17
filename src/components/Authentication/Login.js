@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button, Container, Form, Grid, Header, Image, Input, Message, Segment } from 'semantic-ui-react';
 import logo from '../../md-logo-green.png';
@@ -48,7 +49,7 @@ const Login = ({
                     </Segment>
                 </Form>
                 <Message>
-                New user? <a href="/user/register">Register</a>
+                New user? <Link to="/user/register">Register</Link>
                 </Message>
             </Grid.Column>
         </Grid>

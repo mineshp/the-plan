@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import ProjectCard from '../ProjectCard';
 import ListProjects from '../ListProjects';
@@ -14,9 +15,12 @@ const mockErrorResult = {
 const mockProject = mockProjectData();
 
 const mockHandleDelete = jest.fn();
+// eslint-disable-next-line no-underscore-dangle
+const mockProjectId = mockProject._id;
 const mockCards = [
-    // eslint-disable-next-line no-underscore-dangle
-    <ProjectCard data={mockProject} key={mockProject._id} onDeleteHandler={mockHandleDelete} />
+    <MemoryRouter key={mockProjectId}>
+        <ProjectCard data={mockProject} key={mockProjectId} onDeleteHandler={mockHandleDelete} />
+    </MemoryRouter>
 ];
 
 describe('List Projects', () => {

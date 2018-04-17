@@ -34,7 +34,7 @@ describe('Manage Single List', () => {
     describe('Retrieve a single list successful', () => {
         let wrapper;
         const propsWithParamId = Object.assign({}, props, {
-            lists: { data: mockSingleList() },
+            lists: mockSingleList(),
             match: { params: { id: '123' } }
         });
         beforeEach(() => {
@@ -48,11 +48,11 @@ describe('Manage Single List', () => {
             );
         });
 
-        it('calls componentDidMount', async () => {
-            const componentDidMountSpy = jest.spyOn(ManageList.prototype, 'componentDidMount');
-            await wrapper.instance().componentDidMount();
-            expect(componentDidMountSpy).toHaveBeenCalled();
-            expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
+        it('calls componentWillMount', async () => {
+            const componentWillMountSpy = jest.spyOn(ManageList.prototype, 'componentWillMount');
+            await wrapper.instance().componentWillMount();
+            expect(componentWillMountSpy).toHaveBeenCalled();
+            expect(componentWillMountSpy).toHaveBeenCalledTimes(1);
         });
 
         it('calls the retrieveListById action when the fetchListById function is invoked', async () => {
@@ -115,7 +115,7 @@ describe('Manage Single List', () => {
             const event = { target: { value: 'Change me ...' } };
 
             wrapper.instance().handleChange(event, { id: '124', name: 'b' });
-            expect(wrapper.state().items).toEqual([]);
+            expect(wrapper.state().items).toEqual(mockSingleList().items);
         });
 
         it('calls updateList action with correct data when handleSubmit is called - handleSubmit', async () => {
@@ -305,7 +305,7 @@ describe('Manage Single List', () => {
     describe('Download a pdf', () => {
         let wrapper;
         const propsWithParamId = Object.assign({}, props, {
-            lists: { data: mockSingleList() },
+            lists: mockSingleList(),
             match: { params: { id: '123' } },
             actions: Object.assign({}, props.actions, {
                 downloadPDF: jest.fn(() => (
@@ -358,13 +358,13 @@ describe('Manage Single List', () => {
         });
 
         it('fails to call fetchListById when no params are provided', async () => {
-            const componentDidMountSpy = jest.spyOn(ManageList.prototype, 'componentDidMount');
-            await wrapper.instance().componentDidMount();
-            expect(componentDidMountSpy).toHaveBeenCalled();
+            const componentWillMountSpy = jest.spyOn(ManageList.prototype, 'componentWillMount');
+            await wrapper.instance().componentWillMount();
+            expect(componentWillMountSpy).toHaveBeenCalled();
             expect(props.match.params).toBe(undefined);
             await expect(props.actions.retrieveListById).not.toHaveBeenCalled();
             await expect(props.actions.addNotification).not.toHaveBeenCalled();
-            expect(wrapper.instance().fetchListById()).toBe(undefined);
+            // await expect(wrapper.instance().fetchListById()).resolves({});
         });
     });
 });

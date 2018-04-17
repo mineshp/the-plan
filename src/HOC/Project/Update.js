@@ -122,7 +122,8 @@ class UpdateProject extends Component {
     render() {
         const { admin, result } = this.props;
         return (
-            !result || admin.controlCentre.profiles.length === 0
+            // eslint-disable-next-line no-underscore-dangle
+            !result || Array.isArray(result) || !result._id || admin.controlCentre.profiles.length === 0
                 ? <LoadingComponent />
                 : <UpdateProjectComponent
                     result={result}

@@ -81,11 +81,12 @@ ShallowWrapper {
             </Form>
             <Message>
                 New user? 
-                <a
-                    href="/user/register"
+                <Link
+                    replace={false}
+                    to="/user/register"
                 >
                     Register
-                </a>
+                </Link>
             </Message>
         </GridColumn>
     </Grid>
@@ -164,11 +165,12 @@ ShallowWrapper {
                   </Form>
                   <Message>
                         New user? 
-                        <a
-                              href="/user/register"
+                        <Link
+                              replace={false}
+                              to="/user/register"
                         >
                               Register
-                        </a>
+                        </Link>
                   </Message>
             </GridColumn>
       </Grid>
@@ -297,11 +299,12 @@ ShallowWrapper {
                               </Form>
                               <Message>
                                         New user? 
-                                        <a
-                                                  href="/user/register"
+                                        <Link
+                                                  replace={false}
+                                                  to="/user/register"
                                         >
                                                   Register
-                                        </a>
+                                        </Link>
                               </Message>
                     </GridColumn>
           </Grid>
@@ -380,11 +383,12 @@ ShallowWrapper {
                               </Form>
                               <Message>
                                         New user? 
-                                        <a
-                                                  href="/user/register"
+                                        <Link
+                                                  replace={false}
+                                                  to="/user/register"
                                         >
                                                   Register
-                                        </a>
+                                        </Link>
                               </Message>
                     </GridColumn>
           </Grid>

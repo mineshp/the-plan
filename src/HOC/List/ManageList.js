@@ -26,14 +26,14 @@ class ManageList extends Component {
         };
     }
 
-    componentDidMount() {
+    async componentWillMount() {
         if (this.props.match.params && this.props.match.params.id) {
-            this.fetchListById(this.props.match.params.id);
+            await this.fetchListById(this.props.match.params.id);
         }
     }
 
-    fetchListById(listId) {
-        this.props.actions.retrieveListById(listId)
+    async fetchListById(listId) {
+        await this.props.actions.retrieveListById(listId)
             .then((listRetrieved) => {
                 /* istanbul ignore else */
                 if (listRetrieved.type === 'LIST_RETRIEVED') {
@@ -59,7 +59,8 @@ class ManageList extends Component {
     addItem() {
         const newItemRowsClone = Object.assign([], this.state.items);
         const columns = [];
-        this.props.lists.data.headings.map((heading) => (
+        // eslint-disable-next-line react/prop-types
+        this.props.lists.headings.map((heading) => (
             columns.push({
                 columnName: heading.name,
                 columnValue: 'edit'
@@ -122,7 +123,7 @@ class ManageList extends Component {
     }
 
     updateList() {
-        const listObject = buildListData(this.props.lists.data, this.state);
+        const listObject = buildListData(this.props.lists, this.state);
         this.props.actions.update(listObject)
             .then(() => {
                 this.props.actions.retrieveListById(listObject._id); // eslint-disable-line no-underscore-dangle
@@ -132,11 +133,13 @@ class ManageList extends Component {
 
     render() {
         const { lists, isFetching } = this.props;
+        // console.log('lists', lists);
         return (
-            !lists.data || isFetching
+            // eslint-disable-next-line no-underscore-dangle
+            !lists || Array.isArray(lists) || !lists._id || isFetching
                 ? <LoadingComponent />
                 : <List
-                    list={lists.data} // TODO: Why is it lists.data and not lists, check actions/reducers
+                    list={lists}
                     items={this.state.items}
                     downloadPDF={this.downloadPDF}
                     handleAddItem={this.addItem}
@@ -156,7 +159,6 @@ ManageList.propTypes = {
         addNotification: PropTypes.func.isRequired,
         update: PropTypes.func.isRequired
     }),
-    lists: PropTypes.shape([]),
     isFetching: PropTypes.bool,
     match: PropTypes.shape({
         params: PropTypes.shape({
@@ -182,7 +184,7 @@ ManageList.defaultProps = {
 /* istanbul ignore next: not testing mapStateToProps */
 const mapStateToProps = (state) => (
     {
-        lists: state.lists,
+        lists: state.lists.data,
         isFetching: state.isFetching,
         notification: state.lists.notification
     }

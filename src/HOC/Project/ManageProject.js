@@ -45,7 +45,7 @@ class ManageProject extends Component {
     render() {
         const Cards = [];
         const { projects } = this.props;
-        if (projects && projects.data) {
+        if (projects && projects.data && projects.data.length > 0) {
             projects.data.map((project) =>
                 // eslint-disable-next-line no-underscore-dangle
                 Cards.push(<ProjectCard data={project} key={project._id} onDeleteHandler={this.handleDelete} />));

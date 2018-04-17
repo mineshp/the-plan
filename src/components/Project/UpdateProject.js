@@ -46,7 +46,7 @@ const UpdateProject = ({
     );
 
 UpdateProject.propTypes = {
-    result: PropTypes.shape({}),
+    result: PropTypes.shape({}).isRequired,
     profiles: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     handleSubmit: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,

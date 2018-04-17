@@ -4,7 +4,7 @@ exports.getAllProfiles = (req, res) => {
 	Profile.find(
 		{},
 		null,
-		{ sort: { updatedDate: -1 } },
+		{ sort: { active: 1, updatedDate: -1 } },
 		function (err, collection) {
 		    res.send(collection);
         }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Divider, Segment, Grid, List, Header, Image } from 'semantic-ui-react';
 import logo from '../md-logo-green.png';
 
@@ -19,11 +20,12 @@ const Footer = () => (
                     <Grid.Column width={9}>
                         <Header className="footer-header" inverted as="h2" content="Designed by" />
                         <Image
+                            as={Link}
                             centered
                             size="mini"
                             alt="logo"
                             src={logo}
-                            href="http://www.mineshdesigns.co.uk"
+                            to="http://www.mineshdesigns.co.uk"
                             target="_blank"
                         />
                     </Grid.Column>

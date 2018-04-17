@@ -37,7 +37,10 @@ const List = ({
 };
 
 List.propTypes = {
-    list: PropTypes.shape({}).isRequired,
+    list: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        headings: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+    }).isRequired,
     items: PropTypes.arrayOf(
         PropTypes.shape({})
     ).isRequired,

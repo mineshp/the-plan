@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 import { Menu, Dropdown } from 'semantic-ui-react';
@@ -19,7 +20,11 @@ describe('MainNav Component', () => {
         const guestProps = Object.assign({}, props, { username: null });
 
         it('renders navigation component with Sign In when user is not logged in', () => {
-            const tree = renderer.create(<MainNav {...guestProps} />).toJSON();
+            const tree = renderer.create(
+                <MemoryRouter>
+                    <MainNav {...guestProps} />
+                </MemoryRouter>
+            ).toJSON();
             expect(tree).toMatchSnapshot();
         });
 
@@ -32,7 +37,7 @@ describe('MainNav Component', () => {
 
     describe('Logged In User - non admin', () => {
         it('renders navigation component with Username when user is logged in', () => {
-            const tree = renderer.create(<MainNav {...props} />).toJSON();
+            const tree = renderer.create(<MemoryRouter><MainNav {...props} /></MemoryRouter>).toJSON();
             expect(tree).toMatchSnapshot();
         });
 

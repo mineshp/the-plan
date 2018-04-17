@@ -9,11 +9,12 @@ import ListsSummaryComponent from '../../components/ListsSummary/ListsSummary';
 import LoadingComponent from '../../components/Shared/Loading';
 
 class ManageListSummary extends Component {
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.fetchLists = this.fetchLists.bind(this);
         this.deleteList = this.deleteList.bind(this);
         this.markListAsComplete = this.markListAsComplete.bind(this);
+        this.handleBtnClick = this.handleBtnClick.bind(this);
     }
 
     componentDidMount() {
@@ -74,6 +75,10 @@ class ManageListSummary extends Component {
         }
     }
 
+    handleBtnClick(event, data) {
+        this.context.router.history.push(data.value);
+    }
+
     render() {
         const ListRow = [];
         const { lists } = this.props;
@@ -81,13 +86,14 @@ class ManageListSummary extends Component {
             ? this.props.match.params.projectName
             : 'all';
 
-        if (lists && lists.data) {
+        if (lists && lists.data && lists.data.length > 0) {
             lists.data.map((list) =>
                 ListRow.push(
                     <ListsSummaryRow
                         data={list}
                         key={list._id} // eslint-disable-line no-underscore-dangle
                         onDeleteHandler={this.deleteList}
+                        onBtnClickHandler={this.handleBtnClick}
                         handleCompleted={this.markListAsComplete}
                     />
                 ));
@@ -130,6 +136,10 @@ ManageListSummary.defaultProps = {
     lists: null,
     notification: null,
     match: null
+};
+
+ManageListSummary.contextTypes = {
+    router: PropTypes.object
 };
 
 /* istanbul ignore next: not testing mapStateToProps */

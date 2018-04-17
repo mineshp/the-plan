@@ -297,7 +297,8 @@ describe('Update or Create List', () => {
                 owner: 'testUser',
                 headings: [{ id: '123', name: 'name' }],
                 projects: [{ id: '123', name: 'superheroes' }],
-                items: []
+                items: [],
+                result: {}
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
@@ -319,7 +320,8 @@ describe('Update or Create List', () => {
                 owner: 'testUser',
                 headings: [{ id: '9999', name: 'description' }],
                 projects: [{ id: '123', name: 'superheroes' }],
-                items: []
+                items: [],
+                result: {}
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
@@ -340,7 +342,8 @@ describe('Update or Create List', () => {
                 owner: 'testUser',
                 headings: [{ id: '1', name: 'Name' }, { id: '3', name: 'Desc' }],
                 projects: [{ id: '123', name: 'superheroes' }],
-                items: []
+                items: [],
+                result: {}
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');
@@ -368,7 +371,8 @@ describe('Update or Create List', () => {
                         name: 'movies'
                     }
                 ],
-                items: []
+                items: [],
+                result: {}
             });
             await expect(props.actions.addNotification).toHaveBeenCalled();
             await expect(context.router.history.push).toHaveBeenCalledWith('/list/all');

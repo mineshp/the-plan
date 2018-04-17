@@ -6,7 +6,7 @@ exports.getAllLists = function(req,res) {
 	List.find(
 		{},
 		null,
-		{ sort: { updatedDate: -1 } },
+		{ sort: { completed: 1, updatedDate: -1 } },
 		function (err, collection) {
 		res.send(collection);
 	});
@@ -17,7 +17,7 @@ exports.getAllListsForProject = function (req, res) {
 		'projects.name': req.params.projectName
 	},
 	null,
-	{ sort: { updatedDate: -1 } },
+	{ sort: { completed: 1, updatedDate: -1 } },
 	function (err, collection) {
 		res.send(collection);
 	});

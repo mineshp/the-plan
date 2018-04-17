@@ -139,20 +139,20 @@ exports[`List renders lists correctly 1`] = `
                 className="list layout icon"
               />
             </a>
-            <a
+            <button
               className="ui green icon button"
               disabled={undefined}
-              href="/list/update/001"
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
               title="Amend List Setup"
+              value="/list/update/001"
             >
               <i
                 aria-hidden="true"
                 className="edit icon"
               />
-            </a>
+            </button>
             <button
               className="ui pink icon button"
               disabled={undefined}
@@ -231,20 +231,20 @@ exports[`List renders lists correctly 1`] = `
                 className="list layout icon"
               />
             </a>
-            <a
+            <button
               className="ui green icon button"
               disabled={undefined}
-              href="/list/update/002"
               onClick={[Function]}
               role="button"
               tabIndex={undefined}
               title="Amend List Setup"
+              value="/list/update/002"
             >
               <i
                 aria-hidden="true"
                 className="edit icon"
               />
-            </a>
+            </button>
             <button
               className="ui pink icon button"
               disabled={undefined}

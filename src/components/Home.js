@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {
     Button,
     Container,
@@ -39,29 +40,29 @@ export default class HomepageLayout extends Component {
                             <Grid.Row columns={3}>
                                 <Grid.Column>
                                     <Button
-                                        as="a"
+                                        as={Link}
                                         color="green"
                                         icon="list layout"
                                         content="View lists"
-                                        href={'/list/all'}
+                                        to="/list/all"
                                     />
                                 </Grid.Column>
                                 <Grid.Column>
                                     <Button
-                                        as="a"
+                                        as={Link}
                                         color="pink"
                                         icon="edit"
                                         content="Create lists"
-                                        href={'/list/update'}
+                                        to="/list/update"
                                     />
                                 </Grid.Column>
                                 <Grid.Column>
                                     <Button
-                                        as="a"
+                                        as={Link}
                                         color="blue"
                                         icon="cubes"
                                         content="View Projects"
-                                        href={'/project/all'}
+                                        to="/project/all"
                                     />
                                 </Grid.Column>
                             </Grid.Row>

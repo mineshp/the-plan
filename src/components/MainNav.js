@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Dropdown, Menu } from 'semantic-ui-react';
 import logo from '../md-logo-green.png';
@@ -47,14 +48,15 @@ export default class MainNav extends Component {
             ? `${username.charAt(0).toUpperCase() + username.slice(1)}`
             : null;
         const displayControlCentreItem = isAdmin
-            ? <Dropdown.Item onClick={this.handleItemClick} href="/admin/manage">Control Centre</Dropdown.Item>
+            ? <Dropdown.Item onClick={this.handleItemClick} as={Link} to="/admin/manage">Control Centre</Dropdown.Item>
             : null;
         const moto = this.getMotoByUser({ username });
         return (
             <div className="header-main">
                 <Menu>
                     <Menu.Item
-                        href="/"
+                        as={Link}
+                        to="/"
                         name="home"
                         active={activeItem === 'home'}
                         onClick={this.handleItemClick}
@@ -64,16 +66,16 @@ export default class MainNav extends Component {
 
                     <Dropdown item text="Projects">
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={this.handleItemClick} href="/project/all">List</Dropdown.Item>
-                            <Dropdown.Item onClick={this.handleItemClick} href="/project/update">Create</Dropdown.Item>
+                            <Dropdown.Item onClick={this.handleItemClick} as={Link} to="/project/all">List</Dropdown.Item>
+                            <Dropdown.Item onClick={this.handleItemClick} as={Link} to="/project/update">Create</Dropdown.Item>
                             <Dropdown.Item disabled>Search</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
 
                     <Dropdown item text="Lists">
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={this.handleItemClick} href="/list/all">List</Dropdown.Item>
-                            <Dropdown.Item onClick={this.handleItemClick} href="/list/update">Create</Dropdown.Item>
+                            <Dropdown.Item onClick={this.handleItemClick} as={Link} to="/list/all">List</Dropdown.Item>
+                            <Dropdown.Item onClick={this.handleItemClick} as={Link} to="/list/update">Create</Dropdown.Item>
                             <Dropdown.Item disabled>Search</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
@@ -97,7 +99,8 @@ export default class MainNav extends Component {
                             )
                             :
                             (<Menu.Item
-                                href="/user/login"
+                                as={Link}
+                                to="/user/login"
                                 position="right"
                                 name="sign-in"
                                 active={activeItem === 'sign-in'}

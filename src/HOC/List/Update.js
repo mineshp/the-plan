@@ -30,15 +30,16 @@ class UpdateList extends Component {
                 }
             ],
             items: [],
-            projects: []
+            projects: [],
+            result: {}
         };
     }
 
-    componentWillMount() {
+    async componentWillMount() {
         this.props.actions.listProjects();
         if (this.props.match.params && this.props.match.params.id) {
             const listId = this.props.match.params.id;
-            this.props.actions.retrieveListById(listId)
+            await this.props.actions.retrieveListById(listId)
                 .then((listRetrieved) => {
                     /* istanbul ignore else */
                     if (listRetrieved.type === 'LIST_RETRIEVED') {
@@ -173,8 +174,9 @@ class UpdateList extends Component {
 
     render() {
         const { projectOptions, result } = this.props;
+
         return (
-            (!result || projectOptions.length === 0)
+            !result || Array.isArray(result) || projectOptions.length === 0
                 ? <LoadingComponent />
                 : <UpdateListComponent
                     result={result}
@@ -206,13 +208,6 @@ UpdateList.propTypes = {
         message: PropTypes.string,
         level: PropTypes.string,
         title: PropTypes.string
-    }),
-    result: PropTypes.shape({
-        _id: PropTypes.string,
-        headings: PropTypes.arrayOf(PropTypes.shape({
-            name: PropTypes.string
-        })),
-        projects: PropTypes.arrayOf(PropTypes.shape({}))
     }),
     projectOptions: PropTypes.arrayOf(
         PropTypes.shape({})

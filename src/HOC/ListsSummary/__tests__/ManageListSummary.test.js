@@ -32,6 +32,14 @@ const props = {
     }
 };
 
+const context = {
+    router: {
+        history: {
+            push: jest.fn()
+        }
+    }
+};
+
 describe('Manage Lists', () => {
     beforeEach(() => {
         jest.clearAllMocks();
@@ -48,7 +56,7 @@ describe('Manage Lists', () => {
         });
 
         beforeEach(() => {
-            wrapper = shallow(<ManageListSummary {...propsWithListData} />);
+            wrapper = shallow(<ManageListSummary {...propsWithListData} />, { context });
         });
 
         it('calls componentDidMount', async () => {
@@ -74,6 +82,11 @@ describe('Manage Lists', () => {
         it('builds an array of ProjectCards', async () => {
             await expect(wrapper.props().rows.length).toEqual(2);
         });
+
+        it('calls the context router when handleBtnClick is called with a url', async () => {
+            wrapper.instance().handleBtnClick(mockEvent, { value: '/some/url' });
+            await expect(context.router.history.push).toHaveBeenCalledWith('/some/url');
+        });
     });
 
     describe('Get lists for a given project success', () => {
@@ -89,7 +102,7 @@ describe('Manage Lists', () => {
         });
 
         beforeEach(() => {
-            wrapper = shallow(<ManageListSummary {...propsWithListData} />);
+            wrapper = shallow(<ManageListSummary {...propsWithListData} />, { context });
         });
 
         it('calls componentDidMount', async () => {
@@ -154,7 +167,7 @@ describe('Manage Lists', () => {
                     lists: { error: apiError }
                 }
             );
-            wrapper = shallow(<ManageListSummary {...propsAfterFetchListSummaryError} />);
+            wrapper = shallow(<ManageListSummary {...propsAfterFetchListSummaryError} />, { context });
         });
 
         afterEach(() => {
@@ -220,7 +233,7 @@ describe('Manage Lists', () => {
         let wrapper;
 
         beforeEach(() => {
-            wrapper = shallow(<ManageListSummary {...propsAfterSuccessfulDelete} />);
+            wrapper = shallow(<ManageListSummary {...propsAfterSuccessfulDelete} />, { context });
         });
 
         it('calls the deleteList action when the deleteList event is invoked', async () => {
@@ -272,7 +285,7 @@ describe('Manage Lists', () => {
         let wrapper;
 
         beforeEach(() => {
-            wrapper = shallow(<ManageListSummary {...propsMarkListAsCompleted} />);
+            wrapper = shallow(<ManageListSummary {...propsMarkListAsCompleted} />, { context });
         });
 
         it('calls the update list action when the markListAsComplete event is invoked', async () => {

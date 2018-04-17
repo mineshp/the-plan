@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'semantic-ui-react';
 import { formatDate } from '../../helpers/validators/common';
@@ -9,10 +10,11 @@ const ProjectCard = ({ data, onDeleteHandler }) => (
             <Card.Header className="firstletter-capitalise">
                 {data.projectName}
                 <Button
+                    as={Link}
                     floated="right"
                     icon="list layout"
                     color="blue"
-                    href={`/project/${data.projectName}/lists`} // eslint-disable-line no-underscore-dangle
+                    to={`/project/${data.projectName}/lists`} // eslint-disable-line no-underscore-dangle
                     title={`View all lists for project ${data.projectName}`}
                 />
             </Card.Header>
@@ -31,12 +33,12 @@ const ProjectCard = ({ data, onDeleteHandler }) => (
         <Card.Content extra>
             <div className="buttons">
                 <Button
-                    as="a"
+                    as={Link}
                     content="Update"
                     icon="edit"
                     labelPosition="left"
                     color="green"
-                    href={`/project/update/${data._id}`} // eslint-disable-line no-underscore-dangle
+                    to={`/project/update/${data._id}`} // eslint-disable-line no-underscore-dangle
                 />
                 <Button
                     content="Delete"
