@@ -61,7 +61,8 @@ export const mockProjectErrorResultData = () => ({
 
 export const mockProjectSuccessResultData = (action) => ({
     success: {
-        message: `successfully ${action} project, woohoo`
+        message: `successfully ${action} project, woohoo`,
+        data: mockProjectDataWithProfileA()
     }
 });
 
@@ -70,5 +71,6 @@ exports = {
     mockProjectDataWithProfileA,
     mockNewProjectResultData,
     mockProjectErrorResultData,
+    mockProjectSuccessResultData,
     mockListProjects
 };

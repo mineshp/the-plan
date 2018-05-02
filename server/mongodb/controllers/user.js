@@ -90,12 +90,32 @@ exports.getAllUsers = (req, res) => {
                 id: userObj._id, // eslint-disable-line no-underscore-dangle
                 username: userObj.username,
                 email: userObj.email,
-                isAdmin: userObj.isAdmin
+                isAdmin: userObj.isAdmin,
+                profile: userObj.profile
             })
         );
         res.send(users);
     });
 };
+
+exports.updateUser = (req, res) => {
+    const data = req.body;
+    console.log('data', data);
+    User.update({ _id: req.params.id }, data, function(err, result) {
+        if (err) {
+			res.status(400);
+			res.json(
+				{
+					message: `Error: User update failed for id ${req.params.id}.`
+				}
+			);
+		}
+		else {
+			res.status(200);
+			res.send(data);
+		}
+    });
+}
 
 exports.deleteUser = (req, res) => {
     const id = req.params.id;

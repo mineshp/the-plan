@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ManageProfilesComponent from '../ManageProfiles';
-import { mockListProfiles } from '../../../helpers/test/testData/controlCentreData';
+import { mockListProfiles, mockListUsers } from '../../../helpers/test/testData/controlCentreData';
 import { mockListProjects } from '../../../helpers/test/testData/projectData';
 
 const mockHandleManageProfilesAccordionClick = jest.fn();
@@ -14,7 +14,11 @@ const mockHandleSubmit = jest.fn();
 const mockHandleSubmitToAssignProjectsToProfile = jest.fn();
 const mockHandleDropDownChange = jest.fn();
 const mockProjects = mockListProjects();
+const mockUsers = mockListUsers();
 const mockHandleProjectCheckboxChange = jest.fn();
+const mockHandleUsersDropDownChange = jest.fn();
+const mockHandleSubmitToAssignUsersToProfile = jest.fn();
+const mockHandleProfilesCheckboxChange = jest.fn();
 
 describe('Admin > Manage > ManageProfiles', () => {
     it('renders ManageProfiles component', () => {
@@ -24,6 +28,7 @@ describe('Admin > Manage > ManageProfiles', () => {
                 handleManageProfilesAccordionClick={mockHandleManageProfilesAccordionClick}
                 profiles={mockProfiles}
                 projects={mockProjects}
+                users={mockUsers}
                 handleDeleteProfile={mockHandleDeleteProfile}
                 handleProfileStatus={mockHandleProfileStatus}
                 handleProfileNameChange={mockHandleProfileNameChange}
@@ -32,6 +37,9 @@ describe('Admin > Manage > ManageProfiles', () => {
                 handleSubmitToAssignProjectsToProfile={mockHandleSubmitToAssignProjectsToProfile}
                 handleDropDownChange={mockHandleDropDownChange}
                 handleProjectCheckboxChange={mockHandleProjectCheckboxChange}
+                handleUsersDropDownChange={mockHandleUsersDropDownChange}
+                handleSubmitToAssignUsersToProfile={mockHandleSubmitToAssignUsersToProfile}
+                handleProfilesCheckboxChange={mockHandleProfilesCheckboxChange}
             />
         );
         expect(tree).toMatchSnapshot();

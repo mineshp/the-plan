@@ -16,6 +16,9 @@ const mockHandleSubmit = jest.fn();
 const mockHandleDropDownChange = jest.fn();
 const mockHandleSubmitToAssignProjectsToProfile = jest.fn();
 const mockHandleProjectCheckboxChange = jest.fn();
+const mockHandleUsersDropDownChange = jest.fn();
+const mockHandleSubmitToAssignUsersToProfile = jest.fn();
+const mockHandleProfilesCheckboxChange = jest.fn();
 
 const mockActiveIndex = 0;
 
@@ -41,6 +44,9 @@ describe('ControlCentre', () => {
             handleDropDownChange={mockHandleDropDownChange}
             handleSubmitToAssignProjectsToProfile={mockHandleSubmitToAssignProjectsToProfile}
             handleProjectCheckboxChange={mockHandleProjectCheckboxChange}
+            handleUsersDropDownChange={mockHandleUsersDropDownChange}
+            handleSubmitToAssignUsersToProfile={mockHandleSubmitToAssignUsersToProfile}
+            handleProfilesCheckboxChange={mockHandleProfilesCheckboxChange}
         />);
         expect(wrapper.find(ListUsersComponent)).toHaveLength(1);
     });

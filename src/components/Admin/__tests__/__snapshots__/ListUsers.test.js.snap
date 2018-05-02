@@ -26,6 +26,11 @@ exports[`Admin > Manage > ListUsers renders ListUsers component 1`] = `
         <th
           className=""
         >
+          Profiles Assigned
+        </th>
+        <th
+          className=""
+        >
           Password
         </th>
         <th
@@ -57,12 +62,15 @@ exports[`Admin > Manage > ListUsers renders ListUsers component 1`] = `
           test@mytestemail.com
         </td>
         <td
+          className=""
+        />
+        <td
           className="collapsing"
         >
           <button
             className="ui green small button"
             disabled={undefined}
-            id={undefined}
+            id="1234567"
             onClick={[Function]}
             role="button"
             tabIndex={undefined}
@@ -76,7 +84,7 @@ exports[`Admin > Manage > ListUsers renders ListUsers component 1`] = `
           <button
             className="ui pink small disabled button"
             disabled={true}
-            id={undefined}
+            id="1234567"
             onClick={[Function]}
             role="button"
             tabIndex={-1}
@@ -104,12 +112,15 @@ exports[`Admin > Manage > ListUsers renders ListUsers component 1`] = `
           test@anotheremail.com
         </td>
         <td
+          className=""
+        />
+        <td
           className="collapsing"
         >
           <button
             className="ui green small button"
             disabled={undefined}
-            id={undefined}
+            id="1234568"
             onClick={[Function]}
             role="button"
             tabIndex={undefined}
@@ -123,7 +134,7 @@ exports[`Admin > Manage > ListUsers renders ListUsers component 1`] = `
           <button
             className="ui pink small button"
             disabled={undefined}
-            id={undefined}
+            id="1234568"
             onClick={[Function]}
             role="button"
             tabIndex={undefined}

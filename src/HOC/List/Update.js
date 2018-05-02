@@ -68,6 +68,7 @@ class UpdateList extends Component {
     }
 
     updateList() {
+        // eslint-disable-next-line react/prop-types
         const listObject = buildListData(this.props.result, this.state);
         this.props.actions.update(listObject)
             .then(() => {
@@ -77,7 +78,7 @@ class UpdateList extends Component {
     }
 
     createOrUpdateList() {
-        if (this.props.result && this.props.result._id) { // eslint-disable-line no-underscore-dangle
+        if (this.props.result && this.props.result._id) { // eslint-disable-line no-underscore-dangle, react/prop-types
             this.updateList();
         } else {
             this.setupNewList();

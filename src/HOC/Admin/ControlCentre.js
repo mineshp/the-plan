@@ -7,6 +7,7 @@ import {
     retrieveUsers,
     create,
     update as updateProfile,
+    updateUser,
     deleteProfile,
     retrieveProfiles
 } from '../../actions/controlCentre';
@@ -36,11 +37,14 @@ class ControlCentre extends Component {
         this.handleDeleteProfile = this.handleDeleteProfile.bind(this);
         this.handleProfileStatus = this.handleProfileStatus.bind(this);
         this.handleDropDownChange = this.handleDropDownChange.bind(this);
+        this.handleUsersDropDownChange = this.handleUsersDropDownChange.bind(this);
+        this.handleSubmitToAssignUsersToProfile = this.handleSubmitToAssignUsersToProfile.bind(this);
         this.handleSubmitToAssignProjectsToProfile = this.handleSubmitToAssignProjectsToProfile.bind(this);
         this.handleManageProfilesAccordionClick =
             this.handleManageProfilesAccordionClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleProjectCheckboxChange = this.handleProjectCheckboxChange.bind(this);
+        this.handleProfilesCheckboxChange = this.handleProfilesCheckboxChange.bind(this);
         this.createProfile = this.createProfile.bind(this);
         this.updateProfile = this.updateProfile.bind(this);
         this.updateProject = this.updateProject.bind(this);
@@ -49,7 +53,10 @@ class ControlCentre extends Component {
             active: false,
             name: null,
             profileNameToAssignProjects: null,
-            projectsToAssignProfile: []
+            usernameToAssignProfiles: null,
+            projectsToAssignProfile: [],
+            profilesToAssignUser: [],
+            userProfilesAssigned: []
         };
     }
 
@@ -72,6 +79,29 @@ class ControlCentre extends Component {
                 });
                 this.fetchData();
             });
+    }
+
+    fetchUser() {
+        return this.props.admin.controlCentre.users.filter(
+            (user) => user.username === this.state.usernameToAssignProfiles)[0];
+    }
+
+    async updateUser() {
+        const existingUser = Object.assign({}, this.fetchUser());
+        const { userProfilesAssigned } = this.state;
+
+        /* istanbul ignore else  */
+        if (existingUser && !existingUser.profile.includes(userProfilesAssigned)) {
+            existingUser.profile = [...userProfilesAssigned];
+
+            this.props.actions.updateUser(existingUser)
+                .then(() => {
+                    this.setState({
+                        activeIndex: 0
+                    });
+                    this.fetchData();
+                });
+        }
     }
 
     async updateProject(project) {
@@ -111,6 +141,18 @@ class ControlCentre extends Component {
         this.setState({ profileNameToAssignProjects: data.value });
     }
 
+    async fetchProfilesAlreadyAssignedToUser() {
+        const user = await this.fetchUser();
+        if (user) {
+            await this.setState({ userProfilesAssigned: [...user.profile] });
+        }
+    }
+
+    async handleUsersDropDownChange(event, data) {
+        await this.setState({ usernameToAssignProfiles: data.value });
+        await this.fetchProfilesAlreadyAssignedToUser();
+    }
+
     handleProfileActiveChange() {
         this.setState({ active: !this.state.active });
     }
@@ -120,9 +162,30 @@ class ControlCentre extends Component {
         await this.createProfile();
     }
 
+    async handleSubmitToAssignUsersToProfile(event) {
+        event.preventDefault();
+        await this.updateUser();
+    }
+
     handleProjectCheckboxChange(event, data) {
         this.setState({
             projectsToAssignProfile: [...this.state.projectsToAssignProfile, data['data-projcb']]
+        });
+    }
+
+    handleProfilesCheckboxChange(event, data) {
+        const checkedProfiles = this.state.userProfilesAssigned;
+
+        /* istanbul ignore else  */
+        if (data.checked && !checkedProfiles.includes(data['data-cb'])) {
+            checkedProfiles.push(data['data-cb']);
+        } else if (!data.checked && checkedProfiles.includes(data['data-cb'])) {
+            const index = checkedProfiles.indexOf(data['data-cb']);
+            checkedProfiles.splice(index, 1);
+        }
+
+        this.setState({
+            userProfilesAssigned: checkedProfiles
         });
     }
 
@@ -224,6 +287,9 @@ class ControlCentre extends Component {
                     handleDropDownChange={this.handleDropDownChange}
                     handleSubmitToAssignProjectsToProfile={this.handleSubmitToAssignProjectsToProfile}
                     handleProjectCheckboxChange={this.handleProjectCheckboxChange}
+                    handleUsersDropDownChange={this.handleUsersDropDownChange}
+                    handleSubmitToAssignUsersToProfile={this.handleSubmitToAssignUsersToProfile}
+                    handleProfilesCheckboxChange={this.handleProfilesCheckboxChange}
                     handleSubmit={this.handleSubmit}
                     activeIndex={this.state.activeIndex}
                     users={admin.controlCentre.users}
@@ -231,6 +297,7 @@ class ControlCentre extends Component {
                     projects={projects}
                     name={this.props.name}
                     active={this.props.active}
+                    userProfilesAssigned={this.state.userProfilesAssigned}
                 />
         );
     }
@@ -246,10 +313,15 @@ ControlCentre.propTypes = {
         deleteProfile: PropTypes.func.isRequired,
         listProjects: PropTypes.func.isRequired,
         updateProject: PropTypes.func.isRequired,
+        updateUser: PropTypes.func.isRequired,
         addNotification: PropTypes.func.isRequired
     }),
     projects: PropTypes.arrayOf(PropTypes.shape({})),
-    admin: PropTypes.shape({}),
+    admin: PropTypes.shape({
+        controlCentre: PropTypes.shape({
+            users: PropTypes.arrayOf(PropTypes.shape({}))
+        })
+    }),
     notification: PropTypes.shape({
         message: PropTypes.string,
         level: PropTypes.string,
@@ -293,7 +365,8 @@ const mapDispatchToProps = (dispatch) => (
             retrieveProfiles,
             deleteProfile,
             listProjects,
-            updateProject
+            updateProject,
+            updateUser
         }, dispatch)
     }
 );

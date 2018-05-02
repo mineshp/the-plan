@@ -68,6 +68,38 @@ const controlCentre = (state = initialState, action) => {
             }
         };
 
+    case 'USER_UPDATE_SUCCESS':
+        return {
+            notification: {
+                message: `Successfully updated user ${action.data.username}.`,
+                level: 'success',
+                title: 'Success'
+            },
+            controlCentre: {
+                users: state.controlCentre.users,
+                profiles: state.controlCentre.profiles
+            },
+            success: {
+                data: action.data,
+            }
+        };
+
+    case 'USER_UPDATE_ERROR':
+        return {
+            notification: {
+                message: action.error,
+                level: 'error',
+                title: 'Error'
+            },
+            controlCentre: {
+                users: state.controlCentre.users,
+                profiles: state.controlCentre.profiles
+            },
+            error: {
+                isError: true
+            }
+        };
+
     case 'PROFILES_RETRIEVED':
         return {
             controlCentre: {

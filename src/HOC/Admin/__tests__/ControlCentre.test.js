@@ -40,6 +40,9 @@ const props = {
         updateProject: jest.fn(() => (
             Promise.resolve({})
         )),
+        updateUser: jest.fn(() => (
+            Promise.resolve({})
+        )),
         addNotification: jest.fn(() => (
             Promise.resolve()
         ))
@@ -155,6 +158,82 @@ describe('ControlCentre', () => {
         });
     });
 
+    describe('Update User', () => {
+        describe('success', () => {
+            let wrapper;
+
+            const propsActions = Object.assign({}, props.actions, {
+                updateUser: jest.fn(() => (
+                    Promise.resolve({
+                        type: 'USER_UPDATE_SUCCESS',
+                        success: { data: mockUsers[0] }
+                    })
+                ))
+            });
+
+            const propsWithControlCentreData = Object.assign({}, props, {
+                admin: {
+                    controlCentre: {
+                        users: mockUsers,
+                        profiles: mockProfiles
+                    }
+                },
+                notification: {
+                    message: 'Updated user testUser',
+                    level: 'success',
+                    title: 'success'
+                },
+                projects: mockProjects,
+                actions: propsActions
+            });
+
+            beforeEach(() => {
+                wrapper = shallow(<ControlCentre {...propsWithControlCentreData} />);
+
+                propsWithControlCentreData.actions.retrieveUsers.mockClear();
+                propsWithControlCentreData.actions.retrieveProfiles.mockClear();
+                propsWithControlCentreData.actions.updateProfile.mockClear();
+                propsWithControlCentreData.actions.updateUser.mockClear();
+                propsWithControlCentreData.actions.addNotification.mockClear();
+            });
+
+            it('calls handleSubmitToAssignUsersToProfile when submit form is clicked and profile is added', async () => {
+                await wrapper.instance().handleUsersDropDownChange(mockEvent(), { value: 'testUser' });
+                await wrapper.instance().handleProfilesCheckboxChange(mockEvent(), { 'data-cb': 'TEST_PROFILE', checked: true });
+                await wrapper.instance().handleSubmitToAssignUsersToProfile(mockEvent());
+
+                await expect(wrapper.state().usernameToAssignProfiles).toEqual('testUser');
+                await expect(wrapper.state().userProfilesAssigned).toEqual([
+                    'TESTA', 'TESTB', 'TEST_PROFILE'
+                ]);
+
+                const existingUser = Object.assign({}, mockUsers[0], {
+                    profile: ['TESTA', 'TESTB', 'TEST_PROFILE']
+                });
+                await expect(propsWithControlCentreData.actions.updateUser).toHaveBeenCalledWith(existingUser);
+            });
+
+            it('calls handleSubmitToAssignUsersToProfile when submit form is clicked and profile is added but no state exists for userProfilesAssigned', async () => {
+                await wrapper.instance().handleUsersDropDownChange(mockEvent(), { value: 'testUser2' });
+                await expect(wrapper.state().userProfilesAssigned).toEqual([]);
+                await wrapper.instance().handleProfilesCheckboxChange(mockEvent(), { 'data-cb': 'TEST_PROFILE', checked: true });
+                await expect(wrapper.state().userProfilesAssigned).toEqual(['TEST_PROFILE']);
+            });
+
+            it('calls handleSubmitToAssignUsersToProfile when submit form is clicked and profile is removed', async () => {
+                await wrapper.instance().handleUsersDropDownChange(mockEvent(), { value: 'testUser' });
+                await wrapper.instance().handleProfilesCheckboxChange(mockEvent(), { 'data-cb': 'TESTA', checked: false });
+                await wrapper.instance().handleSubmitToAssignUsersToProfile(mockEvent());
+
+                await expect(wrapper.state().usernameToAssignProfiles).toEqual('testUser');
+                await expect(wrapper.state().userProfilesAssigned).toEqual(['TESTB']);
+
+                const existingUser = Object.assign({}, mockUsers[0], { profile: ['TESTB'] });
+                await expect(propsWithControlCentreData.actions.updateUser).toHaveBeenCalledWith(existingUser);
+            });
+        });
+    });
+
     describe('Profiles Accordion', () => {
         let wrapper;
         beforeEach(() => {
@@ -225,7 +304,11 @@ describe('ControlCentre', () => {
                     active: false,
                     name: null,
                     profileNameToAssignProjects: null,
-                    projectsToAssignProfile: []
+                    usernameToAssignProfiles: null,
+                    projectsToAssignProfile: [],
+                    profilesToAssignUser: [],
+                    userProfilesAssigned: []
+
                 });
 
                 componentDidMountSpy.mockReset();
@@ -351,7 +434,10 @@ describe('ControlCentre', () => {
                     activeIndex: 0,
                     active: false,
                     profileNameToAssignProjects: null,
-                    projectsToAssignProfile: []
+                    projectsToAssignProfile: [],
+                    usernameToAssignProfiles: null,
+                    profilesToAssignUser: [],
+                    userProfilesAssigned: []
                 });
                 await expect(propsWithControlCentreData.actions.addNotification).toHaveBeenCalledWith({
                     message: 'Created profile',

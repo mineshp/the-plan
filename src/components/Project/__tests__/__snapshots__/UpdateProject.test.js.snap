@@ -948,7 +948,7 @@ exports[`Create New Project renders successfully after successful creation of pr
         className="ui input text-box-single-col-min"
       >
         <input
-          defaultValue={undefined}
+          defaultValue="Avengers"
           disabled={undefined}
           onChange={[Function]}
           placeholder="Project Name..."
@@ -964,7 +964,7 @@ exports[`Create New Project renders successfully after successful creation of pr
         className="ui input text-box-single-col-min"
       >
         <input
-          defaultValue={undefined}
+          defaultValue="a description"
           disabled={undefined}
           onChange={[Function]}
           placeholder="Project Description..."
@@ -992,10 +992,10 @@ exports[`Create New Project renders successfully after successful creation of pr
       >
         <div
           aria-live="polite"
-          className="default text"
+          className="text"
           role="alert"
         >
-          Choose Colour
+          BLUE
         </div>
         <i
           aria-hidden="true"
@@ -1008,8 +1008,8 @@ exports[`Create New Project renders successfully after successful creation of pr
           <div
             aria-checked={false}
             aria-disabled={undefined}
-            aria-selected={true}
-            className="selected item"
+            aria-selected={false}
+            className="item"
             onClick={[Function]}
             role="option"
             style={
@@ -1029,10 +1029,10 @@ exports[`Create New Project renders successfully after successful creation of pr
             </span>
           </div>
           <div
-            aria-checked={false}
+            aria-checked={true}
             aria-disabled={undefined}
-            aria-selected={false}
-            className="item"
+            aria-selected={true}
+            className="active selected item"
             onClick={[Function]}
             role="option"
             style={
@@ -1864,7 +1864,473 @@ exports[`Update Existing Project renders successfully after error creating new p
 </div>
 `;
 
-exports[`Update Existing Project renders successfully after successful creation of project 1`] = `
+exports[`Update Existing Project renders successfully after successful update of project 1`] = `
+<div
+  className="ui container content-body"
+>
+  <form
+    action={undefined}
+    className="ui form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="field"
+    >
+      <div
+        className="ui input text-box-single-col-min"
+      >
+        <input
+          defaultValue={undefined}
+          disabled={undefined}
+          onChange={[Function]}
+          placeholder="Project Name..."
+          tabIndex={undefined}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="ui input text-box-single-col-min"
+      >
+        <input
+          defaultValue={undefined}
+          disabled={undefined}
+          onChange={[Function]}
+          placeholder="Project Description..."
+          tabIndex={undefined}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        aria-busy={undefined}
+        aria-disabled={undefined}
+        aria-expanded={false}
+        aria-multiselectable={undefined}
+        className="ui selection dropdown form-dropdown"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseDown={[Function]}
+        role="listbox"
+        tabIndex={0}
+      >
+        <div
+          aria-live="polite"
+          className="default text"
+          role="alert"
+        >
+          Choose Colour
+        </div>
+        <i
+          aria-hidden="true"
+          className="dropdown icon"
+          onClick={[Function]}
+        />
+        <div
+          className="menu transition"
+        >
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={true}
+            className="selected item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui red circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              RED
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui blue circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              BLUE
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui orange circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              ORANGE
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui yellow circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              YELLOW
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui olive circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              OLIVE
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui green circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              GREEN
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui teal circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              TEAL
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui violet circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              VIOLET
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui purple circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              PURPLE
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui pink circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              PINK
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui brown circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              BROWN
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui grey circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              GREY
+            </span>
+          </div>
+          <div
+            aria-checked={false}
+            aria-disabled={undefined}
+            aria-selected={false}
+            className="item"
+            onClick={[Function]}
+            role="option"
+            style={
+              Object {
+                "pointerEvents": "all",
+              }
+            }
+          >
+            <div
+              className="ui black circular empty label"
+              onClick={[Function]}
+            />
+            <span
+              className="text"
+            >
+              BLACK
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="MIN_JIGS_WEDDING"
+          id="1234567"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            MIN_JIGS_WEDDING
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="HOME_DIY"
+          id="1234568"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            HOME_DIY
+          </label>
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          data-cb="CHRISTMAS"
+          id="1234569"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            name={undefined}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value="false"
+          />
+          <label>
+            CHRISTMAS
+          </label>
+        </div>
+      </div>
+    </div>
+    <button
+      className="ui green button"
+      disabled={undefined}
+      onClick={[Function]}
+      role="button"
+      tabIndex={undefined}
+      type="submit"
+    >
+      Save
+    </button>
+  </form>
+</div>
+`;
+
+exports[`Update Existing Project renders successfully after successful update of project with updated profiles 1`] = `
 <div
   className="ui container content-body"
 >

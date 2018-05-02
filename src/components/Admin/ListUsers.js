@@ -14,6 +14,7 @@ const ListUsers = ({ handleDeleteUser, handleResetPwd, users }) => {
                     <Icon name={user.isAdmin ? 'graduation' : 'user'} /> {user.username}
                 </Table.Cell>
                 <Table.Cell>{user.email}</Table.Cell>
+                <Table.Cell>{user.profilesAssigned}</Table.Cell>
                 <Table.Cell collapsing>
                     <Button color="green" size="small" id={userId} onClick={handleResetPwd}>
                         Reset Password
@@ -35,6 +36,7 @@ const ListUsers = ({ handleDeleteUser, handleResetPwd, users }) => {
                     <Table.Row>
                         <Table.HeaderCell>Username</Table.HeaderCell>
                         <Table.HeaderCell>Email</Table.HeaderCell>
+                        <Table.HeaderCell>Profiles Assigned</Table.HeaderCell>
                         <Table.HeaderCell>Password</Table.HeaderCell>
                         <Table.HeaderCell>Delete</Table.HeaderCell>
                     </Table.Row>

@@ -10,7 +10,8 @@ const ControlCentre = ({
     handleDeleteProfile, profiles, handleProfileNameChange,
     handleProfileActiveChange, handleSubmit, handleProfileStatus,
     handleDropDownChange, handleSubmitToAssignProjectsToProfile, projects,
-    handleProjectCheckboxChange
+    handleProjectCheckboxChange, handleSubmitToAssignUsersToProfile, handleProfilesCheckboxChange,
+    handleUsersDropDownChange, userProfilesAssigned
 }) => (
     <Container className="content-body">
         <Header as="h1">Control Centre</Header>
@@ -29,10 +30,15 @@ const ControlCentre = ({
             handleProfileActiveChange={handleProfileActiveChange}
             handleSubmit={handleSubmit}
             handleDropDownChange={handleDropDownChange}
+            handleUsersDropDownChange={handleUsersDropDownChange}
             handleSubmitToAssignProjectsToProfile={handleSubmitToAssignProjectsToProfile}
             handleProjectCheckboxChange={handleProjectCheckboxChange}
+            handleSubmitToAssignUsersToProfile={handleSubmitToAssignUsersToProfile}
+            handleProfilesCheckboxChange={handleProfilesCheckboxChange}
             profiles={profiles}
             projects={projects}
+            users={users}
+            userProfilesAssigned={userProfilesAssigned}
         />
     </Container>
 );
@@ -46,9 +52,12 @@ ControlCentre.propTypes = {
     handleProfileNameChange: PropTypes.func.isRequired,
     handleProfileActiveChange: PropTypes.func.isRequired,
     handleProjectCheckboxChange: PropTypes.func.isRequired,
+    handleProfilesCheckboxChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     handleDropDownChange: PropTypes.func.isRequired,
+    handleUsersDropDownChange: PropTypes.func.isRequired,
     handleSubmitToAssignProjectsToProfile: PropTypes.func.isRequired,
+    handleSubmitToAssignUsersToProfile: PropTypes.func.isRequired,
     profiles: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
         active: PropTypes.bool.isRequired
@@ -61,11 +70,13 @@ ControlCentre.propTypes = {
     users: PropTypes.arrayOf(PropTypes.shape({
         username: PropTypes.string.isRequired,
         email: PropTypes.string.isRequired
-    })).isRequired
+    })).isRequired,
+    userProfilesAssigned: PropTypes.arrayOf(PropTypes.string)
 };
 
 ControlCentre.defaultProps = {
-    users: null
+    users: null,
+    userProfilesAssigned: []
 };
 
 export default ControlCentre;

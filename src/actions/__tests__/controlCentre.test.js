@@ -89,6 +89,71 @@ describe('Control Centre actions', () => {
         });
     });
 
+    describe('Update User actions', () => {
+        const mockUpdateUsersSuccessAPIResponse = mockUsers[0];
+
+        const mockUpdateUserFailureAPIResponse = {
+            message: 'Error updating user testUser, please try again later.'
+        };
+
+        it('should dispatch an action for USER_UPDATE_SUCCESS when calling successUpdatingUser to update a user', () => {
+            const expectedAction = {
+                type: 'USER_UPDATE_SUCCESS',
+                data: mockUpdateUsersSuccessAPIResponse
+            };
+
+            expect(actions.successUpdatingUser(mockUpdateUsersSuccessAPIResponse)).toEqual(expectedAction);
+        });
+
+        it('should dispatch an action for USER_UPDATE_ERROR when calling errorUpdatingUser to update a user', () => {
+            const expectedAction = {
+                type: 'USER_UPDATE_ERROR',
+                error: mockUpdateUserFailureAPIResponse.message
+            };
+
+            expect(actions.errorUpdatingUser(mockUpdateUserFailureAPIResponse.message))
+                .toEqual(expectedAction);
+        });
+
+        it('a successful updateUser call via the store, dispatches the USER_UPDATE_SUCCESS action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(200, null, JSON.stringify(mockUpdateUsersSuccessAPIResponse))));
+
+            const store = mockStore({ controlCentre: [] });
+
+            const expectedActions = [
+                {
+                    type: 'USER_UPDATE_SUCCESS',
+                    data: mockUpdateUsersSuccessAPIResponse
+                }
+            ];
+
+            return store.dispatch(actions.updateUser(mockUsers[0])).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+
+        it('an unsuccessful updateUser call via the store, dispatches the USER_UPDATE_ERROR action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(500, null, JSON.stringify(mockUpdateUserFailureAPIResponse))));
+
+            const store = mockStore({ controlCentre: [] });
+
+            const expectedAction = [
+                {
+                    type: 'USER_UPDATE_ERROR',
+                    error: mockUpdateUserFailureAPIResponse.message
+                }
+            ];
+
+            return store.dispatch(actions.updateUser(mockUsers[0])).then(() => {
+                // return of async actions
+                expect(store.getActions()).toEqual(expectedAction);
+            });
+        });
+    });
+
     describe('Delete Users Actions', () => {
         const userIdToDelete = 1;
 

@@ -133,7 +133,7 @@ class ManageList extends Component {
 
     render() {
         const { lists, isFetching } = this.props;
-        // console.log('lists', lists);
+
         return (
             // eslint-disable-next-line no-underscore-dangle
             !lists || Array.isArray(lists) || !lists._id || isFetching

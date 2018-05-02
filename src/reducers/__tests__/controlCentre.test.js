@@ -86,6 +86,54 @@ describe('controlCentre reducer', () => {
         });
     });
 
+    describe('UPDATE USER ACTIONS', () => {
+        it('should handle USER_UPDATE_SUCCESS', () => {
+            expect(controlCentre(initialState, {
+                type: 'USER_UPDATE_SUCCESS',
+                data: {
+                    id: '12345',
+                    username: 'testUser'
+                }
+            })).toEqual({
+                notification: {
+                    message: 'Successfully updated user testUser.',
+                    level: 'success',
+                    title: 'Success'
+                },
+                controlCentre: {
+                    profiles: [],
+                    users: []
+                },
+                success: {
+                    data: {
+                        id: '12345',
+                        username: 'testUser'
+                    }
+                }
+            });
+        });
+
+        it('should handle USER_UPDATE_ERROR', () => {
+            expect(controlCentre(initialState, {
+                type: 'USER_UPDATE_ERROR',
+                error: 'Error updating Users'
+            })).toEqual({
+                notification: {
+                    message: 'Error updating Users',
+                    level: 'error',
+                    title: 'Error'
+                },
+                controlCentre: {
+                    profiles: [],
+                    users: []
+                },
+                error: {
+                    isError: true
+                }
+            });
+        });
+    });
+
     describe('DELETE ACTIONS', () => {
         it('should handle USER_DELETION_SUCCESS', () => {
             expect(controlCentre(initialState, {

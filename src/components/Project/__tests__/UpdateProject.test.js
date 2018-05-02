@@ -19,6 +19,7 @@ describe('Create New Project', () => {
     it('renders create new project form correctly', () => {
         const tree = renderer.create(<UpdateProject
             result={mockNewProjectResult}
+            profilesAssigned={[]}
             profiles={mockProfiles}
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
@@ -31,7 +32,8 @@ describe('Create New Project', () => {
 
     it('renders successfully after successful creation of project', () => {
         const tree = renderer.create(<UpdateProject
-            result={mockProjectSuccessResultData('created')}
+            result={mockProjectSuccessResultData('created').success.data}
+            profilesAssigned={[]}
             profiles={mockProfiles}
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
@@ -41,10 +43,10 @@ describe('Create New Project', () => {
         />).toJSON();
         expect(tree).toMatchSnapshot();
     });
-
     it('renders successfully after error creating new project', () => {
         const tree = renderer.create(<UpdateProject
             result={mockErrorResult}
+            profilesAssigned={[]}
             profiles={mockProfiles}
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
@@ -60,6 +62,7 @@ describe('Update Existing Project', () => {
     it('renders update existing project form correctly', () => {
         const tree = renderer.create(<UpdateProject
             result={mockExistingProjectResult}
+            profilesAssigned={[]}
             profiles={mockProfiles}
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
@@ -70,9 +73,24 @@ describe('Update Existing Project', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('renders successfully after successful creation of project', () => {
+    it('renders successfully after successful update of project', () => {
         const tree = renderer.create(<UpdateProject
             result={mockProjectSuccessResultData('updated')}
+            profilesAssigned={[]}
+            profiles={mockProfiles}
+            handleSubmit={mockHandleSubmit}
+            handleChange={mockHandleChange}
+            handleDropDownSelection={mockHandleDropDownSelection}
+            handleProjectDescriptionChange={mockHandleProjectDescriptionChange}
+            handleCheckboxSelectionForProfiles={mockHandleCheckboxSelectionForProfiles}
+        />).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it('renders successfully after successful update of project with updated profiles', () => {
+        const tree = renderer.create(<UpdateProject
+            result={mockProjectSuccessResultData('updated')}
+            profilesAssigned={['PROFILEX', 'PROFILEY']}
             profiles={mockProfiles}
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}
@@ -86,6 +104,7 @@ describe('Update Existing Project', () => {
     it('renders successfully after error creating new project', () => {
         const tree = renderer.create(<UpdateProject
             result={mockErrorResult}
+            profilesAssigned={[]}
             profiles={mockProfiles}
             handleSubmit={mockHandleSubmit}
             handleChange={mockHandleChange}

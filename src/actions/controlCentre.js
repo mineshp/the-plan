@@ -56,6 +56,36 @@ export function deleteUser(id) {
             .catch((error) => dispatch(errorDeletingUser(error.message)));
 }
 
+export const successUpdatingUser = (data) => ({
+    type: 'USER_UPDATE_SUCCESS',
+    data
+});
+
+export const errorUpdatingUser = (error) => ({
+    type: 'USER_UPDATE_ERROR',
+    error
+});
+
+export function updateUser(existingUser) {
+    const token = auth.getToken();
+    return (dispatch) =>
+        fetch(`/api/admin/manage/users/update/${existingUser.id}`, {
+            method: 'post',
+            headers: setAuthorisationToken(token),
+            body: JSON.stringify(existingUser)
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(
+                    new Error(`Error updating user ${existingUser.username}, please try again later.`));
+            })
+            .then((data) => dispatch(successUpdatingUser(data)))
+            .catch((error) => dispatch(errorUpdatingUser(error.message)));
+}
+
+
 export const successRetrievingProfiles = (data) => ({
     type: 'PROFILES_RETRIEVED',
     data

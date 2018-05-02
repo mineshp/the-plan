@@ -86,7 +86,6 @@ class UpdateProject extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
         this.createOrUpdateProject();
     }
 
@@ -121,6 +120,7 @@ class UpdateProject extends Component {
 
     render() {
         const { admin, result } = this.props;
+
         return (
             // eslint-disable-next-line no-underscore-dangle
             !result || Array.isArray(result) || !result._id || admin.controlCentre.profiles.length === 0
@@ -133,6 +133,7 @@ class UpdateProject extends Component {
                     handleDropDownSelection={this.handleDropDownSelection}
                     handleProjectDescriptionChange={this.handleProjectDescriptionChange}
                     handleCheckboxSelectionForProfiles={this.handleCheckboxSelectionForProfiles}
+                    profilesAssigned={this.state.profilesAssigned}
                 />
         );
     }

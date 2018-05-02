@@ -11,9 +11,14 @@ const UpdateProject = ({
     handleChange,
     handleProjectDescriptionChange,
     handleCheckboxSelectionForProfiles,
-    handleDropDownSelection
-}) =>
-    (
+    handleDropDownSelection,
+    profilesAssigned
+}) => {
+    const assigned = profilesAssigned && profilesAssigned.length > 0
+        ? profilesAssigned
+        : result.profilesAssigned || [];
+
+    return (
         <Container className="content-body">
             <Form onSubmit={handleSubmit}>
                 <Form.Field>
@@ -37,13 +42,14 @@ const UpdateProject = ({
                 </Form.Field>
                 <CheckBoxGroup
                     data={profiles}
-                    assigned={result.profiles}
+                    assigned={assigned}
                     handleCheckBoxChange={handleCheckboxSelectionForProfiles}
                 />
                 <Button color="green" type="submit">Save</Button>
             </Form>
         </Container>
     );
+};
 
 UpdateProject.propTypes = {
     result: PropTypes.shape({}).isRequired,
@@ -52,11 +58,13 @@ UpdateProject.propTypes = {
     handleChange: PropTypes.func.isRequired,
     handleProjectDescriptionChange: PropTypes.func.isRequired,
     handleDropDownSelection: PropTypes.func.isRequired,
-    handleCheckboxSelectionForProfiles: PropTypes.func.isRequired
+    handleCheckboxSelectionForProfiles: PropTypes.func.isRequired,
+    profilesAssigned: PropTypes.arrayOf(PropTypes.string)
 };
 
 UpdateProject.defaultProps = {
-    result: {}
+    result: {},
+    profilesAssigned: []
 };
 
 

@@ -4,13 +4,16 @@ import { Accordion, Container, Icon } from 'semantic-ui-react';
 import ViewProfiles from './ViewProfiles';
 import UpdateProfile from './UpdateProfile';
 import AssignProjectsToProfile from './AssignProjectsToProfile';
+import AssignUsersToProfile from './AssignUsersToProfile';
+
 
 const ManageProfiles = ({
     activeIndex, handleManageProfilesAccordionClick,
     handleDeleteProfile, profiles, handleProfileNameChange,
     handleProfileActiveChange, handleSubmit, handleProfileStatus,
     handleDropDownChange, handleSubmitToAssignProjectsToProfile,
-    projects, handleProjectCheckboxChange
+    projects, handleProjectCheckboxChange, handleSubmitToAssignUsersToProfile,
+    users, handleProfilesCheckboxChange, handleUsersDropDownChange, userProfilesAssigned
 }) => (
     <Container>
         <Accordion fluid styled>
@@ -51,6 +54,21 @@ const ManageProfiles = ({
                     handleProjectCheckboxChange={handleProjectCheckboxChange}
                 />
             </Accordion.Content>
+
+            <Accordion.Title active={activeIndex === 3} id="3" onClick={handleManageProfilesAccordionClick}>
+                <Icon name="dropdown" />
+                    Assign profiles to users
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 3}>
+                <AssignUsersToProfile
+                    profiles={profiles}
+                    users={users}
+                    handleUsersDropDownChange={handleUsersDropDownChange}
+                    handleSubmitToAssignUsersToProfile={handleSubmitToAssignUsersToProfile}
+                    handleProfilesCheckboxChange={handleProfilesCheckboxChange}
+                    userProfilesAssigned={userProfilesAssigned}
+                />
+            </Accordion.Content>
         </Accordion>
     </Container>
 );
@@ -64,16 +82,28 @@ ManageProfiles.propTypes = {
     handleDropDownChange: PropTypes.func.isRequired,
     handleSubmitToAssignProjectsToProfile: PropTypes.func.isRequired,
     handleProjectCheckboxChange: PropTypes.func.isRequired,
+    handleProfilesCheckboxChange: PropTypes.func.isRequired,
+    handleSubmitToAssignUsersToProfile: PropTypes.func.isRequired,
+    handleUsersDropDownChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     activeIndex: PropTypes.number.isRequired,
     profiles: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
         active: PropTypes.bool.isRequired
     })).isRequired,
+    users: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        username: PropTypes.string.isRequired
+    })).isRequired,
     projects: PropTypes.arrayOf(PropTypes.shape({
         _id: PropTypes.string.isRequired,
         projectName: PropTypes.string.isRequired,
-    })).isRequired
+    })).isRequired,
+    userProfilesAssigned: PropTypes.arrayOf(PropTypes.string)
+};
+
+ManageProfiles.defaultProps = {
+    userProfilesAssigned: []
 };
 
 export default ManageProfiles;

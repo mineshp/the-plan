@@ -12,6 +12,7 @@ const CheckBoxGroup = ({
         const keyId = item._id; // eslint-disable-line no-underscore-dangle
         const isChecked = assigned.includes(item.name);
         const checkedState = isChecked ? 'true' : 'false';
+
         return CheckBoxItems.push(
             <Form.Field key={keyId}>
                 <Checkbox
@@ -19,7 +20,7 @@ const CheckBoxGroup = ({
                     id={keyId}
                     data-cb={item.name}
                     onChange={handleCheckBoxChange}
-                    defaultChecked={isChecked}
+                    checked={isChecked}
                     value={checkedState}
                 />
             </Form.Field>
@@ -37,7 +38,7 @@ CheckBoxGroup.propTypes = {
 };
 
 CheckBoxGroup.defaultProps = {
-    assigned: []
+    assigned: null
 };
 
 export default CheckBoxGroup;
