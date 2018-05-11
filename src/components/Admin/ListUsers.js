@@ -1,11 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Icon, Table } from 'semantic-ui-react';
+import { Button, Container, Icon, Label, Table } from 'semantic-ui-react';
 
 
 const ListUsers = ({ handleDeleteUser, handleResetPwd, users }) => {
     const userRows = [];
     users.map((user) => {
+        const profilesAssignedLabels = user.profile.slice(0, 5).map((profile) => (
+            <Label
+                as="a"
+                key={`${user.id}-${profile}`}
+                color="pink"
+            > {profile}
+            </Label>
+        ));
+
         const disableAction = user.isAdmin ? user.isAdmin : null;
         const userId = user.id; // eslint-disable-line no-underscore-dangle
         return userRows.push(
@@ -14,7 +23,7 @@ const ListUsers = ({ handleDeleteUser, handleResetPwd, users }) => {
                     <Icon name={user.isAdmin ? 'graduation' : 'user'} /> {user.username}
                 </Table.Cell>
                 <Table.Cell>{user.email}</Table.Cell>
-                <Table.Cell>{user.profilesAssigned}</Table.Cell>
+                <Table.Cell>{profilesAssignedLabels}</Table.Cell>
                 <Table.Cell collapsing>
                     <Button color="green" size="small" id={userId} onClick={handleResetPwd}>
                         Reset Password

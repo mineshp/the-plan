@@ -63,7 +63,22 @@ exports[`Admin > Manage > ListUsers renders ListUsers component 1`] = `
         </td>
         <td
           className=""
-        />
+        >
+          <a
+            className="ui pink label"
+            onClick={[Function]}
+          >
+             
+            TESTA
+          </a>
+          <a
+            className="ui pink label"
+            onClick={[Function]}
+          >
+             
+            TESTB
+          </a>
+        </td>
         <td
           className="collapsing"
         >
