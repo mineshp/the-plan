@@ -123,7 +123,7 @@ class UpdateProject extends Component {
 
         return (
             // eslint-disable-next-line no-underscore-dangle
-            !result || Array.isArray(result) || !result._id || admin.controlCentre.profiles.length === 0
+            !result || Array.isArray(result) || admin.controlCentre.profiles.length === 0
                 ? <LoadingComponent />
                 : <UpdateProjectComponent
                     result={result}
