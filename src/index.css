@@ -278,6 +278,10 @@ body {
   background-color: #533d53 !important;
 }
 
+.ui.red.label {
+  position: relative
+}
+
 /* Loader */
 .ui.dimmer .ui.loader {
   color: #8fccb3;

@@ -10,6 +10,7 @@ import { ManageListConnectedComponent } from '../HOC/List/ManageList';
 import { UpdateListConnectedComponent } from '../HOC/List/Update';
 import { ManageProjectConnectedComponent } from '../HOC/Project/ManageProject';
 import { UpdateProjectConnectedComponent } from '../HOC/Project/Update';
+import { UserProfileConnectedComponent } from '../HOC/Shared/UserProfile';
 import NotFound from './Shared/NotFound';
 import Home from './Home';
 import requireAuth from '../utils/requireAuth';
@@ -23,6 +24,7 @@ const Main = () => (
         <Route path="/admin/manage" component={ControlCentreConnectedComponent} />
         <Route path="/user/register" component={RegisterConnectedComponent} />
         <Route path="/user/login" component={LoginConnectedComponent} />
+        <Route path="/user/profile" component={UserProfileConnectedComponent} />
         <Route path="/list/all" component={requireAuth(ManageListSummaryConnectedComponent)} />
         <Route path="/list/view/:id" component={requireAuth(ManageListConnectedComponent)} />
         <Route path="/list/update/:id" component={requireAuth(UpdateListConnectedComponent)} />

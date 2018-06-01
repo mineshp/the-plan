@@ -42,6 +42,9 @@ module.exports = function (app) {
 
     app.post('/api/user/register', user.register);
     app.post('/api/user/login', user.login);
+    app.get('/api/user/:username', authenticate, user.getUser);
+    app.post('/api/user/:id/setProfiles', authenticate, user.setProfilesToDisplay);
+
 
     app.get('/api/list/all', authenticate, list.getAllLists);
     app.get('/api/list/view/:id', authenticate, list.getListById);
@@ -57,11 +60,7 @@ module.exports = function (app) {
     app.get('/api/project/:id', authenticate, project.getProjectById);
     app.get('/api/project/:projectName/lists/', authenticate, list.getAllListsForProject);
 
-    app.all('/api/*', (req,res) => {
-		res.sendStatus(404);
-	});
-
-    // app.get('*', function (req, res) {
-    // 	res.sendFile(path.join(__dirname, './index.html'));
-    // });
+    app.all('/api/*', (req, res) => {
+        res.sendStatus(404);
+    });
 };

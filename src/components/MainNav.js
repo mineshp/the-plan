@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Dropdown, Menu } from 'semantic-ui-react';
+import { Button, Dropdown, Label, Menu } from 'semantic-ui-react';
 import logo from '../md-logo-green.png';
 
 export default class MainNav extends Component {
@@ -43,14 +43,18 @@ export default class MainNav extends Component {
 
     render() {
         const { activeItem } = this.state;
-        const { isAdmin, username } = this.props;
-        const displayName = username
-            ? `${username.charAt(0).toUpperCase() + username.slice(1)}`
+        const { user } = this.props;
+
+        const displayName = user.username
+            ? `${user.username.charAt(0).toUpperCase() + user.username.slice(1)}`
             : null;
-        const displayControlCentreItem = isAdmin
+
+        const displayControlCentreItem = user.isAdmin
             ? <Dropdown.Item onClick={this.handleItemClick} as={Link} to="/admin/manage">Control Centre</Dropdown.Item>
             : null;
-        const moto = this.getMotoByUser({ username });
+
+        const moto = this.getMotoByUser({ username: user.username });
+
         return (
             <div className="header-main">
                 <Menu>
@@ -84,30 +88,45 @@ export default class MainNav extends Component {
                         <span className="moto">{moto}</span>
                     </Menu.Item>
 
-                    {
-                        this.props.username
-                            ?
-                            (
-                                <Menu.Item position="right">
-                                    <Dropdown text={displayName} icon="user" floating labeled button className="icon blue">
-                                        <Dropdown.Menu>
-                                            {displayControlCentreItem}
-                                            <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </Menu.Item>
-                            )
-                            :
-                            (<Menu.Item
-                                as={Link}
-                                to="/user/login"
-                                position="right"
-                                name="sign-in"
-                                active={activeItem === 'sign-in'}
-                                onClick={this.handleItemClick}
-                            >Sign-in
-                            </Menu.Item>)
-                    }
+                    <Menu.Menu position="right">
+                        {
+                            user.username &&
+                            <Menu.Item>
+                                <Label className="badge-labels" floating color="red">{user.profilesToDisplay.length}</Label>
+                                <Button
+                                    as={Link}
+                                    color="green"
+                                    icon="id card"
+                                    content="Profile(s)"
+                                    to="/user/profile"
+                                />
+                            </Menu.Item>
+                        }
+
+                        {
+                            user.username
+                                ?
+                                (
+                                    <Menu.Item>
+                                        <Dropdown text={displayName} icon="user" floating labeled button className="icon blue">
+                                            <Dropdown.Menu>
+                                                {displayControlCentreItem}
+                                                <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+                                    </Menu.Item>
+                                )
+                                :
+                                (<Menu.Item
+                                    as={Link}
+                                    to="/user/login"
+                                    name="sign-in"
+                                    active={activeItem === 'sign-in'}
+                                    onClick={this.handleItemClick}
+                                >Sign-in
+                                </Menu.Item>)
+                        }
+                    </Menu.Menu>
                 </Menu>
             </div>
         );
@@ -115,12 +134,15 @@ export default class MainNav extends Component {
 }
 
 MainNav.propTypes = {
-    username: PropTypes.string,
-    isAdmin: PropTypes.bool,
+    user: PropTypes.shape({
+        username: PropTypes.string,
+        isAdmin: PropTypes.bool,
+        profile: PropTypes.arrayOf(PropTypes.string),
+        profilesToDisplay: PropTypes.arrayOf(PropTypes.string),
+    }),
     logout: PropTypes.func.isRequired
 };
 
 MainNav.defaultProps = {
-    username: null,
-    isAdmin: false
+    user: null
 };

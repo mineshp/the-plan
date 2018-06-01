@@ -56,6 +56,74 @@ describe('authentication reducer', () => {
         });
     });
 
+    describe('SET PROFILES TO DISPLAY ACTIONS', () => {
+        it('should handle SUCCESS_SETTING_PROFILES', () => {
+            expect(authentication({}, {
+                type: 'SUCCESS_SETTING_PROFILES',
+                profilesToDisplay: ['PROFILE_X', 'PROFILE_Y']
+            })).toEqual({
+                notification: {
+                    message: 'Successfully set profiles to be displayed',
+                    level: 'success',
+                    title: 'Success'
+                },
+                profilesToDisplay: ['PROFILE_X', 'PROFILE_Y']
+            });
+        });
+
+        it('should handle ERROR_SETTING_PROFILES', () => {
+            expect(authentication({}, {
+                type: 'ERROR_SETTING_PROFILES',
+                error: 'Unable to set profiles to display.'
+            })).toEqual({
+                notification: {
+                    message: 'Unable to set profiles to display.',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
+                    isError: true
+                }
+            });
+        });
+    });
+
+    describe('GET_USER ACTIONS', () => {
+        it('should handle SUCCESS_GETTING_USER', () => {
+            expect(authentication({}, {
+                type: 'SUCCESS_GETTING_USER',
+                user: {
+                    username: 'testUser'
+                }
+            })).toEqual({
+                notification: {
+                    message: 'Successfully retrieved updated user',
+                    level: 'success',
+                    title: 'Success'
+                },
+                user: {
+                    username: 'testUser'
+                }
+            });
+        });
+
+        it('should handle ERROR_GETTING_USER', () => {
+            expect(authentication({}, {
+                type: 'ERROR_GETTING_USER',
+                error: 'Unable to get user testUser.'
+            })).toEqual({
+                notification: {
+                    message: 'Unable to get user testUser.',
+                    level: 'error',
+                    title: 'Error'
+                },
+                error: {
+                    isError: true
+                }
+            });
+        });
+    });
+
     describe('LOGIN ACTIONS', () => {
         it('should handle SUCCESS_LOGIN', () => {
             expect(authentication({}, {

@@ -153,13 +153,17 @@ exports[`MainNav Component Guest User renders navigation component with Sign In 
         Make your dreams a reality
       </span>
     </div>
-    <a
-      className="right item"
-      href="/user/login"
-      onClick={[Function]}
+    <div
+      className="right menu"
     >
-      Sign-in
-    </a>
+      <a
+        className="item"
+        href="/user/login"
+        onClick={[Function]}
+      >
+        Sign-in
+      </a>
+    </div>
   </div>
 </div>
 `;
@@ -318,47 +322,76 @@ exports[`MainNav Component Logged In User - non admin renders navigation compone
       </span>
     </div>
     <div
-      className="right item"
-      onClick={[Function]}
+      className="right menu"
     >
       <div
-        aria-busy={undefined}
-        aria-disabled={undefined}
-        aria-expanded={false}
-        aria-multiselectable={undefined}
-        className="ui button floating labeled dropdown icon blue"
-        onBlur={[Function]}
-        onChange={[Function]}
+        className="item"
         onClick={[Function]}
-        onFocus={[Function]}
-        onMouseDown={[Function]}
-        role="listbox"
-        tabIndex={0}
       >
         <div
-          aria-live="polite"
-          className="text"
-          role="alert"
-        >
-          TestUser
-        </div>
-        <i
-          aria-hidden="true"
-          className="user icon"
+          className="ui red floating label badge-labels"
           onClick={[Function]}
-        />
+        >
+          1
+        </div>
+        <a
+          className="ui green button"
+          disabled={undefined}
+          href="/user/profile"
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="id card icon"
+          />
+          Profile(s)
+        </a>
+      </div>
+      <div
+        className="item"
+        onClick={[Function]}
+      >
         <div
-          className="menu transition"
+          aria-busy={undefined}
+          aria-disabled={undefined}
+          aria-expanded={false}
+          aria-multiselectable={undefined}
+          className="ui button floating labeled dropdown icon blue"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseDown={[Function]}
+          role="listbox"
+          tabIndex={0}
         >
           <div
-            aria-checked={undefined}
-            aria-disabled={undefined}
-            aria-selected={undefined}
-            className="item"
-            onClick={[Function]}
-            role="option"
+            aria-live="polite"
+            className="text"
+            role="alert"
           >
-            Logout
+            TestUser
+          </div>
+          <i
+            aria-hidden="true"
+            className="user icon"
+            onClick={[Function]}
+          />
+          <div
+            className="menu transition"
+          >
+            <div
+              aria-checked={undefined}
+              aria-disabled={undefined}
+              aria-selected={undefined}
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              Logout
+            </div>
           </div>
         </div>
       </div>

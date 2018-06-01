@@ -60,7 +60,9 @@ exports.login = (req, res) => {
                         id: collection.id,
                         username: collection.username,
                         email: collection.email,
-                        isAdmin: collection.isAdmin
+                        isAdmin: collection.isAdmin,
+                        profile: collection.profile,
+                        profilesToDisplay: collection.profilesToDisplay
                     };
                     res.send({
                         user: payload,
@@ -91,31 +93,76 @@ exports.getAllUsers = (req, res) => {
                 username: userObj.username,
                 email: userObj.email,
                 isAdmin: userObj.isAdmin,
-                profile: userObj.profile
+                profile: userObj.profile,
+                profilesToDisplay: userObj.profilesToDisplay
             })
         );
         res.send(users);
     });
 };
 
+exports.getUser = (req, res) => {
+    const userName = req.body.username;
+    User.findOne({ userName }, (err, collection) => {
+        if (err) {
+            res.status(400);
+            res.json(
+                {
+                    message: `Error: Unable to search for username ${userName}, error ${err}.`
+                }
+            );
+        }
+
+        const updatedUserObj = {
+            id: collection.id,
+            username: collection.username,
+            email: collection.email,
+            isAdmin: collection.isAdmin,
+            profile: collection.profile,
+            profilesToDisplay: collection.profilesToDisplay
+        };
+
+        res.send(updatedUserObj);
+    });
+};
+
 exports.updateUser = (req, res) => {
     const data = req.body;
-    console.log('data', data);
-    User.update({ _id: req.params.id }, data, function(err, result) {
+    User.update({ _id: req.params.id }, data, function (err, result) {
         if (err) {
-			res.status(400);
-			res.json(
-				{
-					message: `Error: User update failed for id ${req.params.id}.`
-				}
-			);
-		}
-		else {
-			res.status(200);
-			res.send(data);
-		}
+            res.status(400);
+            res.json(
+                {
+                    message: `Error: User update failed for id ${req.params.id}.`
+                }
+            );
+        }
+        else {
+            res.status(200);
+            res.send(data);
+        }
     });
-}
+};
+
+exports.setProfilesToDisplay = (req, res) => {
+    const data = req.body;
+    User.update({ _id: req.params.id },
+        { profilesToDisplay: data }, function (err, result) {
+        if (err) {
+            res.status(400);
+            res.json(
+                {
+                    message: `Error: User update failed for id ${req.params.id}.`
+                }
+            );
+        }
+        else {
+            res.status(200);
+            console.log('RES', result);
+            res.send(result);
+        }
+    });
+};
 
 exports.deleteUser = (req, res) => {
     const id = req.params.id;

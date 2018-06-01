@@ -52,6 +52,76 @@ export function setCurrentUser(user) {
     };
 }
 
+export function successSettingProfilesToDisplay(profilesToDisplay) {
+    return {
+        type: 'SUCCESS_SETTING_PROFILES',
+        profilesToDisplay
+    };
+}
+
+export const errorSettingProfilesToDisplay = (error) => ({
+    type: 'ERROR_SETTING_PROFILES',
+    error
+});
+
+export function successGettingUser(user) {
+    return {
+        type: 'SUCCESS_GETTING_USER',
+        user
+    };
+}
+
+export const errorGettingUser = (error) => ({
+    type: 'ERROR_GETTING_USER',
+    error
+});
+
+export function getUser(username) {
+    const token = auth.getToken();
+    return (dispatch) =>
+        fetch(`/api/user/${username}`, {
+            headers: setAuthorisationToken(token),
+        })
+            .then((res) => {
+                if (res.ok) {
+                    // console.log('res', res.json());
+                    return res.json();
+                }
+                return Promise.reject(
+                    new Error(
+                        `Unable to get user ${username}.`
+                    ));
+            })
+            .then((data) => dispatch(successGettingUser(data)))
+            .catch((error) => {
+                dispatch(errorGettingUser(error.message));
+            });
+}
+
+export function setProfilesToDisplay(profilesSelected, user) {
+    const token = auth.getToken();
+    return (dispatch) =>
+        fetch(`/api/user/${user.id}/setProfiles`, {
+            method: 'post',
+            headers: setAuthorisationToken(token),
+            body: JSON.stringify(profilesSelected)
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(
+                    new Error(
+                        'Unable to set profiles to display.'
+                    ));
+            })
+            .then((data) => {
+                dispatch(successSettingProfilesToDisplay(data));
+                return dispatch(getUser(user.username));
+            })
+            .catch((error) => dispatch(errorSettingProfilesToDisplay(error.message)));
+}
+
 export function loginUser(loginDetails) {
     const token = auth.getToken();
     return (dispatch) =>

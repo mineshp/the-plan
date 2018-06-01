@@ -24,9 +24,8 @@ const UserSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    profile: [{
-        type: String
-    }]
+    profile: [String],
+    profilesToDisplay: [String]
 });
 
 UserSchema.pre('save', function saveHook(next) {
