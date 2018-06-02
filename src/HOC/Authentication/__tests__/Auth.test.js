@@ -69,9 +69,13 @@ describe('Auth Service', () => {
     });
 
     describe('setToken', () => {
-        it('jwtToken and isLoggedOn is set', () => {
+        it('jwtToken, isLoggedOn and profilesToDisplay is set', () => {
+            decode.mockImplementation(() => ({
+                username: 'testUser',
+                profilesToDisplay: ['PROFILEX', 'PROFILEY']
+            }));
             Auth.prototype.setToken('aSecretToken');
-            expect(global.localStorage.setItem).toHaveBeenCalledTimes(2);
+            expect(global.localStorage.setItem).toHaveBeenCalledTimes(3);
         });
     });
 
@@ -85,7 +89,7 @@ describe('Auth Service', () => {
     describe('logout', () => {
         it('remove localStorage items', () => {
             Auth.prototype.logout();
-            expect(global.localStorage.removeItem).toHaveBeenCalledTimes(2);
+            expect(global.localStorage.removeItem).toHaveBeenCalledTimes(3);
         });
     });
 
@@ -101,6 +105,21 @@ describe('Auth Service', () => {
                 username: 'testUser',
                 email: 'myemail@test.com'
             });
+        });
+    });
+
+    describe('saveProfileDataForUser', () => {
+        it('removes existing item and sets a new one', () => {
+            Auth.prototype.saveProfileDataForUser(['ProfileX', 'ProfileY']);
+            expect(global.localStorage.removeItem).toHaveBeenCalledTimes(1);
+            expect(global.localStorage.setItem).toHaveBeenCalledWith('profilesToDisplay', ['ProfileX', 'ProfileY']);
+        });
+    });
+
+    describe('getProfilesToDisplay', () => {
+        it('removes existing item and sets a new one', () => {
+            Auth.prototype.getProfilesToDisplay();
+            expect(global.localStorage.getItem).toHaveBeenCalledWith('profilesToDisplay');
         });
     });
 });

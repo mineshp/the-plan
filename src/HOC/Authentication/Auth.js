@@ -21,6 +21,8 @@ export default class Auth {
     setToken(jwtToken) {
         localStorage.setItem('jwtToken', jwtToken);
         localStorage.setItem('isLoggedIn', true);
+        const { profilesToDisplay } = this.getUserProfile();
+        localStorage.setItem('profilesToDisplay', profilesToDisplay);
     }
 
     getToken() {
@@ -29,10 +31,20 @@ export default class Auth {
 
     logout() {
         localStorage.removeItem('jwtToken');
+        localStorage.removeItem('profilesToDisplay');
         localStorage.removeItem('isLoggedIn');
     }
 
     getUserProfile() {
         return decode(this.getToken());
+    }
+
+    saveProfileDataForUser(profilesSet) {
+        localStorage.removeItem('profilesToDisplay');
+        localStorage.setItem('profilesToDisplay', profilesSet);
+    }
+
+    getProfilesToDisplay() {
+        return localStorage.getItem('profilesToDisplay') || '';
     }
 }

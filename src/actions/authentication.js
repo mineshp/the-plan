@@ -92,7 +92,11 @@ export function getUser(username) {
                         `Unable to get user ${username}.`
                     ));
             })
-            .then((data) => dispatch(successGettingUser(data)))
+            .then((data) => {
+                // set cookie
+                auth.saveProfileDataForUser(data.profilesToDisplay);
+                return dispatch(successGettingUser(data));
+            })
             .catch((error) => {
                 dispatch(errorGettingUser(error.message));
             });

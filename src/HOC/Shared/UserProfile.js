@@ -43,8 +43,7 @@ class UserProfile extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.props.actions.setProfilesToDisplay(this.state.profilesAssigned, this.props.user)
-            .then((data) => {
-                this.props.actions.setCurrentUser(data);
+            .then(() => {
                 this.props.actions.addNotification(this.props.notification);
                 this.context.router.history.push('/');
             });

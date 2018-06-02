@@ -69,14 +69,7 @@ module.exports = {
                     "**/*.test.js"
                 ]
             }],
-        "class-methods-use-this": ["error", {
-            "exceptMethods": [
-                "isTokenExpired",
-                "setToken",
-                "getToken",
-                "logout"
-            ]
-        }]
+        "class-methods-use-this": ["off", {}]
     },
     "settings": {
         "import/resolver": {

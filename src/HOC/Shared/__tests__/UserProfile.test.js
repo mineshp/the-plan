@@ -21,7 +21,7 @@ const props = {
             Promise.resolve()
         )),
         setCurrentUser: jest.fn(() => (
-            Promise.resolve()
+            Promise.resolve({ data: mockUser() })
         ))
     },
     user: mockUser(),
@@ -76,7 +76,6 @@ describe('Manage UserProfile', () => {
         it('calls handleSubmit successfully', async () => {
             await wrapper.instance().handleDropDownSelection(mockEvent, { value: ['PROFILEY', 'PROFILEZ'] });
             await wrapper.instance().handleSubmit(mockEvent);
-            expect(props.actions.setCurrentUser).toHaveBeenCalledTimes(1);
             expect(props.actions.addNotification).toHaveBeenCalledTimes(1);
             await expect(context.router.history.push).toHaveBeenCalledWith('/');
         });
