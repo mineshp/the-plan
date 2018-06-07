@@ -1,5 +1,11 @@
 const Project = require('mongoose').model('Project');
 
+exports.getAllProjectsBySelectedProfiles = function (req, res) {
+	Project.find({ profilesAssigned: { $in: req.body.profiles } }, function (err, collection) {
+		res.send(collection);
+	});
+};
+
 exports.getAllProjects = function(req,res) {
 	Project.find({}, function (err, collection) {
 		res.send(collection);

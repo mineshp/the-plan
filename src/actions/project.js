@@ -43,11 +43,18 @@ export const errorFetchingProject = (error) => ({
     error
 });
 
-export function listProjects() {
+export function listProjects(profiles) {
     const token = auth.getToken();
+    // console.log('auth', auth);
+    // console.log('auth in listProjects', auth.getProfilesToDisplay());
+    // console.log('profiles', profiles);
     return (dispatch) =>
-        fetch('/api/project/all', {
-            headers: setAuthorisationToken(token)
+        fetch('/api/project/byProfiles', {
+            method: 'post',
+            headers: setAuthorisationToken(token),
+            body: JSON.stringify({
+                profiles: profiles && profiles.split(',')
+            })
         })
             .then((res) => {
                 if (res.ok) {

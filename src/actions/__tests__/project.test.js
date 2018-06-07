@@ -1,14 +1,13 @@
 /* eslint-disable import/first */
 jest.mock('../../HOC/Authentication/Auth');
 import Auth from '../../HOC/Authentication/Auth';
-
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as actions from '../project';
+/* eslint-enable import/first */
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-
 const mockResponse = (status, statusText, response) => new window.Response(response, {
     status,
     statusText,
@@ -17,9 +16,13 @@ const mockResponse = (status, statusText, response) => new window.Response(respo
     }
 });
 
+const getToken = jest.fn();
+Auth.mockImplementation(() => ({
+    // getToken,
+    getProfilesToDisplay: jest.fn(() => ['PROFILEA', 'PROFILEC'])
+}));
+
 describe('Project actions', () => {
-    const getToken = jest.fn();
-    Auth.mockImplementation(() => ({ getToken }));
     describe('Create Project Actions', () => {
         it('should dispatch an action for PROJECT_CREATION_SUCCESS when calling createdProject to notify the user a project has been created', () => {
             const mockNewProjectCreationSuccessAPIResponse = {
@@ -333,6 +336,7 @@ describe('Project actions', () => {
             window.fetch = jest.fn().mockImplementation(() =>
                 Promise.resolve(mockResponse(200, null, JSON.stringify(mockListSuccessAPIResponse))));
 
+            // const getProfilesToDisplay = jest.fn(() => ['PROFILEA', 'PROFILEC']);
             const store = mockStore({ projects: [] });
 
             const expectedActions = [

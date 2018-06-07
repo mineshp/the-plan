@@ -1,3 +1,6 @@
+/* eslint-disable import/first */
+jest.mock('../../Authentication/Auth');
+import Auth from '../../Authentication/Auth';
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ManageListSummary } from '../ManageListSummary';
@@ -5,6 +8,8 @@ import ListsComponent from '../../../components/ListsSummary/ListsSummary';
 import LoadingComponent from '../../../components/Shared/Loading';
 import mockEvent from '../../../helpers/test/testData';
 import { mockListSummary, mockListSummaryByProject } from '../../../helpers/test/testData/listSummaryData';
+import { mockListProjects } from '../../../helpers/test/testData/projectData';
+/* eslint-enable import/first */
 
 const mockListAll = mockListSummary();
 const mockListByProject = mockListSummaryByProject();
@@ -24,6 +29,9 @@ const props = {
         )),
         update: jest.fn(() => (
             Promise.resolve()
+        )),
+        listProjects: jest.fn(() => (
+            Promise.resolve({ data: mockListProjects() })
         ))
     },
     notification: null,
@@ -42,7 +50,11 @@ const context = {
 
 describe('Manage Lists', () => {
     beforeEach(() => {
+        console.log('HI MIN');
         jest.clearAllMocks();
+        Auth.mockImplementation(() => ({
+            getProfilesToDisplay: ['PROFILEX,PROFILEZ']
+        }));
     });
     describe('Get all lists success', () => {
         let wrapper;
@@ -54,7 +66,6 @@ describe('Manage Lists', () => {
                 title: 'success'
             }
         });
-
         beforeEach(() => {
             wrapper = shallow(<ManageListSummary {...propsWithListData} />, { context });
         });
@@ -65,9 +76,9 @@ describe('Manage Lists', () => {
             expect(componentDidMountSpy).toHaveBeenCalled();
         });
 
-        it('calls the retrieveLists action when the fetchLists function is invoked', async () => {
-            wrapper.instance().fetchLists();
-            await expect(propsWithListData.actions.retrieveSummaryLists).toHaveBeenCalledWith();
+        it('calls the retrieveSummaryLists action when the fetchLists function is invoked', async () => {
+            await wrapper.instance().fetchLists();
+            await expect(propsWithListData.actions.retrieveSummaryLists).toHaveBeenCalledWith(['Iron Man', 'Thor', 'Captain America']);
             await expect(propsWithListData.actions.addNotification).toHaveBeenCalledWith({
                 message: 'Retrieved list summary',
                 level: 'success',
@@ -112,7 +123,7 @@ describe('Manage Lists', () => {
         });
 
         it('calls the retrieveSummaryListsByProject action when the fetchLists function is invoked ', async () => {
-            wrapper.instance().fetchLists();
+            await wrapper.instance().fetchLists();
             await expect(propsWithListData.actions.retrieveSummaryListsByProject).toHaveBeenCalledWith('marvel');
             await expect(propsWithListData.actions.retrieveSummaryLists).not.toHaveBeenCalled();
             await expect(propsWithListData.actions.addNotification).toHaveBeenCalledWith({
@@ -158,6 +169,9 @@ describe('Manage Lists', () => {
                 )),
                 update: jest.fn(() => (
                     Promise.resolve()
+                )),
+                listProjects: jest.fn(() => (
+                    Promise.resolve({ data: mockListProjects() })
                 ))
             });
 
@@ -180,7 +194,7 @@ describe('Manage Lists', () => {
         });
 
         it('retrieveSummaryLists - sets the notification to unknown error when no props notification exists', async () => {
-            wrapper.instance().fetchLists();
+            await wrapper.instance().fetchLists();
             await expect(propsAfterFetchListSummaryError.actions.retrieveSummaryLists).toHaveBeenCalled();
             await expect(propsAfterFetchListSummaryError.actions.addNotification).toHaveBeenCalledWith({
                 message: 'oh-no',
@@ -192,7 +206,7 @@ describe('Manage Lists', () => {
         it('retrieveSummaryListsByProject - sets the notification to unknown error when no props notification exists', async () => {
             const propsAfterFetchListSummaryByProjectError = Object.assign({}, propsAfterFetchListSummaryError, { match: { params: { projectName: 'testProject' } } });
             wrapper = shallow(<ManageListSummary {...propsAfterFetchListSummaryByProjectError} />);
-            wrapper.instance().fetchLists();
+            await wrapper.instance().fetchLists();
             await expect(propsAfterFetchListSummaryError.actions.retrieveSummaryListsByProject).toHaveBeenCalled();
             await expect(propsAfterFetchListSummaryError.actions.addNotification).toHaveBeenCalledWith({
                 message: 'oh-dear',
@@ -221,6 +235,9 @@ describe('Manage Lists', () => {
                 )),
                 update: jest.fn(() => (
                     Promise.resolve()
+                )),
+                listProjects: jest.fn(() => (
+                    Promise.resolve({ data: mockListProjects() })
                 ))
             },
             lists: {},
@@ -245,7 +262,7 @@ describe('Manage Lists', () => {
         });
 
         it('calls the fetchLists function when a list was deleted successfully', async () => {
-            wrapper.instance().fetchLists();
+            await wrapper.instance().fetchLists();
 
             await expect(propsAfterSuccessfulDelete.actions.retrieveSummaryLists).toHaveBeenCalled();
             await expect(propsAfterSuccessfulDelete.actions.retrieveSummaryLists).toHaveBeenCalledTimes(1);
@@ -273,6 +290,9 @@ describe('Manage Lists', () => {
                 )),
                 update: jest.fn(() => (
                     Promise.resolve()
+                )),
+                listProjects: jest.fn(() => (
+                    Promise.resolve({ data: mockListProjects() })
                 ))
             },
             lists: { data: mockListAll },
@@ -289,11 +309,10 @@ describe('Manage Lists', () => {
         });
 
         it('calls the update list action when the markListAsComplete event is invoked', async () => {
-            wrapper.instance().markListAsComplete(mockEvent(), { id: '001' });
+            await wrapper.instance().markListAsComplete(mockEvent(), { id: '001' });
             const mockListToUpdate = Object.assign({}, mockListAll[0], { completed: true });
 
             await expect(propsMarkListAsCompleted.actions.update).toHaveBeenCalledWith(mockListToUpdate);
-            await expect(propsMarkListAsCompleted.actions.retrieveSummaryLists).toHaveBeenCalled();
             await expect(propsMarkListAsCompleted.actions.addNotification).toHaveBeenCalled;
         });
     });

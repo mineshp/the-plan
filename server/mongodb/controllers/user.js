@@ -158,7 +158,6 @@ exports.setProfilesToDisplay = (req, res) => {
         }
         else {
             res.status(200);
-            console.log('RES', result);
             res.send(result);
         }
     });

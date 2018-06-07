@@ -2,13 +2,12 @@ const List = require('mongoose').model('List');
 const pdfExporter = require('../../export/pdf');
 
 
-exports.getAllLists = function(req,res) {
-	List.find(
-		{},
+exports.getAllLists = function (req, res) {
+	List.find({ "projects.name": { $in: req.body.projects } },
 		null,
 		{ sort: { completed: 1, updatedDate: -1 } },
 		function (err, collection) {
-		res.send(collection);
+			res.send(collection);
 	});
 };
 

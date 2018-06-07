@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteList, retrieveSummaryLists, retrieveSummaryListsByProject, update } from '../../actions/list';
+import Auth from '../Authentication/Auth';
+import { listProjects } from '../../actions/project';
 import { addNotification } from '../../actions/notification';
 import ListsSummaryRow from '../../components/ListsSummary/ListRow';
 import ListsSummaryComponent from '../../components/ListsSummary/ListsSummary';
 import LoadingComponent from '../../components/Shared/Loading';
+
+const auth = new Auth();
 
 class ManageListSummary extends Component {
     constructor(props, context) {
@@ -21,6 +25,28 @@ class ManageListSummary extends Component {
         this.fetchLists();
     }
 
+    async getProjectsByProfilesSelected() {
+        const profiles = auth.getProfilesToDisplay();
+        console.log('prof', auth);
+        const projectsObjects = await this.props.actions.listProjects(profiles);
+        return projectsObjects.data.map((project) => project.projectName);
+    }
+
+    async markListAsComplete(event, data) {
+        event.preventDefault();
+        const listToReplaceIndex =
+            this.props.lists.data.findIndex((list) => list._id === data.id); // eslint-disable-line no-underscore-dangle
+        const listsClone = Object.assign([], this.props.lists.data);
+        const listToUpdate = listsClone[listToReplaceIndex];
+
+        const updatedList = Object.assign({}, listToUpdate, { completed: !listToUpdate.completed });
+        return this.props.actions.update(updatedList)
+            .then(() => {
+                this.fetchLists();
+                this.props.actions.addNotification(this.props.notification);
+            });
+    }
+
     deleteList(event) {
         event.preventDefault();
         const listIdToDelete = event.target.value;
@@ -31,22 +57,7 @@ class ManageListSummary extends Component {
             });
     }
 
-    markListAsComplete(event, data) {
-        event.preventDefault();
-        const listToReplaceIndex =
-            this.props.lists.data.findIndex((list) => list._id === data.id); // eslint-disable-line no-underscore-dangle
-        const listsClone = Object.assign([], this.props.lists.data);
-        const listToUpdate = listsClone[listToReplaceIndex];
-
-        const updatedList = Object.assign({}, listToUpdate, { completed: !listToUpdate.completed });
-        this.props.actions.update(updatedList)
-            .then(() => {
-                this.fetchLists();
-                this.props.actions.addNotification(this.props.notification);
-            });
-    }
-
-    fetchLists() {
+    async fetchLists() {
         if (this.props.match.params && this.props.match.params.projectName) {
             const projectName = this.props.match.params.projectName;
             this.props.actions.retrieveSummaryListsByProject(projectName)
@@ -61,7 +72,8 @@ class ManageListSummary extends Component {
                     this.props.actions.addNotification(notification);
                 });
         } else {
-            this.props.actions.retrieveSummaryLists()
+            const projects = await this.getProjectsByProfilesSelected();
+            this.props.actions.retrieveSummaryLists(projects)
                 .then((data) => {
                     const notification = this.props.notification
                         ? this.props.notification
@@ -116,7 +128,8 @@ ManageListSummary.propTypes = {
         retrieveSummaryLists: PropTypes.func.isRequired,
         retrieveSummaryListsByProject: PropTypes.func.isRequired,
         addNotification: PropTypes.func.isRequired,
-        update: PropTypes.func.isRequired
+        update: PropTypes.func.isRequired,
+        listProjects: PropTypes.func.isRequired
     }),
     lists: PropTypes.shape([]),
     notification: PropTypes.shape({
@@ -158,7 +171,8 @@ const mapDispatchToProps = (dispatch) => (
             retrieveSummaryLists,
             retrieveSummaryListsByProject,
             addNotification,
-            update
+            update,
+            listProjects
         }, dispatch)
     }
 );

@@ -85,11 +85,13 @@ export function downloadPDF(listId) {
     };
 }
 
-export function retrieveSummaryLists() {
+export function retrieveSummaryLists(projects) {
     const token = auth.getToken();
     return (dispatch) =>
         fetch('/api/list/all', {
-            headers: setAuthorisationToken(token)
+            method: 'post',
+            headers: setAuthorisationToken(token),
+            body: JSON.stringify({ projects })
         })
             .then((res) => {
                 if (res.ok) {
