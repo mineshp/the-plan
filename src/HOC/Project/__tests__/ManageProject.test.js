@@ -1,9 +1,12 @@
+/* eslint-disable import/first */
+jest.mock('../../Authentication/Auth');
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ManageProject } from '../ManageProject';
 import ListProjectsComponent from '../../../components/Project/ListProjects';
 import { mockListProjects } from '../../../helpers/test/testData/projectData';
 import mockEvent from '../../../helpers/test/testData';
+/* eslint-enable import/first */
 
 const mockListAllProjects = mockListProjects();
 
@@ -46,7 +49,7 @@ describe('Manage Projects', () => {
         });
 
         it('calls the listProjects action when the fetchProjectsList function is invoked', async () => {
-            wrapper.instance().fetchProjectsList();
+            await wrapper.instance().fetchProjectsList();
             await expect(successProjectsListsProps.actions.listProjects).toHaveBeenCalled();
             await expect(successProjectsListsProps.actions.addNotification).toHaveBeenCalledWith(
                 {
@@ -106,7 +109,7 @@ describe('Manage Projects', () => {
             jest.clearAllMocks();
         });
         it('calls the listProjects action when a user is not logged in, return notification error', async () => {
-            wrapper.instance().fetchProjectsList();
+            await wrapper.instance().fetchProjectsList();
             await expect(propsAfterFetchProjectsError.actions.listProjects).toHaveBeenCalled();
             await expect(propsAfterFetchProjectsError.actions.addNotification).toHaveBeenCalledWith({
                 message: 'oh-dear',
@@ -151,7 +154,7 @@ describe('Manage Projects', () => {
         });
 
         it('calls the fetchProjectList when a project was deleted successfully', async () => {
-            wrapper.instance().fetchProjectsList();
+            await wrapper.instance().fetchProjectsList();
 
             await expect(propsAfterSuccessfulDelete.actions.listProjects).toHaveBeenCalled();
             await expect(propsAfterSuccessfulDelete.actions.listProjects).toHaveBeenCalledTimes(2);

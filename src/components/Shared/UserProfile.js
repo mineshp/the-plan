@@ -11,7 +11,9 @@ const UserProfile = ({
     <div className="List main content-body">
         <Container>
             <Header as="h1">Select Profile(s) to access</Header>
-            <p>This sets the profiles available for you to access, the dropdown provides all possible profiles you have access to. All projects are assigned to a profile, so if you do not select the correct profiles you may not see what you are expecting.</p>
+            <p>
+                This sets the profiles available for you to access, the dropdown provides all possible profiles you have access to. All projects are assigned to a profile, so if you do not select the correct profiles you may not see what you are expecting.
+            </p>
             <Form onSubmit={handleSubmit}>
                 <Select
                     placeholder="Profiles"

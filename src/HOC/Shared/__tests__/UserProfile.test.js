@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
 import { UserProfile } from '../UserProfile';
 import { mockProfileOptions, mockUser } from '../../../helpers/test/testData/authenticationData';
 import { mockListProfiles } from '../../../helpers/test/testData/controlCentreData';

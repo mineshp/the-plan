@@ -195,7 +195,7 @@ class ControlCentre extends Component {
     }
 
     async retrieveProjects() {
-        await this.props.actions.listProjects();
+        await this.props.actions.listProjects('all');
     }
 
     async fetchAllUsers() {
