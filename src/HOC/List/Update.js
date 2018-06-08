@@ -9,6 +9,9 @@ import { addNotification } from '../../actions/notification';
 import UpdateListComponent from '../../components/List/UpdateList';
 import { addOrRemoveItems, buildListData, listSetupIsComplete, validateHeadings } from '../../helpers/validators/list';
 import LoadingComponent from '../../components/Shared/Loading';
+import Auth from '../Authentication/Auth';
+
+const auth = new Auth();
 
 class UpdateList extends Component {
     constructor(props, context) {
@@ -36,7 +39,8 @@ class UpdateList extends Component {
     }
 
     async componentWillMount() {
-        this.props.actions.listProjects();
+        const profiles = await auth.getProfilesToDisplay();
+        this.props.actions.listProjects(profiles);
         if (this.props.match.params && this.props.match.params.id) {
             const listId = this.props.match.params.id;
             await this.props.actions.retrieveListById(listId)

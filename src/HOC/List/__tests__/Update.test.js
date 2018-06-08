@@ -1,8 +1,11 @@
+/* eslint-disable import/first */
+jest.mock('../../Authentication/Auth');
 import React from 'react';
 import { shallow } from 'enzyme';
 import { UpdateList } from '../Update';
 import LoadingComponent from '../../../components/Shared/Loading';
 import { mockUpdateSingleList } from '../../../helpers/test/testData/listData';
+/* eslint-enable import/first */
 
 const mockList = mockUpdateSingleList();
 
