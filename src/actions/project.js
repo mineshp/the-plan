@@ -45,9 +45,6 @@ export const errorFetchingProject = (error) => ({
 
 export function listProjects(profiles) {
     const token = auth.getToken();
-    // console.log('auth', auth);
-    // console.log('auth in listProjects', auth.getProfilesToDisplay());
-    // console.log('profiles', profiles);
     return (dispatch) =>
         fetch('/api/project/byProfiles', {
             method: 'post',

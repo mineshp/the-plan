@@ -27,7 +27,6 @@ class ManageListSummary extends Component {
 
     async getProjectsByProfilesSelected() {
         const profiles = auth.getProfilesToDisplay();
-        console.log('prof', auth);
         const projectsObjects = await this.props.actions.listProjects(profiles);
         return projectsObjects.data.map((project) => project.projectName);
     }

@@ -50,7 +50,6 @@ const context = {
 
 describe('Manage Lists', () => {
     beforeEach(() => {
-        console.log('HI MIN');
         jest.clearAllMocks();
         Auth.mockImplementation(() => ({
             getProfilesToDisplay: ['PROFILEX,PROFILEZ']

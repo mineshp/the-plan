@@ -16,11 +16,11 @@ const mockResponse = (status, statusText, response) => new window.Response(respo
     }
 });
 
-const getToken = jest.fn();
-Auth.mockImplementation(() => ({
-    // getToken,
-    getProfilesToDisplay: jest.fn(() => ['PROFILEA', 'PROFILEC'])
-}));
+// const getToken = jest.fn();
+// Auth.mockImplementation(() => ({
+//     // getToken,
+//     getProfilesToDisplay: jest.fn(() => ['PROFILEA', 'PROFILEC'])
+// }));
 
 describe('Project actions', () => {
     describe('Create Project Actions', () => {
@@ -336,7 +336,6 @@ describe('Project actions', () => {
             window.fetch = jest.fn().mockImplementation(() =>
                 Promise.resolve(mockResponse(200, null, JSON.stringify(mockListSuccessAPIResponse))));
 
-            // const getProfilesToDisplay = jest.fn(() => ['PROFILEA', 'PROFILEC']);
             const store = mockStore({ projects: [] });
 
             const expectedActions = [
@@ -346,7 +345,7 @@ describe('Project actions', () => {
                 }
             ];
 
-            return store.dispatch(actions.listProjects()).then(() => {
+            return store.dispatch(actions.listProjects('PROFILEX,PROFILEY')).then(() => {
                 // return of async actions
                 expect(store.getActions()).toEqual(expectedActions);
             });
@@ -365,7 +364,7 @@ describe('Project actions', () => {
                 }
             ];
 
-            return store.dispatch(actions.listProjects()).then(() => {
+            return store.dispatch(actions.listProjects('PROFILEX,PROFILEY')).then(() => {
                 // return of async actions
                 expect(store.getActions()).toEqual(expectedAction);
             });
