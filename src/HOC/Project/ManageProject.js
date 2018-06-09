@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Auth from '../Authentication/Auth';
 import { deleteProject, listProjects } from '../../actions/project';
 import { addNotification } from '../../actions/notification';
 import ProjectCard from '../../components/Project/ProjectCard';
 import ListProjectsComponent from '../../components/Project/ListProjects';
-
-const auth = new Auth();
 
 class ManageProject extends Component {
     constructor(props) {
@@ -31,9 +28,9 @@ class ManageProject extends Component {
             });
     }
 
-    async fetchProjectsList() {
-        const profiles = await auth.getProfilesToDisplay();
-        this.props.actions.listProjects(profiles)
+    fetchProjectsList() {
+        // const profiles = await auth.getProfilesToDisplay();
+        this.props.actions.listProjects()
             .then((data) => {
                 const notification = this.props.notification
                     ? this.props.notification

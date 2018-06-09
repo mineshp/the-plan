@@ -1,13 +1,11 @@
 const Project = require('mongoose').model('Project');
 
 exports.getAllProjectsBySelectedProfiles = function (req, res) {
-    let searchParams = {};
-    if (req.body.profiles !== 'all') {
-        searchParams = { profilesAssigned: { $in: req.body.profiles } };
-    }
-    Project.find(searchParams, function (err, collection) {
-        res.send(collection);
-    });
+	Project.find({ profilesAssigned: { $in: req.currentUser.profilesToDisplay } },
+		function (err, collection) {
+        	res.send(collection);
+		}
+	);
 };
 
 exports.getAllProjects = function(req,res) {

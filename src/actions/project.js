@@ -43,31 +43,27 @@ export const errorFetchingProject = (error) => ({
     error
 });
 
-// export function listProjects() {
-//     const token = auth.getToken();
-//     return (dispatch) =>
-//         fetch('/api/project/byProfiles', {
-//             headers: setAuthorisationToken(token),
-//         })
-//             .then((res) => {
-//                 if (res.ok) {
-//                     return res.json();
-//                 }
-//                 return Promise.reject(new Error('Unable to retrieve projects, please try again later.'));
-//             })
-//             .then((data) => dispatch(successListingProjects(data)))
-//             .catch((error) => dispatch(errorListingProjects(error.message)));
-// }
+export function listAllProjects() {
+    const token = auth.getToken();
+    return (dispatch) =>
+        fetch('/api/project/all', {
+            headers: setAuthorisationToken(token)
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(new Error('Unable to retrieve projects, please try again later.'));
+            })
+            .then((data) => dispatch(successListingProjects(data)))
+            .catch((error) => dispatch(errorListingProjects(error.message)));
+}
 
-export function listProjects(profiles) {
+export function listProjects() {
     const token = auth.getToken();
     return (dispatch) =>
         fetch('/api/project/byProfiles', {
-            method: 'post',
-            headers: setAuthorisationToken(token),
-            body: JSON.stringify({
-                profiles: profiles && profiles.split(',')
-            })
+            headers: setAuthorisationToken(token)
         })
             .then((res) => {
                 if (res.ok) {

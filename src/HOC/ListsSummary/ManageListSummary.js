@@ -21,8 +21,8 @@ class ManageListSummary extends Component {
         this.handleBtnClick = this.handleBtnClick.bind(this);
     }
 
-    componentDidMount() {
-        this.fetchLists();
+    async componentDidMount() {
+        await this.fetchLists();
     }
 
     async getProjectsByProfilesSelected() {

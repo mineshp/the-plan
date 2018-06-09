@@ -34,7 +34,7 @@ const props = {
         deleteProfile: jest.fn(() => (
             Promise.resolve({})
         )),
-        listProjects: jest.fn(() => (
+        listAllProjects: jest.fn(() => (
             Promise.resolve([])
         )),
         updateProject: jest.fn(() => (
@@ -680,7 +680,7 @@ describe('ControlCentre', () => {
             let wrapper;
 
             const propsActions = Object.assign({}, props.actions, {
-                listProjects: jest.fn(() => (
+                listAllProjects: jest.fn(() => (
                     Promise.resolve({
                         type: 'PROFILE_DELETION_SUCCESS',
                         success: {
@@ -718,7 +718,7 @@ describe('ControlCentre', () => {
                 wrapper = shallow(<ControlCentre {...propsWithControlCentreData} />);
 
                 propsWithControlCentreData.actions.retrieveUsers.mockClear();
-                propsWithControlCentreData.actions.listProjects.mockClear();
+                propsWithControlCentreData.actions.listAllProjects.mockClear();
                 propsWithControlCentreData.actions.retrieveProfiles.mockClear();
                 propsWithControlCentreData.actions.updateProject.mockClear();
                 propsWithControlCentreData.actions.deleteProfile.mockClear();
@@ -753,7 +753,7 @@ describe('ControlCentre', () => {
             let wrapper;
 
             const propsActions = Object.assign({}, props.actions, {
-                listProjects: jest.fn(() => (
+                listAllProjects: jest.fn(() => (
                     Promise.resolve({ error: 'oh-no' })
                 ))
             });

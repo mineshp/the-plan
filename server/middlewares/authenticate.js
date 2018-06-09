@@ -27,7 +27,8 @@ module.exports.authenticate = (req, res, next) => {
                         id: user._id, // eslint-disable-line no-underscore-dangle
                         username: user.username,
                         email: user.email,
-                        isAdmin: user.isAdmin
+                        isAdmin: user.isAdmin,
+                        profilesToDisplay: user.profilesToDisplay
                     };
                     next();
                 });

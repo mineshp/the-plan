@@ -345,8 +345,7 @@ describe('Project actions', () => {
                 }
             ];
 
-            return store.dispatch(actions.listProjects('PROFILEX,PROFILEY')).then(() => {
-                // return of async actions
+            return store.dispatch(actions.listProjects()).then(() => {
                 expect(store.getActions()).toEqual(expectedActions);
             });
         });
@@ -364,8 +363,43 @@ describe('Project actions', () => {
                 }
             ];
 
-            return store.dispatch(actions.listProjects('PROFILEX,PROFILEY')).then(() => {
-                // return of async actions
+            return store.dispatch(actions.listProjects()).then(() => {
+                expect(store.getActions()).toEqual(expectedAction);
+            });
+        });
+
+        it('a successful listAllProjects call via the store, dispatches the PROJECT_LIST_RETRIEVED action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(200, null, JSON.stringify(mockListSuccessAPIResponse))));
+
+            const store = mockStore({ projects: [] });
+
+            const expectedActions = [
+                {
+                    type: 'PROJECT_LIST_RETRIEVED',
+                    data: mockListSuccessAPIResponse
+                }
+            ];
+
+            return store.dispatch(actions.listAllProjects()).then(() => {
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+        });
+
+        it('an unsuccessful listAllProjects call via the store, dispatches the PROJECT_LIST_ERROR action', async () => {
+            window.fetch = jest.fn().mockImplementation(() =>
+                Promise.resolve(mockResponse(500, null, JSON.stringify(mockNewProjectCreationFailureAPIResponse))));
+
+            const store = mockStore({ projects: [] });
+
+            const expectedAction = [
+                {
+                    type: 'PROJECT_LIST_ERROR',
+                    error: mockNewProjectCreationFailureAPIResponse.message
+                }
+            ];
+
+            return store.dispatch(actions.listAllProjects()).then(() => {
                 expect(store.getActions()).toEqual(expectedAction);
             });
         });

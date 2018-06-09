@@ -53,7 +53,7 @@ module.exports = function (app) {
     app.get('/api/list/generate/pdf/:id', authenticate, list.generatePDF);
 
     app.get('/api/project/all', authenticate, project.getAllProjects);
-    app.post('/api/project/byProfiles', authenticate, project.getAllProjectsBySelectedProfiles);
+    app.get('/api/project/byProfiles', authenticate, project.getAllProjectsBySelectedProfiles);
     app.post('/api/project/update/:id', authenticate, project.updateProject);
     app.post('/api/project/update', authenticate, project.createNewProject);
     app.delete('/api/project/delete/:id', authenticate, project.delete);

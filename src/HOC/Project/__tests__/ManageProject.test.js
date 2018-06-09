@@ -49,7 +49,7 @@ describe('Manage Projects', () => {
         });
 
         it('calls the listProjects action when the fetchProjectsList function is invoked', async () => {
-            await wrapper.instance().fetchProjectsList();
+            wrapper.instance().fetchProjectsList();
             await expect(successProjectsListsProps.actions.listProjects).toHaveBeenCalled();
             await expect(successProjectsListsProps.actions.addNotification).toHaveBeenCalledWith(
                 {
@@ -109,7 +109,7 @@ describe('Manage Projects', () => {
             jest.clearAllMocks();
         });
         it('calls the listProjects action when a user is not logged in, return notification error', async () => {
-            await wrapper.instance().fetchProjectsList();
+            wrapper.instance().fetchProjectsList();
             await expect(propsAfterFetchProjectsError.actions.listProjects).toHaveBeenCalled();
             await expect(propsAfterFetchProjectsError.actions.addNotification).toHaveBeenCalledWith({
                 message: 'oh-dear',
@@ -154,7 +154,7 @@ describe('Manage Projects', () => {
         });
 
         it('calls the fetchProjectList when a project was deleted successfully', async () => {
-            await wrapper.instance().fetchProjectsList();
+            wrapper.instance().fetchProjectsList();
 
             await expect(propsAfterSuccessfulDelete.actions.listProjects).toHaveBeenCalled();
             await expect(propsAfterSuccessfulDelete.actions.listProjects).toHaveBeenCalledTimes(2);

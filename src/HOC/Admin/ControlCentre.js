@@ -11,7 +11,7 @@ import {
     deleteProfile,
     retrieveProfiles
 } from '../../actions/controlCentre';
-import { listProjects, update as updateProject } from '../../actions/project';
+import { listAllProjects, update as updateProject } from '../../actions/project';
 import { addNotification } from '../../actions/notification';
 import ControlCentreComponent from '../../components/Admin/ControlCentre';
 import LoadingComponent from '../../components/Shared/Loading';
@@ -194,8 +194,8 @@ class ControlCentre extends Component {
         this.state.projectsToAssignProfile.map((project) => this.updateProject(project));
     }
 
-    async retrieveProjects() {
-        await this.props.actions.listProjects('all');
+    retrieveProjects() {
+        this.props.actions.listAllProjects();
     }
 
     async fetchAllUsers() {
@@ -311,7 +311,7 @@ ControlCentre.propTypes = {
         updateProfile: PropTypes.func.isRequired,
         retrieveProfiles: PropTypes.func.isRequired,
         deleteProfile: PropTypes.func.isRequired,
-        listProjects: PropTypes.func.isRequired,
+        listAllProjects: PropTypes.func.isRequired,
         updateProject: PropTypes.func.isRequired,
         updateUser: PropTypes.func.isRequired,
         addNotification: PropTypes.func.isRequired
@@ -364,7 +364,7 @@ const mapDispatchToProps = (dispatch) => (
             updateProfile,
             retrieveProfiles,
             deleteProfile,
-            listProjects,
+            listAllProjects,
             updateProject,
             updateUser
         }, dispatch)
