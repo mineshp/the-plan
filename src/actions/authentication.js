@@ -95,6 +95,7 @@ export function getUser(username) {
             .then((data) => {
                 // set cookie
                 auth.saveProfileDataForUser(data.profilesToDisplay);
+
                 return dispatch(successGettingUser(data));
             })
             .catch((error) => {
@@ -145,6 +146,7 @@ export function loginUser(loginDetails) {
             })
             .then((data) => {
                 dispatch(setCurrentUser(data.user));
+                auth.saveProfileDataForUser(data.user.profilesToDisplay);
                 return dispatch(successLogin(data));
             })
             .catch((error) => dispatch(errorLogin(error.message)));

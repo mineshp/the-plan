@@ -54,6 +54,13 @@ if (auth.getToken()) {
     setAuthorisationToken(auth.getToken());
     store.dispatch(setCurrentUser(auth.getUserProfile()));
 }
+
+// TODO: To update the store for state persistence on every action update
+// store.subscribe((() => {
+//     console.log('calling set state with data ', store.getState().authentication.user.profilesToDisplay);
+//     auth.saveProfileDataForUser(store.getState().authentication.user.profilesToDisplay);
+// }));
+
 /* istanbul ignore next not testing redux-store-boiler-plate */
 render(
     <Provider store={store}>
