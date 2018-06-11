@@ -50,9 +50,14 @@ const store = configureStore({});
 const auth = new Auth();
 
 if (auth.getToken()) {
-    // Set this as default headers
-    setAuthorisationToken(auth.getToken());
-    store.dispatch(setCurrentUser(auth.getUserProfile()));
+    if (auth.isTokenExpired(auth.getToken())) {
+        auth.logout();
+        window.location = `${window.location.hostname}/user/login`;
+    } else {
+        // Set this as default headers
+        setAuthorisationToken(auth.getToken());
+        store.dispatch(setCurrentUser(auth.getUserProfile()));
+    }
 }
 
 // TODO: To update the store for state persistence on every action update
