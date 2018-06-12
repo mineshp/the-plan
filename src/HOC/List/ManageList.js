@@ -111,14 +111,15 @@ class ManageList extends Component {
         this.updateList();
     }
 
-    handleCompleted(event, data) {
+    async handleCompleted(event, data) {
         const rowToReplaceIndex = this.state.items.findIndex((row) => row.rowId === data.id);
         const itemsClone = Object.assign([], this.state.items);
         const rowToUpdate = itemsClone[rowToReplaceIndex];
-
         rowToUpdate.completed = !rowToUpdate.completed;
-        this.setState({
-            items: itemsClone
+        const updatedListItems = itemsClone.concat(itemsClone.splice(rowToReplaceIndex, 1));
+
+        await this.setState({
+            items: updatedListItems
         });
     }
 
