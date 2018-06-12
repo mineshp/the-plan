@@ -116,7 +116,10 @@ class ManageList extends Component {
         const itemsClone = Object.assign([], this.state.items);
         const rowToUpdate = itemsClone[rowToReplaceIndex];
         rowToUpdate.completed = !rowToUpdate.completed;
-        const updatedListItems = itemsClone.concat(itemsClone.splice(rowToReplaceIndex, 1));
+
+        const updatedListItems = (rowToUpdate.completed)
+            ? itemsClone.concat(itemsClone.splice(rowToReplaceIndex, 1))
+            : itemsClone;
 
         await this.setState({
             items: updatedListItems
