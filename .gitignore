@@ -24,3 +24,4 @@ yarn-error.log*
 
 /server/export/files
 /deployments
+dump/

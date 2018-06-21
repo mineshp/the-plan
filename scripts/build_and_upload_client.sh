@@ -73,6 +73,8 @@ cp -R build $TEMP_DEPLOY_FOLDER
 # Code Deploy
 cp appspec.yml $TEMP_DEPLOY_FOLDER
 cp -R deploy-scripts $TEMP_DEPLOY_FOLDER
+cp -R scripts/mongodb_backup.sh $TEMP_DEPLOY_FOLDER
+cp -R scripts/mongodb_restore.sh $TEMP_DEPLOY_FOLDER
 
 # Client App code
 cp client-pm2.json $TEMP_DEPLOY_FOLDER
