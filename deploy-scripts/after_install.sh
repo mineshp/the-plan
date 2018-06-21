@@ -30,6 +30,23 @@ cd $APP_CLIENT_DIR
 sudo npm install serve
 sudo chown -R ec2-user:ec2-user node_modules
 
+#### CRON ####
+
+## 1. Backup MongoDB every 6 hours to S3 ##
+chmod +x $APP_CLIENT_DIR/mongodb_backup.sh
+chmod +x $APP_CLIENT_DIR/mongodb_restore.sh
+
+echo "*** Add mongodb database restore script to cronjob"
+cat > /etc/cron.d/database-backups <<EOL
+#!/bin/bash
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=""
+0 */6 * * * root /opt/morpheus-client/mongodb_backup.sh >> /var/log/mongodb_backup.log 2>&1
+EOL
+
+#### END OF CRON ####
+
 # TODO: add some log rotate
 
 # Sleep for a bit you have worked hard, and then check if everything is up and running
