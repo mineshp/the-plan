@@ -47,9 +47,11 @@ class ManageProject extends Component {
         const Cards = [];
         const { projects } = this.props;
         if (projects && projects.data && projects.data.length > 0) {
-            projects.data.map((project) =>
+            projects.data.map((project) => {
+                console.log(`project ${project.createdDate}`);
                 // eslint-disable-next-line no-underscore-dangle
-                Cards.push(<ProjectCard data={project} key={project._id} onDeleteHandler={this.handleDelete} />));
+                return Cards.push(<ProjectCard data={project} key={project._id} onDeleteHandler={this.handleDelete} />);
+            });
         }
 
         return (

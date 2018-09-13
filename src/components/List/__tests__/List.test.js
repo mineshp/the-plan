@@ -14,9 +14,11 @@ const mockHandleCompleted = jest.fn();
 const mockItems = mockItemsData();
 const mockListData = mockSingleList();
 const mockDownloadPDF = jest.fn();
+const mockHandleListAccordionClick = jest.fn();
+const mockActiveIndex = 1;
 
 describe('List', () => {
-    it('renders ListHeadings component', () => {
+    it('renders ListHeadings, ListItems and ListFooter components', () => {
         const wrapper = shallow(<List
             list={mockListData}
             handleAddItem={mockHandleAddItem}
@@ -24,37 +26,13 @@ describe('List', () => {
             handleSubmit={mockHandleSubmit}
             handleDelete={mockHandleDelete}
             handleCompleted={mockHandleCompleted}
+            handleListAccordionClick={mockHandleListAccordionClick}
+            activeIndex={mockActiveIndex}
             downloadPDF={mockDownloadPDF}
             items={mockItems}
         />);
         expect(wrapper.find(ListHeadingComponent)).toHaveLength(1);
-    });
-
-    it('renders ListItemsComponent component', () => {
-        const wrapper = shallow(<List
-            list={mockListData}
-            handleAddItem={mockHandleAddItem}
-            handleChange={mockHandleChange}
-            handleSubmit={mockHandleSubmit}
-            handleDelete={mockHandleDelete}
-            handleCompleted={mockHandleCompleted}
-            downloadPDF={mockDownloadPDF}
-            items={mockItems}
-        />);
         expect(wrapper.find(ListItemsComponent)).toHaveLength(1);
-    });
-
-    it('renders ListFooterComponent component', () => {
-        const wrapper = shallow(<List
-            list={mockListData}
-            handleAddItem={mockHandleAddItem}
-            handleChange={mockHandleChange}
-            handleSubmit={mockHandleSubmit}
-            handleDelete={mockHandleDelete}
-            handleCompleted={mockHandleCompleted}
-            downloadPDF={mockDownloadPDF}
-            items={mockItems}
-        />);
         expect(wrapper.find(ListFooterComponent)).toHaveLength(1);
     });
 });

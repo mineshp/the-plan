@@ -5,6 +5,10 @@ import ProjectCard from '../ProjectCard';
 import ListProjects from '../ListProjects';
 import { mockProjectData } from '../../../helpers/test/testData/projectData';
 
+const localStringMock = jest.fn();
+    const mockDate = { toLocaleString: localStringMock };
+    helpers.formatDate(mockDate);
+
 const mockResult = {};
 const mockErrorResult = {
     error: {

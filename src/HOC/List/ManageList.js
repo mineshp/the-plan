@@ -20,9 +20,11 @@ class ManageList extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleCompleted = this.handleCompleted.bind(this);
+        this.handleListAccordionClick = this.handleListAccordionClick.bind(this);
 
         this.state = {
-            items: []
+            items: [],
+            activeIndex: 0
         };
     }
 
@@ -126,6 +128,14 @@ class ManageList extends Component {
         });
     }
 
+    handleListAccordionClick(event, index) {
+        event.preventDefault();
+        const { activeIndex } = this.state;
+        const newIndex = activeIndex === index ? -1 : index;
+
+        this.setState({ activeIndex: newIndex });
+    }
+
     updateList() {
         const listObject = buildListData(this.props.lists, this.state);
         this.props.actions.update(listObject)
@@ -151,6 +161,8 @@ class ManageList extends Component {
                     handleSubmit={this.handleSubmit}
                     handleDelete={this.handleDelete}
                     handleCompleted={this.handleCompleted}
+                    handleListAccordionClick={this.handleListAccordionClick}
+                    activeIndex={this.state.activeIndex}
                 />
         );
     }

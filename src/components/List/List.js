@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Header, Table } from 'semantic-ui-react';
+import { Accordion, Container, Header, Icon, Table } from 'semantic-ui-react';
 import ListHeadings from './ListHeadings';
 import ListItems from './ListItems';
 import ListFooter from './ListFooter';
 import ListDetails from './ListDetails';
+import ListUploadFile from './ListUploadFile';
 
 const List = ({
     downloadPDF, handleAddItem, handleChange, handleDelete,
-    handleSubmit, handleCompleted, items, list
+    handleSubmit, handleCompleted, items, list, activeIndex,
+    handleListAccordionClick
 }) => {
     const numColumns = list.headings.length + 2;
     const listId = list._id; // eslint-disable-line no-underscore-dangle
@@ -31,6 +33,24 @@ const List = ({
                         handleSubmit={handleSubmit}
                     />
                 </Table>
+
+                <Accordion fluid styled>
+                    <Accordion.Title active={activeIndex === 0} id="0" onClick={handleListAccordionClick}>
+                        <Icon name="dropdown" />
+                            View Images for List
+                    </Accordion.Title>
+                    <Accordion.Content active={activeIndex === 0}>
+                        AAA
+                    </Accordion.Content>
+
+                    <Accordion.Title active={activeIndex === 1} id="1" onClick={handleListAccordionClick}>
+                        <Icon name="dropdown" />
+                            Upload Image
+                    </Accordion.Title>
+                    <Accordion.Content active={activeIndex === 1}>
+                        <ListUploadFile />
+                    </Accordion.Content>
+                </Accordion>
             </Container>
         </div>
     );
@@ -49,7 +69,9 @@ List.propTypes = {
     handleChange: PropTypes.func.isRequired,
     handleDelete: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    handleCompleted: PropTypes.func.isRequired
+    handleCompleted: PropTypes.func.isRequired,
+    handleListAccordionClick: PropTypes.func.isRequired,
+    activeIndex: PropTypes.number.isRequired
 };
 
 List.defaultProps = {
