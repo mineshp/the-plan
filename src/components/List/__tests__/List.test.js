@@ -13,9 +13,11 @@ const mockHandleDelete = jest.fn();
 const mockHandleCompleted = jest.fn();
 const mockItems = mockItemsData();
 const mockListData = mockSingleList();
+const mockHandleListAccordionClick = jest.fn();
+const mockActiveIndex = 1;
 
 describe('List', () => {
-    it('renders ListHeadings component', () => {
+    it('renders ListHeadings, ListItems and ListFooter components', () => {
         const wrapper = shallow(<List
             list={mockListData}
             handleAddItem={mockHandleAddItem}
@@ -50,7 +52,11 @@ describe('List', () => {
             handleDelete={mockHandleDelete}
             handleCompleted={mockHandleCompleted}
             items={mockItems}
+            handleListAccordionClick={mockHandleListAccordionClick}
+            activeIndex={mockActiveIndex}
         />);
+        expect(wrapper.find(ListHeadingComponent)).toHaveLength(1);
+        expect(wrapper.find(ListItemsComponent)).toHaveLength(1);
         expect(wrapper.find(ListFooterComponent)).toHaveLength(1);
     });
 });
