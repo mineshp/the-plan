@@ -4,7 +4,6 @@ import { UpdateProject } from '../Update';
 import LoadingComponent from '../../../components/Shared/Loading';
 import { mockListProfiles } from '../../../helpers/test/testData/controlCentreData';
 
-
 const mockEvent = { preventDefault: jest.fn() };
 
 const mockProfiles = mockListProfiles();
@@ -94,12 +93,12 @@ describe('Project', () => {
 
         it('calls componentDidMount', async () => {
             const componentDidMountSpy = jest.spyOn(UpdateProject.prototype, 'componentDidMount');
-            wrapper.instance().componentDidMount();
+            await wrapper.instance().componentDidMount();
 
             expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
-            await expect(newProjectProps.actions.retrieveProfiles).toHaveBeenCalled();
+            expect(newProjectProps.actions.retrieveProfiles).toHaveBeenCalled();
             expect(newProjectProps.match.params.id).toBeUndefined();
-            await expect(newProjectProps.actions.fetchSingleProject).not.toHaveBeenCalled();
+            expect(newProjectProps.actions.fetchSingleProject).not.toHaveBeenCalled();
 
             componentDidMountSpy.mockReset();
             componentDidMountSpy.mockRestore();
@@ -193,6 +192,9 @@ describe('Project', () => {
         let wrapper;
 
         beforeEach(() => {
+            updateProps.actions.fetchSingleProject.mockClear();
+            updateProps.actions.update.mockClear();
+
             wrapper = shallow(<UpdateProject
                 profiles={mockProfiles}
                 handleChange={handleChangeMock}
@@ -201,18 +203,16 @@ describe('Project', () => {
                 handleProjectDescriptionChangeMock={handleProjectDescriptionChangeMock}
                 {...updateProps}
             />, { context });
-
-            updateProps.actions.update.mockClear();
         });
 
         it('componentDidMount', async () => {
             const componentDidMountUpdateSpy = jest.spyOn(UpdateProject.prototype, 'componentDidMount');
-            wrapper.instance().componentDidMount();
+            await wrapper.instance().componentDidMount();
 
             expect(componentDidMountUpdateSpy).toHaveBeenCalledTimes(1);
-            await expect(updateProps.actions.retrieveProfiles).toHaveBeenCalled();
+            expect(updateProps.actions.retrieveProfiles).toHaveBeenCalled();
             expect(updateProps.match.params.id).not.toBeUndefined();
-            await expect(updateProps.actions.fetchSingleProject).toHaveBeenCalled();
+            expect(updateProps.actions.fetchSingleProject).toHaveBeenCalled();
 
             componentDidMountUpdateSpy.mockReset();
             componentDidMountUpdateSpy.mockRestore();

@@ -22,10 +22,9 @@ exports.register = function (req, res) {
             if (err) {
                 return res.send(`Error registering new user ${userData.username}, ${err}`);
             }
-                // return res.redirect('/profile');
-                res.status(201);
-                res.send(user);
-
+            // return res.redirect('/profile');
+            res.status(201);
+            res.send(user);
         });
     }
 };
@@ -33,6 +32,7 @@ exports.register = function (req, res) {
 const generateToken = (payload) =>
     jwt.sign(payload, config.jwtSecret, {
         expiresIn: 60 * 60 * 24 // expires in 24 hours
+        // expiresIn: 60
     });
 
 exports.login = (req, res) => {
@@ -86,19 +86,19 @@ exports.getAllUsers = (req, res) => {
         null,
         { sort: { updatedDate: -1 } },
         (err, collection) => {
-        const users = [];
-        collection.map((userObj) =>
-            users.push({
-                id: userObj._id, // eslint-disable-line no-underscore-dangle
-                username: userObj.username,
-                email: userObj.email,
-                isAdmin: userObj.isAdmin,
-                profile: userObj.profile,
-                profilesToDisplay: userObj.profilesToDisplay
-            })
-        );
-        res.send(users);
-    });
+            const users = [];
+            collection.map((userObj) =>
+                users.push({
+                    id: userObj._id, // eslint-disable-line no-underscore-dangle
+                    username: userObj.username,
+                    email: userObj.email,
+                    isAdmin: userObj.isAdmin,
+                    profile: userObj.profile,
+                    profilesToDisplay: userObj.profilesToDisplay
+                })
+            );
+            res.send(users);
+        });
 };
 
 exports.getUser = (req, res) => {
@@ -128,7 +128,7 @@ exports.getUser = (req, res) => {
 
 exports.updateUser = (req, res) => {
     const data = req.body;
-    User.update({ _id: req.params.id }, data, function (err, result) {
+    User.update({ _id: req.params.id }, data, (err, result) => {
         if (err) {
             res.status(400);
             res.json(
@@ -136,8 +136,7 @@ exports.updateUser = (req, res) => {
                     message: `Error: User update failed for id ${req.params.id}.`
                 }
             );
-        }
-        else {
+        } else {
             res.status(200);
             res.send(data);
         }
@@ -147,20 +146,19 @@ exports.updateUser = (req, res) => {
 exports.setProfilesToDisplay = (req, res) => {
     const data = req.body;
     User.update({ _id: req.params.id },
-        { profilesToDisplay: data }, function (err, result) {
-        if (err) {
-            res.status(400);
-            res.json(
-                {
-                    message: `Error: User update failed for id ${req.params.id}.`
-                }
-            );
-        }
-        else {
-            res.status(200);
-            res.send(result);
-        }
-    });
+        { profilesToDisplay: data }, (err, result) => {
+            if (err) {
+                res.status(400);
+                res.json(
+                    {
+                        message: `Error: User update failed for id ${req.params.id}.`
+                    }
+                );
+            } else {
+                res.status(200);
+                res.send(result);
+            }
+        });
 };
 
 exports.deleteUser = (req, res) => {

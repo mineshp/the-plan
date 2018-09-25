@@ -52,7 +52,7 @@ const auth = new Auth();
 if (auth.getToken()) {
     if (auth.isTokenExpired(auth.getToken())) {
         auth.logout();
-        window.location = `${window.location.hostname}/user/login`;
+        window.location = '/user/login';
     } else {
         // Set this as default headers
         setAuthorisationToken(auth.getToken());

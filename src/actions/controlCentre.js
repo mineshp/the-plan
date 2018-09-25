@@ -1,5 +1,6 @@
 import setAuthorisationToken from '../utils/setAuthorisationToken';
 import Auth from '../HOC/Authentication/Auth';
+import { setProfilesToDisplay } from './authentication';
 
 const auth = new Auth();
 
@@ -81,7 +82,11 @@ export function updateUser(existingUser) {
                 return Promise.reject(
                     new Error(`Error updating user ${existingUser.username}, please try again later.`));
             })
-            .then((data) => dispatch(successUpdatingUser(data)))
+            .then((data) => {
+                auth.saveProfileDataForUser();
+                dispatch(setProfilesToDisplay(existingUser.profile, existingUser));
+                dispatch(successUpdatingUser(data));
+            })
             .catch((error) => dispatch(errorUpdatingUser(error.message)));
 }
 

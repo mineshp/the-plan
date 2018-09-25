@@ -5,7 +5,6 @@ import MainNavComponent from '../../../components/MainNav';
 import { mockUser } from '../../../helpers/test/testData/authenticationData';
 
 const props = {
-    user: mockUser(),
     actions: {
         logout: jest.fn(() => (
             Promise.resolve()
@@ -24,11 +23,33 @@ const context = {
     }
 };
 
-describe('MainNav', () => {
-    let wrapper;
+describe('MainNav without a logged in user', () => {
+    let noUserWrapper;
     beforeEach(() => {
         context.router.history.push.mockClear();
-        wrapper = shallow(<MainNav {...props} />, { context });
+        noUserWrapper = shallow(<MainNav {...props} />, { context });
+    });
+
+    it('does not make a call to getUser on initial page load if user prop is not defined', () => {
+        const componentDidMountSpy = jest.spyOn(MainNav.prototype, 'componentDidMount');
+        noUserWrapper.instance().componentDidMount();
+
+        expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
+        expect(noUserWrapper.props().user).toBeNull();
+        expect(props.actions.getUser).not.toHaveBeenCalled();
+
+        componentDidMountSpy.mockReset();
+        componentDidMountSpy.mockRestore();
+    });
+});
+
+describe('MainNav with logged in user', () => {
+    let wrapper;
+    let userProps;
+    beforeEach(() => {
+        context.router.history.push.mockClear();
+        userProps = Object.assign({}, props, { user: mockUser() });
+        wrapper = shallow(<MainNav {...userProps} />, { context });
     });
 
     it('renders MainNav component', () => {
@@ -36,12 +57,13 @@ describe('MainNav', () => {
         expect(wrapper.props().user.username).toEqual('testUser');
     });
 
-    it('makes a call to getUser on initial page load', () => {
+    it('makes a call to getUser on initial page load if user prop exists', () => {
         const componentDidMountSpy = jest.spyOn(MainNav.prototype, 'componentDidMount');
         wrapper.instance().componentDidMount();
 
         expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
-        expect(props.actions.getUser).toHaveBeenCalled();
+        expect(wrapper.props().user).toBeDefined();
+        expect(userProps.actions.getUser).toHaveBeenCalled();
 
         componentDidMountSpy.mockReset();
         componentDidMountSpy.mockRestore();

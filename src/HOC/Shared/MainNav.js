@@ -12,7 +12,9 @@ class MainNav extends Component {
     }
 
     componentDidMount() {
-        this.props.actions.getUser(this.props.user.username);
+        if (this.props.user) {
+            this.props.actions.getUser(this.props.user.username);
+        }
     }
 
     logout() {
