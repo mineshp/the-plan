@@ -51,7 +51,7 @@ if [ -z "$VERSION" ]; then
   usage 4
 fi
 
-echo 'Build and upload client code'
+echo "Build and upload client code for version $VERSION"
 
 rm -rf build
 rm -rf morpheus-app-*
