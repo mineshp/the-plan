@@ -1,35 +1,33 @@
 const List = require('mongoose').model('List');
-const pdfExporter = require('../../export/pdf');
-
 
 exports.getAllLists = function (req, res) {
-	List.find({ "projects.name": { $in: req.body.projects } },
-		null,
-		{ sort: { completed: 1, updatedDate: -1 } },
-		function (err, collection) {
+    List.find({ 'projects.name': { $in: req.body.projects } },
+        null,
+        { sort: { completed: 1, updatedDate: -1 } },
+        (err, collection) => {
 			res.send(collection);
 	});
 };
 
 exports.getAllListsForProject = function (req, res) {
-	List.find({
-		'projects.name': req.params.projectName
-	},
-	null,
-	{ sort: { completed: 1, updatedDate: -1 } },
-	function (err, collection) {
+    List.find({
+        'projects.name': req.params.projectName
+    },
+    null,
+    { sort: { completed: 1, updatedDate: -1 } },
+    (err, collection) => {
 		res.send(collection);
 	});
 };
 
-exports.getListById = function(req, res) {
-    List.findOne({ _id: req.params.id }, function (err, collection) {
+exports.getListById = function (req, res) {
+    List.findOne({ _id: req.params.id }, (err, collection) => {
 		res.send(collection);
 	});
 };
 
-exports.createNewList = function(req, res) {
-	List.find({ listName: req.body.listName }, function (err, collection) {
+exports.createNewList = function (req, res) {
+    List.find({ listName: req.body.listName }, (err, collection) => {
 		if (collection.length === 0) {
 			const newList = new List(req.body);
 			newList.save((err, result) => {
@@ -52,9 +50,9 @@ exports.createNewList = function(req, res) {
 	});
 };
 
-exports.updateList = function(req, res) {
-	const data = req.body;
-	List.update({ _id: req.params.id }, data, function (err, result) {
+exports.updateList = function (req, res) {
+    const data = req.body;
+    List.update({ _id: req.params.id }, data, (err, result) => {
 		if (err) {
 			res.status(400);
 			res.json(
@@ -70,9 +68,9 @@ exports.updateList = function(req, res) {
 	});
 };
 
-exports.delete = function(req, res) {
-	const id = req.params.id;
-	List.findOne({ _id: id }, function (err, collection) {
+exports.delete = function (req, res) {
+    const id = req.params.id;
+    List.findOne({ _id: id }, (err, collection) => {
 		if (err) {
 			res.status(400);
 			res.json(
@@ -90,19 +88,3 @@ exports.delete = function(req, res) {
 		}
 	});
 };
-
-exports.generatePDF = function (req, res) {
-	List.findOne({ _id: req.params.id }, function (err, collection) {
-		pdfExporter.renderPDF(collection)
-			.then((file) => res.send(collection))
-			.catch((error) => {
-				res.status(400);
-				res.json(
-					{
-						message: `Error: Unable to generate pdf for list ${collection.listName}, error ${err}.`
-					}
-				);
-			});
-	});
-
-}

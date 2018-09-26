@@ -5,7 +5,6 @@ import ListItems from '../ListHeadings';
 import { mockHeadingsData } from '../../../helpers/test/testData/listData';
 
 const mockHeadings = mockHeadingsData();
-const mockDownloadPDF = jest.fn();
 
 describe('ListHeadings', () => {
     it('renders headings correctly', () => {
@@ -13,7 +12,6 @@ describe('ListHeadings', () => {
             <MemoryRouter>
                 <ListItems
                     headings={mockHeadings}
-                    downloadPDF={mockDownloadPDF}
                     listId="112"
                 /></MemoryRouter>).toJSON();
         expect(tree).toMatchSnapshot();

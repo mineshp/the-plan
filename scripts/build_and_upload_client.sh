@@ -87,8 +87,6 @@ cp -R server/config $TEMP_DEPLOY_FOLDER/server
 rm $TEMP_DEPLOY_FOLDER/server/config/testSetup.js
 cp -R server/dynamodb $TEMP_DEPLOY_FOLDER/server
 cp -R server/mongodb $TEMP_DEPLOY_FOLDER/server
-cp -R server/export/templates $TEMP_DEPLOY_FOLDER/server/export
-cp -R server/export/pdf.js $TEMP_DEPLOY_FOLDER/server/export
 cp -R server/middlewares $TEMP_DEPLOY_FOLDER/server/middlewares
 cp -R server/app.js $TEMP_DEPLOY_FOLDER/server
 cp -R server/server.js $TEMP_DEPLOY_FOLDER/server

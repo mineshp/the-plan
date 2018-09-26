@@ -293,17 +293,6 @@ body {
   color: #cc8986;
 }
 
-/* PDF */
-.ui.pdf {
-  color: #FFF;
-  background-color: #a2b7e3;
-}
-
-.ui.pdf:hover {
-  color: #FFF;
-  background-color: #8aa7e2;
-}
-
 /* Login Page */
 /* body > div,
 body > div > div,

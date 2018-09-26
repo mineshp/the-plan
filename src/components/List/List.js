@@ -7,7 +7,7 @@ import ListFooter from './ListFooter';
 import ListDetails from './ListDetails';
 
 const List = ({
-    downloadPDF, handleAddItem, handleChange, handleDelete,
+    handleAddItem, handleChange, handleDelete,
     handleSubmit, handleCompleted, items, list
 }) => {
     const numColumns = list.headings.length + 2;
@@ -18,7 +18,7 @@ const List = ({
                 <Header as="h1">{list.listName}</Header>
                 <ListDetails list={list} />
                 <Table striped>
-                    <ListHeadings downloadPDF={downloadPDF} listId={listId} headings={list.headings} />
+                    <ListHeadings listId={listId} headings={list.headings} />
                     <ListItems
                         items={items}
                         handleChange={handleChange}
@@ -44,7 +44,6 @@ List.propTypes = {
     items: PropTypes.arrayOf(
         PropTypes.shape({})
     ).isRequired,
-    downloadPDF: PropTypes.func.isRequired,
     handleAddItem: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleDelete: PropTypes.func.isRequired,

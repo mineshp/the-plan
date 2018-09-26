@@ -7,7 +7,6 @@ const handleSubmitMock = jest.fn();
 const handleChangeMock = jest.fn();
 const addItemMock = jest.fn();
 const mockEvent = { preventDefault: jest.fn() };
-const mockDownloadPDF = jest.fn();
 
 const props = {
     actions: {
@@ -18,9 +17,6 @@ const props = {
             Promise.resolve()
         )),
         update: jest.fn(() => (
-            Promise.resolve()
-        )),
-        downloadPDF: jest.fn(() => (
             Promise.resolve()
         ))
     },
@@ -302,39 +298,6 @@ describe('Manage Single List', () => {
         });
     });
 
-    describe('Download a pdf', () => {
-        let wrapper;
-        const propsWithParamId = Object.assign({}, props, {
-            lists: mockSingleList(),
-            match: { params: { id: '123' } },
-            actions: Object.assign({}, props.actions, {
-                downloadPDF: jest.fn(() => (
-                    Promise.resolve({
-                        data: mockSingleList(),
-                        isFetching: false
-                    })
-                ))
-            })
-        });
-        beforeEach(() => {
-            wrapper = shallow(
-                <ManageList
-                    handleChange={handleChangeMock}
-                    handleSubmit={handleSubmitMock}
-                    handleAddItem={addItemMock}
-                    downloadPDF={mockDownloadPDF}
-                    {...propsWithParamId}
-                />
-            );
-        });
-        it('calls downloadPDF action with correct data when downloadPDF is called - downloadPDF', async () => {
-            await wrapper.instance().downloadPDF(mockEvent, { id: '123' });
-
-            await expect(propsWithParamId.actions.downloadPDF).toHaveBeenCalledWith('123');
-            await expect(props.actions.addNotification).toHaveBeenCalled();
-        });
-    });
-
     describe('Retrieve a single list fails', () => {
         it('sets an api error when the client is unable to connect to the api', async () => {
             const apiError = {
@@ -364,7 +327,6 @@ describe('Manage Single List', () => {
             expect(props.match.params).toBe(undefined);
             await expect(props.actions.retrieveListById).not.toHaveBeenCalled();
             await expect(props.actions.addNotification).not.toHaveBeenCalled();
-            // await expect(wrapper.instance().fetchListById()).resolves({});
         });
     });
 });

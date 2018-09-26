@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Dropdown, Table } from 'semantic-ui-react';
+import { Button, Table } from 'semantic-ui-react';
 
-const ListItems = ({ downloadPDF, headings, listId }) => {
+const ListItems = ({ headings, listId }) => {
     const columnHeadings = [];
     headings.map((heading) => (
         columnHeadings.push(<Table.HeaderCell key={heading.id}>{heading.name}</Table.HeaderCell>)
@@ -18,12 +18,6 @@ const ListItems = ({ downloadPDF, headings, listId }) => {
                 to={`/list/update/${listId}`}
                 title="Amend List Setup"
             />
-            <Dropdown text="Export PDF" icon="file pdf outline" floating labeled button className="icon pdf">
-                <Dropdown.Menu>
-                    <Dropdown.Item id={listId} onClick={downloadPDF}>Save</Dropdown.Item>
-                    <Dropdown.Item disabled>Email</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
         </Table.HeaderCell>
     );
 
@@ -44,7 +38,6 @@ ListItems.propTypes = {
             position: PropTypes.number
         })
     ).isRequired,
-    downloadPDF: PropTypes.func.isRequired,
     listId: PropTypes.string.isRequired
 };
 

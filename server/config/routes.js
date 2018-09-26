@@ -50,7 +50,6 @@ module.exports = function (app) {
     app.post('/api/list/update/:id', authenticate, list.updateList);
     app.post('/api/list/update', authenticate, list.createNewList);
     app.delete('/api/list/delete/:id', authenticate, list.delete);
-    app.get('/api/list/generate/pdf/:id', authenticate, list.generatePDF);
 
     app.get('/api/project/all', authenticate, project.getAllProjects);
     app.get('/api/project/byProfiles', authenticate, project.getAllProjectsBySelectedProfiles);

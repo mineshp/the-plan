@@ -1,5 +1,4 @@
 const dynamoDBClient = require('../models/DynamoDBClient');
-const pdfExporter = require('../../export/pdf');
 const uuidv4 = require('uuid/v4');
 
 const env = process.env.NODE_ENV || 'development';
@@ -177,33 +176,6 @@ exports.delete = (req, res) => {
                     }));
                 }
             });
-        }
-    });
-};
-
-exports.generatePDF = (req, res) => {
-    const listId = req.params.id;
-    const payload = {
-        TableName: config.listsTable,
-        Key: {
-            _id: listId
-        }
-    };
-
-    dynamoDBClient.get(payload, (data) => {
-        if (data.error) {
-            res.status(500).json({ error: data.error });
-        } else {
-            pdfExporter.renderPDF(data.Item)
-                .then(() => res.send(data.Item))
-                .catch((error) => {
-                    res.status(400);
-                    res.json(
-                        {
-                            message: `Error: Unable to generate pdf for list ${data.Items.listName}, error ${error}.`
-                        }
-                    );
-                });
         }
     });
 };
