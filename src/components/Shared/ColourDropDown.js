@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Select } from 'semantic-ui-react';
+import Select from 'semantic-ui-react/dist/commonjs/addons/Select';
 
 const colours = [
     'red', 'blue', 'orange', 'yellow', 'olive', 'green', 'teal', 'violet',

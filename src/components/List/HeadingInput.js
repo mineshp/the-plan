@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Divider, Form, Grid, Input } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Divider from 'semantic-ui-react/dist/commonjs/elements/Divider';
+import Form from 'semantic-ui-react/dist/commonjs/collections/Form';
+import Grid from 'semantic-ui-react/dist/commonjs/collections/Grid';
+import Input from 'semantic-ui-react/dist/commonjs/elements/Input';
 
 const HeadingInput = ({ headings, handleAddColumn, handleRemoveColumn, handleHeaderInputChange }) => {
     const headerRows = [];

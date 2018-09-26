@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Table } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Table from 'semantic-ui-react/dist/commonjs/collections/Table';
 
 const ListItems = ({ headings, listId }) => {
     const columnHeadings = [];

@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Form, Header, Select } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Form from 'semantic-ui-react/dist/commonjs/collections/Form';
+import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
+import Select from 'semantic-ui-react/dist/commonjs/addons/Select';
 
 const UserProfile = ({
     profilesAssigned,

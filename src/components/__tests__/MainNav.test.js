@@ -2,7 +2,8 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { Menu, Dropdown } from 'semantic-ui-react';
+import Dropdown from 'semantic-ui-react/dist/commonjs/modules/Dropdown';
+import Menu from 'semantic-ui-react/dist/commonjs/collections/Menu';
 import MainNav from '../MainNav';
 import { mockUser, mockAdminUser } from '../../helpers/test/testData/authenticationData';
 

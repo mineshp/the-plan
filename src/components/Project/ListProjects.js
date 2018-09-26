@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Container } from 'semantic-ui-react';
+import Card from 'semantic-ui-react/dist/commonjs/views/Card';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
 
 const ListProjects = ({ cards }) => (
     <Container>

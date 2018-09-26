@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message } from 'semantic-ui-react';
+import Message from 'semantic-ui-react/dist/commonjs/collections/Message';
 import PropTypes from 'prop-types';
 
 const DisplayMessage = (props) => {

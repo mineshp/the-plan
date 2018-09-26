@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Input, Table } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Input from 'semantic-ui-react/dist/commonjs/elements/Input';
+import Table from 'semantic-ui-react/dist/commonjs/collections/Table';
 
 const calculateColumnWidths = (numOfCols) => {
     const MAX_WIDTH = 12;

@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Icon, Label, Table } from 'semantic-ui-react';
-
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Icon from 'semantic-ui-react/dist/commonjs/elements/Icon';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Label from 'semantic-ui-react/dist/commonjs/elements/Label';
+import Table from 'semantic-ui-react/dist/commonjs/collections/Table';
 
 const ListUsers = ({ handleDeleteUser, handleResetPwd, users }) => {
     const userRows = [];

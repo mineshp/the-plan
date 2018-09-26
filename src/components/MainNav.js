@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Dropdown, Label, Menu } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Dropdown from 'semantic-ui-react/dist/commonjs/modules/Dropdown';
+import Label from 'semantic-ui-react/dist/commonjs/elements/Label';
+import Menu from 'semantic-ui-react/dist/commonjs/collections/Menu';
 import logo from '../md-logo-green.png';
 
 export default class MainNav extends Component {

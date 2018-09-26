@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Table } from 'semantic-ui-react';
+import Table from 'semantic-ui-react/dist/commonjs/collections/Table';
 import ListDetails from '../ListDetails';
 
 describe('ListDetails', () => {

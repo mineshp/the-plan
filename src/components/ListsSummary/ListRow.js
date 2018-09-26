@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Button, Table, Label } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Label from 'semantic-ui-react/dist/commonjs/elements/Label';
+import Table from 'semantic-ui-react/dist/commonjs/collections/Table';
 import { formatDate } from '../../helpers/validators/common';
 
 const projectLabels = (projects) => projects.slice(0, 3).map((project) => (

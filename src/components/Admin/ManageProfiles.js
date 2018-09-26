@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Accordion, Container, Icon } from 'semantic-ui-react';
+import Accordion from 'semantic-ui-react/dist/commonjs/modules/Accordion';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Icon from 'semantic-ui-react/dist/commonjs/elements/Icon';
 import ViewProfiles from './ViewProfiles';
 import UpdateProfile from './UpdateProfile';
 import AssignProjectsToProfile from './AssignProjectsToProfile';
 import AssignUsersToProfile from './AssignUsersToProfile';
-
 
 const ManageProfiles = ({
     activeIndex, handleManageProfilesAccordionClick,

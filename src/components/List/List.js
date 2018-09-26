@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Header, Table } from 'semantic-ui-react';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
+import Table from 'semantic-ui-react/dist/commonjs/collections/Table';
 import ListHeadings from './ListHeadings';
 import ListItems from './ListItems';
 import ListFooter from './ListFooter';

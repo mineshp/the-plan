@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
 import { shallow } from 'enzyme';
-import { Label } from 'semantic-ui-react';
+import Label from 'semantic-ui-react/dist/commonjs/elements/Label';
 import ListRow from '../ListRow';
 import { mockListRowData, mockCompletedListRowData } from '../../../helpers/test/testData/listData';
 

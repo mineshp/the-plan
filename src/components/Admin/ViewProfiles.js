@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Table } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Table from 'semantic-ui-react/dist/commonjs/collections/Table';
 
 const ViewProfiles = ({ handleDeleteProfile, handleProfileStatus, profiles }) => {
     const profileRows = [];

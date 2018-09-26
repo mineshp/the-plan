@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {
-    Button,
-    Container,
-    Divider,
-    Grid,
-    Header,
-    Segment
-} from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Divider from 'semantic-ui-react/dist/commonjs/elements/Divider';
+import Grid from 'semantic-ui-react/dist/commonjs/collections/Grid';
+import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
+import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment';
 
 export default class HomepageLayout extends Component {
     constructor() {

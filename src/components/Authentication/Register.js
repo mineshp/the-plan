@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Form, Grid, Header, Image, Input, Label, Segment } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Form from 'semantic-ui-react/dist/commonjs/collections/Form';
+import Grid from 'semantic-ui-react/dist/commonjs/collections/Grid';
+import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
+import Image from 'semantic-ui-react/dist/commonjs/elements/Image';
+import Input from 'semantic-ui-react/dist/commonjs/elements/Input';
+import Label from 'semantic-ui-react/dist/commonjs/elements/Label';
+import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment';
 import logo from '../../md-logo-green.png';
 
 const Register = ({

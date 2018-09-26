@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Checkbox, Container, Form, Select } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Checkbox from 'semantic-ui-react/dist/commonjs/modules/Checkbox';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Form from 'semantic-ui-react/dist/commonjs/collections/Form';
+import Select from 'semantic-ui-react/dist/commonjs/addons/Select';
 
 const AssignProjectsToProfile = ({
     handleSubmitToAssignProjectsToProfile,

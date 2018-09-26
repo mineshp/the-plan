@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table, Button, Icon } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Icon from 'semantic-ui-react/dist/commonjs/elements/Icon';
+import Table from 'semantic-ui-react/dist/commonjs/collections/Table';
 
 const ListFooter = ({ numColumns, handleAddItem, handleSubmit }) => (
     <Table.Footer fullWidth>

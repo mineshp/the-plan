@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'semantic-ui-react';
+import Table from 'semantic-ui-react/dist/commonjs/collections/Table';
 import { formatDate } from '../../helpers/validators/common';
 
 const ListDetails = ({ list }) => {

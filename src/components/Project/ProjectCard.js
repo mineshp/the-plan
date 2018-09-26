@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'semantic-ui-react';
+import Card from 'semantic-ui-react/dist/commonjs/views/Card';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
 import { formatDate } from '../../helpers/validators/common';
 
 const ProjectCard = ({ data, onDeleteHandler }) => (

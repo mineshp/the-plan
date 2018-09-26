@@ -1,5 +1,6 @@
 import React from 'react';
-import { Dimmer, Loader } from 'semantic-ui-react';
+import Dimmer from 'semantic-ui-react/dist/commonjs/modules/Dimmer';
+import Loader from 'semantic-ui-react/dist/commonjs/elements/Loader';
 
 const Loading = () => (
     <div>

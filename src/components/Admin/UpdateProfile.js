@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Checkbox, Container, Form, Input } from 'semantic-ui-react';
-
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Checkbox from 'semantic-ui-react/dist/commonjs/modules/Checkbox';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Form from 'semantic-ui-react/dist/commonjs/collections/Form';
+import Input from 'semantic-ui-react/dist/commonjs/elements/Input';
 
 const UpdateProfile = ({
     handleProfileNameChange,

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Header } from 'semantic-ui-react';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
 
 const NotFound = () => (
     <div>

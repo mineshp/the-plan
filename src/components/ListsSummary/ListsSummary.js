@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Header, Table } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
+import Table from 'semantic-ui-react/dist/commonjs/collections/Table';
 
 const ListsSummary = ({ retrieveListBy, rows }) => (
     <div className="List main content-body">

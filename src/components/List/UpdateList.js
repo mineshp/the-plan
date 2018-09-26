@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Divider, Select, Form, Grid, Header, Input } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Divider from 'semantic-ui-react/dist/commonjs/elements/Divider';
+import Form from 'semantic-ui-react/dist/commonjs/collections/Form';
+import Grid from 'semantic-ui-react/dist/commonjs/collections/Grid';
+import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
+import Input from 'semantic-ui-react/dist/commonjs/elements/Input';
+import Select from 'semantic-ui-react/dist/commonjs/addons/Select';
 import HeadingInput from './HeadingInput';
 import './List.css';
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Checkbox, Form } from 'semantic-ui-react';
+import Checkbox from 'semantic-ui-react/dist/commonjs/modules/Checkbox';
+import Form from 'semantic-ui-react/dist/commonjs/collections/Form';
 
 const CheckBoxGroup = ({
     data,

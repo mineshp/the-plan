@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Container, Form, Grid, Header, Image, Input, Message, Segment } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/commonjs/elements/Button';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container';
+import Form from 'semantic-ui-react/dist/commonjs/collections/Form';
+import Grid from 'semantic-ui-react/dist/commonjs/collections/Grid';
+import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
+import Image from 'semantic-ui-react/dist/commonjs/elements/Image';
+import Input from 'semantic-ui-react/dist/commonjs/elements/Input';
+import Message from 'semantic-ui-react/dist/commonjs/collections/Message';
+import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment';
 import logo from '../../md-logo-green.png';
 
 const Login = ({
