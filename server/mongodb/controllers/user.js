@@ -1,5 +1,5 @@
 const User = require('mongoose').model('User');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const env = process.env.NODE_ENV || 'development';
