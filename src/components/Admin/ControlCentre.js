@@ -15,7 +15,7 @@ const ControlCentre = ({
     handleUsersDropDownChange, userProfilesAssigned
 }) => (
     <Container className="content-body">
-        <Header as="h1">Control Centre</Header>
+        <Header as="h1">Control Centre - v{process.env.REACT_APP_VERSION}</Header>
         <ListUsers
             users={users}
             handleDeleteUser={handleDeleteUser}

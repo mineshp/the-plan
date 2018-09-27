@@ -85,13 +85,14 @@ describe('MainNav Component', () => {
         let adminUserProp;
         beforeEach(() => {
             adminUserProp = Object.assign({}, props, { user: mockAdminUser(), logout: jest.fn() });
+            process.env.REACT_APP_VERSION = '1.2.3';
         });
 
         it('does show the control centre menu item if user is admin', () => {
             const wrapper = shallow(<MainNav {...adminUserProp} />);
             const UserMenu = wrapper.find(Menu.Item).last();
             const UserDropDown = UserMenu.find(Dropdown.Item).first();
-            expect(UserDropDown.props().children).toEqual('Control Centre');
+            expect(UserDropDown.props().children).toEqual(['Control Centre -v', '1.2.3']);
         });
     });
 
