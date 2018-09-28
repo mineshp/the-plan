@@ -64,11 +64,10 @@ mkdir -p $TEMP_DEPLOY_FOLDER
 # App package libraries
 cp package.json $TEMP_DEPLOY_FOLDER
 cp yarn.lock $TEMP_DEPLOY_FOLDER
+npm run app:version | tail -1 > $TEMP_DEPLOY_FOLDER/VERSION
 npm run build
 sleep 2
 cp -R build $TEMP_DEPLOY_FOLDER
-
-# cp -R public $TEMP_DEPLOY_FOLDER
 
 # Code Deploy
 cp appspec.yml $TEMP_DEPLOY_FOLDER
@@ -78,7 +77,6 @@ cp -R scripts/mongodb_restore.sh $TEMP_DEPLOY_FOLDER
 
 # Client App code
 cp client-pm2.json $TEMP_DEPLOY_FOLDER
-# cp -R src $TEMP_DEPLOY_FOLDER
 
 # Server App code
 mkdir $TEMP_DEPLOY_FOLDER/server

@@ -53,7 +53,7 @@ export default class MainNav extends Component {
             : null;
 
         const displayControlCentreItem = user.isAdmin
-            ? <Dropdown.Item onClick={this.handleItemClick} as={Link} to="/admin/manage">Control Centre -v{process.env.REACT_APP_VERSION}</Dropdown.Item>
+            ? <Dropdown.Item onClick={this.handleItemClick} as={Link} to="/admin/manage">Control Centre</Dropdown.Item>
             : null;
 
         const moto = this.getMotoByUser({ username: user.username });
