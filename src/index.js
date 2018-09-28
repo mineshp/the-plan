@@ -56,7 +56,8 @@ if (auth.getToken()) {
     } else {
         // Set this as default headers
         setAuthorisationToken(auth.getToken());
-        store.dispatch(setCurrentUser(auth.getUserProfile()));
+        const { username } = auth.getUserProfile();
+        store.dispatch(setCurrentUser(username));
     }
 }
 

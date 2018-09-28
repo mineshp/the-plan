@@ -103,6 +103,15 @@ exports.getAllUsers = (req, res) => {
 
 exports.getUser = (req, res) => {
     const userName = req.body.username;
+    if (!userName) {
+        res.status(400);
+        res.json(
+            {
+                message: `Error: Username not provided.`
+            }
+        );
+    }
+
     User.findOne({ userName }, (err, collection) => {
         if (err) {
             res.status(400);
@@ -112,7 +121,6 @@ exports.getUser = (req, res) => {
                 }
             );
         }
-
         const updatedUserObj = {
             id: collection.id,
             username: collection.username,

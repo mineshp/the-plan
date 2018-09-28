@@ -11,12 +11,6 @@ class MainNav extends Component {
         this.logout = this.logout.bind(this);
     }
 
-    componentDidMount() {
-        if (this.props.user) {
-            this.props.actions.getUser(this.props.user.username);
-        }
-    }
-
     logout() {
         this.props.actions.logout();
         this.context.router.history.push('/');
@@ -25,6 +19,7 @@ class MainNav extends Component {
     /* istanbul ignore next: not testing render */
     render() {
         const { user } = this.props;
+
         return (
             <MainNavComponent
                 user={user}
