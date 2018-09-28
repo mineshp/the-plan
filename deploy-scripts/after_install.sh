@@ -15,10 +15,12 @@ sudo mv /tmp/morpheus-deploy/server/* $APP_SERVER_DIR
 sudo rm -rf /tmp/morpheus-deploy/server
 sudo chown -R ec2-user:ec2-user $APP_SERVER_DIR
 cd $APP_SERVER_DIR
-rm -rf node_modules/
 sudo npm install pm2 -g
-sudo npm install --production || { echo 'npm install failed' ; exit 1; }
 sudo chown -R ec2-user:ec2-user node_modules
+
+# Run script to install server modules
+cd /home/ec2-user
+./fix-morpheus-server.sh
 
 # Configure client
 sudo mv /tmp/morpheus-deploy/* $APP_CLIENT_DIR
